@@ -15,12 +15,12 @@ window.SHOP = {
       name: "Drop In hoodie",
       kind: "hoodie",
       price: 65,
-      blurb: "Heavyweight fleece, cloud mark on the chest, Live free. Take action. across the back.",
+      blurb: "Heavyweight fleece, Action Cloud mark on the chest, Live free. Take action. across the back.",
       sizes: ["S", "M", "L", "XL", "XXL"],
       colors: [
-        { name: "Ink", hex: "#1B2A4A" },
-        { name: "Sky", hex: "#9CC4DE" },
-        { name: "Concrete", hex: "#8E949A" }
+        { name: "Black", hex: "#141414" },
+        { name: "Lime", hex: "#C8F135" },
+        { name: "Grey", hex: "#7A7A7A" }
       ]
     },
     {
@@ -31,9 +31,9 @@ window.SHOP = {
       blurb: "Boxy fit, 220 gsm cotton. Small mark on the front, big decision on the back.",
       sizes: ["S", "M", "L", "XL", "XXL"],
       colors: [
-        { name: "White", hex: "#F7F8FA" },
-        { name: "Ink", hex: "#1B2A4A" },
-        { name: "Signal", hex: "#FFC629" }
+        { name: "Black", hex: "#141414" },
+        { name: "White", hex: "#F4F4F4" },
+        { name: "Lime", hex: "#C8F135" }
       ]
     },
     {
@@ -41,11 +41,11 @@ window.SHOP = {
       name: "Coping cap",
       kind: "cap",
       price: 30,
-      blurb: "Six-panel, curved brim, embroidered cloud. Adjustable strap.",
+      blurb: "Six-panel, curved brim, embroidered Action Cloud mark. Adjustable strap.",
       sizes: ["One size"],
       colors: [
-        { name: "Ink", hex: "#1B2A4A" },
-        { name: "Sky", hex: "#9CC4DE" }
+        { name: "Black", hex: "#141414" },
+        { name: "Lime", hex: "#C8F135" }
       ]
     },
     {
@@ -56,9 +56,9 @@ window.SHOP = {
       blurb: "Rib knit with a fold-up cuff and woven label. For the months the park is the only option.",
       sizes: ["One size"],
       colors: [
-        { name: "Signal", hex: "#FFC629" },
-        { name: "Ink", hex: "#1B2A4A" },
-        { name: "Concrete", hex: "#8E949A" }
+        { name: "Lime", hex: "#C8F135" },
+        { name: "Black", hex: "#141414" },
+        { name: "Grey", hex: "#7A7A7A" }
       ]
     }
   ]

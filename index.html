@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Action Cloud — Live free. Take action.</title>
-<meta name="description" content="Action Cloud is an indoor action-sports park and a way of riding through life. Hoodies, tees, caps and beanies for people who drop in.">
+<meta name="description" content="Action Cloud is an indoor bikepark in Brașov and a way of riding through life. Hoodies, tees, caps and beanies for people who drop in.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Instrument+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -15,10 +15,7 @@
 <a class="skip" href="#shop">Skip to the shop</a>
 
 <header class="bar">
-  <a class="brand" href="#top" aria-label="Action Cloud home">
-    <svg viewBox="0 0 64 40" aria-hidden="true"><path class="cloud" d="M14 36a11 11 0 0 1-1.6-21.9A15 15 0 0 1 41 9.5 11 11 0 0 1 56 20a8 8 0 0 1-2 16Z"/><path class="bolt" d="M34 13 24 27h8l-3 9 11-15h-8l3-8Z"/></svg>
-    <span>Action Cloud</span>
-  </a>
+  <a class="brand" href="#top"><img src="img/action-cloud-logo.webp" alt="Action Cloud" width="118" height="64"></a>
   <nav aria-label="Main">
     <a href="#why">Why</a>
     <a href="#shop">Shop</a>
@@ -32,25 +29,20 @@
 <main id="top">
 
   <section class="hero" aria-labelledby="hero-title">
-    <h1 id="hero-title" class="hero-title">Live free. Take action.</h1>
-    <svg class="ramp" viewBox="0 0 1200 620" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-      <defs>
-        <path id="transition" d="M150 512 L640 512 Q930 512 930 232 L930 150"/>
-      </defs>
-      <path class="ramp-body" d="M0 540 L640 540 Q960 540 960 230 L960 130 L1200 130 L1200 620 L0 620 Z"/>
-      <rect class="coping" x="944" y="122" width="32" height="14" rx="7"/>
-      <g class="ply">
-        <line x1="1010" y1="170" x2="1200" y2="170"/>
-        <line x1="1010" y1="250" x2="1200" y2="250"/>
-        <line x1="1010" y1="330" x2="1200" y2="330"/>
-      </g>
-      <text class="ride-text"><textPath id="ride" href="#transition" startOffset="0">Live free. Take action.</textPath></text>
-    </svg>
-    <div class="hero-copy">
-      <p>Nobody hands you the life you want. You pick a line, decide before the lip, and go. That's the whole idea. The clothes are just what you wear while you do it.</p>
+    <div class="hero-photos" aria-hidden="true">
+      <img src="img/journey-2024.webp" alt="" fetchpriority="high">
+      <img src="img/yannis.webp" alt="">
+      <img src="img/alanko.webp" alt="">
+    </div>
+    <div class="hero-inner">
+      <h1 id="hero-title">Live free.<br>Take action.</h1>
+      <p>Nobody hands you the life you want. You pick a line, decide before the lip, and go. The clothes are just what you wear while you do it.</p>
       <a class="btn" href="#shop">Shop the drop</a>
     </div>
+    <p class="credit">Inside Action Cloud, Brașov</p>
   </section>
+
+  <div class="stripe" aria-hidden="true"></div>
 
   <section id="why" class="why" aria-labelledby="why-title">
     <h2 id="why-title">Scared is fine. Stuck isn't.</h2>
@@ -58,8 +50,12 @@
       <p>I've been on a bike for 27 years. Downhill, slopestyle, dirt jump, backflips. National champion at 17. Zero broken bones.</p>
       <p>Not because I'm brave. I get scared like everyone. The difference is I stopped waiting for the fear to leave. It doesn't. You decide anyway, and you commit.</p>
       <p>That works on a jump line, and it works on everything else: the business you keep putting off, the move, the trip, the conversation. Action Cloud started as a park. It's become the way I try to live.</p>
-      <p class="sign">Chris, founder</p>
+      <p class="sign">Chris Baier, founder</p>
     </div>
+    <figure class="why-photo">
+      <img src="img/journey-2008.webp" alt="Chris on a dirt jump in 2008, no helmet, no pads" loading="lazy">
+      <figcaption>Chris, 2008. Still learning the hard way.</figcaption>
+    </figure>
   </section>
 
   <section id="shop" class="shop" aria-labelledby="shop-title">
@@ -72,9 +68,10 @@
   </section>
 
   <section id="park" class="park" aria-labelledby="park-title">
+    <img class="park-bg" src="img/alanko.webp" alt="" loading="lazy">
     <div class="park-inner">
       <h2 id="park-title">Where it started</h2>
-      <p>Action Cloud is an indoor park for skate, BMX, scooter and mountain bike. It's open when the weather isn't, so rain stops nobody. Kids come for camps, riders come to train, and some people come to try it for the first time at forty.</p>
+      <p>Action Cloud is an indoor bikepark in Brașov for BMX, mountain bike, scooter and skate. Rain stops nobody. Kids aged 7 to 16 come for Action Camp, riders come to train, and the whole scene shows up for Action Cup, Christmas Jam and Trick or Treat.</p>
       <p>Every piece you buy here helps keep the ramps up.</p>
     </div>
   </section>
@@ -82,8 +79,8 @@
 </main>
 
 <footer class="foot">
-  <p>Action Cloud · Romania</p>
-  <p><a href="mailto:chris@actioncloud.co">chris@actioncloud.co</a></p>
+  <img src="img/action-cloud-logo.webp" alt="Action Cloud" width="88" height="48" loading="lazy">
+  <p><a href="https://www.instagram.com/action.cloud/">Instagram</a> <a href="https://www.tiktok.com/@action.cloud">TikTok</a> <a href="mailto:chris@actioncloud.co">chris@actioncloud.co</a></p>
 </footer>
 
 <div class="scrim" id="scrim" hidden></div>

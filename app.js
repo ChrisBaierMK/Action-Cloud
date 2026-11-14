@@ -6,64 +6,12 @@
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var $ = function (id) { return document.getElementById(id); };
 
-  // ---------- garment drawings ----------
-  var LOGO_RATIO = 256 / 472;
-
-  function isLight(hex) {
-    var n = parseInt(hex.slice(1), 16);
-    return (((n >> 16) & 255) * 299 + ((n >> 8) & 255) * 587 + (n & 255) * 114) / 1000 > 150;
+  // ---------- product photos ----------
+  // One photo per product colour: img/p/<product id>-<colour name>.webp
+  function garment(p, colorName) {
+    return '<img src="img/p/' + p.id + "-" + colorName.toLowerCase() + '.webp" alt="" draggable="false" decoding="async">';
   }
 
-  function garment(kind, hex) {
-    var light = isLight(hex);
-    var ink = light ? "#141414" : "#ECC820";
-    var shade = "rgba(0,0,0,.16)";
-    var shine = light ? "rgba(255,255,255,.28)" : "rgba(255,255,255,.07)";
-    var logo = function (x, y, w) {
-      var file = light ? "img/action-cloud-logo-black.webp" : "img/action-cloud-logo-yellow.webp";
-      return '<image href="' + file + '" x="' + x + '" y="' + y + '" width="' + w + '" height="' + (w * LOGO_RATIO).toFixed(1) + '"/>';
-    };
-    switch (kind) {
-      case "hoodie":
-        return '<svg viewBox="8 0 204 232" aria-hidden="true">' +
-          '<path fill="' + hex + '" d="M78 30 Q110 4 142 30 L150 44 Q110 30 70 44 Z"/>' +
-          '<path fill="' + hex + '" d="M70 40 Q110 56 150 40 L188 62 L206 196 L180 202 L166 98 L166 226 L54 226 L54 98 L40 202 L14 196 L32 62 Z"/>' +
-          '<path fill="' + shine + '" d="M70 40 L32 62 L14 196 L24 198 L44 70 Z"/>' +
-          '<path fill="' + shade + '" d="M82 40 Q110 62 138 40 Q110 50 82 40 Z"/>' +
-          '<path fill="' + shade + '" d="M78 168 L142 168 L152 210 L68 210 Z"/>' +
-          '<rect fill="' + shade + '" x="54" y="214" width="112" height="12"/>' +
-          '<line x1="102" y1="50" x2="100" y2="92" stroke="' + ink + '" stroke-width="2"/>' +
-          '<line x1="118" y1="50" x2="120" y2="92" stroke="' + ink + '" stroke-width="2"/>' +
-          logo(72, 100, 76) + "</svg>";
-      case "tee":
-        return '<svg viewBox="14 14 192 216" aria-hidden="true">' +
-          '<path fill="' + hex + '" d="M74 28 L92 20 Q110 34 128 20 L146 28 L200 66 L178 102 L160 92 L160 224 L60 224 L60 92 L42 102 L20 66 Z"/>' +
-          '<path fill="' + shine + '" d="M74 28 L20 66 L42 102 L50 97 L34 68 Z"/>' +
-          '<path fill="none" stroke="' + shade + '" stroke-width="4" d="M92 21 Q110 38 128 21"/>' +
-          logo(118, 56, 34) + "</svg>";
-      case "cap":
-        return '<svg viewBox="28 52 164 150" aria-hidden="true">' +
-          '<path fill="' + hex + '" d="M36 156 Q36 64 110 60 Q184 64 184 156 Q110 142 36 156 Z"/>' +
-          '<path fill="' + shine + '" d="M36 156 Q36 78 92 63 Q52 90 48 154 Z"/>' +
-          '<g fill="none" stroke="' + shade + '" stroke-width="2.5"><path d="M110 62 Q72 96 62 150"/><path d="M110 62 Q148 96 158 150"/><path d="M110 62 V146"/></g>' +
-          '<path fill="' + hex + '" d="M50 150 Q110 140 170 150 Q186 168 172 184 Q110 200 48 184 Q34 168 50 150 Z"/>' +
-          '<path fill="' + shade + '" d="M50 150 Q110 140 170 150 Q186 168 172 184 Q110 200 48 184 Q34 168 50 150 Z"/>' +
-          '<path fill="rgba(0,0,0,.22)" d="M50 150 Q110 140 170 150 L168 156 Q110 147 52 156 Z"/>' +
-          '<circle fill="' + hex + '" cx="110" cy="62" r="6"/><circle fill="' + shade + '" cx="110" cy="62" r="6"/>' +
-          logo(66, 96, 88) + "</svg>";
-      case "beanie":
-        return '<svg viewBox="36 24 148 184" aria-hidden="true">' +
-          '<circle fill="' + hex + '" cx="110" cy="50" r="22"/><circle fill="' + shade + '" cx="110" cy="50" r="22"/>' +
-          '<path fill="' + hex + '" d="M50 164 Q46 70 110 66 Q174 70 170 164 Z"/>' +
-          '<g stroke="' + shade + '" stroke-width="3"><line x1="74" y1="90" x2="70" y2="160"/><line x1="92" y1="76" x2="90" y2="160"/><line x1="110" y1="70" x2="110" y2="160"/><line x1="128" y1="76" x2="130" y2="160"/><line x1="146" y1="90" x2="150" y2="160"/></g>' +
-          '<rect fill="' + hex + '" x="44" y="156" width="132" height="46" rx="8"/><rect fill="' + shade + '" x="44" y="156" width="132" height="46" rx="8"/>' +
-          '<rect fill="#141414" x="80" y="164" width="60" height="32" rx="2"/>' +
-          '<image href="img/action-cloud-logo-yellow.webp" x="85" y="167" width="50" height="27"/>' + "</svg>";
-    }
-    return "";
-  }
-
-  var HANGER = '<svg class="hanger" viewBox="0 0 160 60" aria-hidden="true"><path d="M80 24 V14 a8 8 0 1 0 -8 -8" /><path d="M80 24 L12 54 H148 Z"/></svg>';
   var CLIP = '<svg class="clip" viewBox="0 0 40 60" preserveAspectRatio="none" aria-hidden="true"><path d="M20 60 V14 a8 8 0 1 0 -8 -8"/></svg>';
 
   // ---------- the rack: one hanging piece per product colour ----------
@@ -78,8 +26,8 @@
       btn.type = "button";
       btn.className = "piece";
       btn.setAttribute("aria-label", p.name + ", " + c.name + ", " + fmt.format(p.price));
-      btn.innerHTML = (p.kind === "hoodie" || p.kind === "tee" ? HANGER : CLIP) +
-        '<span class="cloth">' + garment(p.kind, c.hex) + "</span>" +
+      btn.innerHTML = (p.kind === "hoodie" || p.kind === "tee" ? "" : CLIP) +
+        '<span class="cloth">' + garment(p, c.name) + "</span>" +
         '<span class="label"><b>' + p.name + "</b><span>" + fmt.format(p.price) + "</span></span>";
       btn.addEventListener("click", function () { openProduct(p, ci, btn.querySelector(".cloth")); });
       li.appendChild(btn);
@@ -152,7 +100,7 @@
 
   function drawProduct() {
     var p = cur.p, c = p.colors[cur.ci];
-    art.innerHTML = garment(p.kind, c.hex);
+    art.innerHTML = garment(p, c.name);
     $("p-name").textContent = p.name;
     $("p-price").textContent = fmt.format(p.price);
     $("p-blurb").textContent = p.blurb;
@@ -200,9 +148,8 @@
     list.innerHTML = "";
     bag.forEach(function (l) {
       var p = find(l.id); count += l.qty; total += l.qty * p.price;
-      var hex = (p.colors.filter(function (c) { return c.name === l.color; })[0] || p.colors[0]).hex;
       var li = document.createElement("li");
-      li.innerHTML = '<div class="thumb">' + garment(p.kind, hex) + "</div>" +
+      li.innerHTML = '<div class="thumb">' + garment(p, l.color) + "</div>" +
         '<div><p class="line-name">' + p.name + '</p><p class="line-meta">' + l.color + ", " + l.size + "</p>" +
         '<div class="qty"><button type="button" aria-label="Remove one ' + p.name + '" data-d="-1">−</button><span>' + l.qty + '</span><button type="button" aria-label="Add one ' + p.name + '" data-d="1">+</button></div></div>' +
         '<p class="line-price">' + fmt.format(l.qty * p.price) + "</p>";

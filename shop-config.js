@@ -20,7 +20,7 @@ window.SHOP = {
       sizes: ["S", "M", "L", "XL", "XXL"],
       colors: [
         { name: "Black", hex: "#141414" },
-        { name: "Yellow", hex: "#FFD100" },
+        { name: "Yellow", hex: "#ECC820" },
         { name: "Grey", hex: "#7A7A7A" }
       ]
     },
@@ -34,7 +34,7 @@ window.SHOP = {
       colors: [
         { name: "Black", hex: "#141414" },
         { name: "White", hex: "#F4F4F4" },
-        { name: "Yellow", hex: "#FFD100" }
+        { name: "Yellow", hex: "#ECC820" }
       ]
     },
     {
@@ -46,7 +46,7 @@ window.SHOP = {
       sizes: ["One size"],
       colors: [
         { name: "Black", hex: "#141414" },
-        { name: "Yellow", hex: "#FFD100" }
+        { name: "Yellow", hex: "#ECC820" }
       ]
     },
     {
@@ -57,7 +57,7 @@ window.SHOP = {
       blurb: "Rib knit with a fold-up cuff and woven label. For the months the park is the only option.",
       sizes: ["One size"],
       colors: [
-        { name: "Yellow", hex: "#FFD100" },
+        { name: "Yellow", hex: "#ECC820" },
         { name: "Black", hex: "#141414" },
         { name: "Grey", hex: "#7A7A7A" }
       ]

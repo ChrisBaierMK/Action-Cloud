@@ -7,7 +7,7 @@
 <meta name="description" content="Action Cloud, the indoor bikepark in Brașov. Hoodies, tees, caps and beanies. Every piece helps build a mini ramp in a Romanian schoolyard.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@800;900&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Stencil+One&family=Inter:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -17,7 +17,7 @@
 <header class="bar">
   <a class="brand" href="#top"><img src="img/action-cloud-logo-yellow.webp" alt="Action Cloud" width="118" height="64"></a>
   <nav aria-label="Main">
-    <a href="#why">Why</a>
+    <a href="#built">The build</a>
     <a href="#shop">Shop</a>
     <a href="#ramps">The ramps</a>
     <a href="#park">The park</a>
@@ -29,65 +29,91 @@
 
 <main id="top">
 
-  <section class="hero" aria-labelledby="hero-title">
-    <div class="hero-photos" aria-hidden="true">
-      <img src="img/journey-2024.webp" alt="" fetchpriority="high">
-      <img src="img/yannis.webp" alt="">
-      <img src="img/alanko.webp" alt="">
-    </div>
-    <div class="hero-inner">
-      <h1 id="hero-title">Live free.<br>Take action.</h1>
-      <p>Nobody hands you the life you want. You pick a line, decide before the lip, and go. Wear it.</p>
+  <!-- Opening: the deck's own layout, text panel left, full-height photo right -->
+  <section class="split hero" aria-labelledby="hero-title">
+    <div class="panel">
+      <h1 id="hero-title" class="stencil">Live free.<br>Take action.</h1>
+      <hr class="rule">
+      <p>Nobody hands you the life you want. You pick a line, decide before the lip, and go.</p>
+      <p>Action Cloud gear is made for the people who build things, ride things and fall off things.</p>
       <a class="btn" href="#shop">Shop the drop</a>
     </div>
+    <figure class="photo">
+      <img src="img/flip-under-logo.webp" alt="A rider fully upside down above the quarter pipe, under the Action Cloud sign" fetchpriority="high">
+    </figure>
     <div class="tape" aria-hidden="true">
       <span>Work in progress · Live free · Take action · Work in progress · Live free · Take action · Work in progress · Live free · Take action ·</span>
     </div>
   </section>
 
-  <section id="why" class="why" aria-labelledby="why-title">
-    <h2 id="why-title">Built with our own hands.</h2>
-    <div class="why-body">
-      <p>Action Cloud took five years to build, with no outside money. Every ramp in the hall was cut, screwed and sanded by the people who ride it.</p>
-      <p>That's the whole idea. Nobody hands you the park, the trick or the life you want. You start building, you get scared, you commit anyway.</p>
-      <p>The site's never finished. Neither are we.</p>
+  <section id="built" class="built" aria-labelledby="built-title">
+    <div class="built-text">
+      <h2 id="built-title" class="stencil">Built with our own hands</h2>
+      <hr class="rule">
+      <p>It started in 2012 with one ramp in a barn. Then a backyard full of quarter pipes, then a wall of timber frames in an empty hall. In 2023 it was a full indoor bikepark, built with no outside money by the riders who use it.</p>
+      <p>The site has never been finished. Neither are we.</p>
     </div>
+    <img class="built-img" src="img/build-timeline.webp" alt="Photos from 2012 to 2023: a ramp in a barn, backyard quarter pipes, timber frames going up in the hall, and the finished park" loading="lazy">
   </section>
 
   <section id="shop" class="shop" aria-labelledby="shop-title">
     <div class="shop-head">
-      <h2 id="shop-title">The rack</h2>
+      <img class="shop-bg" src="img/ramps-hazard-wall.webp" alt="" loading="lazy">
+      <h2 id="shop-title" class="stencil">The rack</h2>
+      <hr class="rule">
       <p>Heavy cotton, printed small, built to get dirty at the park.</p>
     </div>
     <div class="rail" aria-hidden="true"></div>
     <ul class="rack" id="rack"></ul>
   </section>
 
-  <section id="ramps" class="ramps" aria-labelledby="ramps-title">
-    <div class="ramps-inner">
-      <h2 id="ramps-title">Every hoodie builds a ramp.</h2>
+  <section id="ramps" class="split ramps" aria-labelledby="ramps-title">
+    <div class="panel">
+      <h2 id="ramps-title" class="stencil">Every hoodie builds a ramp</h2>
+      <hr class="rule">
       <p class="lead">The park is leaving its building. We could sell the ramps. We're giving them away.</p>
-      <p>We're taking the hall apart and rebuilding it as about 20 mini ramps and quarter pipes, one for a schoolyard or kindergarten in each town. Ramp 01 goes to Hărman, our home village. Part of every piece you buy here goes into the ramp fund.</p>
+      <p>We're rebuilding the hall as about 20 mini ramps and quarter pipes, one for a schoolyard or kindergarten in each town. Ramp 01 goes to Hărman, our home village. Part of every piece you buy here goes into the ramp fund.</p>
+      <ol class="plates" aria-label="20 ramps, the first for Hărman">
+        <li class="on"><b>01</b><span>Hărman</span></li>
+        <li><b>02</b></li><li><b>03</b></li><li><b>04</b></li><li><b>05</b></li>
+        <li><b>06</b></li><li><b>07</b></li><li><b>08</b></li><li><b>09</b></li><li><b>10</b></li>
+        <li><b>11</b></li><li><b>12</b></li><li><b>13</b></li><li><b>14</b></li><li><b>15</b></li>
+        <li><b>16</b></li><li><b>17</b></li><li><b>18</b></li><li><b>19</b></li><li><b>20</b></li>
+      </ol>
     </div>
-    <ol class="plates" aria-label="20 ramps, the first for Hărman">
-      <li class="on"><b>01</b><span>Hărman</span></li>
-      <li><b>02</b></li><li><b>03</b></li><li><b>04</b></li><li><b>05</b></li>
-      <li><b>06</b></li><li><b>07</b></li><li><b>08</b></li><li><b>09</b></li><li><b>10</b></li>
-      <li><b>11</b></li><li><b>12</b></li><li><b>13</b></li><li><b>14</b></li><li><b>15</b></li>
-      <li><b>16</b></li><li><b>17</b></li><li><b>18</b></li><li><b>19</b></li><li><b>20</b></li>
-    </ol>
+    <figure class="photo">
+      <img src="img/action-camp.webp" alt="Kids warming up on the ramps at Action Camp, in front of the yellow and black wall" loading="lazy">
+    </figure>
   </section>
 
   <section id="park" class="park" aria-labelledby="park-title">
-    <img class="park-bg" src="img/alanko.webp" alt="" loading="lazy">
-    <div class="park-inner">
-      <h2 id="park-title">Where it started</h2>
-      <p>Action Cloud opened in Brașov in 2022: 1,200 m² of indoor riding for BMX, mountain bike, scooter and skate, split into the Send Room and the Fun Room. Kids aged 7 to 16 came for Action Camp, riders came to train, and the whole scene showed up for Action Cup, Christmas Jam and Trick or Treat.</p>
-      <dl class="facts">
-        <div><dt>2022</dt><dd>opened in Brașov</dd></div>
-        <div><dt>1,200 m²</dt><dd>of indoor riding</dd></div>
-        <div><dt>0 €</dt><dd>outside money</dd></div>
-      </dl>
+    <div class="park-head">
+      <h2 id="park-title" class="stencil">The park</h2>
+      <hr class="rule">
+      <p>The only indoor bikepark in Romania built to European level. A safe place to train through the cold months, for mountain bike, BMX, scooter, inline and skate.</p>
+    </div>
+    <div class="rooms">
+      <article class="room">
+        <img src="img/send-room.webp" alt="The Send Room: a long line of plywood rollers and quarter pipes between yellow and black walls" loading="lazy">
+        <h3 class="stencil">Send Room</h3>
+        <p>A medium line for mountain bike, scooter and inline, plus a lounge for riders and spectators.</p>
+      </article>
+      <article class="room">
+        <img src="img/foam-pit.webp" alt="The foam pit, full of blue foam blocks, with a ramp leading into it" loading="lazy">
+        <h3 class="stencil">Fun Room</h3>
+        <p>A foam pit for trying new tricks safely, a small jump line for beginners and a street section.</p>
+      </article>
+      <article class="room">
+        <img src="img/event-night.webp" alt="Event night: a rider inverted over the ramp while the balcony crowd films on their phones" loading="lazy">
+        <h3 class="stencil">Events</h3>
+        <p>Action Cup, Christmas Jam and Trick or Treat. Riders come from all over the country.</p>
+      </article>
+      <article class="room">
+        <img class="camp-logo" src="img/action-camp-logo.webp" alt="Action Camp" loading="lazy">
+        <img src="img/community.webp" alt="Riders of all ages lined up on their bikes under the Action Cloud sign" loading="lazy">
+        <h3 class="stencil">Action Camp</h3>
+        <p>Bike and scooter camps for kids aged 7 to 16, so they progress safely in urban sports.</p>
+      </article>
     </div>
   </section>
 
@@ -101,7 +127,7 @@
 <div class="scrim" id="scrim" hidden></div>
 <aside class="bag" id="bag" role="dialog" aria-modal="true" aria-labelledby="bag-title" hidden>
   <div class="bag-head">
-    <h2 id="bag-title">Your bag</h2>
+    <h2 id="bag-title" class="stencil">Your bag</h2>
     <button type="button" class="close" aria-label="Close bag">Close</button>
   </div>
   <ul class="bag-items" id="bag-items"></ul>

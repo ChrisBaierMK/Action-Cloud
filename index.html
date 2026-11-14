@@ -16,7 +16,10 @@
 
 <header class="bar">
   <a class="brand" href="#top"><img src="img/action-cloud-logo-yellow.webp" alt="Action Cloud" width="103" height="56"></a>
+  <div class="bar-right">
+  <a class="bar-link" href="#contact">Get in touch</a>
   <button class="bag-btn" type="button" id="open-bag">Bag <span class="bag-count" aria-live="polite">0</span></button>
+  </div>
 </header>
 
 <main id="top">
@@ -52,8 +55,75 @@
     <div class="ramps-copy">
       <h2 id="ramps-title">Every piece builds a ramp.</h2>
       <p>Part of every order goes into mini ramps for Romanian schoolyards. The first one is for Hărman.</p>
+      <a class="btn btn-inline" href="#contact">Ask for a ramp at your school</a>
     </div>
     <p class="count" aria-label="Ramp 1 of 20"><b>01</b><span>/20</span></p>
+  </section>
+
+  <section class="contact" id="contact" aria-labelledby="contact-title">
+    <div class="contact-copy">
+      <h2 id="contact-title">Want a ramp? Want to help?</h2>
+      <p>Tell us about your school and we'll take it from there. Or back the project as a sponsor or partner. Either way, write to us here.</p>
+    </div>
+
+    <form class="form" id="contact-form" name="contact" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+      <input type="hidden" name="form-name" value="contact">
+      <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+
+      <fieldset class="topics">
+        <legend>What is it about?</legend>
+        <label class="topic"><input type="radio" name="topic" value="A ramp for my school" checked><span>A ramp for my school</span></label>
+        <label class="topic"><input type="radio" name="topic" value="Sponsor or partner"><span>Sponsor or partner</span></label>
+        <label class="topic"><input type="radio" name="topic" value="Something else"><span>Something else</span></label>
+      </fieldset>
+
+      <div class="field">
+        <label for="f-name">Your name</label>
+        <input id="f-name" name="name" type="text" autocomplete="name" required>
+        <p class="err" id="e-name"></p>
+      </div>
+
+      <div class="row" data-for="school">
+        <div class="field">
+          <label for="f-school">School or kindergarten</label>
+          <input id="f-school" name="school" type="text" required>
+          <p class="err" id="e-school"></p>
+        </div>
+        <div class="field">
+          <label for="f-town">Town or village</label>
+          <input id="f-town" name="town" type="text" autocomplete="address-level2" required>
+          <p class="err" id="e-town"></p>
+        </div>
+      </div>
+
+      <div class="field" data-for="partner" hidden>
+        <label for="f-company">Company or organisation</label>
+        <input id="f-company" name="company" type="text" autocomplete="organization" required>
+        <p class="err" id="e-company"></p>
+      </div>
+
+      <div class="field">
+        <label for="f-email">Email we can reply to</label>
+        <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="h-email">
+        <p class="help" id="h-email" data-for="school">Under 16? Use a parent's or teacher's email and send this together with them.</p>
+        <p class="err" id="e-email"></p>
+      </div>
+
+      <div class="field">
+        <label for="f-message" id="l-message">Tell us about your schoolyard</label>
+        <textarea id="f-message" name="message" rows="4" required></textarea>
+        <p class="err" id="e-message"></p>
+      </div>
+
+      <button type="submit" class="btn" id="f-send">Send message</button>
+      <p class="form-status" id="f-status" role="status"></p>
+    </form>
+
+    <div class="sent" id="contact-sent" hidden tabindex="-1">
+      <h3>Message sent.</h3>
+      <p id="sent-text"></p>
+      <button type="button" class="btn btn-ghost" id="send-another">Write another message</button>
+    </div>
   </section>
 
 </main>

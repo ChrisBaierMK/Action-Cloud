@@ -207,4 +207,62 @@
   });
 
   renderBag();
+
+  // ---------- contact form ----------
+  var form = $("contact-form"), sent = $("contact-sent"), statusEl = $("f-status");
+  var WORDS = {
+    "A ramp for my school": { key: "school", label: "Tell us about your schoolyard" },
+    "Sponsor or partner": { key: "partner", label: "How would you like to help?" },
+    "Something else": { key: "other", label: "Your message" }
+  };
+  var MESSAGES = {
+    name: "Enter your name.", school: "Enter the name of the school or kindergarten.", town: "Enter the town or village.",
+    company: "Enter your company or organisation.", email: "Enter an email address, like name@example.com.", message: "Write a short message."
+  };
+  function topic() { return form.querySelector('input[name="topic"]:checked').value; }
+  function applyTopic() {
+    var t = WORDS[topic()];
+    form.querySelectorAll("[data-for]").forEach(function (el) {
+      var on = el.getAttribute("data-for") === t.key;
+      el.hidden = !on;
+      el.querySelectorAll("input").forEach(function (i) { i.disabled = !on; });
+    });
+    $("l-message").textContent = t.label;
+  }
+  function check(input) {
+    if (input.disabled || input.type === "radio" || input.type === "hidden" || input.name === "bot-field") return true;
+    var v = input.value.trim(), ok = v.length > 0;
+    if (ok && input.type === "email") ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    var err = $("e-" + input.name);
+    err.textContent = ok ? "" : MESSAGES[input.name];
+    input.setAttribute("aria-invalid", String(!ok));
+    return ok;
+  }
+  form.querySelectorAll('input[name="topic"]').forEach(function (r) { r.addEventListener("change", applyTopic); });
+  form.querySelectorAll("input, textarea").forEach(function (i) {
+    i.addEventListener("blur", function () { if (i.value.trim() || i.getAttribute("aria-invalid") === "true") check(i); });
+    i.addEventListener("input", function () { if (i.getAttribute("aria-invalid") === "true") check(i); });
+  });
+  applyTopic();
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var fields = Array.prototype.slice.call(form.querySelectorAll("input, textarea"));
+    var bad = fields.filter(function (i) { return !check(i); });
+    if (bad.length) { bad[0].focus(); statusEl.textContent = ""; return; }
+    var btn = $("f-send"), email = $("f-email").value.trim();
+    btn.disabled = true; btn.textContent = "Sending…"; statusEl.textContent = "";
+    fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams(new FormData(form)).toString() })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); })
+      .then(function () {
+        form.hidden = true; sent.hidden = false;
+        $("sent-text").textContent = "We'll reply to " + email + ".";
+        sent.focus(); form.reset(); applyTopic();
+      })
+      .catch(function () {
+        statusEl.innerHTML = 'The message didn\'t send. Check your connection and send it again, or email <a href="mailto:chris@actioncloud.co">chris@actioncloud.co</a>.';
+      })
+      .then(function () { btn.disabled = false; btn.textContent = "Send message"; });
+  });
+  $("send-another").addEventListener("click", function () { sent.hidden = true; form.hidden = false; $("f-name").focus(); });
 })();

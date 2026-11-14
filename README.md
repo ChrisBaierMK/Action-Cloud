@@ -3,6 +3,7 @@
 Static shop for Action Cloud merch (actioncloud.ro). One page: a clothes rack you drag left and right, pieces that swing, a product panel and a bag.
 
 - `index.html`, `styles.css`, `app.js`: the page. No build step.
+- `i18n.js`: every visible text in English, Romanian, Hungarian and German. The language follows the browser; visitors switch it in the top bar.
 - `shop-config.js`: products, colours, sizes, **placeholder prices**, and `checkoutUrl`.
 - `img/`: logo and park photos from the Action Cloud partner deck (2023). `img/p/` holds the product images, which are AI-generated mock-ups (Higgsfield), not photos of real stock.
 

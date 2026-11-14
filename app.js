@@ -2,9 +2,34 @@
   "use strict";
 
   var SHOP = window.SHOP;
-  var fmt = new Intl.NumberFormat("en-IE", { style: "currency", currency: SHOP.currency, maximumFractionDigits: 0 });
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var $ = function (id) { return document.getElementById(id); };
+
+  // ---------- language ----------
+  var I18N = window.I18N, LOCALE = { en: "en-IE", ro: "ro-RO", hu: "hu-HU", de: "de-DE" };
+  var lang = (function () {
+    var saved = null; try { saved = localStorage.getItem("actioncloud-lang"); } catch (e) { /* storage unavailable */ }
+    var pick = new URLSearchParams(location.search).get("lang") || saved || (navigator.language || "en").slice(0, 2).toLowerCase();
+    return I18N[pick] ? pick : "en";
+  })();
+  function t(key, vars) {
+    var s = I18N[lang][key] || I18N.en[key] || key;
+    if (vars) Object.keys(vars).forEach(function (k) { s = s.replace("{" + k + "}", vars[k]); });
+    return s;
+  }
+  var MAIL = '<a href="mailto:chris@actioncloud.co">chris@actioncloud.co</a>';
+  var fmt = new Intl.NumberFormat(LOCALE[lang], { style: "currency", currency: SHOP.currency, currencyDisplay: "narrowSymbol", maximumFractionDigits: 0 });
+  document.documentElement.lang = lang;
+  document.title = t("meta.title");
+  document.querySelector('meta[name="description"]').setAttribute("content", t("meta.desc"));
+  document.querySelectorAll("[data-i18n]").forEach(function (el) { el.textContent = t(el.getAttribute("data-i18n")); });
+  document.querySelectorAll("[data-i18n-aria]").forEach(function (el) { el.setAttribute("aria-label", t(el.getAttribute("data-i18n-aria"))); });
+  $("lang").value = lang;
+  $("lang").addEventListener("change", function () {
+    try { localStorage.setItem("actioncloud-lang", this.value); } catch (e) { /* storage unavailable */ }
+    var u = new URL(location.href); u.searchParams.set("lang", this.value); location.href = u.toString();
+  });
+  function sizeName(s) { return s === "One size" ? t("size.one") : s; }
 
   // ---------- product photos ----------
   // One photo per product colour: img/p/<product id>-<colour name>.webp
@@ -26,7 +51,7 @@
       var btn = document.createElement("button");
       btn.type = "button";
       btn.className = "piece";
-      btn.setAttribute("aria-label", p.name + ", " + c.name + ", " + fmt.format(p.price));
+      btn.setAttribute("aria-label", p.name + ", " + t("color." + c.name) + ", " + fmt.format(p.price));
       btn.innerHTML = '<span class="cloth">' + garment(p, c.name) + "</span>" +
         '<span class="label"><b>' + p.name + "</b><span>" + fmt.format(p.price) + "</span></span>";
       btn.addEventListener("click", function () { openProduct(p, ci, btn.querySelector(".cloth")); });
@@ -123,13 +148,13 @@
     art.innerHTML = garment(p, c.name);
     $("p-name").textContent = p.name;
     $("p-price").textContent = fmt.format(p.price);
-    $("p-blurb").textContent = p.blurb;
+    $("p-blurb").textContent = t("blurb." + p.id);
     $("p-hint").textContent = "";
     $("p-colors").innerHTML = p.colors.map(function (k, i) {
-      return '<button type="button" class="swatch" style="--c:' + k.hex + '" aria-label="' + k.name + '" aria-pressed="' + (i === cur.ci) + '" data-i="' + i + '"></button>';
-    }).join("") + '<span class="color-name">' + c.name + "</span>";
+      return '<button type="button" class="swatch" style="--c:' + k.hex + '" aria-label="' + t("color." + k.name) + '" aria-pressed="' + (i === cur.ci) + '" data-i="' + i + '"></button>';
+    }).join("") + '<span class="color-name">' + t("color." + c.name) + "</span>";
     $("p-sizes").innerHTML = p.sizes.map(function (s) {
-      return '<button type="button" role="radio" class="size" aria-checked="' + (s === cur.size) + '" data-s="' + s + '">' + s + "</button>";
+      return '<button type="button" role="radio" class="size" aria-checked="' + (s === cur.size) + '" data-s="' + s + '">' + sizeName(s) + "</button>";
     }).join("");
   }
   $("p-colors").addEventListener("click", function (e) {
@@ -163,7 +188,7 @@
   art.addEventListener("pointerleave", function () { art.style.setProperty("--rx", "0deg"); art.style.setProperty("--ry", "0deg"); });
 
   $("p-add").addEventListener("click", function () {
-    if (!cur.size) { $("p-hint").textContent = "Pick a size first."; var f = $("p-sizes").querySelector(".size"); if (f) f.focus(); return; }
+    if (!cur.size) { $("p-hint").textContent = t("p.pick"); var f = $("p-sizes").querySelector(".size"); if (f) f.focus(); return; }
     var c = cur.p.colors[cur.ci], key = cur.p.id + "|" + c.name + "|" + cur.size;
     var line = bag.filter(function (l) { return l.key === key; })[0];
     if (line) line.qty += 1; else bag.push({ key: key, id: cur.p.id, color: c.name, size: cur.size, qty: 1 });
@@ -179,8 +204,8 @@
       var p = find(l.id); count += l.qty; total += l.qty * p.price;
       var li = document.createElement("li");
       li.innerHTML = '<div class="thumb">' + garment(p, l.color) + "</div>" +
-        '<div><p class="line-name">' + p.name + '</p><p class="line-meta">' + l.color + ", " + l.size + "</p>" +
-        '<div class="qty"><button type="button" aria-label="Remove one ' + p.name + '" data-d="-1">−</button><span>' + l.qty + '</span><button type="button" aria-label="Add one ' + p.name + '" data-d="1">+</button></div></div>' +
+        '<div><p class="line-name">' + p.name + '</p><p class="line-meta">' + t("color." + l.color) + ", " + sizeName(l.size) + "</p>" +
+        '<div class="qty"><button type="button" aria-label="' + t("bag.minus", { name: p.name }) + '" data-d="-1">−</button><span>' + l.qty + '</span><button type="button" aria-label="' + t("bag.plus", { name: p.name }) + '" data-d="1">+</button></div></div>' +
         '<p class="line-price">' + fmt.format(l.qty * p.price) + "</p>";
       li.querySelectorAll(".qty button").forEach(function (b) {
         b.addEventListener("click", function () {
@@ -203,38 +228,30 @@
   $("checkout").addEventListener("click", function () {
     if (SHOP.checkoutUrl) { window.location.href = SHOP.checkoutUrl; return; }
     var n = $("checkout-notice"); n.hidden = false;
-    n.innerHTML = 'Online checkout isn\'t open yet. Email <a href="mailto:chris@actioncloud.co?subject=Merch%20order">chris@actioncloud.co</a> with your bag and we\'ll sort it out.';
+    n.innerHTML = t("bag.notice", { mail: MAIL });
   });
 
   renderBag();
 
   // ---------- contact form ----------
   var form = $("contact-form"), sent = $("contact-sent"), statusEl = $("f-status");
-  var WORDS = {
-    "A ramp for my school": { key: "school", label: "Tell us about your schoolyard" },
-    "Sponsor or partner": { key: "partner", label: "How would you like to help?" },
-    "Something else": { key: "other", label: "Your message" }
-  };
-  var MESSAGES = {
-    name: "Enter your name.", school: "Enter the name of the school or kindergarten.", town: "Enter the town or village.",
-    company: "Enter your company or organisation.", email: "Enter an email address, like name@example.com.", message: "Write a short message."
-  };
+  var WORDS = { "A ramp for my school": "school", "Sponsor or partner": "partner", "Something else": "other" };
   function topic() { return form.querySelector('input[name="topic"]:checked').value; }
   function applyTopic() {
-    var t = WORDS[topic()];
+    var key = WORDS[topic()];
     form.querySelectorAll("[data-for]").forEach(function (el) {
-      var on = el.getAttribute("data-for") === t.key;
+      var on = el.getAttribute("data-for") === key;
       el.hidden = !on;
       el.querySelectorAll("input").forEach(function (i) { i.disabled = !on; });
     });
-    $("l-message").textContent = t.label;
+    $("l-message").textContent = t("form.msg." + key);
   }
   function check(input) {
     if (input.disabled || input.type === "radio" || input.type === "hidden" || input.name === "bot-field") return true;
     var v = input.value.trim(), ok = v.length > 0;
     if (ok && input.type === "email") ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
     var err = $("e-" + input.name);
-    err.textContent = ok ? "" : MESSAGES[input.name];
+    err.textContent = ok ? "" : t("err." + input.name);
     input.setAttribute("aria-invalid", String(!ok));
     return ok;
   }
@@ -251,18 +268,18 @@
     var bad = fields.filter(function (i) { return !check(i); });
     if (bad.length) { bad[0].focus(); statusEl.textContent = ""; return; }
     var btn = $("f-send"), email = $("f-email").value.trim();
-    btn.disabled = true; btn.textContent = "Sending…"; statusEl.textContent = "";
+    btn.disabled = true; btn.textContent = t("form.sending"); statusEl.textContent = "";
     fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams(new FormData(form)).toString() })
       .then(function (r) { if (!r.ok) throw new Error(r.status); })
       .then(function () {
         form.hidden = true; sent.hidden = false;
-        $("sent-text").textContent = "We'll reply to " + email + ".";
+        $("sent-text").textContent = t("form.sentText", { email: email });
         sent.focus(); form.reset(); applyTopic();
       })
       .catch(function () {
-        statusEl.innerHTML = 'The message didn\'t send. Check your connection and send it again, or email <a href="mailto:chris@actioncloud.co">chris@actioncloud.co</a>.';
+        statusEl.innerHTML = t("form.fail", { mail: MAIL });
       })
-      .then(function () { btn.disabled = false; btn.textContent = "Send message"; });
+      .then(function () { btn.disabled = false; btn.textContent = t("form.send"); });
   });
   $("send-another").addEventListener("click", function () { sent.hidden = true; form.hidden = false; $("f-name").focus(); });
 })();

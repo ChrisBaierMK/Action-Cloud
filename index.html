@@ -29,15 +29,16 @@
     </div>
 
     <div class="rack-wrap" id="rack">
+      <ul class="shelf" id="shelf" aria-label="Shelf: caps and beanies"></ul>
+      <div class="rail" aria-hidden="true"></div>
+      <ul class="track" id="track" aria-label="Clothes rail: hoodies and tees" aria-describedby="rack-hint"></ul>
       <div class="rack-top">
-        <p class="hint" id="rack-hint">Drag the rack. Tap a piece.</p>
+        <p class="hint" id="rack-hint">Drag the rail. Tap a piece.</p>
         <div class="arrows">
-          <button type="button" id="prev" aria-label="Move the rack left">←</button>
-          <button type="button" id="next" aria-label="Move the rack right">→</button>
+          <button type="button" id="prev" aria-label="Move the rail left">←</button>
+          <button type="button" id="next" aria-label="Move the rail right">→</button>
         </div>
       </div>
-      <div class="rail" aria-hidden="true"></div>
-      <ul class="track" id="track" aria-label="Clothes rack" aria-describedby="rack-hint"></ul>
     </div>
   </section>
 

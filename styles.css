@@ -12,7 +12,7 @@
   --stencil: "Saira Stencil One", Impact, "Arial Narrow", sans-serif;
   --body: "Inter", "Helvetica Neue", Arial, sans-serif;
   --gutter: clamp(16px, 4vw, 56px);
-  --piece: clamp(190px, 21vw, 300px);
+  --piece: clamp(180px, 19vw, 280px);
 }
 
 * { box-sizing: border-box; }
@@ -40,38 +40,50 @@ p { margin: 0; }
 .hero-bg { position: absolute; inset: 0 0 auto auto; width: min(70%, 1100px); height: 62%; object-fit: cover; object-position: 50% 28%; z-index: -1; opacity: .5;
   -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 55%), linear-gradient(180deg, #000 40%, transparent 100%); -webkit-mask-composite: source-in;
   mask-image: linear-gradient(90deg, transparent 0%, #000 55%), linear-gradient(180deg, #000 40%, transparent 100%); mask-composite: intersect; }
-.hero-copy { padding: clamp(96px, 13vh, 150px) var(--gutter) 0; }
+.hero-copy { padding: clamp(84px, 11vh, 130px) var(--gutter) 0; }
 .hero h1 { font-size: clamp(54px, 7.3vw, 150px); letter-spacing: -.005em; }
 .hero h1 .narrow { display: none; }
 .hero-copy p { margin-top: 18px; font-size: clamp(17px, 1.4vw, 21px); color: #E6E6E6; max-width: 30rem; }
 @media (max-width: 700px) { .hero h1 { font-size: 15.5vw; } .hero h1 .narrow { display: inline; } .hero-bg { width: 100%; height: 48%; opacity: .38; } }
 
-/* ---------- rack ---------- */
-.rack-wrap { position: relative; background: radial-gradient(60% 70% at 50% 55%, rgba(255,255,255,.07), transparent 75%); padding-bottom: clamp(28px, 5vh, 56px); margin-top: 28px; }
-.rack-top { display: flex; align-items: center; justify-content: space-between; padding: 0 var(--gutter) 14px; }
-.hint { font-size: 14px; color: var(--gray); }
-.arrows { display: flex; gap: 8px; }
-.arrows button { width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.25); background: transparent; cursor: pointer; font-size: 18px; transition: background .15s, color .15s, border-color .15s; }
-.arrows button:hover { background: var(--yellow); color: var(--ink); border-color: var(--yellow); }
+/* ---------- shelf + rail ---------- */
+.rack-wrap { position: relative; padding-bottom: clamp(20px, 4vh, 40px); margin-top: 20px; --rail: 13px; --plank: 30px;
+  background: radial-gradient(60% 60% at 50% 60%, rgba(255,255,255,.07), transparent 75%); }
 
-.rail { position: absolute; left: 0; right: 0; top: 76px; height: 9px; background: linear-gradient(#C9C9C9, #6A6A6A 60%, #3E3E3E); box-shadow: 0 6px 14px rgba(0,0,0,.5); }
-.track { list-style: none; margin: 0; padding: 14px var(--gutter) 30px; display: flex; gap: clamp(8px, 2vw, 30px); overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; cursor: grab; user-select: none; -webkit-user-select: none; touch-action: pan-x pan-y; }
+/* shelf: caps and beanies sit on a plywood plank, prices on its front edge */
+.shelf { list-style: none; margin: 0 var(--gutter); padding: 0 clamp(8px, 3vw, 48px) var(--plank); position: relative; display: flex; justify-content: flex-end; align-items: flex-end; gap: clamp(6px, 2.4vw, 40px); }
+.shelf::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: var(--plank); border-radius: 3px;
+  background: repeating-linear-gradient(180deg, #E3CDA4 0 5px, #C9AE7E 5px 6px, #DCC597 6px 11px, #B99B68 11px 12px);
+  box-shadow: 0 14px 22px rgba(0,0,0,.55), inset 0 2px 0 rgba(255,255,255,.35); }
+.sit { position: relative; flex: 0 1 clamp(84px, 11vw, 168px); }
+.sit-cap { flex-basis: clamp(96px, 12.5vw, 190px); }
+.sit .cloth { filter: drop-shadow(0 5px 4px rgba(0,0,0,.6)); margin-bottom: -3px; transform-origin: 50% 100%; }
+.sit .piece:hover .cloth, .sit .piece:focus-visible .cloth { transform: translateY(-10px) rotate(-3deg); }
+.sit .label { position: absolute; left: 50%; top: 100%; transform: translateX(-50%); height: var(--plank); margin: 0; flex-direction: row; align-items: center; gap: 6px; white-space: nowrap; font-size: 12px; color: #2A2112; }
+.sit .label b { font-size: 12px; color: #2A2112; }
+@media (max-width: 760px) { .shelf { justify-content: space-between; } .sit .label b { display: none; } .sit .label { font-weight: 700; } }
+
+/* rail: a steel tube; hanger hooks go over it */
+.rail { height: var(--rail); margin-top: clamp(26px, 4vh, 44px); border-radius: 2px;
+  background: linear-gradient(#F2F2F2 0%, #BDBDBD 22%, #7C7C7C 62%, #3C3C3C 100%); box-shadow: 0 8px 14px rgba(0,0,0,.5); }
+.track { list-style: none; position: relative; z-index: 1; margin: calc(-1 * (var(--rail) + 24px)) 0 0; padding: 20px var(--gutter) 24px; display: flex; gap: clamp(8px, 2vw, 30px); overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; cursor: grab; user-select: none; -webkit-user-select: none; touch-action: pan-x pan-y; }
 .track::-webkit-scrollbar { display: none; }
 .track.grabbing { cursor: grabbing; }
 .track.grabbing .piece { pointer-events: none; }
 
-.hang { flex: 0 0 var(--piece); transform-origin: 50% 12px; will-change: transform; }
-.hang-cap, .hang-beanie { flex-basis: calc(var(--piece) * .78); }
-.hang-hoodie .cloth, .hang-tee .cloth { margin-top: -6px; }
+.hang { flex: 0 0 var(--piece); transform-origin: 50% 10px; will-change: transform; }
 .piece { display: flex; flex-direction: column; align-items: center; width: 100%; padding: 0; background: none; border: 0; cursor: pointer; text-align: center; }
-.clip { fill: none; stroke: #9C9C9C; stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; display: block; }
-.clip { width: 26px; height: 40px; margin-bottom: -4px; }
-.hang-cap .clip, .hang-beanie .clip { height: clamp(60px, 7vw, 96px); }
 .cloth { display: block; width: 100%; filter: drop-shadow(0 22px 18px rgba(0,0,0,.55)); transition: transform .25s cubic-bezier(.2,.8,.2,1); }
 .cloth img { display: block; width: 100%; height: auto; }
-.piece:hover .cloth, .piece:focus-visible .cloth { transform: translateY(-8px) scale(1.03); }
-.label { display: flex; flex-direction: column; gap: 2px; margin-top: 18px; font-size: 14px; color: var(--gray); }
+.hang .piece:hover .cloth, .hang .piece:focus-visible .cloth { transform: translateY(4px) scale(1.03); transform-origin: 50% 0; }
+.label { display: flex; flex-direction: column; gap: 2px; margin-top: 16px; font-size: 14px; color: var(--gray); }
 .label b { color: var(--white); font-weight: 600; font-size: 15px; }
+
+.rack-top { display: flex; align-items: center; justify-content: space-between; padding: 6px var(--gutter) 0; }
+.hint { font-size: 14px; color: var(--gray); }
+.arrows { display: flex; gap: 8px; }
+.arrows button { width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.25); background: transparent; cursor: pointer; font-size: 18px; transition: background .15s, color .15s, border-color .15s; }
+.arrows button:hover { background: var(--yellow); color: var(--ink); border-color: var(--yellow); }
 
 /* ---------- tape ---------- */
 .tape { background: var(--yellow); color: var(--ink); overflow: hidden; border-block: 10px solid transparent; border-image: repeating-linear-gradient(-45deg, var(--ink) 0 14px, var(--yellow) 14px 28px) 10; }

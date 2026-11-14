@@ -12,27 +12,27 @@
     return '<img src="img/p/' + p.id + "-" + colorName.toLowerCase() + '.webp" alt="" draggable="false" decoding="async">';
   }
 
-  var CLIP = '<svg class="clip" viewBox="0 0 40 60" preserveAspectRatio="none" aria-hidden="true"><path d="M20 60 V14 a8 8 0 1 0 -8 -8"/></svg>';
 
   // ---------- the rack: one hanging piece per product colour ----------
   var track = $("track");
   var pieces = [];
 
+  var shelf = $("shelf");
   SHOP.products.forEach(function (p) {
+    var onShelf = p.kind === "cap" || p.kind === "beanie";
     p.colors.forEach(function (c, ci) {
       var li = document.createElement("li");
-      li.className = "hang hang-" + p.kind;
+      li.className = (onShelf ? "sit sit-" : "hang hang-") + p.kind;
       var btn = document.createElement("button");
       btn.type = "button";
       btn.className = "piece";
       btn.setAttribute("aria-label", p.name + ", " + c.name + ", " + fmt.format(p.price));
-      btn.innerHTML = (p.kind === "hoodie" || p.kind === "tee" ? "" : CLIP) +
-        '<span class="cloth">' + garment(p, c.name) + "</span>" +
+      btn.innerHTML = '<span class="cloth">' + garment(p, c.name) + "</span>" +
         '<span class="label"><b>' + p.name + "</b><span>" + fmt.format(p.price) + "</span></span>";
       btn.addEventListener("click", function () { openProduct(p, ci, btn.querySelector(".cloth")); });
       li.appendChild(btn);
-      track.appendChild(li);
-      pieces.push({ el: li, a: 0, w: 0, gain: 0.8 + Math.random() * 0.5 });
+      (onShelf ? shelf : track).appendChild(li);
+      if (!onShelf) pieces.push({ el: li, a: 0, w: 0, gain: 0.8 + Math.random() * 0.5 });
     });
   });
 

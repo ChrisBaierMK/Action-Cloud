@@ -86,8 +86,28 @@
   $("prev").addEventListener("click", function () { nudge(-1); });
   $("next").addEventListener("click", function () { nudge(1); });
 
-  // one opening moment: the pieces arrive swinging and settle
-  if (!reduce) { pieces.forEach(function (s, i) { s.a = 9 * (i % 2 ? 1 : -1) * (0.6 + Math.random() * 0.6); }); wake(); }
+  // opening: pieces drop onto the rail (CSS), then swing and settle
+  if (!reduce) { pieces.forEach(function (s, i) { s.el.style.setProperty("--i", i); s.a = 11 * (i % 2 ? 1 : -1) * (0.6 + Math.random() * 0.6); }); setTimeout(wake, 350); }
+  Array.prototype.forEach.call(shelf.children, function (li, i) { li.style.setProperty("--i", i); });
+
+  // ambient life: a draught runs along the rail now and then, hovering nudges a piece,
+  // and scrolling the page tugs everything
+  function gust() {
+    if (reduce || document.hidden || dragging) return;
+    var d = Math.random() < 0.5 ? -1 : 1;
+    pieces.forEach(function (s, i) { setTimeout(function () { s.w += d * (0.28 + Math.random() * 0.22); wake(); }, i * 110); });
+  }
+  setInterval(gust, 3400);
+  pieces.forEach(function (s) {
+    s.el.addEventListener("pointerenter", function (e) {
+      if (e.pointerType === "mouse" && !dragging) { s.w += (Math.random() < 0.5 ? -1 : 1) * 1.0; wake(); }
+    });
+  });
+  var lastY = window.scrollY;
+  window.addEventListener("scroll", function () {
+    var dy = Math.max(-40, Math.min(40, window.scrollY - lastY)); lastY = window.scrollY;
+    pieces.forEach(function (s) { s.w += dy * 0.014 * s.gain; }); wake();
+  }, { passive: true });
 
   // ---------- bag state ----------
   var KEY = "actioncloud-bag", bag = [];
@@ -114,7 +134,7 @@
   }
   $("p-colors").addEventListener("click", function (e) {
     var b = e.target.closest(".swatch"); if (!b) return;
-    cur.ci = +b.dataset.i; drawProduct(); $("p-colors").querySelector('[aria-pressed="true"]').focus();
+    cur.ci = +b.dataset.i; drawProduct(); art.firstChild.classList.add("swap"); $("p-colors").querySelector('[aria-pressed="true"]').focus();
   });
   $("p-sizes").addEventListener("click", function (e) {
     var b = e.target.closest(".size"); if (!b) return;
@@ -133,12 +153,21 @@
     } else show();
   }
 
+  // the piece in the panel leans toward the pointer
+  art.addEventListener("pointermove", function (e) {
+    if (reduce || e.pointerType !== "mouse") return;
+    var r = art.getBoundingClientRect();
+    art.style.setProperty("--rx", (-((e.clientY - r.top) / r.height - 0.5) * 16).toFixed(1) + "deg");
+    art.style.setProperty("--ry", (((e.clientX - r.left) / r.width - 0.5) * 24).toFixed(1) + "deg");
+  });
+  art.addEventListener("pointerleave", function () { art.style.setProperty("--rx", "0deg"); art.style.setProperty("--ry", "0deg"); });
+
   $("p-add").addEventListener("click", function () {
     if (!cur.size) { $("p-hint").textContent = "Pick a size first."; var f = $("p-sizes").querySelector(".size"); if (f) f.focus(); return; }
     var c = cur.p.colors[cur.ci], key = cur.p.id + "|" + c.name + "|" + cur.size;
     var line = bag.filter(function (l) { return l.key === key; })[0];
     if (line) line.qty += 1; else bag.push({ key: key, id: cur.p.id, color: c.name, size: cur.size, qty: 1 });
-    save(); renderBag(); dlg.close(); $("bag").showModal();
+    save(); renderBag(); dlg.close(); $("bag").showModal(); var n = document.querySelector(".bag-count"); n.classList.remove("bump"); void n.offsetWidth; n.classList.add("bump");
   });
 
   // ---------- bag drawer ----------

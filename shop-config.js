@@ -42,10 +42,11 @@ window.SHOP = {
       name: "Coping cap",
       kind: "cap",
       price: 30,
-      blurb: "Yupoong retro trucker snapback. Black front, black mesh back, yellow embroidered logo.",
+      blurb: "Six-panel cap with a curved brim and the Action Cloud logo embroidered on the front. Adjustable strap.",
       sizes: ["One size"],
       colors: [
-        { name: "Black", hex: "#141414" }
+        { name: "Black", hex: "#141414" },
+        { name: "Yellow", hex: "#ECC820" }
       ]
     },
     {

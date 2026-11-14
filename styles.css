@@ -1,15 +1,16 @@
-/* Action Cloud brand, taken from actioncloud.co: black, lime, Anton + Inter.
-   The yellow/black edge stripe comes from the ramp edges inside the park. */
+/* Action Cloud park look: black and construction yellow, stencil type,
+   hazard tape and plywood, as painted on the ramps inside the hall. */
 :root {
   --bg: #0A0A0A;
   --bg-2: #141414;
   --bg-3: #1C1C1C;
-  --lime: #C8F135;
-  --lime-2: #B5DD22;
+  --lime: #FFD100;
+  --lime-2: #F0C200;
+  --ply: #C9A36B;
   --white: #FFFFFF;
   --gray: #B5B5B5;
   --gray-2: #7A7A7A;
-  --display: "Anton", Impact, "Arial Narrow", sans-serif;
+  --display: "Big Shoulders Stencil Display", Impact, "Arial Narrow", sans-serif;
   --body: "Inter", "Helvetica Neue", Arial, sans-serif;
   --gutter: clamp(16px, 4vw, 48px);
 }
@@ -30,7 +31,7 @@ body {
 img { max-width: 100%; display: block; }
 a { color: inherit; }
 :focus-visible { outline: 3px solid var(--lime); outline-offset: 3px; border-radius: 2px; }
-h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: .98; margin: 0; text-transform: uppercase; letter-spacing: .01em; }
+h1, h2, h3 { font-family: var(--display); font-weight: 900; line-height: .98; margin: 0; text-transform: uppercase; letter-spacing: .01em; }
 p { margin: 0 0 1em; }
 
 .skip { position: absolute; left: -9999px; }
@@ -76,17 +77,16 @@ p { margin: 0 0 1em; }
   content: ""; position: absolute; inset: 0; z-index: -1;
   background: linear-gradient(90deg, rgba(10,10,10,.8) 0%, rgba(10,10,10,.45) 45%, rgba(10,10,10,0) 70%), linear-gradient(180deg, rgba(10,10,10,.5) 0%, rgba(10,10,10,.1) 30%, rgba(10,10,10,.92) 85%);
 }
-.hero-inner { padding: 140px var(--gutter) 72px; max-width: 760px; }
+.hero-inner { padding: 140px var(--gutter) 130px; max-width: 760px; }
 .hero h1 { font-size: clamp(64px, 12vw, 168px); color: var(--lime); margin-bottom: 24px; }
 .hero-inner p { font-size: clamp(18px, 1.6vw, 21px); max-width: 32rem; color: var(--white); }
-.credit { position: absolute; right: var(--gutter); bottom: 20px; margin: 0; font-size: 13px; color: var(--gray); }
 
 @media (max-width: 759px) {
   .hero-photos { grid-template-columns: 1fr; }
   .hero-photos img:nth-child(n+2) { display: none; }
   .bar nav { display: none; }
   .bag-btn { margin-left: auto; }
-  .credit { display: none; }
+  .tape { font-size: 18px; }
 }
 
 .btn {
@@ -101,10 +101,21 @@ p { margin: 0 0 1em; }
 .btn:active { transform: translateY(1px); }
 .btn-block { width: 100%; }
 
-/* ramp-edge hazard stripe, as painted on the park's ramps */
-.stripe {
-  height: 18px;
-  background: repeating-linear-gradient(-45deg, var(--lime) 0 18px, var(--bg) 18px 36px);
+/* hazard tape across the bottom of the hero */
+.tape {
+  position: absolute; left: -5%; right: -5%; bottom: 14px;
+  transform: rotate(-2.2deg); transform-origin: center;
+  background: var(--lime); color: var(--bg);
+  border-block: 10px solid transparent;
+  border-image: repeating-linear-gradient(-45deg, var(--bg) 0 14px, var(--lime) 14px 28px) 10;
+  padding: 10px 0; white-space: nowrap; overflow: hidden;
+  font: 900 26px/1 var(--display); text-transform: uppercase; letter-spacing: .06em;
+}
+.tape span { display: inline-block; padding-left: 2%; }
+.hazard-edge, .why, .ramps { position: relative; }
+.why::before, .ramps::before, .park::after {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 16px;
+  background: repeating-linear-gradient(-45deg, var(--lime) 0 16px, var(--bg) 16px 32px);
 }
 
 /* ---------- why ---------- */
@@ -114,14 +125,14 @@ p { margin: 0 0 1em; }
   display: grid; gap: 40px;
   grid-template-columns: minmax(0, 1fr);
 }
-.why h2 { font-size: clamp(52px, 8vw, 104px); max-width: 8ch; color: var(--white); }
+.why h2 { font-size: clamp(56px, 8vw, 112px); max-width: 9ch; color: var(--lime); }
 .why-body { max-width: 36rem; font-size: 19px; color: #E6E6E6; }
 .sign { font-weight: 700; color: var(--lime); margin-top: 1.6em; }
 .why-photo { margin: 0; max-width: 360px; }
 .why-photo img { width: 100%; filter: grayscale(1) contrast(1.1); }
 .why-photo figcaption { font-size: 14px; color: var(--gray-2); margin-top: 10px; }
 @media (min-width: 1000px) {
-  .why { grid-template-columns: 1fr 1.1fr .8fr; align-items: start; }
+  .why { grid-template-columns: 1fr 1.1fr; align-items: start; }
   .why h2 { position: sticky; top: 110px; }
 }
 
@@ -151,14 +162,14 @@ p { margin: 0 0 1em; }
 
 .tag {
   background: var(--bg-3);
-  border-top: 3px solid var(--lime);
+  border-top: 8px solid var(--ply);
   padding: 20px 20px 22px;
   margin-top: 8px;
   flex: 1;
   display: flex; flex-direction: column;
 }
-.tag h3 { font-size: 30px; }
 .price { font-weight: 700; font-size: 20px; margin: 6px 0 10px; color: var(--lime); }
+.tag h3 { font-size: 36px; }
 .blurb { color: var(--gray); font-size: 15px; flex: 1; }
 .swatches { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
 .swatch { width: 28px; height: 28px; border-radius: 50%; background: var(--c); border: 2px solid #555; cursor: pointer; padding: 0; }
@@ -177,6 +188,23 @@ p { margin: 0 0 1em; }
 .hint { font-size: 14px; margin: 10px 0 0; min-height: 1.4em; color: var(--gray); }
 .needs-size .hint { color: #FF8A6E; font-weight: 600; }
 
+/* ---------- ramps: plywood ---------- */
+.ramps {
+  background: var(--ply) repeating-linear-gradient(90deg, rgba(0,0,0,.04) 0 2px, transparent 2px 160px);
+  color: var(--bg);
+  padding: clamp(80px, 11vw, 140px) var(--gutter);
+  display: grid; gap: 48px; grid-template-columns: minmax(0, 1fr);
+}
+.ramps h2 { font-size: clamp(56px, 9vw, 120px); max-width: 11ch; margin-bottom: 24px; }
+.ramps-inner { max-width: 42rem; font-size: 19px; }
+.ramps .lead { font-size: clamp(22px, 2.2vw, 28px); font-weight: 600; }
+.plates { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 10px; max-width: 760px; }
+.plates li { border: 2px solid rgba(10,10,10,.5); padding: 10px 12px; min-height: 84px; display: flex; flex-direction: column; justify-content: space-between; }
+.plates b { font: 900 34px/1 var(--display); }
+.plates span { font-size: 13px; font-weight: 700; text-transform: uppercase; }
+.plates .on { background: var(--bg); color: var(--lime); border-color: var(--bg); }
+@media (min-width: 1100px) { .ramps { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; } }
+
 /* ---------- park ---------- */
 .park {
   position: relative; isolation: isolate; overflow: hidden;
@@ -187,6 +215,10 @@ p { margin: 0 0 1em; }
 .park-inner { max-width: 40rem; }
 .park h2 { font-size: clamp(56px, 9vw, 112px); margin-bottom: 28px; color: var(--lime); }
 .park p { font-size: 19px; }
+.facts { display: flex; flex-wrap: wrap; gap: 24px 48px; margin: 32px 0 0; }
+.facts dt { font: 900 clamp(40px, 5vw, 64px)/1 var(--display); color: var(--lime); }
+.facts dd { margin: 6px 0 0; color: var(--gray); }
+.park::after { top: auto; bottom: 0; }
 
 .foot {
   background: var(--bg); border-top: 1px solid var(--bg-3);

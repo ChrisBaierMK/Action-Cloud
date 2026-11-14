@@ -1,6 +1,6 @@
 # Action Cloud
 
-Static site, in the original Action Cloud look (black, lime #C8F135, Anton + Inter), for the Action Cloud merch shop: the "Live free. Take action." story plus hoodies, tees, caps and beanies.
+Static site, in the Action Cloud park look (black and construction yellow, stencil type, hazard tape, plywood), for the Action Cloud merch shop: the "Live free. Take action." story plus hoodies, tees, caps and beanies.
 
 - `index.html`, `styles.css`, `app.js`: the page. No build step; open `index.html` or serve the folder.
 - `img/`: Action Cloud logo and park photos, copied from actioncloud.co.

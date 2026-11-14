@@ -13,7 +13,7 @@
   }
 
   function garment(kind, hex) {
-    var ink = isLight(hex) ? "#0A0A0A" : (hex.toUpperCase() === "#0A0A0A" || hex.toUpperCase() === "#141414" ? "#C8F135" : "#FFFFFF");
+    var ink = isLight(hex) ? "#0A0A0A" : (hex.toUpperCase() === "#0A0A0A" || hex.toUpperCase() === "#141414" ? "#FFD100" : "#FFFFFF");
     var shade = "rgba(0,0,0,.14)";
     var mark = function (x, y, s) {
       return '<g transform="translate(' + x + ' ' + y + ') scale(' + s + ')">' + MARKFN(ink) + "</g>";

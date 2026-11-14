@@ -1,6 +1,7 @@
 // Shop configuration. Edit this file to change products, prices and checkout.
 //
 // PRICES ARE PLACEHOLDERS — set your real prices before going live.
+// The ramp-fund share per item is also undecided (the partner deck has it as [__ lei]).
 //
 // checkoutUrl: leave null until a real checkout exists. When it is null the
 // "Check out" button tells shoppers checkout isn't open yet instead of
@@ -15,11 +16,11 @@ window.SHOP = {
       name: "Drop In hoodie",
       kind: "hoodie",
       price: 65,
-      blurb: "Heavyweight fleece, Action Cloud mark on the chest, Live free. Take action. across the back.",
+      blurb: "Heavyweight fleece, Action Cloud mark on the chest, \"Live free. Take action.\" across the back.",
       sizes: ["S", "M", "L", "XL", "XXL"],
       colors: [
         { name: "Black", hex: "#141414" },
-        { name: "Lime", hex: "#C8F135" },
+        { name: "Yellow", hex: "#FFD100" },
         { name: "Grey", hex: "#7A7A7A" }
       ]
     },
@@ -33,7 +34,7 @@ window.SHOP = {
       colors: [
         { name: "Black", hex: "#141414" },
         { name: "White", hex: "#F4F4F4" },
-        { name: "Lime", hex: "#C8F135" }
+        { name: "Yellow", hex: "#FFD100" }
       ]
     },
     {
@@ -45,7 +46,7 @@ window.SHOP = {
       sizes: ["One size"],
       colors: [
         { name: "Black", hex: "#141414" },
-        { name: "Lime", hex: "#C8F135" }
+        { name: "Yellow", hex: "#FFD100" }
       ]
     },
     {
@@ -56,7 +57,7 @@ window.SHOP = {
       blurb: "Rib knit with a fold-up cuff and woven label. For the months the park is the only option.",
       sizes: ["One size"],
       colors: [
-        { name: "Lime", hex: "#C8F135" },
+        { name: "Yellow", hex: "#FFD100" },
         { name: "Black", hex: "#141414" },
         { name: "Grey", hex: "#7A7A7A" }
       ]

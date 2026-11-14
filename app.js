@@ -6,17 +6,17 @@
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   // ---------- garment drawings ----------
-  // Action Cloud mark: quarter-pipe plus cloud, as in the logo
-  function MARKFN(c) {
-    return '<path fill="' + c + '" d="M0 32V25Q17 25 19 3h6v29Z"/>' +
-      '<path fill="none" stroke="' + c + '" stroke-width="3" stroke-linejoin="round" d="M27 4h9a7 7 0 0 1 12 3 6 6 0 0 1 7 10 5 5 0 0 1-3 4H27Z"/>';
-  }
+  // The real Action Cloud logo (quarter pipe, cloud, stencil wordmark) is
+  // placed as an image, yellow on dark garments and black on light ones.
+  var LOGO_RATIO = 256 / 472;
 
   function garment(kind, hex) {
-    var ink = isLight(hex) ? "#0A0A0A" : (hex.toUpperCase() === "#0A0A0A" || hex.toUpperCase() === "#141414" ? "#ECC820" : "#FFFFFF");
+    var light = isLight(hex);
+    var ink = light ? "#141414" : "#ECC820";
     var shade = "rgba(0,0,0,.14)";
-    var mark = function (x, y, s) {
-      return '<g transform="translate(' + x + ' ' + y + ') scale(' + s + ')">' + MARKFN(ink) + "</g>";
+    var logo = function (x, y, w, forceDark) {
+      var file = forceDark || light ? "img/action-cloud-logo-black.webp" : "img/action-cloud-logo-yellow.webp";
+      return '<image href="' + file + '" x="' + x + '" y="' + y + '" width="' + w + '" height="' + (w * LOGO_RATIO).toFixed(1) + '"/>';
     };
     switch (kind) {
       case "hoodie":
@@ -29,7 +29,7 @@
           '<rect fill="' + shade + '" x="54" y="214" width="112" height="12"/>' +
           '<line x1="102" y1="50" x2="100" y2="92" stroke="' + ink + '" stroke-width="2"/>' +
           '<line x1="118" y1="50" x2="120" y2="92" stroke="' + ink + '" stroke-width="2"/>' +
-          mark(82, 104, 1) +
+          logo(72, 100, 76) +
           "</svg>"
         );
       case "tee":
@@ -37,18 +37,22 @@
           '<svg viewBox="0 0 220 240" role="img" aria-hidden="true">' +
           '<path fill="' + hex + '" stroke="rgba(255,255,255,.08)" stroke-width="1.5" d="M74 28 L92 20 Q110 34 128 20 L146 28 L200 66 L178 102 L160 92 L160 224 L60 224 L60 92 L42 102 L20 66 Z"/>' +
           '<path fill="none" stroke="' + shade + '" stroke-width="4" d="M92 21 Q110 38 128 21"/>' +
-          mark(120, 60, .6) +
+          logo(118, 56, 34) +
           "</svg>"
         );
       case "cap":
+        // front view: crown, six-panel seams, curved brim, logo centred on the front panels
         return (
           '<svg viewBox="0 0 220 240" role="img" aria-hidden="true">' +
-          '<path fill="' + hex + '" d="M38 150 Q40 70 112 66 Q176 66 184 150 Z"/>' +
-          '<path fill="' + shade + '" d="M110 66 Q100 100 104 150 L98 150 Q94 100 110 66 Z"/>' +
-          '<path fill="' + hex + '" d="M150 146 Q206 140 214 160 Q190 176 140 162 Z"/>' +
-          '<path fill="' + shade + '" d="M150 146 Q206 140 214 160 Q180 156 146 156 Z"/>' +
-          '<circle fill="' + shade + '" cx="111" cy="68" r="5"/>' +
-          mark(62, 96, .9) +
+          '<path fill="' + hex + '" d="M36 156 Q36 64 110 60 Q184 64 184 156 Q110 142 36 156 Z"/>' +
+          '<g fill="none" stroke="' + shade + '" stroke-width="2.5">' +
+          '<path d="M110 62 Q72 96 62 150"/><path d="M110 62 Q148 96 158 150"/><path d="M110 62 V146"/>' +
+          "</g>" +
+          '<path fill="' + hex + '" d="M50 150 Q110 140 170 150 Q186 168 172 184 Q110 200 48 184 Q34 168 50 150 Z"/>' +
+          '<path fill="' + shade + '" d="M50 150 Q110 140 170 150 Q186 168 172 184 Q110 200 48 184 Q34 168 50 150 Z"/>' +
+          '<path fill="rgba(0,0,0,.22)" d="M50 150 Q110 140 170 150 L168 156 Q110 147 52 156 Z"/>' +
+          '<circle fill="' + hex + '" cx="110" cy="62" r="6"/><circle fill="' + shade + '" cx="110" cy="62" r="6"/>' +
+          logo(66, 96, 88) +
           "</svg>"
         );
       case "beanie":
@@ -62,8 +66,8 @@
           "</g>" +
           '<rect fill="' + hex + '" x="44" y="156" width="132" height="46" rx="8"/>' +
           '<rect fill="' + shade + '" x="44" y="156" width="132" height="46" rx="8"/>' +
-          '<rect fill="#FFFFFF" x="92" y="168" width="36" height="22" rx="2"/>' +
-          '<g transform="translate(96 170) scale(.5)">' + MARKFN("#0A0A0A") + "</g>" +
+          '<rect fill="#141414" x="80" y="164" width="60" height="32" rx="2"/>' +
+          '<image href="img/action-cloud-logo-yellow.webp" x="85" y="167" width="50" height="27"/>' +
           "</svg>"
         );
     }

@@ -7,14 +7,30 @@
 // "Check out" button tells shoppers checkout isn't open yet instead of
 // pretending to take payment. Point it at a Shopify cart, a Stripe Payment
 // Link or similar once fulfillment (print-on-demand or own stock) is decided.
+//
+// Product fields beyond the obvious ones:
+//   views: the sides that have a photo, e.g. ["front", "back"]. The first one hangs on the
+//          rail; the product panel lets shoppers switch. Photos are named
+//          img/p/<id>-<colour>-front.webp and img/p/<id>-<colour>-back.webp.
+//          Without `views` a product has one photo per colour: img/p/<id>-<colour>.webp.
+//   spec:  a key in `specs` below. The product panel then shows materials and a size chart.
 window.SHOP = {
   currency: "EUR",
   checkoutUrl: null,
+
+  // TARGET SPECS, NOT SUPPLIER DATA. These are the fabric and measurements the designs were
+  // drawn for. Replace them with the manufacturer's spec sheet and graded size chart before
+  // taking orders; the page tells shoppers they are targets until then.
+  // chart rows: [size, chest width, body length, sleeve length] in cm, garment laid flat.
+  specs: {
+    "oversized-hoodie": { material: "hoodie", chart: [["S", 64, 68, 58], ["M", 67, 70, 59], ["L", 70, 72, 60], ["XL", 73, 74, 61], ["XXL", 76, 76, 62]] },
+    "oversized-crew": { material: "crewneck", chart: [["S", 64, 66, 58], ["M", 67, 68, 59], ["L", 70, 70, 60], ["XL", 73, 72, 61], ["XXL", 76, 74, 62]] },
+    "oversized-tee": { material: "tee", chart: [["S", 58, 70, 24], ["M", 61, 72, 25], ["L", 64, 74, 26], ["XL", 67, 76, 27], ["XXL", 70, 78, 28]] }
+  },
+
   products: [
-    // Graphic rider tees (concept capsule). The images show the side that carries the graphic:
-    // the front for the first four, the back for the Stencil tee. On the first four the print
-    // crosses seams, sleeves or the hem, so they need panel printing before sewing, not a
-    // ready-made blank. Price is a placeholder like the rest.
+    // Graphic rider tees (concept capsule). On the first four the print crosses seams, sleeves
+    // or the hem, so they need panel printing before sewing, not a ready-made blank.
     {
       id: "tee-sequence",
       name: "Sequence tee",
@@ -22,7 +38,9 @@ window.SHOP = {
       price: 49,
       blurb: "Oversized washed black tee. A backflip in six sprayed frames, from one sleeve to the other. Small logo below the collar on the back.",
       sizes: ["S", "M", "L", "XL", "XXL"],
-      colors: [{ name: "Black", hex: "#2A2A2A" }]
+      colors: [{ name: "Black", hex: "#2A2A2A" }],
+      views: ["front", "back"],
+      spec: "oversized-tee"
     },
     {
       id: "tee-bleach",
@@ -31,7 +49,9 @@ window.SHOP = {
       price: 49,
       blurb: "Oversized washed black tee. A rider mid-tabletop, bleached out of the fabric and running off the seam. Small logo below the collar on the back.",
       sizes: ["S", "M", "L", "XL", "XXL"],
-      colors: [{ name: "Black", hex: "#2A2A2A" }]
+      colors: [{ name: "Black", hex: "#2A2A2A" }],
+      views: ["front", "back"],
+      spec: "oversized-tee"
     },
     {
       id: "tee-ramp",
@@ -40,7 +60,9 @@ window.SHOP = {
       price: 49,
       blurb: "Oversized ecru tee. The ramp rises from the hem; the rider is already in the air. Small logo below the collar on the back.",
       sizes: ["S", "M", "L", "XL", "XXL"],
-      colors: [{ name: "Ecru", hex: "#D9CAB5" }]
+      colors: [{ name: "Ecru", hex: "#D9CAB5" }],
+      views: ["front", "back"],
+      spec: "oversized-tee"
     },
     {
       id: "tee-wheel",
@@ -49,7 +71,9 @@ window.SHOP = {
       price: 49,
       blurb: "Oversized washed grey tee. One wheel, too big for the shirt, with our name on the tyre. Small logo below the collar on the back.",
       sizes: ["S", "M", "L", "XL", "XXL"],
-      colors: [{ name: "Grey", hex: "#85827D" }]
+      colors: [{ name: "Grey", hex: "#85827D" }],
+      views: ["front", "back"],
+      spec: "oversized-tee"
     },
     {
       id: "tee-stencil",
@@ -58,10 +82,12 @@ window.SHOP = {
       price: 49,
       blurb: "Oversized faded yellow tee. On the back, a two-layer spray stencil of a rider, drips included. Small logo on the chest.",
       sizes: ["S", "M", "L", "XL", "XXL"],
-      colors: [{ name: "Yellow", hex: "#D4A63C" }]
+      colors: [{ name: "Yellow", hex: "#D4A63C" }],
+      views: ["back", "front"],
+      spec: "oversized-tee"
     },
-    // Washed, oversized print pieces. Each image shows the side that carries the main graphic:
-    // the back for the Live Free and Split hoodies, the front for the rest.
+
+    // Washed, oversized print pieces.
     {
       id: "hoodie-bigmark",
       name: "Big Mark hoodie",
@@ -69,7 +95,9 @@ window.SHOP = {
       price: 99,
       blurb: "Oversized washed black hoodie. The Action Cloud mark across the whole chest in cracked yellow. Plain back.",
       sizes: ["S", "M", "L", "XL", "XXL"],
-      colors: [{ name: "Black", hex: "#2A2A2A" }]
+      colors: [{ name: "Black", hex: "#2A2A2A" }],
+      views: ["front", "back"],
+      spec: "oversized-hoodie"
     },
     {
       id: "hoodie-livefree",
@@ -78,7 +106,9 @@ window.SHOP = {
       price: 99,
       blurb: "Oversized washed black hoodie. \"Live free. Take action.\" sprayed across the back in yellow. Small logo on the chest.",
       sizes: ["S", "M", "L", "XL", "XXL"],
-      colors: [{ name: "Black", hex: "#2A2A2A" }]
+      colors: [{ name: "Black", hex: "#2A2A2A" }],
+      views: ["back", "front"],
+      spec: "oversized-hoodie"
     },
     {
       id: "hoodie-split",
@@ -87,7 +117,31 @@ window.SHOP = {
       price: 99,
       blurb: "Oversized washed grey hoodie. ACTION across the chest; on the back, the mark and CLOUD in cracked black.",
       sizes: ["S", "M", "L", "XL", "XXL"],
-      colors: [{ name: "Grey", hex: "#85827D" }]
+      colors: [{ name: "Grey", hex: "#85827D" }],
+      views: ["back", "front"],
+      spec: "oversized-hoodie"
+    },
+    {
+      id: "hoodie-tape",
+      name: "Tape hoodie",
+      kind: "hoodie",
+      price: 99,
+      blurb: "Oversized washed grey hoodie. A logo tape runs down both sleeves from neck to cuff. Small logo on the chest.",
+      sizes: ["S", "M", "L", "XL", "XXL"],
+      colors: [{ name: "Grey", hex: "#85827D" }],
+      views: ["front", "back"],
+      spec: "oversized-hoodie"
+    },
+    {
+      id: "hoodie-monogram",
+      name: "Monogram hoodie",
+      kind: "hoodie",
+      price: 99,
+      blurb: "Oversized washed black hoodie. The mark repeated tone-on-tone over the sleeves and hood. Small logo on the chest.",
+      sizes: ["S", "M", "L", "XL", "XXL"],
+      colors: [{ name: "Black", hex: "#2A2A2A" }],
+      views: ["front", "back"],
+      spec: "oversized-hoodie"
     },
     {
       id: "crew-sunfade",
@@ -96,7 +150,9 @@ window.SHOP = {
       price: 79,
       blurb: "Oversized crewneck in sun-faded yellow. The Action Cloud mark large on the chest in cracked black.",
       sizes: ["S", "M", "L", "XL", "XXL"],
-      colors: [{ name: "Yellow", hex: "#D4A63C" }]
+      colors: [{ name: "Yellow", hex: "#D4A63C" }],
+      views: ["front", "back"],
+      spec: "oversized-crew"
     },
     {
       id: "tee-tyre",
@@ -105,8 +161,12 @@ window.SHOP = {
       price: 49,
       blurb: "Oversized ecru tee. One tyre track across the front, hem to shoulder. Small logo below the collar on the back.",
       sizes: ["S", "M", "L", "XL", "XXL"],
-      colors: [{ name: "Ecru", hex: "#D9CAB5" }]
+      colors: [{ name: "Ecru", hex: "#D9CAB5" }],
+      views: ["front", "back"],
+      spec: "oversized-tee"
     },
+
+    // The original pieces: one photo each, no spec yet.
     {
       id: "tee",
       name: "Commit tee",

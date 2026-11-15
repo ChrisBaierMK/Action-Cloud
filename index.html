@@ -141,7 +141,10 @@
 
 <dialog class="sheet" id="product" aria-labelledby="p-name">
   <button type="button" class="x" data-close data-i18n-aria="p.close" aria-label="Close">×</button>
-  <div class="p-art" id="p-art"></div>
+  <div class="p-media">
+    <div class="p-art" id="p-art"></div>
+    <div class="p-views" id="p-views" role="group" data-i18n-aria="p.view" aria-label="View" hidden></div>
+  </div>
   <div class="p-info">
     <h2 id="p-name"></h2>
     <p class="p-price" id="p-price"></p>
@@ -150,6 +153,13 @@
     <div class="sizes" id="p-sizes" role="radiogroup" data-i18n-aria="p.size" aria-label="Size"></div>
     <button type="button" class="btn" id="p-add" data-i18n="p.add">Add to bag</button>
     <p class="p-hint" id="p-hint" role="status"></p>
+    <section class="p-spec" id="p-spec" aria-labelledby="p-spec-title" hidden>
+      <h3 id="p-spec-title" data-i18n="spec.title">Materials and fit</h3>
+      <dl class="spec-list" id="p-spec-list"></dl>
+      <h3 id="p-chart-title" data-i18n="chart.title">Size chart</h3>
+      <table class="chart" id="p-chart" aria-labelledby="p-chart-title"></table>
+      <p class="spec-note"><span data-i18n="chart.unit">Measurements in cm, garment laid flat.</span> <span data-i18n="spec.note">These are target specs for a piece still in development. Final fabric and measurements are confirmed before orders open.</span></p>
+    </section>
   </div>
 </dialog>
 

@@ -33,8 +33,11 @@
 
   // ---------- product photos ----------
   // One photo per product colour: img/p/<product id>-<colour name>.webp
-  function garment(p, colorName) {
-    return '<img src="img/p/' + p.id + "-" + colorName.toLowerCase() + '.webp" alt="" draggable="false" decoding="async">';
+  // A product with `views` has one photo per side instead (...-front.webp, ...-back.webp);
+  // the first entry in `views` is the side that hangs on the rail.
+  function garment(p, colorName, view, alt) {
+    var side = p.views ? "-" + (view || p.views[0]) : "";
+    return '<img src="img/p/' + p.id + "-" + colorName.toLowerCase() + side + '.webp" alt="' + (alt || "") + '" draggable="false" decoding="async">';
   }
 
 
@@ -144,8 +147,12 @@
   var dlg = $("product"), art = $("p-art"), cur = null;
 
   function drawProduct() {
-    var p = cur.p, c = p.colors[cur.ci];
-    art.innerHTML = garment(p, c.name);
+    var p = cur.p, c = p.colors[cur.ci], sides = p.views && p.views.length > 1;
+    art.innerHTML = garment(p, c.name, cur.view, cur.view ? p.name + ", " + t("p." + cur.view) : "");
+    $("p-views").hidden = !sides;
+    $("p-views").innerHTML = !sides ? "" : ["front", "back"].filter(function (v) { return p.views.indexOf(v) > -1; }).map(function (v) {
+      return '<button type="button" class="view" aria-pressed="' + (v === cur.view) + '" data-v="' + v + '">' + t("p." + v) + "</button>";
+    }).join("");
     $("p-name").textContent = p.name;
     $("p-price").textContent = fmt.format(p.price);
     $("p-blurb").textContent = t("blurb." + p.id);
@@ -165,10 +172,29 @@
     var b = e.target.closest(".size"); if (!b) return;
     cur.size = b.dataset.s; drawProduct(); $("p-sizes").querySelector('[aria-checked="true"]').focus();
   });
+  $("p-views").addEventListener("click", function (e) {
+    var b = e.target.closest(".view"); if (!b || b.dataset.v === cur.view) return;
+    cur.view = b.dataset.v; drawProduct(); art.firstChild.classList.add("swap"); $("p-views").querySelector('[aria-pressed="true"]').focus();
+  });
+
+  // materials and size chart, for products that name a spec in shop-config.js
+  function drawSpec(p) {
+    var s = p.spec && SHOP.specs && SHOP.specs[p.spec];
+    $("p-spec").hidden = !s;
+    if (!s) return;
+    $("p-spec-list").innerHTML = [["material", t("spec.material." + s.material)], ["fit", t("spec.fit")], ["finish", t("spec.finish")], ["care", t("spec.care")]].map(function (r) {
+      return "<div><dt>" + t("spec.h." + r[0]) + "</dt><dd>" + r[1] + "</dd></div>";
+    }).join("");
+    $("p-chart").innerHTML = "<thead><tr>" + ["size", "chest", "length", "sleeve"].map(function (k) {
+      return '<th scope="col">' + t("chart." + k) + "</th>";
+    }).join("") + "</tr></thead><tbody>" + s.chart.map(function (r) {
+      return '<tr><th scope="row">' + r[0] + "</th><td>" + r[1] + "</td><td>" + r[2] + "</td><td>" + r[3] + "</td></tr>";
+    }).join("") + "</tbody>";
+  }
 
   function openProduct(p, ci, src) {
-    cur = { p: p, ci: ci, size: p.sizes.length === 1 ? p.sizes[0] : null };
-    var show = function () { drawProduct(); dlg.showModal(); };
+    cur = { p: p, ci: ci, size: p.sizes.length === 1 ? p.sizes[0] : null, view: p.views ? p.views[0] : null };
+    var show = function () { drawProduct(); drawSpec(p); dlg.showModal(); document.querySelector(".p-info").scrollTop = 0; };
     if (document.startViewTransition && !reduce && src) {
       src.style.viewTransitionName = "piece";
       var t = document.startViewTransition(function () {

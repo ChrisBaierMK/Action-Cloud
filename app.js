@@ -35,9 +35,11 @@
   // One photo per product colour: img/p/<product id>-<colour name>.webp
   // A product with `views` has one photo per side instead (...-front.webp, ...-back.webp);
   // the first entry in `views` is the side that hangs on the rail.
+  function photo(p, colorName, view) {
+    return "img/p/" + p.id + "-" + colorName.toLowerCase() + (p.views ? "-" + (view || p.views[0]) : "") + ".webp";
+  }
   function garment(p, colorName, view, alt) {
-    var side = p.views ? "-" + (view || p.views[0]) : "";
-    return '<img src="img/p/' + p.id + "-" + colorName.toLowerCase() + side + '.webp" alt="' + (alt || "") + '" draggable="false" decoding="async">';
+    return '<img src="' + photo(p, colorName, view) + '" alt="' + (alt || "") + '" draggable="false" decoding="async">';
   }
 
 
@@ -194,6 +196,8 @@
 
   function openProduct(p, ci, src) {
     cur = { p: p, ci: ci, size: p.sizes.length === 1 ? p.sizes[0] : null, view: p.views ? p.views[0] : null };
+    // fetch the other side now so the front/back switch doesn't show an empty frame
+    (p.views || []).slice(1).forEach(function (v) { new Image().src = photo(p, p.colors[ci].name, v); });
     var show = function () { drawProduct(); drawSpec(p); dlg.showModal(); document.querySelector(".p-info").scrollTop = 0; };
     if (document.startViewTransition && !reduce && src) {
       src.style.viewTransitionName = "piece";

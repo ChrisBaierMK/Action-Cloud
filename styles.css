@@ -116,7 +116,7 @@ button.scrap[disabled] { opacity: .6; cursor: progress; }
   --focus: var(--chalk);
 }
 .logo { display: block; padding: 4px 0; }
-.logo img { width: clamp(104px, 28vw, 150px); }
+.logo img { width: clamp(150px, 40vw, 280px); }
 .foot__logo { width: 150px; }
 .top__tools { display: flex; align-items: center; gap: 12px; }
 
@@ -166,7 +166,7 @@ button.scrap[disabled] { opacity: .6; cursor: progress; }
 
 .hero__text {
   position: absolute; z-index: 5; pointer-events: none;
-  left: var(--pad); right: var(--pad); top: 76px;
+  left: var(--pad); right: var(--pad); top: clamp(84px, 13vw, 124px);
   max-width: 34rem;
 }
 .hero__text h1 img { width: min(78vw, 30rem); }
@@ -232,13 +232,6 @@ button.scrap[disabled] { opacity: .6; cursor: progress; }
 .piece:hover img, .piece:focus-visible img { filter: drop-shadow(0 10px 8px rgb(0 0 0 / .35)) brightness(1.12); }
 .piece:focus-visible { outline-offset: 6px; }
 
-.tag {
-  position: absolute; left: 50%; bottom: 7%; translate: -50% 0;
-  min-height: 0; min-width: 0; width: max-content; max-width: 112%;
-  padding: .3em .7em; font-size: .85rem; text-align: center;
-  pointer-events: none;
-}
-
 /* The reflection in the mirror: mirrored, smaller, dimmer, a little blurred. */
 .refl {
   position: absolute; z-index: 1; left: 16%; top: calc(var(--top) - var(--hh) * .03);
@@ -278,7 +271,6 @@ button.scrap[disabled] { opacity: .6; cursor: progress; }
 .item--bench .piece { transform: none; left: 12%; width: 76%; }
 .item--bench .piece img { object-position: 50% 100%; }
 .item--bench .refl { display: none; }
-.item--bench .tag { bottom: auto; top: calc(100% + 22px); }
 
 /* On load the pieces drop on and settle. */
 @keyframes drop { from { translate: 0 -46px; opacity: 0; } }

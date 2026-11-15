@@ -150,7 +150,7 @@
 
   var stage = $("#rail");
   var track = $("#track");
-  var pieces = [];   /* { li, btn, tag, p, c, a, w, gain, swings } */
+  var pieces = [];   /* { li, btn, p, c, a, w, gain, swings } */
 
   function buildRail() {
     var i = 0;
@@ -180,14 +180,12 @@
         img.height = 1120;
         img.draggable = false;
         btn.appendChild(img);
-        var tag = el("span", "scrap tag " + ["e1", "e2", "e3"][i % 3] + (i % 2 ? " scrap--news" : ""));
-        btn.appendChild(tag);
         btn.addEventListener("click", function () { openProduct(p.id, c.id, btn); });
         li.appendChild(btn);
         track.appendChild(li);
 
         pieces.push({
-          li: li, btn: btn, tag: tag, p: p, c: c,
+          li: li, btn: btn, p: p, c: c,
           a: 0, w: 0,
           gain: 0.016 + (i * 7 % 5) * 0.003,    /* slightly different per piece */
           swings: where !== "bench"
@@ -199,9 +197,8 @@
 
   function labelRail() {
     pieces.forEach(function (x) {
-      var name = pText(x.p, "name");
-      x.tag.textContent = name;
-      x.btn.setAttribute("aria-label", t("rail.open", { name: name, color: colorName(x.c), price: money(x.p.price) }));
+      /* No product names on the first screen: the name is the accessible label only. */
+      x.btn.setAttribute("aria-label", t("rail.open", { name: pText(x.p, "name"), color: colorName(x.c), price: money(x.p.price) }));
     });
   }
 

@@ -176,8 +176,8 @@
         var img = el("img");
         img.src = photo(p, c, p.views[0]);
         img.alt = "";
-        img.width = where === "bench" ? 900 : 800;
-        img.height = 1200;
+        img.width = 896;
+        img.height = 1120;
         img.draggable = false;
         btn.appendChild(img);
         var tag = el("span", "scrap tag " + ["e1", "e2", "e3"][i % 3] + (i % 2 ? " scrap--news" : ""));
@@ -417,6 +417,7 @@
     setText($("#pPrice"), money(p.price));
     setText($("#pBlurb"), pText(p, "blurb"));
     setText($("#pColorName"), colorName(cur.c));
+    $("#pStandIn").hidden = !SHOP.standIn;
     renderPhoto();
 
     var views = $("#pViews");
@@ -538,7 +539,7 @@
       var img = el("img", "line__img");
       img.src = photo(p, c, p.views[0]);
       img.alt = "";
-      img.width = 64; img.height = 96; img.loading = "lazy";
+      img.width = 64; img.height = 80; img.loading = "lazy";
       li.appendChild(img);
 
       var body = el("div");

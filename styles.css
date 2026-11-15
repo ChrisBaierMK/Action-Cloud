@@ -116,7 +116,8 @@ button.scrap[disabled] { opacity: .6; cursor: progress; }
   --focus: var(--chalk);
 }
 .logo { display: block; padding: 4px 0; }
-.logo img { width: clamp(96px, 26vw, 132px); }
+.logo img { width: clamp(104px, 28vw, 150px); }
+.foot__logo { width: 150px; }
 .top__tools { display: flex; align-items: center; gap: 12px; }
 
 .lang { padding: 0; font-size: .95rem; }
@@ -169,6 +170,7 @@ button.scrap[disabled] { opacity: .6; cursor: progress; }
   max-width: 34rem;
 }
 .hero__text h1 img { width: min(78vw, 30rem); }
+.hero__text h1 .line2 { width: min(32vw, 12rem); margin: .4rem 0 0 1.5rem; }
 .hero__text p { margin-top: .6rem; max-width: 30rem; font-size: 1.0625rem; text-shadow: 0 1px 2px var(--room); }
 
 .stage {
@@ -203,7 +205,7 @@ button.scrap[disabled] { opacity: .6; cursor: progress; }
   overflow: clip;   /* a swinging piece must not stretch the scroll width */
 }
 
-.item { position: relative; flex: none; height: 100%; width: calc(var(--h) * 2 / 3); }
+.item { position: relative; flex: none; height: 100%; width: calc(var(--h) * .8); }
 .item--barre { --top: calc(var(--by) - 12px); --h: var(--ph); }
 .item--hooks { --top: calc(var(--hh) * .07);  --h: calc(var(--hh) * .50); }
 .item--bench { --top: calc(var(--hh) * .34);  --h: calc(var(--hh) * .16); width: calc(var(--hh) * .22); }
@@ -321,6 +323,7 @@ section h2 img { width: min(100%, 27.5rem); }
   .tender__grid { grid-template-columns: 1.1fr 1fr; align-items: start; }
 }
 .made h2 + p, .tender h2 + p { margin-top: 1.2rem; }
+.lead { font-size: 1.35rem; line-height: 1.35; margin-bottom: 1rem; }
 .made p, .tender p { max-width: 34rem; }
 
 /* A photograph taped on. */
@@ -414,6 +417,7 @@ dialog::backdrop { background: rgb(20 18 16 / .72); }
 .taped--photo::before, .taped--photo::after { background: rgb(196 55 43 / .8); }
 @media (min-width: 760px) { .taped--photo { width: 100%; } }
 
+.standin { font-size: .9rem; text-align: center; max-width: 18rem; }
 .sheet__body { display: grid; gap: 14px; align-content: start; padding-right: 40px; }
 @media (min-width: 760px) { .sheet__body { padding-right: 0; padding-top: 34px; } }
 .sheet__body h2 { font: 800 clamp(1.7rem, 4vw, 2.4rem)/1.1 var(--f-mag); }

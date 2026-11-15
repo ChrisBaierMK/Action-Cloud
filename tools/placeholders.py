@@ -2,11 +2,14 @@
 """Draw the grey placeholder images the site ships with until real photographs
 and real handwriting exist. Each one has its own file name written on it.
 
-Run from the repository root:   python3 tools/placeholders.py
+Run from the repository root:   python3 tools/placeholders.py [path prefix ...]
 Needs Pillow and Node (Node reads shop-config.js and i18n.js).
 
-It overwrites files in img/. Do not run it once real images are in place.
+It only draws files that do not exist yet, so real images and stand-ins are
+safe. To redraw existing placeholders, name them by path prefix, for example
+    python3 tools/placeholders.py img/hand/strip img/studio
 """
+import sys
 import json
 import os
 import subprocess
@@ -53,8 +56,13 @@ def label(draw, box, lines, fill, start=40):
         y += h
 
 
+REDRAW = sys.argv[1:]
+
+
 def save(img, rel):
     path = os.path.join(ROOT, rel)
+    if os.path.exists(path) and not any(rel.startswith(p) for p in REDRAW):
+        return
     os.makedirs(os.path.dirname(path), exist_ok=True)
     if rel.endswith(".webp"):
         img.save(path, "WEBP", quality=70, method=6)
@@ -100,7 +108,7 @@ def photo(rel, w, h, what):
 def product(rel, hanger):
     """Transparent cut-out. With a hanger, the hook's top sits at the top centre,
     which is the point every piece hangs from."""
-    w, h = (800, 1200) if hanger else (900, 1200)
+    w, h = 896, 1120
     img = Image.new("RGBA", (w, h), (0, 0, 0, 0))
     d = ImageDraw.Draw(img)
     grey, line = (143, 139, 133, 255), (40, 38, 36, 255)
@@ -138,10 +146,12 @@ def scrap(rel):
 
 
 HAND = {
-    "logo": (264, 80),
+    "logo": (560, 190),
     "hero.line": (1120, 240),
+    "hero.line2": (440, 120),
     "rail.hint": (640, 80),
-    "strip.1": (640, 96), "strip.2": (640, 96), "strip.3": (640, 96), "strip.4": (640, 96),
+    "strip.1": (880, 96), "strip.2": (640, 96), "strip.3": (640, 96), "strip.4": (640, 96),
+    "strip.5": (640, 96),
     "made.title": (880, 160), "tender.title": (880, 160), "wait.title": (880, 160),
 }
 

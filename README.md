@@ -31,11 +31,20 @@ with a dashed outline so it cannot be mistaken for real copy.
 |---|---|
 | Prices, currency | `shop-config.js`: `price`, `currency` |
 | Materials, size charts | `shop-config.js`: `specs` |
-| Colour of the jacket | `shop-config.js`: `colors` (and rename the photo files) |
 | Instagram, TikTok, contact email | `shop-config.js`: `contact` |
 | Brand sentence, who makes the pieces, tender story, reserve price, closing date | `i18n.js` |
 | Checkout | `shop-config.js`: `checkoutUrl`. While it is `null`, "Check out" says orders are not open |
-| Every image | `img/`. All current images are grey boxes with their file name on them |
+| Studio, hands and tender photographs, handwritten phrases | `img/`. Grey boxes with their file name on them |
+
+## What is a stand-in
+
+The product pictures in `img/p/` and the logo (`img/hand/logo.png`, `logo-dark.png`) are
+AI-generated stand-ins. They are not photographs of finished pieces and not real handwriting.
+While `standIn` is `true` in `shop-config.js`, the product panel says so under the picture.
+Replace the files under the same names, then set `standIn` to `false`.
+
+The blurbs describe the designs shown in the stand-in pictures. Check them against the real
+garments before launch.
 
 ## Images
 
@@ -43,20 +52,21 @@ The final images must be real photographs and real handwriting. No AI-generated 
 
 - `img/studio.webp` (2400 px wide) and `img/studio-mobile.webp` (1200 px wide, portrait):
   the empty room, with no barre. The barre is drawn by the page at 60% of the hero's height.
-- Product photos: 1200 px tall, transparent, shot straight on, on a hanger. The top of the
-  hanger hook must touch the top edge of the image at its centre. That is the point each
+- Product photos: 896 x 1120 px (4:5), transparent, shot straight on, on a hanger. The top of
+  the hanger hook must sit at the top edge of the image, at its centre. That is the point each
   piece hangs and swings from. Bench items, if any are added, have no hanger and sit on their
   bottom edge.
 - Handwriting: one transparent PNG per phrase at twice its display size. The file name is
   the i18n key; the string under that key is the alt text.
 
-`python3 tools/placeholders.py` redraws every placeholder and overwrites `img/`.
-Do not run it once real images are in place.
+`python3 tools/placeholders.py` draws any placeholder that is missing. It leaves existing
+files alone unless you name them, for example `python3 tools/placeholders.py img/hand/strip`.
 
 ## Adding a product
 
 Add an entry to `products` in `shop-config.js`. `where` is `barre`, `hooks` (long pieces on
-the high hook rail) or `bench` (small items). One piece hangs for each colour. Add its
+the high hook rail) or `bench` (small items). Each design has one colour. A design with a
+front picture only gets `views: ["front"]`. Add its
 photos to `img/p/`. Its name and blurb can also be set in `i18n.js` as `p.<id>.name` and
 `p.<id>.blurb`.
 

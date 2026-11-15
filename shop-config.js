@@ -5,19 +5,26 @@
  *   - every price is null and shows on the page as [PRICE]
  *   - currency is null (set an ISO code such as "RON" or "EUR" when prices exist)
  *   - materials and size charts are null and show as [MATERIALS] / [SIZE CHART]
- *   - colours with hex: null are undecided and show as [COLOUR]
  *   - contact details are null and show as [HANDLE] / [EMAIL]
- * The swatch hex values that are filled in are screen approximations, not
- * measured fabric colours.
  *
- * Product photos live in img/p/ and are named
+ * STAND-INS. The product pictures in img/p/ and the logo in img/hand/ are
+ * AI-generated stand-ins, not photographs of finished pieces. While standIn is
+ * true the product panel says so under the picture. Replace the files with real
+ * photographs and real handwriting, then set standIn to false.
+ * The swatch hex values are read off the stand-in pictures, not off fabric.
+ *
+ * Product pictures are named
  *   <id>-<colour id>-front.webp and <id>-<colour id>-back.webp
+ * 896 x 1120 px, transparent, on a hanger, hook at the top centre.
  *
- * Visible product text (name, blurb) can be translated in i18n.js under
- * "p.<id>.name" and "p.<id>.blurb". The values here are the fallback.
+ * Visible product text can be overridden per language in i18n.js under
+ * "p.<id>.name" and "p.<id>.blurb". The values here are the default.
  */
 window.SHOP = {
   brand: "Ballerina",
+
+  /* true while img/p/ holds stand-in pictures instead of real photographs. */
+  standIn: true,
 
   /* ISO 4217 code, or null while prices are undecided. */
   currency: null,
@@ -42,7 +49,8 @@ window.SHOP = {
   },
 
   /* where: "barre" (hangs on the barre), "hooks" (long pieces, high hook rail),
-            "bench" (small items on the bench under the barre) */
+            "bench" (small items on the bench under the barre)
+     Each design exists in one colour. */
   products: [
     {
       id: "tee-patch",
@@ -50,10 +58,22 @@ window.SHOP = {
       kind: "tee",
       where: "barre",
       price: null,
-      blurb: "Washed black, with a torn grey patch carrying the handwritten name.",
+      blurb: "Washed black. A torn grey patch across the chest, with the name written by hand.",
       sizes: ["S", "M", "L", "XL"],
       colors: [{ id: "black", name: "Washed black", hex: "#2f2d2c" }],
       views: ["front", "back"],
+      spec: "tee"
+    },
+    {
+      id: "tee-ransom",
+      name: "Ransom tee",
+      kind: "tee",
+      where: "barre",
+      price: null,
+      blurb: "The name in nine cut-out letters, each a different typeface and colour, stitched on one by one.",
+      sizes: ["S", "M", "L", "XL"],
+      colors: [{ id: "ecru", name: "Ecru", hex: "#e6d9c0" }],
+      views: ["front"],
       spec: "tee"
     },
     {
@@ -62,10 +82,22 @@ window.SHOP = {
       kind: "tee",
       where: "barre",
       price: null,
-      blurb: "Washed black, with a small handwritten “Unprompted” on the chest.",
+      blurb: "Washed black. One word on the chest, small: Unprompted. Nobody asked for it.",
       sizes: ["S", "M", "L", "XL"],
       colors: [{ id: "black", name: "Washed black", hex: "#2f2d2c" }],
       views: ["front", "back"],
+      spec: "tee"
+    },
+    {
+      id: "tee-clipping",
+      name: "Clipping tee",
+      kind: "tee",
+      where: "barre",
+      price: null,
+      blurb: "The name as a headline cut from a newspaper with scissors, sewn across the chest.",
+      sizes: ["S", "M", "L", "XL"],
+      colors: [{ id: "red", name: "Faded brick red", hex: "#a8483c" }],
+      views: ["front"],
       spec: "tee"
     },
     {
@@ -74,10 +106,22 @@ window.SHOP = {
       kind: "tee",
       where: "barre",
       price: null,
-      blurb: "Grey, with a small handwritten “Allegedly”.",
+      blurb: "Grey. One word in pencil: Allegedly. For everything you’re not sure about.",
       sizes: ["S", "M", "L", "XL"],
       colors: [{ id: "grey", name: "Grey", hex: "#8d8b87" }],
       views: ["front", "back"],
+      spec: "tee"
+    },
+    {
+      id: "tee-torn",
+      name: "Torn page tee",
+      kind: "tee",
+      where: "barre",
+      price: null,
+      blurb: "The name on a page ripped out by hand, torn edges and all.",
+      sizes: ["S", "M", "L", "XL"],
+      colors: [{ id: "pink", name: "Dusty pink", hex: "#d9a3a6" }],
+      views: ["front"],
       spec: "tee"
     },
     {
@@ -86,7 +130,7 @@ window.SHOP = {
       kind: "hoodie",
       where: "barre",
       price: null,
-      blurb: "Washed black, with “I am not a robot” across the back.",
+      blurb: "Washed black. On the front, small: I am not a robot. On the back, large: I think.",
       sizes: ["S", "M", "L", "XL"],
       colors: [{ id: "black", name: "Washed black", hex: "#2f2d2c" }],
       views: ["front", "back"],
@@ -98,9 +142,9 @@ window.SHOP = {
       kind: "jacket",
       where: "hooks",
       price: null,
-      blurb: "A boxy blazer. The inside pockets are labelled “for envelopes”.",
+      blurb: "A boxy charcoal blazer with envelope pockets sewn on the outside, each one labelled “for envelopes”.",
       sizes: ["S", "M", "L", "XL"],
-      colors: [{ id: "colour", name: "[COLOUR]", hex: null }],
+      colors: [{ id: "charcoal", name: "Charcoal", hex: "#3a3a3c" }],
       views: ["front", "back"],
       spec: "jacket"
     }

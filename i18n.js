@@ -20,14 +20,15 @@ window.I18N = {
   strings: {
     en: {
       "meta.title": "Ballerina",
-      "meta.desc": "Ballerina. Clothes made by a person.",
+      "meta.desc": "Ballerina. Clothes made by a person, for people who don\u2019t know what to believe.",
 
       "skip": "Skip to the clothes",
       "nav.lang": "Language",
       "logo": "Ballerina",
 
       "hero.line": "I am not a robot.",
-      "hero.sub": "[ONE-SENTENCE DESCRIPTION OF THE BRAND]",
+      "hero.line2": "I think.",
+      "hero.sub": "Clothes for people who aren\u2019t sure any more.",
 
       "rail.label": "The barre. Clothes hanging in the studio.",
       "rail.hint": "Drag the barre. Tap a piece.",
@@ -36,20 +37,22 @@ window.I18N = {
       "rail.open": "{name}, {color}, {price}. Open.",
 
       "strip.label": "In our own hand",
-      "strip.1": "I am not a robot",
-      "strip.2": "Unprompted",
-      "strip.3": "Born, not trained",
-      "strip.4": "Made by a person",
+      "strip.1": "I am not a robot, I think",
+      "strip.2": "Allegedly",
+      "strip.3": "Unprompted",
+      "strip.4": "I don\u2019t know",
+      "strip.5": "Made by a person",
       "strip.pause": "Pause the strip",
       "strip.play": "Play the strip",
 
       "made.title": "Made by a person.",
+      "made.lead": "I don\u2019t know what to believe. I know who made this.",
       "made.text": "[WHO MAKES THE PIECES, WHERE, AND HOW LONG ONE TAKES]",
       "made.alt": "Placeholder for a photograph of hands at work.",
 
       "tender.kicker": "Public tender",
       "tender.title": "Tender No. 001",
-      "tender.intro": "One-off pieces, sold by sealed bid.",
+      "tender.intro": "One piece, made once, sold by sealed bid.",
       "tender.story": "[THE STORY OF THE PIECE]",
       "tender.alt": "Placeholder for a photograph of the first one-off piece.",
       "tender.reserve": "Reserve price",
@@ -95,11 +98,9 @@ window.I18N = {
       "p.chart": "Size chart",
       "p.chart.tbd": "[SIZE CHART]",
       "p.photo": "{name}, {color}, {view}",
+      "p.standin": "Stand-in picture. Not a photograph of the finished piece.",
       "price.tbd": "[PRICE]",
       "size.one": "One size",
-      "color.black": "Washed black",
-      "color.grey": "Grey",
-      "color.colour": "[COLOUR]",
 
       "bag.word": "Bag",
       "bag.open": "Open your bag. Pieces in it: {n}.",
@@ -112,18 +113,8 @@ window.I18N = {
       "bag.remove.word": "Remove",
       "bag.less": "One fewer of {name}",
       "bag.more": "One more of {name}",
-      "bag.qty": "Quantity: {n}",
+      "bag.qty": "Quantity: {n}"
 
-      "p.tee-patch.name": "Patch tee",
-      "p.tee-patch.blurb": "Washed black, with a torn grey patch carrying the handwritten name.",
-      "p.tee-unprompted.name": "Unprompted tee",
-      "p.tee-unprompted.blurb": "Washed black, with a small handwritten “Unprompted” on the chest.",
-      "p.tee-allegedly.name": "Allegedly tee",
-      "p.tee-allegedly.blurb": "Grey, with a small handwritten “Allegedly”.",
-      "p.hoodie-notarobot.name": "Not a Robot hoodie",
-      "p.hoodie-notarobot.blurb": "Washed black, with “I am not a robot” across the back.",
-      "p.blazer-minister.name": "Minister jacket",
-      "p.blazer-minister.blurb": "A boxy blazer. The inside pockets are labelled “for envelopes”."
     }
   }
 };

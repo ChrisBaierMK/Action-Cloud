@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ballerina</title>
-<meta name="description" content="Ballerina. Clothes made by a person.">
+<meta name="description" content="Ballerina. Clothes made by a person, for people who don&rsquo;t know what to believe.">
 <meta name="theme-color" content="#2B2723">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +17,7 @@
 
 <header class="top">
   <a class="logo" href="#top">
-    <img data-hand="logo" src="img/hand/logo.png" alt="Ballerina" width="132" height="40">
+    <img data-hand="logo" src="img/hand/logo.png" alt="Ballerina" width="560" height="190">
   </a>
   <div class="top__tools">
     <label class="scrap scrap--news e2 lang">
@@ -43,8 +43,9 @@
     <div class="hero__text">
       <h1 id="heroTitle">
         <img data-hand="hero.line" src="img/hand/hero.line.png" alt="I am not a robot." width="560" height="120">
+        <img class="line2" data-hand="hero.line2" src="img/hand/hero.line2.png" alt="I think." width="220" height="60">
       </h1>
-      <p data-i18n="hero.sub">[ONE-SENTENCE DESCRIPTION OF THE BRAND]</p>
+      <p data-i18n="hero.sub">Clothes for people who aren&rsquo;t sure any more.</p>
     </div>
 
     <div class="stage" id="rail" role="region" tabindex="-1" data-i18n-aria="rail.label" aria-label="The barre. Clothes hanging in the studio.">
@@ -71,10 +72,11 @@
     <div class="strip__band">
       <div class="strip__run" id="stripRun">
         <ul class="strip__set" role="list">
-          <li><img data-hand="strip.1" src="img/hand/strip.1.png" alt="I am not a robot" width="320" height="48" loading="lazy"></li>
-          <li><img data-hand="strip.2" src="img/hand/strip.2.png" alt="Unprompted" width="320" height="48" loading="lazy"></li>
-          <li><img data-hand="strip.3" src="img/hand/strip.3.png" alt="Born, not trained" width="320" height="48" loading="lazy"></li>
-          <li><img data-hand="strip.4" src="img/hand/strip.4.png" alt="Made by a person" width="320" height="48" loading="lazy"></li>
+          <li><img data-hand="strip.1" src="img/hand/strip.1.png" alt="I am not a robot, I think" width="440" height="48" loading="lazy"></li>
+          <li><img data-hand="strip.2" src="img/hand/strip.2.png" alt="Allegedly" width="320" height="48" loading="lazy"></li>
+          <li><img data-hand="strip.3" src="img/hand/strip.3.png" alt="Unprompted" width="320" height="48" loading="lazy"></li>
+          <li><img data-hand="strip.4" src="img/hand/strip.4.png" alt="I don&rsquo;t know" width="320" height="48" loading="lazy"></li>
+          <li><img data-hand="strip.5" src="img/hand/strip.5.png" alt="Made by a person" width="320" height="48" loading="lazy"></li>
         </ul>
       </div>
     </div>
@@ -94,6 +96,7 @@
         <h2 id="madeTitle">
           <img data-hand="made.title" src="img/hand/made.title.png" alt="Made by a person." width="440" height="80" loading="lazy">
         </h2>
+        <p class="lead" data-i18n="made.lead">I don&rsquo;t know what to believe. I know who made this.</p>
         <p data-i18n="made.text">[WHO MAKES THE PIECES, WHERE, AND HOW LONG ONE TAKES]</p>
       </div>
     </div>
@@ -107,7 +110,7 @@
         <h2 id="tenderTitle">
           <img data-hand="tender.title" src="img/hand/tender.title.png" alt="Tender No. 001" width="440" height="80" loading="lazy">
         </h2>
-        <p data-i18n="tender.intro">One-off pieces, sold by sealed bid.</p>
+        <p data-i18n="tender.intro">One piece, made once, sold by sealed bid.</p>
         <figure class="taped">
           <img src="img/tender-001.webp" data-i18n-alt="tender.alt" alt="Placeholder for a photograph of the first one-off piece." width="1600" height="1067" loading="lazy" decoding="async">
         </figure>
@@ -176,7 +179,7 @@
 <!-- 6. Footer -->
 <footer class="foot">
   <div class="wrap foot__in">
-    <img data-hand="logo" src="img/hand/logo.png" alt="Ballerina" width="132" height="40" loading="lazy">
+    <img class="foot__logo" data-hand="logo" src="img/hand/logo.png" alt="Ballerina" width="560" height="190" loading="lazy">
     <ul class="foot__links" role="list">
       <li><span data-i18n="foot.instagram">Instagram</span> <span id="footInstagram"></span></li>
       <li><span data-i18n="foot.tiktok">TikTok</span> <span id="footTiktok"></span></li>
@@ -191,7 +194,8 @@
     <button class="scrap scrap--ink e2 x" type="button" data-close data-i18n-aria="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
     <div class="sheet__photo">
-      <div class="taped taped--photo"><img id="pImg" alt="" width="800" height="1200"></div>
+      <div class="taped taped--photo"><img id="pImg" alt="" width="896" height="1120"></div>
+      <p class="standin" id="pStandIn" data-i18n="p.standin" hidden>Stand-in picture. Not a photograph of the finished piece.</p>
       <fieldset class="chips views" id="pViews">
         <legend class="vh" data-i18n="p.view">Side</legend>
       </fieldset>

@@ -7,7 +7,7 @@ Needs Pillow and Node (Node reads shop-config.js and i18n.js).
 
 It only draws files that do not exist yet, so real images and stand-ins are
 safe. To redraw existing placeholders, name them by path prefix, for example
-    python3 tools/placeholders.py img/hand/strip img/studio
+    python3 tools/placeholders.py img/hand/hero img/hands
 """
 import sys
 import json
@@ -150,8 +150,6 @@ HAND = {
     "hero.line": (1120, 240),
     "hero.line2": (440, 120),
     "rail.hint": (640, 80),
-    "strip.1": (880, 96), "strip.2": (640, 96), "strip.3": (640, 96), "strip.4": (640, 96),
-    "strip.5": (640, 96),
     "made.title": (880, 160), "tender.title": (880, 160), "wait.title": (880, 160),
 }
 

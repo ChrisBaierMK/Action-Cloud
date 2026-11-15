@@ -20,7 +20,7 @@
     <img data-hand="logo" src="img/hand/logo.png" alt="Ballerina" width="560" height="190">
   </a>
   <div class="top__tools">
-    <label class="scrap scrap--news e2 lang">
+    <label class="lang">
       <span class="vh" data-i18n="nav.lang">Language</span>
       <select id="lang"></select>
     </label>
@@ -55,35 +55,16 @@
       </div>
     </div>
 
-    <button class="scrap e3 arrow arrow--prev" id="railPrev" type="button" data-i18n-aria="rail.prev" aria-label="Move the barre left">
+    <button class="btn arrow arrow--prev" id="railPrev" type="button" data-i18n-aria="rail.prev" aria-label="Move the barre left">
       <span aria-hidden="true">&larr;</span>
     </button>
-    <button class="scrap e1 arrow arrow--next" id="railNext" type="button" data-i18n-aria="rail.next" aria-label="Move the barre right">
+    <button class="btn arrow arrow--next" id="railNext" type="button" data-i18n-aria="rail.next" aria-label="Move the barre right">
       <span aria-hidden="true">&rarr;</span>
     </button>
 
     <p class="hint">
       <img data-hand="rail.hint" src="img/hand/rail.hint.png" alt="Drag the barre. Tap a piece." width="320" height="40">
     </p>
-  </section>
-
-  <!-- 2. Strip -->
-  <section class="strip" data-i18n-aria="strip.label" aria-label="In our own hand">
-    <div class="strip__band">
-      <div class="strip__run" id="stripRun">
-        <ul class="strip__set" role="list">
-          <li><img data-hand="strip.1" src="img/hand/strip.1.png" alt="I am not a robot, I think" width="440" height="48" loading="lazy"></li>
-          <li><img data-hand="strip.2" src="img/hand/strip.2.png" alt="Allegedly" width="320" height="48" loading="lazy"></li>
-          <li><img data-hand="strip.3" src="img/hand/strip.3.png" alt="Unprompted" width="320" height="48" loading="lazy"></li>
-          <li><img data-hand="strip.4" src="img/hand/strip.4.png" alt="I don&rsquo;t know" width="320" height="48" loading="lazy"></li>
-          <li><img data-hand="strip.5" src="img/hand/strip.5.png" alt="Made by a person" width="320" height="48" loading="lazy"></li>
-        </ul>
-      </div>
-    </div>
-    <button class="scrap scrap--ink e2 strip__pause" id="stripPause" type="button" aria-pressed="false"
-            data-i18n-aria="strip.pause" aria-label="Pause the strip">
-      <span aria-hidden="true" class="strip__icon">II</span>
-    </button>
   </section>
 
   <!-- 3. Made by hand -->
@@ -106,7 +87,7 @@
   <section class="tender" aria-labelledby="tenderTitle">
     <div class="wrap tender__grid">
       <div>
-        <p class="scrap scrap--tape e3 kicker" data-i18n="tender.kicker">Public tender</p>
+        <p class="kicker" data-i18n="tender.kicker">Public tender</p>
         <h2 id="tenderTitle">
           <img data-hand="tender.title" src="img/hand/tender.title.png" alt="Tender No. 001" width="440" height="80" loading="lazy">
         </h2>
@@ -146,6 +127,7 @@
           </div>
           <button class="scrap scrap--ink e1 big" type="submit" data-label="tender.send" data-i18n="tender.send">Register interest</button>
           <p class="form__status" role="status"></p>
+          <p class="privacy"><span data-i18n="form.privacy">Your details are sent through Netlify Forms.</span> <span data-i18n="form.privacy.tbd">[PRIVACY NOTICE: WHO HOLDS YOUR DETAILS AND WHAT THEY ARE USED FOR]</span></p>
         </form>
         <p class="sent" tabindex="-1" hidden data-i18n="tender.sent">Sent. Your interest in Tender No. 001 is registered.</p>
       </div>
@@ -170,6 +152,7 @@
         </div>
         <button class="scrap scrap--ink e3 big" type="submit" data-label="wait.send" data-i18n="wait.send">Tell me</button>
         <p class="form__status" role="status"></p>
+        <p class="privacy"><span data-i18n="form.privacy">Your details are sent through Netlify Forms.</span> <span data-i18n="form.privacy.tbd">[PRIVACY NOTICE: WHO HOLDS YOUR DETAILS AND WHAT THEY ARE USED FOR]</span></p>
       </form>
       <p class="sent" tabindex="-1" hidden data-i18n="wait.sent">Sent. You are on the list.</p>
     </div>
@@ -185,13 +168,14 @@
       <li><span data-i18n="foot.tiktok">TikTok</span> <span id="footTiktok"></span></li>
       <li><span data-i18n="foot.contact">Contact</span> <span id="footEmail"></span></li>
     </ul>
+    <p class="foot__legal" data-i18n="foot.legal">[COMPANY NAME AND ADDRESS]</p>
   </div>
 </footer>
 
 <!-- Product panel: a page torn from a magazine -->
 <dialog class="sheet" id="product" aria-labelledby="pName">
   <div class="sheet__paper">
-    <button class="scrap scrap--ink e2 x" type="button" data-close data-i18n-aria="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <button class="btn x" type="button" data-close data-i18n-aria="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
     <div class="sheet__photo">
       <div class="taped taped--photo"><img id="pImg" alt="" width="896" height="1120"></div>
@@ -203,8 +187,12 @@
 
     <div class="sheet__body">
       <h2 id="pName"></h2>
-      <p class="scrap scrap--tape e3 pricetag" id="pPrice"></p>
+      <p class="price" id="pPrice"></p>
       <p id="pBlurb"></p>
+      <dl class="madeby">
+        <div><dt data-i18n="p.edition">Edition</dt><dd id="pEdition"></dd></div>
+        <div><dt data-i18n="p.madeby">Made by</dt><dd id="pMadeBy"></dd></div>
+      </dl>
 
       <form id="pForm" novalidate>
         <fieldset class="chips" id="pColors">
@@ -226,6 +214,14 @@
         <summary data-i18n="p.chart">Size chart</summary>
         <div id="pChart"></div>
       </details>
+      <details>
+        <summary data-i18n="p.care">Care</summary>
+        <p id="pCare"></p>
+      </details>
+      <details>
+        <summary data-i18n="p.shipping">Shipping and returns</summary>
+        <p id="pShipping"></p>
+      </details>
     </div>
   </div>
 </dialog>
@@ -235,7 +231,7 @@
   <div class="drawer__in">
     <header class="drawer__head">
       <h2 id="bagTitle" data-i18n="bag.title">Your bag</h2>
-      <button class="scrap scrap--ink e2 x" type="button" data-close data-i18n-aria="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <button class="btn x" type="button" data-close data-i18n-aria="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     </header>
     <p id="bagEmpty" data-i18n="bag.empty">Your bag is empty. Take something off the barre.</p>
     <ul class="lines" id="bagList" role="list"></ul>

@@ -4,7 +4,9 @@
  * PLACEHOLDERS. Nothing below marked null has been decided yet:
  *   - every price is null and shows on the page as [PRICE]
  *   - currency is null (set an ISO code such as "RON" or "EUR" when prices exist)
- *   - materials and size charts are null and show as [MATERIALS] / [SIZE CHART]
+ *   - materials, care and size charts are null and show as [MATERIALS] / [CARE
+ *     INSTRUCTIONS] / [SIZE CHART]
+ *   - edition (how many of a design exist), madeBy and shipping are null
  *   - contact details are null and show as [HANDLE] / [EMAIL]
  *
  * STAND-INS. The product pictures in img/p/ and the logo in img/hand/ are
@@ -34,6 +36,13 @@ window.SHOP = {
      ?items=<id>:<colour>:<size>:<qty>,... */
   checkoutUrl: null,
 
+  /* One sentence: who makes the pieces, where, and how long one takes. Shown on
+     every piece. A product can carry its own madeBy to override it. */
+  madeBy: null,
+
+  /* One or two sentences on shipping and returns. */
+  shipping: null,
+
   contact: {
     email: null,       /* "name@example.com" */
     instagram: null,   /* handle without @ */
@@ -43,12 +52,13 @@ window.SHOP = {
   /* One entry per kind of garment. chart example:
      { unit: "cm", measures: ["Chest", "Length"], rows: { S: [50, 68], M: [53, 70] } } */
   specs: {
-    tee:    { materials: null, chart: null },
-    hoodie: { materials: null, chart: null },
-    jacket: { materials: null, chart: null }
+    tee:    { materials: null, care: null, chart: null },
+    hoodie: { materials: null, care: null, chart: null },
+    jacket: { materials: null, care: null, chart: null }
   },
 
-  /* where: "barre" (hangs on the barre), "hooks" (long pieces, high hook rail),
+  /* edition: how many pieces of this design exist (a number), or null.
+     where: "barre" (hangs on the barre), "hooks" (long pieces, high hook rail),
             "bench" (small items on the bench under the barre)
      Each design exists in one colour. */
   products: [
@@ -58,6 +68,7 @@ window.SHOP = {
       kind: "tee",
       where: "barre",
       price: null,
+      edition: null,
       blurb: "Washed black. A torn grey patch across the chest, with the name written by hand.",
       sizes: ["S", "M", "L", "XL"],
       colors: [{ id: "black", name: "Washed black", hex: "#2f2d2c" }],
@@ -70,6 +81,7 @@ window.SHOP = {
       kind: "tee",
       where: "barre",
       price: null,
+      edition: null,
       blurb: "The name in nine cut-out letters, each a different typeface and colour, stitched on one by one.",
       sizes: ["S", "M", "L", "XL"],
       colors: [{ id: "ecru", name: "Ecru", hex: "#e6d9c0" }],
@@ -82,6 +94,7 @@ window.SHOP = {
       kind: "tee",
       where: "barre",
       price: null,
+      edition: null,
       blurb: "Washed black. One word on the chest, small: Unprompted. Nobody asked for it.",
       sizes: ["S", "M", "L", "XL"],
       colors: [{ id: "black", name: "Washed black", hex: "#2f2d2c" }],
@@ -94,6 +107,7 @@ window.SHOP = {
       kind: "tee",
       where: "barre",
       price: null,
+      edition: null,
       blurb: "The name as a headline cut from a newspaper with scissors, sewn across the chest.",
       sizes: ["S", "M", "L", "XL"],
       colors: [{ id: "red", name: "Faded brick red", hex: "#a8483c" }],
@@ -106,6 +120,7 @@ window.SHOP = {
       kind: "tee",
       where: "barre",
       price: null,
+      edition: null,
       blurb: "Grey. One word in pencil: Allegedly. For everything you’re not sure about.",
       sizes: ["S", "M", "L", "XL"],
       colors: [{ id: "grey", name: "Grey", hex: "#8d8b87" }],
@@ -118,6 +133,7 @@ window.SHOP = {
       kind: "tee",
       where: "barre",
       price: null,
+      edition: null,
       blurb: "The name on a page ripped out by hand, torn edges and all.",
       sizes: ["S", "M", "L", "XL"],
       colors: [{ id: "pink", name: "Dusty pink", hex: "#d9a3a6" }],
@@ -130,6 +146,7 @@ window.SHOP = {
       kind: "hoodie",
       where: "barre",
       price: null,
+      edition: null,
       blurb: "Washed black. On the front, small: I am not a robot. On the back, large: I think.",
       sizes: ["S", "M", "L", "XL"],
       colors: [{ id: "black", name: "Washed black", hex: "#2f2d2c" }],
@@ -142,6 +159,7 @@ window.SHOP = {
       kind: "jacket",
       where: "hooks",
       price: null,
+      edition: null,
       blurb: "A boxy blazer cut from newspaper-print cloth, with empty patch pockets and the name on the chest.",
       sizes: ["S", "M", "L", "XL"],
       colors: [{ id: "newsprint", name: "Newsprint", hex: "#c9c6bd" }],

@@ -372,7 +372,7 @@
     input.name = name;
     input.value = value;
     input.checked = checked;
-    var face = el("span", "scrap " + ["e1", "e2", "e3"][group.children.length % 3]);
+    var face = el("span", "chipface");
     if (swatch !== undefined) {
       var dot = el("span", "swatch" + (swatch ? "" : " swatch--tbd"));
       if (swatch) dot.style.background = swatch;
@@ -447,7 +447,11 @@
     });
 
     var spec = SHOP.specs[p.spec] || {};
+    setText($("#pEdition"), p.edition ? t("p.edition.n", { n: p.edition }) : t("p.edition.tbd"));
+    setText($("#pMadeBy"), p.madeBy || SHOP.madeBy || t("p.madeby.tbd"));
     setText($("#pMaterials"), spec.materials || t("p.materials.tbd"));
+    setText($("#pCare"), spec.care || t("p.care.tbd"));
+    setText($("#pShipping"), SHOP.shipping || t("p.shipping.tbd"));
     var chart = $("#pChart");
     chart.textContent = "";
     if (spec.chart && spec.chart.rows) {
@@ -551,14 +555,14 @@
 
       var row = el("div", "line__row");
       var qty = el("span", "qty");
-      var less = el("button", "scrap e2 mini", "−");
+      var less = el("button", "btn mini", "−");
       less.type = "button";
       less.setAttribute("aria-label", t("bag.less", { name: name }));
       less.setAttribute("data-key", index + "-");
       var n = el("b", null, String(it.qty));
       n.setAttribute("aria-label", t("bag.qty", { n: it.qty }));
       n.setAttribute("role", "img");
-      var more = el("button", "scrap e2 mini", "+");
+      var more = el("button", "btn mini", "+");
       more.type = "button";
       more.setAttribute("aria-label", t("bag.more", { name: name }));
       more.setAttribute("data-key", index + "+");
@@ -686,33 +690,8 @@
   }
 
   /* ------------------------------------------------------------------ *
-   * Strip, footer
+   * Footer
    * ------------------------------------------------------------------ */
-
-  function initStrip() {
-    var run = $("#stripRun"), set = $(".strip__set", run), strip = run.closest(".strip");
-    /* Copies fill the band so the loop has no gap. They are hidden from assistive tech. */
-    function quiet(node) {
-      node.setAttribute("aria-hidden", "true");
-      $$("img", node).forEach(function (img) {
-        img.alt = "";
-        img.setAttribute("data-quiet", "");
-        img.loading = "eager";   /* same files as the first set, already fetched */
-      });
-      return node;
-    }
-    $$("li", set).forEach(function (li) { set.appendChild(quiet(li.cloneNode(true))); });
-    run.appendChild(quiet(set.cloneNode(true)));
-
-    var btn = $("#stripPause"), icon = $(".strip__icon", btn);
-    btn.addEventListener("click", function () {
-      var paused = strip.classList.toggle("is-paused");
-      btn.setAttribute("aria-pressed", String(paused));
-      btn.setAttribute("data-i18n-aria", paused ? "strip.play" : "strip.pause");
-      btn.setAttribute("aria-label", t(paused ? "strip.play" : "strip.pause"));
-      icon.textContent = paused ? "▶" : "II";
-    });
-  }
 
   function renderFooter() {
     function fill(id, value, href, text) {
@@ -749,7 +728,6 @@
 
   initLang();
   buildRail();
-  initStrip();
   renderAll();
   initDrag();
   initRailControls();

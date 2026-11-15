@@ -61,7 +61,7 @@ The final images must be real photographs and real handwriting. No AI-generated 
   the i18n key; the string under that key is the alt text.
 
 `python3 tools/placeholders.py` draws any placeholder that is missing. It leaves existing
-files alone unless you name them, for example `python3 tools/placeholders.py img/hand/strip`.
+files alone unless you name them, for example `python3 tools/placeholders.py img/hand/hero`.
 
 ## Adding a product
 

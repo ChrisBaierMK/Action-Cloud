@@ -142,9 +142,9 @@ window.SHOP = {
       kind: "jacket",
       where: "hooks",
       price: null,
-      blurb: "A boxy charcoal blazer with envelope pockets sewn on the outside, each one labelled “for envelopes”.",
+      blurb: "A boxy blazer cut from newspaper-print cloth, with empty patch pockets and the name on the chest.",
       sizes: ["S", "M", "L", "XL"],
-      colors: [{ id: "charcoal", name: "Charcoal", hex: "#3a3a3c" }],
+      colors: [{ id: "newsprint", name: "Newsprint", hex: "#c9c6bd" }],
       views: ["front", "back"],
       spec: "jacket"
     }

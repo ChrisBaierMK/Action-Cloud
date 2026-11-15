@@ -123,9 +123,7 @@ window.I18N = {
       "p.hoodie-notarobot.name": "Not a Robot hoodie",
       "p.hoodie-notarobot.blurb": "Washed black, with “I am not a robot” across the back.",
       "p.blazer-minister.name": "Minister jacket",
-      "p.blazer-minister.blurb": "A boxy blazer. The inside pockets are labelled “for envelopes”.",
-      "p.glove-six.name": "Six-finger glove",
-      "p.glove-six.blurb": "Knitted, with six fingers."
+      "p.blazer-minister.blurb": "A boxy blazer. The inside pockets are labelled “for envelopes”."
     }
   }
 };

@@ -38,8 +38,7 @@ window.SHOP = {
   specs: {
     tee:    { materials: null, chart: null },
     hoodie: { materials: null, chart: null },
-    jacket: { materials: null, chart: null },
-    glove:  { materials: null, chart: null }
+    jacket: { materials: null, chart: null }
   },
 
   /* where: "barre" (hangs on the barre), "hooks" (long pieces, high hook rail),
@@ -104,18 +103,6 @@ window.SHOP = {
       colors: [{ id: "colour", name: "[COLOUR]", hex: null }],
       views: ["front", "back"],
       spec: "jacket"
-    },
-    {
-      id: "glove-six",
-      name: "Six-finger glove",
-      kind: "glove",
-      where: "bench",
-      price: null,
-      blurb: "Knitted, with six fingers.",
-      sizes: ["One size"],
-      colors: [{ id: "colour", name: "[COLOUR]", hex: null }],
-      views: ["front", "back"],
-      spec: "glove"
     }
   ]
 };

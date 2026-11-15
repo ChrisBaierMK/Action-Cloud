@@ -31,7 +31,7 @@ with a dashed outline so it cannot be mistaken for real copy.
 |---|---|
 | Prices, currency | `shop-config.js`: `price`, `currency` |
 | Materials, size charts | `shop-config.js`: `specs` |
-| Colours of the jacket and the glove | `shop-config.js`: `colors` (and rename the photo files) |
+| Colour of the jacket | `shop-config.js`: `colors` (and rename the photo files) |
 | Instagram, TikTok, contact email | `shop-config.js`: `contact` |
 | Brand sentence, who makes the pieces, tender story, reserve price, closing date | `i18n.js` |
 | Checkout | `shop-config.js`: `checkoutUrl`. While it is `null`, "Check out" says orders are not open |
@@ -45,7 +45,7 @@ The final images must be real photographs and real handwriting. No AI-generated 
   the empty room, with no barre. The barre is drawn by the page at 60% of the hero's height.
 - Product photos: 1200 px tall, transparent, shot straight on, on a hanger. The top of the
   hanger hook must touch the top edge of the image at its centre. That is the point each
-  piece hangs and swings from. Bench items (the glove) have no hanger and sit on their
+  piece hangs and swings from. Bench items, if any are added, have no hanger and sit on their
   bottom edge.
 - Handwriting: one transparent PNG per phrase at twice its display size. The file name is
   the i18n key; the string under that key is the alt text.

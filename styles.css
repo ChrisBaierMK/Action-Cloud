@@ -200,6 +200,7 @@ button.scrap[disabled] { opacity: .6; cursor: progress; }
   display: flex; gap: var(--gap);
   width: max-content; height: 100%;
   margin: 0 auto; padding: 0 max(var(--pad), 7vw);
+  overflow: clip;   /* a swinging piece must not stretch the scroll width */
 }
 
 .item { position: relative; flex: none; height: 100%; width: calc(var(--h) * 2 / 3); }

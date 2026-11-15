@@ -188,15 +188,31 @@ button.scrap[disabled] { opacity: .6; cursor: progress; }
 .stage:focus-visible { outline-offset: -4px; }
 .stage__in { position: relative; width: max-content; min-width: 100%; height: 100%; }
 
-/* The barre: a round wooden rail. It stays put while the clothes move along it. */
+/* The barre: a round rail of old, darkened wood. It stays put while the clothes
+   move along it. Lit from the windows on the left, like the room behind it. */
 .barre { position: sticky; left: 0; z-index: 2; width: 100vw; width: 100cqw; height: 0; pointer-events: none; }
 .barre__tube {
-  position: absolute; left: 0; right: 0; top: calc(var(--by) - 9px); height: 18px;
+  --t: clamp(14px, calc(var(--hh) * .021), 22px);     /* thickness */
+  position: absolute; left: 0; right: 0; top: calc(var(--by) - var(--t) / 2); height: var(--t);
   background:
-    repeating-linear-gradient(90deg, rgb(0 0 0 / 0) 0 37px, rgb(60 40 20 / .12) 37px 39px, rgb(0 0 0 / 0) 39px 113px),
-    linear-gradient(to bottom, #e3cba4 0, #c9ad86 22%, var(--board) 48%, #8d7150 78%, #5e4a33 100%);
-  box-shadow: 0 14px 14px rgb(0 0 0 / .38);
+    /* daylight falling off from left to right */
+    linear-gradient(90deg, rgb(255 232 196 / .2) 0, rgb(255 232 196 / 0) 38%, rgb(0 0 0 / .28) 100%),
+    /* grain and old joints */
+    repeating-linear-gradient(90deg, rgb(0 0 0 / 0) 0 61px, rgb(20 12 6 / .22) 61px 62px, rgb(0 0 0 / 0) 62px 173px, rgb(255 240 215 / .05) 173px 176px, rgb(0 0 0 / 0) 176px 241px),
+    /* the round of the rail: a thin highlight on top, deep shade underneath */
+    linear-gradient(to bottom, #6f5a44 0, #b39a7a 14%, #8c7257 30%, #5e4936 58%, #33261b 86%, #1c140e 100%);
+  box-shadow:
+    0 1px 0 rgb(0 0 0 / .5),
+    10px 20px 16px rgb(0 0 0 / .5);                   /* its shadow on the wall, thrown down and right */
 }
+/* The barre seen again in the mirror: higher, thinner, dimmer. */
+.barre__tube::before {
+  content: ""; position: absolute; left: 0; right: 0;
+  top: calc(var(--hh) * -.034); height: calc(var(--t) * .62);
+  background: linear-gradient(to bottom, #8a7359, #4a392a 60%, #1f1710);
+  opacity: .38; filter: blur(1.2px);
+}
+@media (max-width: 700px) { .barre__tube::before { display: none; } }
 
 .track {
   display: flex; gap: var(--gap);
@@ -206,30 +222,34 @@ button.scrap[disabled] { opacity: .6; cursor: progress; }
 }
 
 .item { position: relative; flex: none; height: 100%; width: calc(var(--h) * .8); }
-.item--barre { --top: calc(var(--by) - 12px); --h: var(--ph); }
+.item--barre { --top: calc(var(--by) - 18px); --h: var(--ph); }
 .item--hooks { --top: calc(var(--hh) * .07);  --h: calc(var(--hh) * .50); }
 .item--bench { --top: calc(var(--hh) * .34);  --h: calc(var(--hh) * .16); width: calc(var(--hh) * .22); }
 
 /* Iron brackets, one in each gap. They travel with the clothes. */
 .item::before {
   content: ""; position: absolute; z-index: 2; pointer-events: none;
-  left: calc(var(--gap) / -2 - 13px); top: calc(var(--by) - 44px);
-  width: 26px; height: 62px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 62'%3E%3Crect x='3' y='0' width='20' height='26' rx='3' fill='%23191716'/%3E%3Ccircle cx='13' cy='7' r='2.2' fill='%234a4541'/%3E%3Ccircle cx='13' cy='19' r='2.2' fill='%234a4541'/%3E%3Cpath d='M9 24h8v22a9 9 0 0 1-8 9z' fill='%23191716'/%3E%3Cpath d='M4 33h18v21a6 6 0 0 1-6 6h-6a6 6 0 0 1-6-6z' fill='none' stroke='%23191716' stroke-width='4'/%3E%3C/svg%3E") no-repeat center / contain;
+  --bw: clamp(24px, calc(var(--hh) * .034), 34px);
+  left: calc(var(--gap) / -2 - var(--bw) / 2); top: calc(var(--by) - var(--bw) * 1.62);
+  width: var(--bw); height: calc(var(--bw) * 70 / 30);
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 70'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='0' x2='1'%3E%3Cstop offset='0' stop-color='%235a4e42'/%3E%3Cstop offset='.35' stop-color='%232e2823'/%3E%3Cstop offset='1' stop-color='%23110e0c'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' x1='0' x2='1'%3E%3Cstop offset='0' stop-color='%236a5c4d'/%3E%3Cstop offset='.5' stop-color='%2328221d'/%3E%3Cstop offset='1' stop-color='%230d0b09'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='5' y='1' width='20' height='27' rx='3' fill='url(%23a)' stroke='%230b0908' stroke-width='1'/%3E%3Ccircle cx='15' cy='8' r='2.4' fill='%2317130f'/%3E%3Cpath d='M13.3 8h3.4' stroke='%236f6253' stroke-width='.8'/%3E%3Ccircle cx='15' cy='21' r='2.4' fill='%2317130f'/%3E%3Cpath d='M13.3 21h3.4' stroke='%236f6253' stroke-width='.8'/%3E%3Cpath d='M11 26h8v16h-8z' fill='url(%23b)'/%3E%3Cpath d='M5 38v17a10 10 0 0 0 20 0v-17' fill='none' stroke='%230b0908' stroke-width='6.5' stroke-linecap='round'/%3E%3Cpath d='M5 38v17a10 10 0 0 0 20 0v-17' fill='none' stroke='url(%23b)' stroke-width='4.5' stroke-linecap='round'/%3E%3Cpath d='M4.2 39v15' stroke='%239c8a74' stroke-opacity='.45' stroke-width='1' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center / contain;
+  filter: drop-shadow(6px 9px 5px rgb(0 0 0 / .5));
 }
 
 .piece {
   position: absolute; z-index: 3; left: 0; top: var(--top);
   width: 100%; height: var(--h);
   padding: 0; border: 0; background: none; color: inherit;
-  transform-origin: 50% 12px;
+  transform-origin: 50% 18px;
   transform: rotate(var(--a, 0deg));
   -webkit-tap-highlight-color: transparent;
   touch-action: pan-x pan-y;
 }
 .piece img, .refl { width: 100%; height: 100%; object-fit: contain; object-position: 50% 0; }
-.piece img { pointer-events: none; -webkit-user-drag: none; filter: drop-shadow(0 10px 8px rgb(0 0 0 / .35)); }
-.piece:hover img, .piece:focus-visible img { filter: drop-shadow(0 10px 8px rgb(0 0 0 / .35)) brightness(1.12); }
+/* Clothes and hangers take the room's light: a little darker and warmer, with a
+   shadow thrown down and to the right, away from the windows. */
+.piece img { pointer-events: none; -webkit-user-drag: none; filter: brightness(.88) sepia(.16) saturate(.9) drop-shadow(9px 16px 10px rgb(0 0 0 / .5)); }
+.piece:hover img, .piece:focus-visible img { filter: brightness(1.02) sepia(.08) drop-shadow(9px 16px 10px rgb(0 0 0 / .5)); }
 .piece:focus-visible { outline-offset: 6px; }
 
 /* The reflection in the mirror: mirrored, smaller, dimmer, a little blurred. */
@@ -238,7 +258,7 @@ button.scrap[disabled] { opacity: .6; cursor: progress; }
   height: var(--h);
   transform-origin: 50% 0;
   transform: scale(-.72, .72) rotate(calc(var(--a, 0deg) * -1));
-  opacity: .3; filter: blur(1.5px) brightness(.75);
+  opacity: .34; filter: blur(1.6px) brightness(.6) sepia(.25);
   pointer-events: none; -webkit-user-drag: none;
 }
 @media (max-width: 700px) { .refl { display: none; } }
@@ -247,12 +267,15 @@ button.scrap[disabled] { opacity: .6; cursor: progress; }
 .hookboard {
   position: absolute; z-index: 2; pointer-events: none;
   left: 8%; right: 8%; top: calc(var(--top) - 18px); height: 16px;
-  background: linear-gradient(to bottom, #c9ad86, #8d7150);
-  box-shadow: 0 6px 8px rgb(0 0 0 / .4);
+  background:
+    linear-gradient(90deg, rgb(255 232 196 / .14), rgb(0 0 0 / .2)),
+    linear-gradient(to bottom, #9a8266, #6a533d 45%, #2f2218);
+  box-shadow: 8px 14px 12px rgb(0 0 0 / .5);
 }
 .hookboard::after {
   content: ""; position: absolute; left: 50%; top: 10px; translate: -50% 0;
-  width: 14px; height: 22px; border: 4px solid var(--iron); border-top: 0; border-radius: 0 0 9px 9px;
+  width: 14px; height: 22px; border: 4px solid #1f1a16; border-top: 0; border-radius: 0 0 9px 9px;
+  filter: drop-shadow(4px 6px 3px rgb(0 0 0 / .5));
 }
 .item--hooks .piece { transform-origin: 50% 8px; }
 
@@ -260,7 +283,7 @@ button.scrap[disabled] { opacity: .6; cursor: progress; }
 .bench {
   position: absolute; z-index: 2; pointer-events: none;
   left: -6%; right: -6%; top: calc(var(--top) + var(--h)); height: 14px;
-  background: linear-gradient(to bottom, #d5ba92, #97795a);
+  background: linear-gradient(to bottom, #9a8266, #5e4936);
   box-shadow: 0 8px 10px rgb(0 0 0 / .45);
 }
 .bench::before, .bench::after {

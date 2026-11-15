@@ -34,11 +34,12 @@ with a dashed outline so it cannot be mistaken for real copy.
 | Instagram, TikTok, contact email | `shop-config.js`: `contact` |
 | Brand sentence, who makes the pieces, tender story, reserve price, closing date | `i18n.js` |
 | Checkout | `shop-config.js`: `checkoutUrl`. While it is `null`, "Check out" says orders are not open |
-| Studio, hands and tender photographs, handwritten phrases | `img/`. Grey boxes with their file name on them |
+| Hands and tender photographs, handwritten phrases | `img/`. Grey boxes with their file name on them |
 
 ## What is a stand-in
 
-The product pictures in `img/p/` and the logo (`img/hand/logo.png`, `logo-dark.png`) are
+The product pictures in `img/p/`, the logo (`img/hand/logo.png`, `logo-dark.png`) and the
+studio backgrounds (`img/studio.webp`, 1344 px wide, and `img/studio-mobile.webp`) are
 AI-generated stand-ins. They are not photographs of finished pieces and not real handwriting.
 While `standIn` is `true` in `shop-config.js`, the product panel says so under the picture.
 Replace the files under the same names, then set `standIn` to `false`.

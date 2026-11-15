@@ -29,8 +29,19 @@ window.SHOP = {
   },
 
   products: [
-    // Graphic tees (concept capsule). On the first five the print crosses seams, sleeves
+    // Graphic tees (concept capsule). On the first six the print crosses seams, sleeves
     // or the hem, so they need panel printing before sewing, not a ready-made blank.
+    {
+      id: "tee-tbar",
+      name: "T-Bar tee",
+      kind: "tee",
+      price: 49,
+      blurb: "Oversized ecru tee. A stunt scooter's bars follow the T of the shirt: grips at the sleeves, stem down the front to the fork and wheel. Small logo below the collar on the back.",
+      sizes: ["S", "M", "L", "XL", "XXL"],
+      colors: [{ name: "Ecru", hex: "#D9CAB5" }],
+      views: ["front", "back"],
+      spec: "oversized-tee"
+    },
     {
       id: "tee-truck",
       name: "Truck tee",

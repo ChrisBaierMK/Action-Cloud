@@ -13,10 +13,10 @@ index.html        all markup, including the product dialog and the bag drawer
 styles.css        all styling, CSS variables at the top
 app.js            one IIFE, vanilla JS, no dependencies
 shop-config.js    window.SHOP: currency, checkoutUrl, contact, specs, products
-i18n.js           window.I18N: every visible string, per language (English, Romanian)
+i18n.js           window.I18N: every visible string (English only for now)
 img/              page images
 img/p/            product photos: <id>-<colour>-front.webp, <id>-<colour>-back.webp
-img/hand/         handwritten phrases: <key>.png (English), ro/<key>.png (Romanian)
+img/hand/         handwritten phrases: <key>.png
 img/scraps/       blank paper scraps (not used by the page yet; scraps are drawn in CSS)
 tools/            placeholders.py, which draws the placeholder images
 netlify.toml      publish folder and headers
@@ -33,7 +33,7 @@ with a dashed outline so it cannot be mistaken for real copy.
 | Materials, size charts | `shop-config.js`: `specs` |
 | Colours of the jacket and the glove | `shop-config.js`: `colors` (and rename the photo files) |
 | Instagram, TikTok, contact email | `shop-config.js`: `contact` |
-| Brand sentence, who makes the pieces, tender story, reserve price, closing date | `i18n.js`, in both languages |
+| Brand sentence, who makes the pieces, tender story, reserve price, closing date | `i18n.js` |
 | Checkout | `shop-config.js`: `checkoutUrl`. While it is `null`, "Check out" says orders are not open |
 | Every image | `img/`. All current images are grey boxes with their file name on them |
 
@@ -48,8 +48,7 @@ The final images must be real photographs and real handwriting. No AI-generated 
   piece hangs and swings from. Bench items (the glove) have no hanger and sit on their
   bottom edge.
 - Handwriting: one transparent PNG per phrase at twice its display size. The file name is
-  the i18n key; the string under that key is the alt text. Romanian versions go in
-  `img/hand/ro/`. The logo is shared by both languages.
+  the i18n key; the string under that key is the alt text.
 
 `python3 tools/placeholders.py` redraws every placeholder and overwrites `img/`.
 Do not run it once real images are in place.
@@ -58,7 +57,13 @@ Do not run it once real images are in place.
 
 Add an entry to `products` in `shop-config.js`. `where` is `barre`, `hooks` (long pieces on
 the high hook rail) or `bench` (small items). One piece hangs for each colour. Add its
-photos to `img/p/` and, for Romanian, `p.<id>.name` and `p.<id>.blurb` in `i18n.js`.
+photos to `img/p/`. Its name and blurb can also be set in `i18n.js` as `p.<id>.name` and
+`p.<id>.blurb`.
+
+## Languages
+
+The site is English only. The language switch is built but hidden while `i18n.js` lists one
+language. To add one, follow the note at the top of `i18n.js`.
 
 ## Forms
 

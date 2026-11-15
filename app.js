@@ -108,6 +108,8 @@
       select.appendChild(o);
     });
     select.value = lang;
+    /* One language: no switch to show. */
+    select.closest(".lang").hidden = Object.keys(I18N.langs).length < 2;
     select.addEventListener("change", function () { setLang(select.value); });
   }
 

@@ -4,15 +4,17 @@
  * Text in [SQUARE BRACKETS] is a fact nobody has decided yet. It is shown on the
  * page as a visible placeholder. Replace it here when the fact exists.
  *
- * Handwritten phrases are images, one file per phrase:
- *   English:  img/hand/<key>.png
- *   Romanian: img/hand/ro/<key>.png
+ * The site is English only. The language switch stays hidden while "langs"
+ * has one entry. To add a language later: add it to "langs", add a block of
+ * strings under its code, and put its handwriting in img/hand/<code>/<key>.png.
+ *
+ * Handwritten phrases are images, one file per phrase: img/hand/<key>.png.
  * The string under the same key is the image's alt text. Keys listed in
- * handShared use the English file in every language.
+ * handShared use the same file in every language.
  */
 window.I18N = {
   fallback: "en",
-  langs: { en: "English", ro: "Română" },
+  langs: { en: "English" },
   handShared: ["logo"],
 
   strings: {
@@ -124,116 +126,6 @@ window.I18N = {
       "p.blazer-minister.blurb": "A boxy blazer. The inside pockets are labelled “for envelopes”.",
       "p.glove-six.name": "Six-finger glove",
       "p.glove-six.blurb": "Knitted, with six fingers."
-    },
-
-    ro: {
-      "meta.title": "Ballerina",
-      "meta.desc": "Ballerina. Haine făcute de un om.",
-
-      "skip": "Sari la haine",
-      "nav.lang": "Limbă",
-      "logo": "Ballerina",
-
-      "hero.line": "Nu sunt robot.",
-      "hero.sub": "[DESCRIEREA BRANDULUI ÎNTR-O PROPOZIȚIE]",
-
-      "rail.label": "Bara de balet. Haine atârnate în studio.",
-      "rail.hint": "Trage de bară. Atinge o piesă.",
-      "rail.prev": "Mută bara spre stânga",
-      "rail.next": "Mută bara spre dreapta",
-      "rail.open": "{name}, {color}, {price}. Deschide.",
-
-      "strip.label": "Cu scrisul nostru",
-      "strip.1": "Nu sunt robot",
-      "strip.2": "Fără prompt",
-      "strip.3": "Născut, nu antrenat",
-      "strip.4": "Făcut de un om",
-      "strip.pause": "Oprește banda",
-      "strip.play": "Pornește banda",
-
-      "made.title": "Făcut de un om.",
-      "made.text": "[CINE FACE PIESELE, UNDE ȘI CÂT DUREAZĂ UNA]",
-      "made.alt": "Loc rezervat pentru o fotografie cu mâini la lucru.",
-
-      "tender.kicker": "Licitație publică",
-      "tender.title": "Licitația nr. 001",
-      "tender.intro": "Piese unicat, vândute prin ofertă în plic închis.",
-      "tender.story": "[POVESTEA PIESEI]",
-      "tender.alt": "Loc rezervat pentru o fotografie a primei piese unicat.",
-      "tender.reserve": "Preț de pornire",
-      "tender.reserve.v": "[PREȚ DE PORNIRE]",
-      "tender.closes": "Se închide",
-      "tender.closes.v": "[DATA ÎNCHIDERII]",
-      "tender.form": "Anunță-ți interesul",
-      "tender.note": "Formularul îți înregistrează interesul. Nu este o ofertă.",
-      "tender.send": "Trimite interesul",
-      "tender.sent": "Trimis. Interesul tău pentru Licitația nr. 001 este înregistrat.",
-
-      "wait.title": "Anunță-mă când se deschide.",
-      "wait.send": "Anunță-mă",
-      "wait.sent": "Trimis. Ești pe listă.",
-
-      "form.name": "Nume",
-      "form.email": "Email",
-      "form.message": "Mesaj (opțional)",
-      "form.hp": "Lasă acest câmp gol",
-      "form.sending": "Se trimite…",
-      "form.fail": "Nu s-a trimis. Verifică conexiunea și încearcă din nou.",
-      "err.name": "Scrie-ți numele.",
-      "err.email": "Scrie-ți adresa de email.",
-      "err.email.bad": "Adresa pare incompletă. Ar trebui să arate ca nume@exemplu.ro.",
-
-      "foot.instagram": "Instagram",
-      "foot.tiktok": "TikTok",
-      "foot.handle": "[CONT]",
-      "foot.email": "[EMAIL]",
-      "foot.contact": "Contact",
-
-      "close": "Închide",
-      "p.view": "Parte",
-      "p.front": "Față",
-      "p.back": "Spate",
-      "p.color": "Culoare",
-      "p.size": "Mărime",
-      "p.size.err": "Alege o mărime.",
-      "p.add": "Pune în geantă",
-      "p.added": "E în geanta ta.",
-      "p.materials": "Materiale",
-      "p.materials.tbd": "[MATERIALE]",
-      "p.chart": "Tabel de mărimi",
-      "p.chart.tbd": "[TABEL DE MĂRIMI]",
-      "p.photo": "{name}, {color}, {view}",
-      "price.tbd": "[PREȚ]",
-      "size.one": "Mărime unică",
-      "color.black": "Negru spălăcit",
-      "color.grey": "Gri",
-      "color.colour": "[CULOARE]",
-
-      "bag.word": "Geantă",
-      "bag.open": "Deschide geanta. Piese în ea: {n}.",
-      "bag.title": "Geanta ta",
-      "bag.empty": "Geanta ta e goală. Ia ceva de pe bară.",
-      "bag.total": "Total",
-      "bag.checkout": "Finalizează comanda",
-      "bag.closed": "Comenzile nu sunt deschise încă. Nu s-a încasat nimic.",
-      "bag.remove": "Scoate {name}",
-      "bag.remove.word": "Scoate",
-      "bag.less": "Cu una mai puțin: {name}",
-      "bag.more": "Încă una: {name}",
-      "bag.qty": "Cantitate: {n}",
-
-      "p.tee-patch.name": "Tricou Patch",
-      "p.tee-patch.blurb": "Negru spălăcit, cu un petic gri rupt pe care e scris de mână numele.",
-      "p.tee-unprompted.name": "Tricou Unprompted",
-      "p.tee-unprompted.blurb": "Negru spălăcit, cu „Unprompted” scris mic, de mână, pe piept.",
-      "p.tee-allegedly.name": "Tricou Allegedly",
-      "p.tee-allegedly.blurb": "Gri, cu „Allegedly” scris mic, de mână.",
-      "p.hoodie-notarobot.name": "Hanorac Not a Robot",
-      "p.hoodie-notarobot.blurb": "Negru spălăcit, cu „I am not a robot” pe tot spatele.",
-      "p.blazer-minister.name": "Sacou Ministru",
-      "p.blazer-minister.blurb": "Un sacou cu croială dreaptă. Buzunarele interioare au eticheta „pentru plicuri”.",
-      "p.glove-six.name": "Mănușă cu șase degete",
-      "p.glove-six.blurb": "Tricotată, cu șase degete."
     }
   }
 };

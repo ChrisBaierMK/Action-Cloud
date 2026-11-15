@@ -11,6 +11,55 @@ window.SHOP = {
   currency: "EUR",
   checkoutUrl: null,
   products: [
+    // Graphic rider tees (concept capsule). The images show the side that carries the graphic:
+    // the front for the first four, the back for the Stencil tee. On the first four the print
+    // crosses seams, sleeves or the hem, so they need panel printing before sewing, not a
+    // ready-made blank. Price is a placeholder like the rest.
+    {
+      id: "tee-sequence",
+      name: "Sequence tee",
+      kind: "tee",
+      price: 49,
+      blurb: "Oversized washed black tee. A backflip in six sprayed frames, from one sleeve to the other. Small logo below the collar on the back.",
+      sizes: ["S", "M", "L", "XL", "XXL"],
+      colors: [{ name: "Black", hex: "#2A2A2A" }]
+    },
+    {
+      id: "tee-bleach",
+      name: "Bleach tee",
+      kind: "tee",
+      price: 49,
+      blurb: "Oversized washed black tee. A rider mid-tabletop, bleached out of the fabric and running off the seam. Small logo below the collar on the back.",
+      sizes: ["S", "M", "L", "XL", "XXL"],
+      colors: [{ name: "Black", hex: "#2A2A2A" }]
+    },
+    {
+      id: "tee-ramp",
+      name: "Ramp tee",
+      kind: "tee",
+      price: 49,
+      blurb: "Oversized ecru tee. The ramp rises from the hem; the rider is already in the air. Small logo below the collar on the back.",
+      sizes: ["S", "M", "L", "XL", "XXL"],
+      colors: [{ name: "Ecru", hex: "#D9CAB5" }]
+    },
+    {
+      id: "tee-wheel",
+      name: "Big Wheel tee",
+      kind: "tee",
+      price: 49,
+      blurb: "Oversized washed grey tee. One wheel, too big for the shirt, with our name on the tyre. Small logo below the collar on the back.",
+      sizes: ["S", "M", "L", "XL", "XXL"],
+      colors: [{ name: "Grey", hex: "#85827D" }]
+    },
+    {
+      id: "tee-stencil",
+      name: "Stencil tee",
+      kind: "tee",
+      price: 49,
+      blurb: "Oversized faded yellow tee. On the back, a two-layer spray stencil of a rider, drips included. Small logo on the chest.",
+      sizes: ["S", "M", "L", "XL", "XXL"],
+      colors: [{ name: "Yellow", hex: "#D4A63C" }]
+    },
     {
       id: "hoodie",
       name: "Drop In hoodie",

@@ -60,18 +60,52 @@ window.SHOP = {
       sizes: ["S", "M", "L", "XL", "XXL"],
       colors: [{ name: "Yellow", hex: "#D4A63C" }]
     },
+    // Washed, oversized print pieces. Each image shows the side that carries the main graphic:
+    // the back for the Live Free and Split hoodies, the front for the rest.
     {
-      id: "hoodie",
-      name: "Drop In hoodie",
+      id: "hoodie-bigmark",
+      name: "Big Mark hoodie",
       kind: "hoodie",
-      price: 65,
-      blurb: "Heavyweight fleece, Action Cloud mark on the chest, \"Live free. Take action.\" across the back.",
+      price: 99,
+      blurb: "Oversized washed black hoodie. The Action Cloud mark across the whole chest in cracked yellow. Plain back.",
       sizes: ["S", "M", "L", "XL", "XXL"],
-      colors: [
-        { name: "Black", hex: "#141414" },
-        { name: "Yellow", hex: "#ECC820" },
-        { name: "Grey", hex: "#7A7A7A" }
-      ]
+      colors: [{ name: "Black", hex: "#2A2A2A" }]
+    },
+    {
+      id: "hoodie-livefree",
+      name: "Live Free hoodie",
+      kind: "hoodie",
+      price: 99,
+      blurb: "Oversized washed black hoodie. \"Live free. Take action.\" sprayed across the back in yellow. Small logo on the chest.",
+      sizes: ["S", "M", "L", "XL", "XXL"],
+      colors: [{ name: "Black", hex: "#2A2A2A" }]
+    },
+    {
+      id: "hoodie-split",
+      name: "Split hoodie",
+      kind: "hoodie",
+      price: 99,
+      blurb: "Oversized washed grey hoodie. ACTION across the chest; on the back, the mark and CLOUD in cracked black.",
+      sizes: ["S", "M", "L", "XL", "XXL"],
+      colors: [{ name: "Grey", hex: "#85827D" }]
+    },
+    {
+      id: "crew-sunfade",
+      name: "Sunfade crewneck",
+      kind: "crewneck",
+      price: 79,
+      blurb: "Oversized crewneck in sun-faded yellow. The Action Cloud mark large on the chest in cracked black.",
+      sizes: ["S", "M", "L", "XL", "XXL"],
+      colors: [{ name: "Yellow", hex: "#D4A63C" }]
+    },
+    {
+      id: "tee-tyre",
+      name: "Tyre Mark tee",
+      kind: "tee",
+      price: 49,
+      blurb: "Oversized ecru tee. One tyre track across the front, hem to shoulder. Small logo below the collar on the back.",
+      sizes: ["S", "M", "L", "XL", "XXL"],
+      colors: [{ name: "Ecru", hex: "#D9CAB5" }]
     },
     {
       id: "tee",

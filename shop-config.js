@@ -29,8 +29,19 @@ window.SHOP = {
   },
 
   products: [
-    // Graphic rider tees (concept capsule). On the first four the print crosses seams, sleeves
+    // Graphic tees (concept capsule). On the first five the print crosses seams, sleeves
     // or the hem, so they need panel printing before sewing, not a ready-made blank.
+    {
+      id: "tee-truck",
+      name: "Truck tee",
+      kind: "tee",
+      price: 49,
+      blurb: "Oversized washed grey tee. A skateboard seen nose-on across the chest, with ACTION on the truck and the wheels at the sleeves. Small logo below the collar on the back.",
+      sizes: ["S", "M", "L", "XL", "XXL"],
+      colors: [{ name: "Grey", hex: "#85827D" }],
+      views: ["front", "back"],
+      spec: "oversized-tee"
+    },
     {
       id: "tee-sequence",
       name: "Sequence tee",

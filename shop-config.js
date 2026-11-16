@@ -29,8 +29,20 @@ window.SHOP = {
   },
 
   products: [
-    // Graphic tees (concept capsule). On the first six the print crosses seams, sleeves
-    // or the hem, so they need panel printing before sewing, not a ready-made blank.
+    // Graphic tees (concept capsule). The Cutout tee's print stays inside a normal chest area,
+    // but it is multi-colour. On the six after it the print crosses seams, sleeves or the hem,
+    // so they need panel printing before sewing, not a ready-made blank.
+    {
+      id: "tee-cutout",
+      name: "Cutout tee",
+      kind: "tee",
+      price: 49,
+      blurb: "Oversized washed black tee. ACTION CLOUD spelled in cut-out letters, each from a different page, taped across the chest. Small logo below the collar on the back.",
+      sizes: ["S", "M", "L", "XL", "XXL"],
+      colors: [{ name: "Black", hex: "#2A2A2A" }],
+      views: ["front", "back"],
+      spec: "oversized-tee"
+    },
     {
       id: "tee-tbar",
       name: "T-Bar tee",

@@ -6,6 +6,10 @@
 <title>Ballerina</title>
 <meta name="description" content="Ballerina. Clothes made by a person, for people who don&rsquo;t know what to believe.">
 <meta name="theme-color" content="#2B2723">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="Ballerina">
+<meta property="og:description" content="Clothes made by a person, for people who don&rsquo;t know what to believe.">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Playfair+Display:ital,wght@0,800;1,800&display=swap">
@@ -70,7 +74,7 @@
   <!-- 3. Made by hand -->
   <section class="made" aria-labelledby="madeTitle">
     <div class="wrap made__grid">
-      <figure class="taped">
+      <figure class="taped" data-photo="hands">
         <img src="img/hands.webp" data-i18n-alt="made.alt" alt="Placeholder for a photograph of hands at work." width="1600" height="1067" loading="lazy" decoding="async">
       </figure>
       <div>
@@ -92,13 +96,13 @@
           <img data-hand="tender.title" src="img/hand/tender.title.png" alt="Tender No. 001" width="440" height="80" loading="lazy">
         </h2>
         <p data-i18n="tender.intro">One piece, made once, sold by sealed bid.</p>
-        <figure class="taped">
+        <figure class="taped" data-photo="tender">
           <img src="img/tender-001.webp" data-i18n-alt="tender.alt" alt="Placeholder for a photograph of the first one-off piece." width="1600" height="1067" loading="lazy" decoding="async">
         </figure>
         <p data-i18n="tender.story">[THE STORY OF THE PIECE]</p>
         <dl class="facts">
-          <div><dt data-i18n="tender.reserve">Reserve price</dt><dd data-i18n="tender.reserve.v">[RESERVE PRICE]</dd></div>
-          <div><dt data-i18n="tender.closes">Closes</dt><dd data-i18n="tender.closes.v">[CLOSING DATE]</dd></div>
+          <div data-fact><dt data-i18n="tender.reserve">Reserve price</dt><dd data-i18n="tender.reserve.v">[RESERVE PRICE]</dd></div>
+          <div data-fact><dt data-i18n="tender.closes">Closes</dt><dd data-i18n="tender.closes.v">[CLOSING DATE]</dd></div>
         </dl>
       </div>
 
@@ -164,9 +168,9 @@
   <div class="wrap foot__in">
     <img class="foot__logo" data-hand="logo" src="img/hand/logo.png" alt="Ballerina" width="560" height="190" loading="lazy">
     <ul class="foot__links" role="list">
-      <li><span data-i18n="foot.instagram">Instagram</span> <span id="footInstagram"></span></li>
-      <li><span data-i18n="foot.tiktok">TikTok</span> <span id="footTiktok"></span></li>
-      <li><span data-i18n="foot.contact">Contact</span> <span id="footEmail"></span></li>
+      <li data-fact><span data-i18n="foot.instagram">Instagram</span> <span id="footInstagram"></span></li>
+      <li data-fact><span data-i18n="foot.tiktok">TikTok</span> <span id="footTiktok"></span></li>
+      <li data-fact><span data-i18n="foot.contact">Contact</span> <span id="footEmail"></span></li>
     </ul>
     <p class="foot__legal" data-i18n="foot.legal">[COMPANY NAME AND ADDRESS]</p>
   </div>
@@ -190,8 +194,8 @@
       <p class="price" id="pPrice"></p>
       <p id="pBlurb"></p>
       <dl class="madeby">
-        <div><dt data-i18n="p.edition">Edition</dt><dd id="pEdition"></dd></div>
-        <div><dt data-i18n="p.madeby">Made by</dt><dd id="pMadeBy"></dd></div>
+        <div data-fact><dt data-i18n="p.edition">Edition</dt><dd id="pEdition"></dd></div>
+        <div data-fact><dt data-i18n="p.madeby">Made by</dt><dd id="pMadeBy"></dd></div>
       </dl>
 
       <form id="pForm" novalidate>
@@ -206,19 +210,19 @@
         <p class="form__status" id="pStatus" role="status"></p>
       </form>
 
-      <details>
+      <details data-fact>
         <summary data-i18n="p.materials">Materials</summary>
         <p id="pMaterials"></p>
       </details>
-      <details>
+      <details data-fact>
         <summary data-i18n="p.chart">Size chart</summary>
         <div id="pChart"></div>
       </details>
-      <details>
+      <details data-fact>
         <summary data-i18n="p.care">Care</summary>
         <p id="pCare"></p>
       </details>
-      <details>
+      <details data-fact>
         <summary data-i18n="p.shipping">Shipping and returns</summary>
         <p id="pShipping"></p>
       </details>
@@ -236,7 +240,7 @@
     <p id="bagEmpty" data-i18n="bag.empty">Your bag is empty. Take something off the barre.</p>
     <ul class="lines" id="bagList" role="list"></ul>
     <div class="drawer__foot" id="bagFoot" hidden>
-      <p class="total"><span data-i18n="bag.total">Total</span> <strong id="bagTotal"></strong></p>
+      <p class="total" data-fact><span data-i18n="bag.total">Total</span> <strong id="bagTotal"></strong></p>
       <button class="scrap scrap--ink e1 big" id="checkout" type="button" data-i18n="bag.checkout">Check out</button>
       <p class="form__status" id="checkoutMsg" role="status"></p>
     </div>

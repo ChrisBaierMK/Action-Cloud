@@ -20,6 +20,10 @@
     set: function (k, v) { try { window.localStorage.setItem(k, v); } catch (e) { /* private mode */ } }
   };
 
+  /* Draft shows undecided facts as [PLACEHOLDERS]; public leaves them out (see styles.css). */
+  var DRAFT = !!SHOP.showPlaceholders;
+  doc.documentElement.classList.add(DRAFT ? "is-draft" : "is-public");
+
   var motion = window.matchMedia("(prefers-reduced-motion: reduce)");
   var reduced = motion.matches;
 
@@ -82,9 +86,26 @@
     $$("[data-i18n-alt]").forEach(function (n) { n.alt = t(n.getAttribute("data-i18n-alt")); });
     $$("[data-hand]").forEach(function (img) {
       var key = img.getAttribute("data-hand");
+      var next = img.nextElementSibling;
+      var typed = next && next.classList.contains("typed") ? next : null;
+      /* No handwriting for this phrase yet: on the public page, set it in type. */
+      if (!DRAFT && (SHOP.hand || []).indexOf(key) === -1) {
+        if (!typed) {
+          typed = el("span", "typed" + (img.className ? " " + img.className : ""));
+          img.parentNode.insertBefore(typed, img.nextSibling);
+        }
+        typed.textContent = t(key);
+        img.hidden = true;
+        return;
+      }
+      if (typed) typed.parentNode.removeChild(typed);
+      img.hidden = false;
       var src = handSrc(key);
       if (img.getAttribute("src") !== src) img.setAttribute("src", src);
-      img.alt = img.hasAttribute("data-quiet") ? "" : t(key);
+      img.alt = t(key);
+    });
+    $$("[data-photo]").forEach(function (fig) {
+      fig.hidden = !DRAFT && !(SHOP.photos || {})[fig.getAttribute("data-photo")];
     });
     $$("[data-lang-field]").forEach(function (n) { n.value = lang; });
   }
@@ -198,7 +219,8 @@
   function labelRail() {
     pieces.forEach(function (x) {
       /* No product names on the first screen: the name is the accessible label only. */
-      x.btn.setAttribute("aria-label", t("rail.open", { name: pText(x.p, "name"), color: colorName(x.c), price: money(x.p.price) }));
+      var key = x.p.price == null && !DRAFT ? "rail.open.noprice" : "rail.open";
+      x.btn.setAttribute("aria-label", t(key, { name: pText(x.p, "name"), color: colorName(x.c), price: money(x.p.price) }));
     });
   }
 
@@ -548,9 +570,13 @@
       var meta = el("p", "line__meta");
       var cn = el("span"); setText(cn, colorName(c));
       var pr = el("span"); setText(pr, money(p.price));
+      var priceBit = el("span");
+      priceBit.setAttribute("data-fact", "");
+      priceBit.appendChild(doc.createTextNode(" \u00b7 "));
+      priceBit.appendChild(pr);
       meta.appendChild(cn);
-      meta.appendChild(doc.createTextNode(" · " + sizeName(it.size) + " · "));
-      meta.appendChild(pr);
+      meta.appendChild(doc.createTextNode(" \u00b7 " + sizeName(it.size)));
+      meta.appendChild(priceBit);
       body.appendChild(meta);
 
       var row = el("div", "line__row");

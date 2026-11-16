@@ -35,6 +35,7 @@ window.I18N = {
       "rail.prev": "Move the barre left",
       "rail.next": "Move the barre right",
       "rail.open": "{name}, {color}, {price}. Open.",
+      "rail.open.noprice": "{name}, {color}. Open.",
 
 
       "made.title": "Made by a person.",

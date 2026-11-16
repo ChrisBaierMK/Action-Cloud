@@ -22,10 +22,23 @@ tools/            placeholders.py, which draws the placeholder images
 netlify.toml      publish folder and headers
 ```
 
+## Public page and working draft
+
+`showPlaceholders` in `shop-config.js` switches between two views of the same site.
+
+- `false`, the public page. Undecided facts and missing photographs are left out. A
+  handwritten phrase with no image yet is set in type. Nothing is invented to fill a gap.
+- `true`, the working draft. Every undecided fact shows as a [PLACEHOLDER] with a dashed
+  outline and every missing image as a labelled grey box, so you can see what is still owed.
+
+As facts arrive they appear on the public page by themselves: fill in a price, and the price
+shows. When a handwritten phrase is scanned, save it as `img/hand/<key>.png` and add its key
+to `hand`. When the hands or tender photograph exists, set it to `true` under `photos`.
+
 ## What is still a placeholder
 
-Everything in [SQUARE BRACKETS] on the page is a fact nobody has decided yet. It is drawn
-with a dashed outline so it cannot be mistaken for real copy.
+These facts are not decided yet. The public page leaves them out; the working draft shows
+them in [SQUARE BRACKETS].
 
 | What | Where to fill it in |
 |---|---|

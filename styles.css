@@ -60,6 +60,18 @@ button { cursor: pointer; }
   -webkit-box-decoration-break: clone; box-decoration-break: clone;
 }
 
+/* Public page: an undecided fact is left out, together with the row that holds it. */
+.is-public .tbd,
+.is-public [data-fact]:has(.tbd),
+.is-public .madeby:not(:has(dd:not(.tbd))),
+.is-public .facts:not(:has(dd:not(.tbd))) { display: none; }
+
+/* A handwritten phrase with no image yet, set in type. */
+.typed { display: block; font: italic 400 clamp(1.9rem, 4.6vw, 3rem)/1.1 var(--f-plain); letter-spacing: -.01em; }
+h1 .typed { font-size: clamp(2.4rem, 7vw, 4.4rem); text-shadow: 0 2px 14px rgb(0 0 0 / .55); }
+h1 .typed.line2 { font-size: clamp(1.5rem, 3.6vw, 2.3rem); margin: .15em 0 0 1.6em; width: auto; }
+.hint .typed { font-size: 1.05rem; letter-spacing: 0; text-shadow: 0 1px 6px rgb(0 0 0 / .8); }
+
 .skip {
   position: fixed; left: 12px; top: 12px; z-index: 100;
   padding: .7em 1em; background: var(--chalk); color: var(--pencil);
@@ -327,6 +339,7 @@ section h2 img { width: min(100%, 27.5rem); }
 .made h2 + p, .tender h2 + p { margin-top: 1.2rem; }
 .lead { font-size: 1.35rem; line-height: 1.35; margin-bottom: 1rem; }
 .made p, .tender p { max-width: 34rem; }
+.made__grid:has(> figure[hidden]) { grid-template-columns: 1fr; max-width: 40rem; }
 
 /* A photograph taped on. */
 .taped { position: relative; rotate: -1deg; background: var(--chalk); padding: 10px; box-shadow: 3px 4px 0 rgb(0 0 0 / .35); }

@@ -25,6 +25,19 @@
 window.SHOP = {
   brand: "Ballerina",
 
+  /* false = public. Undecided facts and missing photographs are left out of the
+             page, and handwritten phrases with no image are set in type.
+     true  = working draft. Every undecided fact shows as a [PLACEHOLDER] and
+             every missing image as a labelled grey box. */
+  showPlaceholders: false,
+
+  /* Handwritten phrases that have an image in img/hand/ (the i18n key is the
+     file name). Add a key here once its handwriting is scanned. */
+  hand: ["logo"],
+
+  /* Page photographs that exist. false = still a grey placeholder. */
+  photos: { hands: false, tender: false },
+
   /* true while img/p/ holds stand-in pictures instead of real photographs. */
   standIn: true,
 

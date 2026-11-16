@@ -66,7 +66,10 @@
     });
   });
 
-  // swing physics: each piece is a damped pendulum pushed by how fast the rack moves
+  // swing physics: each piece is a damped pendulum pushed by how fast the rack moves.
+  // The hanger goes with the rail and the hem trails behind: pieces moving left lean
+  // with their hems to the right, and the other way round. (A positive angle swings
+  // the hem left, so the push is against the direction of travel.)
   var dragging = false, coast = 0, moved = false, startX = 0, startScroll = 0, prevX = 0, vel = 0;
   var lastX = track.scrollLeft, running = false;
   function tick() {
@@ -75,7 +78,7 @@
     var alive = Math.abs(v) > 0.05;
     for (var i = 0; i < pieces.length; i++) {
       var s = pieces[i];
-      s.w += -0.055 * s.a - 0.085 * s.w + v * 0.045 * s.gain;
+      s.w += -0.055 * s.a - 0.085 * s.w - v * 0.045 * s.gain;
       s.a += s.w;
       if (s.a > 16) { s.a = 16; s.w = 0; } else if (s.a < -16) { s.a = -16; s.w = 0; }
       if (Math.abs(s.a) > 0.03 || Math.abs(s.w) > 0.03) { alive = true; s.el.style.transform = "rotate(" + s.a.toFixed(2) + "deg)"; }

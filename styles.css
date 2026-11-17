@@ -123,7 +123,7 @@ figcaption { font-size: .9375rem; margin-top: .6rem; }
 }
 
 /* Who we are */
-.who { padding: 0 0 clamp(3rem, 7vw, 6rem); }
+.who { padding: clamp(3rem, 7vw, 6rem) 0; }
 .who-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }
 .who-text h2 { margin-bottom: 1.75rem; }
 .who-text > p { max-width: 58ch; margin-bottom: 1rem; }
@@ -205,10 +205,10 @@ figcaption { font-size: .9375rem; margin-top: .6rem; }
 .pic .tag.real { background: var(--yellow); color: var(--black); }
 
 /* Quick facts and sponsor value, straight after the hero */
-.quick { padding: clamp(1.5rem, 3vw, 2.5rem) 0 0; }
+.quick { padding: clamp(1.5rem, 3vw, 2.5rem) 0 clamp(2.5rem, 5vw, 4rem); }
 .quick ul { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem clamp(1rem, 3vw, 2.5rem); }
 .quick li { border-top: 3px solid var(--black); padding-top: .75rem; font-weight: 600; font-size: 1.125rem; line-height: 1.3; }
-.value { padding: clamp(2.5rem, 6vw, 5rem) 0; }
+.value { padding: 0 0 clamp(3rem, 6vw, 5rem); }
 .value-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem clamp(1.5rem, 4vw, 3.5rem); margin: 2rem 0; }
 .value-list li { background: var(--yellow); padding: 1.5rem; }
 .value-list h3 { font: 600 1.375rem/1.2 var(--body); margin-bottom: .5rem; }
@@ -223,8 +223,12 @@ figcaption { font-size: .9375rem; margin-top: .6rem; }
 
 /* Why north Bucharest + impact */
 .impact { position: relative; background: var(--ply); padding: clamp(3.5rem, 8vw, 7rem) 0 calc(var(--ramp-h) + clamp(3rem, 6vw, 5rem)); }
-.impact .ramp { fill: var(--yellow); }
-.north { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 1rem clamp(2rem, 5vw, 5rem); align-items: start; padding-bottom: clamp(3rem, 6vw, 5rem); }
+.impact .ramp { fill: var(--birch); }
+.impact .lead { font-size: clamp(1.2rem, 1.9vw, 1.5rem); line-height: 1.4; max-width: 44ch; margin-top: 1.5rem; }
+.impact-photos { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 1.5rem clamp(1rem, 2.5vw, 2rem); margin: clamp(2.5rem, 5vw, 4rem) 0; }
+.impact-photos img { display: block; width: 100%; height: clamp(14rem, 30vw, 24rem); object-fit: cover; }
+.impact-photos figcaption { color: var(--grain); }
+.north { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 1rem clamp(2rem, 5vw, 5rem); align-items: start; }
 .north h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); }
 .north li { font-size: clamp(1.25rem, 2.2vw, 1.75rem); line-height: 1.3; padding: .7rem 0; border-top: 1px solid var(--black); }
 .north li:last-child { border-bottom: 1px solid var(--black); }
@@ -298,6 +302,7 @@ figcaption { font-size: .9375rem; margin-top: .6rem; }
   .plan-head, .plan-flow { grid-template-columns: 1fr; }
   .legend { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .value-list { grid-template-columns: 1fr; }
+  .impact-photos { grid-template-columns: 1fr; }
   .steps { grid-template-columns: 1fr; }
   .card, .cards-5 .card:nth-child(-n+2) { grid-column: span 3; }
   .cards-5 .card:nth-child(-n+2) .pic img { aspect-ratio: 4 / 3; }

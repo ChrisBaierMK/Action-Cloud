@@ -60,11 +60,12 @@ So: no indoor action sports venue found comes near 6,000 m², three outdoor ones
 
 ## The plan
 
-`ROOMS` in `tools/build.py` is the plan to scale (100 × 60 m, 6,000 m²); the drawing, the floor-area list and the 3D picture all follow it. The changing rooms, toilets and showers (18) stand in the front right corner against the hostel (21), with one door onto the walkway and one straight into the hostel; a small toilet group stays at the entrance (16). When rooms move, redraw `assets/img/plan-3d.webp` from the new drawing.
+`ROOMS` in `tools/build.py` is the plan to scale (100 × 60 m, 6,000 m²); the drawing, the floor-area list and the 3D picture all follow it. The changing rooms, toilets and showers (18) stand in the front right corner against the hostel (21), with one door onto the walkway and one straight into the hostel, so hostel guests reach them after closing without entering the park. A second toilet group (no showers) was added at the entrance (16): the owner asked only for the move, and this group was added because it is the nearest toilet for about 70% of the hall floor. If it stays, it is the park's everyday block, not a small one: an accessible cabin, baby changing, and doors on the park side of the ticket gates. Mini Action (11) and the caged pitch (10) are fenced, each with its own gate onto the walkway, so nobody walks through them to get somewhere else. Known weak spot: the trampolines (6) can only be reached on foot across the pumptrack (2); the next redraw should give them a fenced walking lane along the left wall. When rooms move, redraw `assets/img/plan-3d.webp` from the new drawing.
 
 ## Before sending the link widely
 
 - The pages carry `<meta name="robots" content="noindex">`. Remove it in `tools/build.py` when the site may be indexed.
 - Opening date, building, funding target and Action Crew perks are not decided and are not stated on the page.
+- Package prices are in euro (100 to 200,000 a year). The currency of payment and the exchange rate are for the contract; the page only says so.
 
 Fonts (Barlow, Barlow Semi Condensed) are self-hosted under the SIL Open Font License.

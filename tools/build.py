@@ -157,11 +157,11 @@ DECKS = [
          sub=T("În plan: bilet online, acordul părinților online și aglomerația live, pe site.",
                "Planned: online tickets, online parental consent and a live crowd level on the website."),
          cards=[
-             ("service", 17, None, T(["Service pentru biciclete și trotinete", "Depozitare pentru bicicleta ta", "Închiriezi tot ce-ți trebuie"],
-                                     ["Bike and scooter service", "Storage for your own bike", "Rent everything you need"])),
-             ("entrance", 16, T("Intrare și recepție", "Entrance and reception"),
-              T(["Bilet online", "Pe roți, casca e obligatorie", "Toalete chiar la intrare"], ["Online ticket", "Helmets are required on wheels", "Toilets right by the entrance"])),
-             ("burgers", 15, None, T(["Lângă cafeneaua părinților", "Vedere spre rampe"], ["Next to the parents' café", "View of the ramps"])),
+             ("service", 17, None, T(["Service pentru biciclete și trotinete", "Dulapuri și loc pentru bicicleta ta", "Închiriezi tot ce-ți trebuie"],
+                                     ["Bike and scooter service", "Lockers and storage for your own bike", "Rent everything you need"])),
+             ("entrance", 16, None, T(["Bilet online", "Masă de înfășat pentru bebeluși", "Vestiare și dușuri lângă hostel"],
+                                      ["Online ticket", "Baby changing table", "Changing rooms and showers by the hostel"])),
+             ("burgers", 15, None, T(["Lângă cafeneaua părinților", "Vedere spre street soccer și baschet"], ["Next to the parents' café", "Looks onto street soccer and basketball"])),
          ]),
     dict(id="wheels", surface="", alias=("zones", "visit"),
          head=T("Cu ce te dai?", "What do you ride?"),
@@ -233,25 +233,25 @@ ALT = {
 }
 
 TIERS = [
-    # id, picture, name, price ro, price en, how many partners, labels (what the sponsor gets)
-    ("pachet-principal", "tier-naming", T("Partener principal", "Main partner"), "1.000.000", "1,000,000", T("Un singur partener", "One partner only"),
+    # id, picture, name, price in euro (Romanian and English number style), how many partners, labels (what the sponsor gets)
+    ("pachet-principal", "tier-naming", T("Partener principal", "Main partner"), "200.000", "200,000", T("Un singur partener", "One partner only"),
      T(["„Action Cloud by brandul tău”", "Logo la intrarea principală", "Apari în tot ce publicăm și la evenimente"],
        ["\"Action Cloud by your brand\"", "Logo at the main entrance", "In everything we publish and at events"])),
-    ("pachet-zona", "tier-zone", T("Partener de zonă", "Zone partner"), "250.000", "250,000", T("4–5 parteneri", "4–5 partners"),
+    ("pachet-zona", "tier-zone", T("Partener de zonă", "Zone partner"), "50.000", "50,000", T("4–5 parteneri", "4–5 partners"),
      T(["O zonă îți poartă numele", "Logo la intrarea și pe rampele zonei", "Clipuri filmate în zonă"],
        ["A zone carries your name", "Logo at the zone's entrance and on its ramps", "Clips shot in the zone"])),
-    ("pachet-atractie", "tier-attraction", T("Partener de atracție", "Attraction partner"), "100.000", "100,000", T("4 parteneri", "4 partners"),
+    ("pachet-atractie", "tier-attraction", T("Partener de atracție", "Attraction partner"), "20.000", "20,000", T("4 parteneri", "4 partners"),
      T(["Mega rampă, airbag, bowl sau cățărat", "Logo pe atracție", "Clipuri filmate acolo"],
        ["Mega ramp, airbag, bowl or climbing", "Logo on the attraction", "Clips shot there"])),
-    ("pachet-program", "tier-programme", T("Partener de program", "Programme partner"), "50.000", "50,000", T("3 parteneri", "3 partners"),
+    ("pachet-program", "tier-programme", T("Partener de program", "Programme partner"), "10.000", "10,000", T("3 parteneri", "3 partners"),
      T(["Tabere, Action Cups sau programul pentru școli", "Programul îți poartă numele", "Mostre la tabere și evenimente"],
        ["Camps, Action Cups or the school programme", "The programme carries your name", "Samples at camps and events"])),
-    ("pachet-rampa", "tier-feature", T("Partener de rampă", "Ramp partner"), "15.000", "15,000", None,
+    ("pachet-rampa", "tier-feature", T("Partener de rampă", "Ramp partner"), "3.000", "3,000", None,
      T(["Logo pe o rampă, un perete sau un obstacol", "Mențiuni pe rețelele sociale", "Plasare de produs în clipuri"],
        ["Logo on a ramp, a wall or an obstacle", "Social media mentions", "Product placement in clips"])),
-    ("pachet-local", "tier-local", T("Partener local", "Local partner"), "5.000", "5,000", None,
+    ("pachet-local", "tier-local", T("Partener local", "Local partner"), "1.000", "1,000", None,
      T(["Logo pe peretele susținătorilor", "Logo pe site, cu link"], ["Logo on the supporter wall", "Logo on the website, with a link"])),
-    ("pachet-sustinator", "tier-supporter", T("Susținător", "Supporter"), "500", "500", None,
+    ("pachet-sustinator", "tier-supporter", T("Susținător", "Supporter"), "100", "100", None,
      T(["Numele tău pe peretele susținătorilor", "Numele tău pe site"], ["Your name on the supporter wall", "Your name on the website"])),
 ]
 
@@ -284,10 +284,10 @@ ROOMS = [
     (7, 78, 10, 12, 18, "j", 1),
     (8, 66, 28, 12, 20, "j", 0),
     (9, 78, 28, 12, 20, "j", 1),
-    (10, 50, 28, 16, 20, "j", 1),
-    (11, 38, 28, 12, 20, "f", 1),
+    (10, 50, 28, 16, 20, "j", 0),
+    (11, 38, 28, 12, 20, "f", 0),
     (12, 66, 52, 18, 8, "f", 0),
-    (13, 0, 52, 10, 8, "f", 0),
+    (13, 0, 52, 10, 8, "j", 0),
     (14, 36, 52, 16, 8, "f", 0),
     (15, 52, 52, 14, 8, "f", 0),
     (16, 24, 52, 12, 8, "s", 0),
@@ -303,14 +303,16 @@ CATS = [("w", T("Pe roți", "On wheels")), ("j", T("Fără roți", "No wheels"))
 
 
 def plan_svg(p):
-    # doors and gates: front rooms onto the walkway (one door per party room), three gates from the walkway into the hall,
+    # doors and gates: front rooms onto the walkway (one door per party room), four gates from the walkway into the hall
+    # (pumptrack, Mini Action, the caged pitch, climbing; Mini Action and the pitch are fenced, so nobody cuts through them),
     # the wash block opening both onto the walkway and straight into the hostel, the training room, the workshop, outside doors
     doors = [(35, 520, 65, 520), (155, 520, 185, 520), (265, 520, 335, 520), (425, 520, 455, 520), (575, 520, 605, 520),
              (680, 520, 700, 520), (740, 520, 760, 520), (800, 520, 820, 520), (855, 520, 885, 520), (935, 520, 965, 520),
              (900, 486, 900, 514), (845, 100, 875, 100), (700, 480, 740, 480),
-             (45, 480, 85, 480), (420, 480, 460, 480), (800, 480, 840, 480), (275, 600, 325, 600), (1000, 250, 1000, 280), (835, 0, 885, 0)]
+             (45, 480, 85, 480), (420, 480, 460, 480), (560, 480, 600, 480), (800, 480, 840, 480), (275, 600, 325, 600), (1000, 250, 1000, 280), (835, 0, 885, 0)]
     glass = [(8, 520, 30, 520), (70, 520, 94, 520), (365, 520, 420, 520), (460, 520, 515, 520), (525, 520, 570, 520),
-             (610, 520, 655, 520), (664, 520, 676, 520), (704, 520, 736, 520), (764, 520, 796, 520), (824, 520, 836, 520)]
+             (610, 520, 655, 520), (664, 520, 676, 520), (704, 520, 716, 520), (724, 520, 736, 520), (764, 520, 776, 520),
+             (784, 520, 796, 520), (824, 520, 836, 520)]
 
     def lines(cls, seg):
         return "".join(f'<path class="{cls}" d="M{a} {b}L{x} {y}"/>' for a, b, x, y in seg)
@@ -321,16 +323,16 @@ def plan_svg(p):
          f'refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z"/></marker></defs>')
     for n, x, y, w, h, c, op in ROOMS:
         o += f'<rect class="r-{c}{" open" if op else ""}" x="{x * 10}" y="{y * 10}" width="{w * 10}" height="{h * 10}"/>'
-    o += '<rect class="outer" x="0" y="0" width="1000" height="600"/><path class="rail-line" d="M0 480H900"/>'
+    o += '<rect class="outer" x="0" y="0" width="1000" height="600"/><path class="rail-line" d="M0 480H900"/><path class="rail-line" d="M720 520V600M780 520V600"/>'
     o += lines("glass", glass) + lines("door", doors)
-    for cls, ds in (("route", ["M300 590V545", "M285 500H65V440"]), ("route2", ["M340 500H820"])):
+    for cls, ds in (("route", ["M300 590V545", "M260 500H65V440"]), ("route2", ["M340 500H820"])):
         o += "".join(f'<path class="{cls}" d="{d}" marker-end="url(#ah)"/>' for d in ds)
     for n, x, y, w, h, c, op in ROOMS:
         cx, cy = x * 10 + w * 5, y * 10 + h * 5 + 10
         if n == 19:
             cx, cy = 865, 508
         if n == 16:
-            cx += 25
+            cx += 34
         o += f'<text class="n n-{c}{" sm" if n == 19 else ""}" x="{cx}" y="{cy}" text-anchor="middle">{n}</text>'
     o += f'<text class="lbl" x="335" y="640">{p.t(T("Intrare", "Entrance"))}</text>'
     o += '<path class="scale" d="M880 636H980M880 628V644M980 628V644"/><text class="lbl" x="930" y="626" text-anchor="middle">10 m</text></svg>'
@@ -553,12 +555,13 @@ def s_shop(p):
 
 
 def s_sponsors(p):
-    per = p.t(T("lei / an", "lei / year"))
+    per = p.t(T("/ an", "/ year"))
+    per_said = p.t(T("pe an", "a year"))
     choose = p.t(T("Alege pachetul", "Choose this package"))
     example = p.t(T("Imagine concept: exemplu de amplasare", "Concept image: example placement"))
     items, ladder = [], ""
     for tid, key, name, pr_ro, pr_en, places, labels in TIERS:
-        price = pr_ro if p.lang == "ro" else pr_en
+        price = f"{pr_ro}&nbsp;€" if p.lang == "ro" else f"€{pr_en}"
         pl = f'<p class="places">{p.t(places)}</p>' if places else ""
         alt = p.t(ALT[key])
         if p.lang == "en" and key + "-en" in PICS:  # a picture with words in it has an English twin
@@ -568,16 +571,16 @@ def s_sponsors(p):
         body = (f'<h3>{p.t(name)}</h3><p class="price">{price} <small>{per}</small></p>{pl}{p.labels(p.t(labels))}'
                 f'<a class="btn btn-dark btn-small" href="#contact" data-pick="{esc(p.t(name))}">{choose}<span class="vh">: {p.t(name)}</span></a>')
         items.append((f' id="{tid}"', f'<div class="card tier">{media}<div class="card-body">{body}</div></div>'))
-        ladder += f'<li><a href="#{tid}" data-jump><span class="vh">{p.t(name)}: </span>{price}<span class="vh"> {per}</span></a></li>'
+        ladder += f'<li><a href="#{tid}" data-jump><span class="vh">{p.t(name)}: </span>{price}<span class="vh"> {per_said}</span></a></li>'
     return f'''<section class="slide yellow" id="sponsors" data-chapter="sponsors">
   {aliases("packages")}
   <div class="wrap">
-    {p.head(T("Unde apare brandul tău.", "Where your brand appears."), T("Tu susții parcul, noi îți dăm vizibilitate. De la 500 la 1.000.000 de lei pe an.", "You back the park, we give you visibility. From 500 to 1,000,000 lei a year."))}
+    {p.head(T("Unde apare brandul tău.", "Where your brand appears."), T("Tu susții parcul, noi îți dăm vizibilitate. De la 100 la 200.000 € pe an.", "You back the park, we give you visibility. From €100 to €200,000 a year."))}
     <ul class="ladder" aria-label="{p.t(T("Pachetele, după preț", "The packages, by price"))}">{ladder}</ul>
   </div>
   {p.rail("tier-rail", items, cls="tiers", label=p.t(T("Pachetele de sponsorizare", "The sponsorship packages")))}
   <div class="wrap">
-    <p class="note">{p.t(T("Toate pachetele includ invitații la evenimente și la Action Cups. De la „Partener de rampă” în sus, primești și plasare de produs în clipuri. Parcul din București este încă în plan: vizibilitatea din parc începe la deschidere, iar perioada contractului și ce primești până atunci le stabilim împreună.", "Every package includes invitations to events and Action Cups. From \"Ramp partner\" up, you also get product placement in clips. The Bucharest park is still a plan: visibility in the park starts when it opens, and we agree the contract period and what you get until then together."))}</p>
+    <p class="note">{p.t(T("Toate pachetele includ invitații la evenimente și la Action Cups. De la „Partener de rampă” în sus, primești și plasare de produs în clipuri. Parcul din București este încă în plan: vizibilitatea din parc începe la deschidere, iar perioada contractului și ce primești până atunci le stabilim împreună. Prețurile sunt în euro; moneda de plată o stabilim în contract.", "Every package includes invitations to events and Action Cups. From \"Ramp partner\" up, you also get product placement in clips. The Bucharest park is still a plan: visibility in the park starts when it opens, and we agree the contract period and what you get until then together. Prices are in euro; the payment currency is set in the contract."))}</p>
     <details class="more">
       <summary>{p.t(T("Avantaj fiscal pentru firme", "Tax advantage for companies"))}</summary>
       <div class="more-body"><p class="note">{p.t(T("În România, firmele care plătesc impozit pe profit pot scădea din impozit sponsorizările către asociațiile înscrise în Registrul entităților pentru care se acordă deduceri fiscale. Limita legală: cea mai mică valoare dintre 0,75% din cifra de afaceri și 20% din impozitul pe profit datorat. Verifică împreună cu contabilul tău regulile actuale și înscrierea asociației în registru.", "In Romania, companies that pay profit tax can deduct sponsorships from the tax they owe, provided the association is listed in the register of entities eligible for tax deductions. The legal limit is the lower of 0.75% of turnover and 20% of the profit tax owed. Check the current rules and the association's listing with your accountant."))}</p></div>

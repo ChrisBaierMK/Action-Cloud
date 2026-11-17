@@ -264,7 +264,7 @@ a, button, input, select, textarea, summary, [tabindex] { scroll-margin-top: cal
 .rail.tiers > li { flex-basis: min(84vw, 23.5rem); }
 .tier .media { aspect-ratio: 4 / 3; }
 /* every price at a glance; each chip jumps to its card */
-.ladder { display: flex; flex-wrap: wrap; gap: .5rem; }
+.ladder { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: .75rem; }
 .ladder a { display: inline-flex; align-items: center; min-height: 2.75rem; padding: .4rem 1rem; border-radius: 999px; border: 2px solid var(--black); font: 800 1.125rem/1 var(--display); text-decoration: none; font-variant-numeric: tabular-nums; }
 .ladder a:hover { background: var(--black); color: var(--yellow); }
 .tier .card-body { display: flex; flex-direction: column; }

@@ -370,8 +370,8 @@ CLAIM_NOTE = T("* După suprafața totală planificată a halei (aproximativ 6.0
 
 
 def s_hero(p):
-    img, _ = p.img("crew", p.t(T("Imagine concept: copii, adolescenți și părinți în hanorace Action Cloud, văzuți din spate, privind parcul plin de rampe și plante",
-                               "Concept image: kids, teenagers and parents in Action Cloud hoodies, seen from behind, looking out over a park full of ramps and plants")),
+    img, _ = p.img("crew", p.t(T("Imagine concept: copii, adolescenți și părinți în hanorace, tricouri, șepci și o căciulă Action Cloud, văzuți din spate, privind parcul plin de rampe și plante",
+                               "Concept image: kids, teenagers and parents in Action Cloud hoodies, tees, caps and a beanie, seen from behind, looking out over a park full of ramps and plants")),
                    eager=True, sizes="100vw")
     return f'''<section class="slide hero" id="top">
   {img}

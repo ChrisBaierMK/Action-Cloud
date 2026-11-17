@@ -412,3 +412,24 @@ figcaption { font-size: .9375rem; margin-top: .6rem; }
   .scenes-4 { grid-template-columns: 1fr; }
   .scene.tall { min-height: 22rem; }
 }
+
+/* ---- Pictures stay fully visible: text sits in a panel under each picture, not on top of it ---- */
+.scene { display: flex; flex-direction: column; align-items: stretch; min-height: 0 !important; background: var(--wall); }
+.scene > img { position: static; z-index: auto; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; animation: none; flex: none; }
+.scene::after { content: none; }
+.scenes-5 .scene:nth-child(-n+2) > img, .scenes-2 .scene > img { aspect-ratio: 16 / 10; }
+.scene.tall > img { aspect-ratio: 4 / 5; }
+.scene.band > img { aspect-ratio: 16 / 8; }
+.scene-body { flex: 1; padding: 1rem 1.1rem 1.2rem; }
+.scene h4 { font-size: clamp(1.6rem, 2.3vw, 2.1rem); }
+.chipset li { background: rgb(255 255 255 / .1); border-color: rgb(255 255 255 / .3); -webkit-backdrop-filter: none; backdrop-filter: none; }
+.scene.band .chipset li { background: rgb(255 255 255 / .1); }
+.green .scene.band { background: var(--leaf); }
+.green .scene.band .chipset li { background: rgb(255 255 255 / .14); }
+.hero-bg::before { background: linear-gradient(90deg, rgb(0 0 0 / .82) 0%, rgb(0 0 0 / .55) 32%, rgb(0 0 0 / 0) 58%); }
+.hero-bg .hero-text { max-width: 42rem; }
+@media (max-width: 60rem) {
+  .hero-bg::before { background: linear-gradient(0deg, rgb(0 0 0 / .88) 0%, rgb(0 0 0 / .55) 50%, rgb(0 0 0 / 0) 85%); }
+  .scene.band > img { aspect-ratio: 4 / 3; }
+  .scene.tall > img { aspect-ratio: 4 / 3; }
+}

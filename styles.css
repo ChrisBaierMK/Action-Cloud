@@ -123,13 +123,10 @@ figcaption { font-size: .9375rem; margin-top: .6rem; }
 }
 
 /* Who we are */
-.who { padding: clamp(3rem, 7vw, 6rem) 0; }
+.who { padding: 0 0 clamp(3rem, 7vw, 6rem); }
 .who-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }
 .who-text h2 { margin-bottom: 1.75rem; }
 .who-text > p { max-width: 58ch; margin-bottom: 1rem; }
-.facts { margin-top: 2.25rem; border-top: 3px solid var(--black); }
-.facts div { display: grid; grid-template-columns: 10rem 1fr; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--black); }
-.facts dt { font-weight: 600; }
 .who-photo figcaption { color: var(--grain); }
 
 /* Build story: the collage sits on its own background colour, so the section disappears into it */
@@ -141,15 +138,37 @@ figcaption { font-size: .9375rem; margin-top: .6rem; }
 .section-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 1.5rem clamp(2rem, 5vw, 5rem); align-items: start; margin-bottom: clamp(2rem, 5vw, 4rem); }
 .section-head p { max-width: 62ch; font-size: 1.1875rem; }
 
-.chapter { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 1.25rem clamp(1.5rem, 5vw, 5rem); align-items: center; padding: clamp(1.25rem, 3vw, 2.5rem) 0; }
-.chapter:nth-of-type(even) .pic { order: 2; }
-.pic img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--wall); }
-.chapter h3 { font-family: var(--display); font-weight: 800; text-transform: uppercase; line-height: 1; text-wrap: balance; font-size: clamp(1.7rem, 3vw, 2.5rem); }
-.chapter p { max-width: 46ch; margin-top: 1rem; }
-.chapter .credit { font-size: .9375rem; color: var(--grain); }
-/* Computer-generated pictures carry a visible tag so nobody takes them for photos of a finished park */
-.pic.concept { position: relative; }
-.pic .tag { position: absolute; left: 0; bottom: 0; background: var(--wall); color: #fff; font-size: .875rem; padding: .3rem .6rem; }
+/* Park zones, grouped so a sponsor can scan them */
+.group { border-top: 3px solid var(--black); padding: 1.5rem 0 clamp(2rem, 4vw, 3rem); }
+.group > h3 { font-family: var(--display); font-weight: 800; text-transform: uppercase; line-height: 1; font-size: clamp(1.7rem, 3vw, 2.5rem); margin-bottom: 1.5rem; }
+.cards { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 2rem clamp(1rem, 2.5vw, 2rem); }
+.card { grid-column: span 2; }
+.cards-5 .card:nth-child(-n+2) { grid-column: span 3; }
+.card .pic { position: relative; }
+.card .pic img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--wall); }
+.cards-5 .card:nth-child(-n+2) .pic img { aspect-ratio: 16 / 10; }
+.card h4 { font: 600 1.25rem/1.25 var(--body); margin: .8rem 0 .3rem; }
+.card p { font-size: 1rem; max-width: 46ch; }
+/* Every picture says what it is: a computer-generated concept, or a photo */
+.pic .tag { position: absolute; left: 0; bottom: 0; background: var(--wall); color: #fff; font-size: .8125rem; padding: .3rem .6rem; }
+.pic .tag.real { background: var(--yellow); color: var(--black); }
+
+/* Quick facts and sponsor value, straight after the hero */
+.quick { padding: clamp(1.5rem, 3vw, 2.5rem) 0 0; }
+.quick ul { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem clamp(1rem, 3vw, 2.5rem); }
+.quick li { border-top: 3px solid var(--black); padding-top: .75rem; font-weight: 600; font-size: 1.125rem; line-height: 1.3; }
+.value { padding: clamp(2.5rem, 6vw, 5rem) 0; }
+.value-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem clamp(1.5rem, 4vw, 3.5rem); margin: 2rem 0; }
+.value-list li { background: var(--yellow); padding: 1.5rem; }
+.value-list h3 { font: 600 1.375rem/1.2 var(--body); margin-bottom: .5rem; }
+
+/* Founder */
+.founder { padding: clamp(3rem, 7vw, 6rem) 0 0; }
+.founder-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 2rem clamp(2rem, 5vw, 5rem); align-items: center; }
+.founder figcaption { color: var(--grain); }
+.founder h2 { margin-bottom: 1.25rem; }
+.founder ul { margin-top: 1.5rem; border-top: 3px solid var(--black); }
+.founder li { padding: .8rem 0; border-bottom: 1px solid var(--black); font-weight: 600; }
 
 /* Why north Bucharest + impact */
 .impact { position: relative; background: var(--ply); padding: clamp(3.5rem, 8vw, 7rem) 0 calc(var(--ramp-h) + clamp(3rem, 6vw, 5rem)); }
@@ -218,8 +237,11 @@ figcaption { font-size: .9375rem; margin-top: .6rem; }
   .hero { grid-template-columns: 1fr; }
   .hero-text { padding: 2.5rem var(--gutter) 2.5rem; }
   .hero-photo img { max-height: 70vh; }
-  .who-grid, .section-head, .chapter, .north, .after-tiers, .contact-grid { grid-template-columns: 1fr; }
-  .chapter:nth-of-type(even) .pic { order: 0; }
+  .who-grid, .section-head, .north, .after-tiers, .contact-grid, .founder-grid { grid-template-columns: 1fr; }
+  .quick ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .value-list { grid-template-columns: 1fr; }
+  .card, .cards-5 .card:nth-child(-n+2) { grid-column: span 3; }
+  .cards-5 .card:nth-child(-n+2) .pic img { aspect-ratio: 4 / 3; }
   .reasons { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .tier { grid-template-columns: 1fr; }
 }
@@ -230,7 +252,7 @@ figcaption { font-size: .9375rem; margin-top: .6rem; }
   .wordmark { font-size: 1.15rem; }
   .top .btn-small { padding: .6rem .7rem; white-space: nowrap; }
   .reasons { grid-template-columns: 1fr; }
-  .facts div { grid-template-columns: 1fr; gap: .15rem; }
+  .card, .cards-5 .card:nth-child(-n+2) { grid-column: span 6; }
 }
 
 @media (prefers-reduced-motion: reduce) {

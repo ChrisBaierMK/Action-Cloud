@@ -27,7 +27,7 @@
         });
       });
     }, { rootMargin: "-45% 0px -50% 0px" });
-    d.querySelectorAll("[data-chapter]").forEach(function (s) { io.observe(s); });
+    d.querySelectorAll("#top, [data-chapter]").forEach(function (s) { io.observe(s); });
   }
 
   // Rails: arrow buttons scroll one card at a time
@@ -35,7 +35,7 @@
     var rail = box.querySelector(".rail"), prev = box.querySelector("[data-prev]"), next = box.querySelector("[data-next]");
     if (!rail || !prev || !next) return;
     function step() {
-      var card = rail.querySelector("li:not([hidden])");
+      var card = rail.querySelector("li");
       return card ? card.getBoundingClientRect().width + parseFloat(getComputedStyle(rail).columnGap || 16) : 320;
     }
     var calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -48,18 +48,74 @@
     next.addEventListener("click", function () { rail.scrollBy({ left: step(), behavior: calm ? "auto" : "smooth" }); });
     rail.addEventListener("scroll", state, { passive: true });
     window.addEventListener("resize", state);
-    box._state = state;
     state();
+  });
+
+  // The plan you click: the numbers on the picture and the cards beside it follow each other.
+  // Without this the numbers are plain links to the cards.
+  d.querySelectorAll("[data-map]").forEach(function (map) {
+    var rail = map.querySelector(".map-rail");
+    if (!rail) return;
+    var cards = Array.prototype.slice.call(rail.children), spots = map.querySelectorAll(".spot"), chips = map.querySelectorAll(".chips a");
+    var count = map.querySelector("[data-count]"), say = map.querySelector("[data-say]"), active = -1, waiting = false;
+    function left(li) { return li.offsetLeft - (parseFloat(getComputedStyle(rail).paddingLeft) || 0); }
+    function mark(list, attr, value) {
+      Array.prototype.forEach.call(list, function (el) {
+        if (el.getAttribute(attr) === value) el.setAttribute("aria-current", "true"); else el.removeAttribute("aria-current");
+      });
+    }
+    function show(i, jump, tell) {
+      var li = cards[i];
+      if (!li) return;
+      if (i !== active) {
+        active = i;
+        mark(spots, "data-spot", li.getAttribute("data-n"));
+        mark(chips, "data-group", li.getAttribute("data-group"));
+        if (count) count.textContent = (i + 1) + " / " + cards.length;
+      }
+      if (jump) rail.scrollTo({ left: left(li), behavior: "auto" });
+      if (tell && say) say.textContent = li.querySelector(".card-body").innerText.replace(/\s*\n+\s*/g, ". ");
+    }
+    function first(attr, value) {
+      for (var i = 0; i < cards.length; i++) if (cards[i].getAttribute(attr) === value) return i;
+      return -1;
+    }
+    function pick(list, attr, key) {
+      Array.prototype.forEach.call(list, function (a) {
+        a.addEventListener("click", function (e) {
+          var i = first(attr, a.getAttribute(key));
+          if (i < 0) return;
+          e.preventDefault();
+          show(i, true, true);
+        });
+      });
+    }
+    pick(spots, "data-n", "data-spot");
+    pick(chips, "data-group", "data-group");
+    rail.addEventListener("scroll", function () {
+      if (waiting) return;
+      waiting = true;
+      requestAnimationFrame(function () {
+        waiting = false;
+        var x = rail.scrollLeft, best = 0, gap = Infinity;
+        cards.forEach(function (li, i) { var g = Math.abs(left(li) - x); if (g < gap) { gap = g; best = i; } });
+        show(best);
+      });
+    }, { passive: true });
+    // a link straight to one place (#loc-9) opens on it
+    var at = location.hash ? first("id", location.hash.slice(1)) : -1;
+    show(at < 0 ? 0 : at, at >= 0);
   });
 
   // Price chips: bring that package into view sideways without moving the page
   d.querySelectorAll("a[data-jump]").forEach(function (a) {
     a.addEventListener("click", function (e) {
-      var card = d.getElementById(a.getAttribute("href").slice(1));
-      if (!card || !card.scrollIntoView) return;
+      var card = d.getElementById(a.getAttribute("href").slice(1)), rail = card && card.parentNode;
+      if (!rail || !rail.scrollTo) return;
       e.preventDefault();
       var calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      card.scrollIntoView({ behavior: calm ? "auto" : "smooth", block: "nearest", inline: "start" });
+      // only the rail moves; the page and the row of prices stay where they are
+      rail.scrollTo({ left: card.offsetLeft - (parseFloat(getComputedStyle(rail).paddingLeft) || 0), behavior: calm ? "auto" : "smooth" });
       // keyboard and screen-reader users land on that package's button
       var go = card.querySelector("[data-pick]");
       if (go) go.focus({ preventScroll: true });

@@ -1,4 +1,4 @@
-// Behaviour checks on the built page: filters, arrows, package pre-selection, no-JS and reduced-motion rendering.
+// Behaviour checks on the built page: the clickable plan, arrows, package pre-selection, no-JS and small screens.
 const { chromium } = require('playwright');
 const base = 'file://' + process.argv[2];
 const ok = (name, cond, extra) => console.log((cond ? 'PASS ' : 'FAIL ') + name + (extra ? '  ' + extra : ''));
@@ -9,16 +9,21 @@ const ok = (name, cond, extra) => console.log((cond ? 'PASS ' : 'FAIL ') + name 
     const errs = []; p.on('pageerror', e => errs.push(String(e)));
     await p.goto(base + '/' + lang + 'index.html');
     await p.waitForTimeout(200);
-    const decks = await p.$$eval('#arrive .card, #wheels .card, #more .card, #parents .card', c => c.length);
-    ok(lang + 'walk: 20 zone cards across the four stops', decks === 20, String(decks));
-    const per = await p.evaluate(() => ['arrive', 'wheels', 'more', 'parents'].map(id => document.querySelectorAll('#' + id + ' .card').length).join('/'));
-    ok(lang + 'walk: 3 / 6 / 6 / 5 cards per stop', per === '3/6/6/5', per);
-    const pins = await p.$$eval('.pin', l => l.map(x => x.lastChild.textContent.trim()));
-    ok(lang + 'walk: every card carries its plan number', pins.length === 20 && pins.every(n => +n >= 1 && +n <= 21), pins.join(','));
-    await p.locator('#wheels-rail').scrollIntoViewIfNeeded();
-    const w0 = await p.$eval('#wheels-rail .rail', r => r.scrollLeft);
-    await p.click('#wheels-rail [data-next]'); await p.waitForTimeout(700);
-    ok(lang + 'walk: arrows move a deck', (await p.$eval('#wheels-rail .rail', r => r.scrollLeft)) > w0 + 100);
+    await p.locator('#park').scrollIntoViewIfNeeded();
+    const spots = await p.$$eval('.spot', l => l.map(x => x.getAttribute('data-spot')).sort((a, c) => a - c).join(','));
+    ok(lang + 'plan: every number from 1 to 21 is on the picture once', spots === Array.from({ length: 21 }, (_, i) => i + 1).join(','), spots);
+    ok(lang + 'plan: every number links to a card that exists', await p.$$eval('.spot', l => l.every(x => document.getElementById(x.getAttribute('href').slice(1)))));
+    const nums = await p.$$eval('.map-rail > li', l => l.map(x => x.querySelector('.num').lastChild.textContent.trim() === x.getAttribute('data-n')));
+    ok(lang + 'plan: 22 cards, each carrying its plan number', nums.length === 22 && nums.every(Boolean), String(nums.length));
+    ok(lang + 'plan: the first place is chosen at the start', (await p.$$eval('.spot[aria-current]', l => l.map(x => x.getAttribute('data-spot')).join())) === '16' && (await p.$eval('[data-count]', e => e.textContent)) === '1 / 22');
+    await p.click('.spot[data-spot="9"]'); await p.waitForTimeout(250);
+    const shown = await p.evaluate(() => { const r = document.querySelector('.map-rail').getBoundingClientRect(); const c = document.getElementById('loc-9').getBoundingClientRect(); return c.left >= r.left - 2 && c.right <= r.right + 2; });
+    ok(lang + 'plan: a number brings up its card and lights up', shown && (await p.$$eval('.spot[aria-current]', l => l.map(x => x.getAttribute('data-spot')).join())) === '9' && (await p.$$eval('.chips a[aria-current]', l => l.map(x => x.getAttribute('data-group')).join())) === 'more');
+    ok(lang + 'plan: screen readers hear which place came up', (await p.$eval('[data-say]', e => e.textContent)).length > 10);
+    await p.click('.map-side [data-next]'); await p.waitForTimeout(800);
+    ok(lang + 'plan: the arrow goes to the next place and the number follows', (await p.$$eval('.spot[aria-current]', l => l.map(x => x.getAttribute('data-spot')).join())) === '7');
+    await p.click('.chips a[data-group="stay"]'); await p.waitForTimeout(250);
+    ok(lang + 'plan: a group chip jumps to its first place', (await p.$$eval('.spot[aria-current]', l => l.map(x => x.getAttribute('data-spot')).join())) === '21');
     ok(lang + 'walk: decks can be reached with the keyboard', await p.$$eval('.rail', l => l.every(x => x.tabIndex === 0 && x.getAttribute('aria-label'))));
     await p.locator('#tier-rail').scrollIntoViewIfNeeded();
     const before = await p.$eval('#tier-rail .rail', r => r.scrollLeft);
@@ -63,7 +68,11 @@ const ok = (name, cond, extra) => console.log((cond ? 'PASS ' : 'FAIL ') + name 
   // Without JavaScript everything is still there
   const ctx = await b.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
   const q = await ctx.newPage(); await q.goto(base + '/index.html');
-  ok('no JS: all 20 zone cards are in the page', (await q.$$eval('#arrive .card, #wheels .card, #more .card, #parents .card', l => l.filter(x => x.offsetParent !== null).length)) === 20);
+  ok('no JS: all 22 place cards are in the page', (await q.$$eval('.map-rail .card', l => l.filter(x => x.offsetParent !== null).length)) === 22);
+  await q.click('.spot[data-spot="4"]'); await q.waitForTimeout(400);
+  ok('no JS: a number on the plan still leads to its card', await q.evaluate(() => { const r = document.querySelector('.map-rail').getBoundingClientRect(); const c = document.getElementById('loc-4').getBoundingClientRect(); return location.hash === '#loc-4' && c.left >= r.left - 2 && c.left < r.right; }));
+  const tiny = await q.$$eval('.spot', l => l.map(x => { const a = getComputedStyle(x, '::after'); const b = x.getBoundingClientRect(); return Math.round(b.width + 8); }).filter(w => w < 24));
+  ok('phone: every number is a target of at least 24 px', tiny.length === 0, tiny.join(','));
   ok('no JS: arrows hidden, swipe hint shown', await q.$eval('.arrows', e => getComputedStyle(e).display === 'none') && await q.$eval('.swipe', e => getComputedStyle(e).display !== 'none'));
   ok('no JS: clothes on the rack are visible', await q.$$eval('.rack-track .piece', a => a.length === 12 && a.every(x => getComputedStyle(x).opacity === '1')));
   ok('no JS: no sideways overflow', await q.evaluate(() => document.documentElement.scrollWidth <= innerWidth));

@@ -49,6 +49,8 @@ PICS = {
     "gaming": ("concept-gaming.webp", 1600, 1195, "concept"),
     "birthday": ("concept-birthday.webp", 1600, 1195, "concept"),
     "hostel": ("concept-hostel.webp", 1600, 1195, "concept"),
+    "wash": ("concept-wash.webp", 1600, 1195, "concept"),
+    "workshop": ("concept-workshop.webp", 1600, 1195, "concept"),
     "plan-3d": ("plan-3d.webp", 2000, 1131, "concept"),
     "huddle": ("concept-huddle.webp", 1600, 1195, "concept"),
     "tier-naming": ("tier-naming.webp", 1600, 1195, "concept"),
@@ -84,7 +86,7 @@ class Page:
     def t(self, pair):
         return pair[self.lang]
 
-    def img(self, key, alt, eager=False, kind=None, sizes="(max-width: 60rem) 82vw, 26rem"):
+    def img(self, key, alt, eager=False, kind=None, sizes="(max-width: 30rem) 75vw, 25rem"):
         """Every picture exists twice: full size in assets/img and 1,000 px wide in assets/img/s (see tools/thumbs.py)."""
         f, w, h, k = PICS[key]
         kind = kind or k
@@ -114,8 +116,8 @@ class Page:
         swipe = self.t(T("Glisează pentru mai multe", "Swipe for more"))
         return (f'<div id="{rid}" data-rail>\n<ul class="rail{" " + cls if cls else ""}" tabindex="0" role="list" aria-label="{esc(label)}">{lis}</ul>\n'
                 f'<div class="wrap rail-tools"><p class="rail-count"><span class="swipe">{swipe}</span></p>'
-                f'<div class="arrows"><button type="button" data-prev aria-label="{prev}">←</button>'
-                f'<button type="button" data-next aria-label="{nxt}">→</button></div></div>\n</div>')
+                f'<div class="arrows"><button type="button" data-prev aria-label="{esc(prev)}">←</button>'
+                f'<button type="button" data-next aria-label="{esc(nxt)}">→</button></div></div>\n</div>')
 
     def head(self, h, sub=None, level=2):
         s = f"<p>{self.t(sub)}</p>" if sub else ""
@@ -148,58 +150,54 @@ NAMES = {
     21: T("Hostel", "Hostel"),
 }
 
-# The walk through the park, one deck of picture cards per stop.
+# The walk through the park, in the order "next" follows. Each group is one chip above the cards.
 # Each card: picture, number on the plan, title (None = the plan name), up to three labels.
 # Ages other than Mini Action's 2–6 are our working assumption and are easy to change here.
 DECKS = [
-    dict(id="arrive", surface="ply", alias=(),
-         head=T("Riderii la stânga. Părinții la dreapta.", "Riders to the left. Parents to the right."),
-         sub=T("În plan: bilet online, acordul părinților online și aglomerația live, pe site.",
-               "Planned: online tickets, online parental consent and a live crowd level on the website."),
-         cards=[
-             ("service", 17, None, T(["Service pentru biciclete și trotinete", "Dulapuri și loc pentru bicicleta ta", "Închiriezi tot ce-ți trebuie"],
-                                     ["Bike and scooter service", "Lockers and storage for your own bike", "Rent everything you need"])),
-             ("entrance", 16, None, T(["Bilet online", "Masă de înfășat pentru bebeluși", "Vestiare și dușuri lângă hostel"],
-                                      ["Online ticket", "Baby changing table", "Changing rooms and showers by the hostel"])),
-             ("burgers", 15, None, T(["Lângă cafeneaua părinților", "Vedere spre street soccer și baschet"], ["Next to the parents' café", "Looks onto street soccer and basketball"])),
-         ]),
-    dict(id="wheels", surface="", alias=("zones", "visit"),
-         head=T("Cu ce te dai?", "What do you ride?"),
-         sub=T("Trotinetă, BMX, mountain bike sau skate: cinci zone pe roți, plus Mini Action pentru cei mici.",
-               "Scooter, BMX, mountain bike or skateboard: five zones on wheels, plus Mini Action for the little ones."),
-         cards=[
-             ("mini-action", 11, None, T(["2–6 ani", "Biciclete fără pedale", "Loc de joacă tip soft play"], ["Ages 2–6", "Balance bikes", "Soft play"])),
-             ("pumptrack", 2, None, T(["De la 7 ani", "Orice are roți", "Prinzi viteză fără să pedalezi"], ["Ages 7 and up", "Anything on wheels", "Build speed without pedalling"])),
-             ("send-room", 1, None, T(["Fun Room: începători", "Send Room: avansați", "Trotinetă, BMX, MTB, skate"],
-                                      ["Fun Room: beginners", "Send Room: advanced", "Scooter, BMX, MTB, skateboard"])),
-             ("bowl", 5, None, T(["De la 7 ani", "Skate, trotinetă, BMX"], ["Ages 7 and up", "Skateboard, scooter, BMX"])),
-             ("big-airbag", 3, None, T(["De la 13 ani", "Bicicletă, schiuri, snowboard", "Trucuri cu aterizare moale"],
-                                       ["Ages 13 and up", "Bike, skis, snowboard", "Tricks with a soft landing"])),
-             ("mega-ramp", 4, None, T(["Pentru profesioniști", "Show-uri și Action Cups"], ["For pros", "Shows and Action Cups"])),
-         ]),
-    dict(id="more", surface="ply", alias=(),
-         head=T("Și fără roți ai ce face.", "Plenty to do without wheels."),
-         sub=T("Trambuline, cățărat, parkour, fotbal, gaming și petreceri.", "Trampolines, climbing, parkour, football, gaming and parties."),
-         cards=[
-             ("trampolines", 6, None, T(["De la 7 ani", "Salturi și rotații", "Aterizare pe airbag"], ["Ages 7 and up", "Flips and spins", "Airbag landing"])),
-             ("climbing-ninja", 9, None, T(["De la 7 ani", "Perete de cățărat", "Traseu cu obstacole"], ["Ages 7 and up", "Climbing wall", "Obstacle course"])),
-             ("parkour", 7, None, T(["De la 13 ani", "Cutii, ziduri, bare"], ["Ages 13 and up", "Boxes, walls, bars"])),
-             ("street-soccer", 10, None, T(["Teren în cușcă", "Perete cu ținte"], ["Caged pitch", "Target wall"])),
-             ("gaming", 13, None, T(["Console și ecrane mari", "Pauză între sesiuni"], ["Consoles and big screens", "A break between sessions"])),
-             ("birthday", 12, None, T(["Aniversări pentru copii", "În plan"], ["Kids' birthday parties", "Planned"])),
-         ]),
-    dict(id="parents", surface="green", alias=(),
-         head=T("Ei sar. Tu pedalezi.", "They jump. You pedal."),
-         sub=T("Studio de cycling, cafenea plină de plante și hostel, sub același acoperiș.",
-               "A cycling studio, a café full of plants and a hostel, under the same roof."),
-         cards=[
-             ("cycling", 8, T("Studio de cycling", "Cycling studio"), T(["Te antrenezi cât copiii sunt în parc"], ["Train while the kids are in the park"])),
-             ("training", 8, T("Antrenament funcțional", "Functional training"), T(["Pentru rideri și părinți"], ["For riders and parents"])),
-             ("bistro", 14, None, T(["Vedere spre Mini Action", "Plină de plante"], ["Looks onto Mini Action", "Full of plants"])),
-             ("walkway", 19, None, T(["Plante de-a lungul promenadei", "Bănci cu vedere spre rampe"], ["Plants all along the walkway", "Benches facing the ramps"])),
-             ("hostel", 21, None, T(["Cazare în aceeași clădire", "Dușuri și toalete alături", "Pentru tabere și competiții"], ["A place to stay in the same building", "Showers and toilets next door", "For camps and competitions"])),
-         ]),
+    dict(id="arrive", chip=T("Sosire", "Arriving"), cards=[
+        ("entrance", 16, None, T(["Bilet online", "Masă de înfășat pentru bebeluși", "Vestiare și dușuri lângă hostel"],
+                                 ["Online ticket", "Baby changing table", "Changing rooms and showers by the hostel"])),
+        ("service", 17, None, T(["Service pentru biciclete și trotinete", "Dulapuri și loc pentru bicicleta ta", "Închiriezi tot ce-ți trebuie"],
+                                ["Bike and scooter service", "Lockers and storage for your own bike", "Rent everything you need"])),
+    ]),
+    dict(id="wheels", chip=T("Pe roți", "On wheels"), cards=[
+        ("mini-action", 11, None, T(["2–6 ani", "Biciclete fără pedale", "Loc de joacă tip soft play"], ["Ages 2–6", "Balance bikes", "Soft play"])),
+        ("pumptrack", 2, None, T(["De la 7 ani", "Orice are roți", "Prinzi viteză fără să pedalezi"], ["Ages 7 and up", "Anything on wheels", "Build speed without pedalling"])),
+        ("send-room", 1, None, T(["Fun Room: începători", "Send Room: avansați", "Trotinetă, BMX, MTB, skate"],
+                                 ["Fun Room: beginners", "Send Room: advanced", "Scooter, BMX, MTB, skateboard"])),
+        ("bowl", 5, None, T(["De la 7 ani", "Skate, trotinetă, BMX"], ["Ages 7 and up", "Skateboard, scooter, BMX"])),
+        ("big-airbag", 3, None, T(["De la 13 ani", "Bicicletă, schiuri, snowboard", "Trucuri cu aterizare moale"],
+                                  ["Ages 13 and up", "Bike, skis, snowboard", "Tricks with a soft landing"])),
+        ("mega-ramp", 4, None, T(["Pentru profesioniști", "Show-uri și Action Cups"], ["For pros", "Shows and Action Cups"])),
+    ]),
+    dict(id="more", chip=T("Fără roți", "No wheels"), cards=[
+        ("trampolines", 6, None, T(["De la 7 ani", "Salturi și rotații", "Aterizare pe airbag"], ["Ages 7 and up", "Flips and spins", "Airbag landing"])),
+        ("climbing-ninja", 9, None, T(["De la 7 ani", "Perete de cățărat", "Traseu cu obstacole"], ["Ages 7 and up", "Climbing wall", "Obstacle course"])),
+        ("parkour", 7, None, T(["De la 13 ani", "Cutii, ziduri, bare"], ["Ages 13 and up", "Boxes, walls, bars"])),
+        ("street-soccer", 10, None, T(["Teren în cușcă", "Perete cu ținte"], ["Caged pitch", "Target wall"])),
+        ("gaming", 13, None, T(["Console și ecrane mari", "Pauză între sesiuni"], ["Consoles and big screens", "A break between sessions"])),
+    ]),
+    dict(id="parents", chip=T("Pentru familii", "For families"), cards=[
+        ("bistro", 14, None, T(["Vedere spre Mini Action", "Plină de plante"], ["Looks onto Mini Action", "Full of plants"])),
+        ("burgers", 15, None, T(["Lângă cafeneaua părinților", "Vedere spre street soccer și baschet"], ["Next to the parents' café", "Looks onto street soccer and basketball"])),
+        ("cycling", 8, T("Studio de cycling", "Cycling studio"), T(["Te antrenezi cât copiii sunt în parc"], ["Train while the kids are in the park"])),
+        ("training", 8, T("Antrenament funcțional", "Functional training"), T(["Pentru rideri și părinți"], ["For riders and parents"])),
+        ("birthday", 12, None, T(["Aniversări pentru copii", "În plan"], ["Kids' birthday parties", "Planned"])),
+        ("walkway", 19, None, T(["Plante de-a lungul promenadei", "Bănci cu vedere spre rampe"], ["Plants all along the walkway", "Benches facing the ramps"])),
+    ]),
+    dict(id="stay", chip=T("Hostel și culise", "Hostel and backstage"), cards=[
+        ("hostel", 21, None, T(["Cazare în aceeași clădire", "Dușuri și toalete alături", "Pentru tabere și competiții"],
+                               ["A place to stay in the same building", "Showers and toilets next door", "For camps and competitions"])),
+        ("wash", 18, None, T(["Ușă direct din hostel", "Dulapuri pentru echipament"], ["A door straight from the hostel", "Lockers for your gear"])),
+        ("workshop", 20, None, T(["Aici se construiesc și se repară rampele"], ["Where the ramps are built and repaired"])),
+    ]),
 ]
+
+# Where each number sits on the 3D picture, in percent of its width and height (measured from the white discs on it).
+# Redraw the picture and these move: measure again.
+SPOTS = {1: (48.6, 26.2), 2: (14.05, 47.75), 3: (20.1, 7.2), 4: (59.05, 7.2), 5: (31.1, 47.75), 6: (13.4, 26.2), 7: (81.65, 26.2),
+         8: (69.2, 47.75), 9: (81.2, 47.75), 10: (54.75, 47.75), 11: (42.3, 47.75), 12: (75.55, 75.0), 13: (7.15, 75.0), 14: (48.0, 75.05),
+         15: (62.55, 75.0), 16: (33.8, 74.55), 17: (19.85, 75.05), 18: (90.45, 75.0), 19: (81.15, 64.7), 20: (83.35, 8.05), 21: (93.35, 38.1)}
 
 # What each concept picture shows, for people who cannot see it (checked against the pictures).
 ALT = {
@@ -223,6 +221,8 @@ ALT = {
     "bistro": T("Cafenea plină de plante; părinți la mese, lângă un perete de sticlă cu vedere spre rampe", "A café full of plants; parents at tables beside a glass wall overlooking the ramps"),
     "walkway": T("Promenadă cu copaci și plante; un părinte și un copil mic privesc rampele de la balustradă", "A walkway lined with trees and plants; a parent and a small child watch the ramps from the railing"),
     "hostel": T("Cameră cu paturi supraetajate din lemn, dulapuri, două biciclete și o trotinetă; doi copii își desfac bagajele", "A room with wooden bunk beds, lockers, two bikes and a scooter; two kids unpacking"),
+    "wash": T("Vestiar cu dulapuri din placaj și bănci; în spate, două cabine de duș și chiuvete; doi rideri își lasă echipamentul", "A changing room with plywood lockers and benches; two shower cubicles and wash basins at the back; two riders put away their gear"),
+    "workshop": T("Atelier: un constructor prinde o foaie de placaj pe scheletul curbat al unei rampe; în jur, stive de placaj și scule, iar prin ușa mare se văd rampele", "Workshop: a builder fixes a plywood sheet to the curved frame of a ramp; stacks of plywood and tools around, and the ramps visible through the big door"),
     "tier-naming": T("Fațada parcului seara, cu firma „Action Cloud by LOGO” și steaguri LOGO la intrare", "The park façade at dusk with an \"Action Cloud by LOGO\" sign and LOGO flags at the entrance"),
     "tier-zone": T("Poarta unei zone, cu LOGO mare deasupra și bannere LOGO în interior", "The gateway to a zone with a large LOGO above it and LOGO banners inside"),
     "tier-attraction": T("Mega rampa, cu panouri LOGO pe laterale", "The mega ramp with LOGO panels on its sides"),
@@ -271,6 +271,10 @@ RACK = [
     ("tee-bleach-black-front", "Bleach tee", TEE),
     ("tee-truck-grey-front", "Truck tee", TEE),
 ]
+# real height in px of each 760 px wide photo on the rail
+RACK_H = {"hoodie-bigmark-black-front": 1021, "tee-cutout-black-front": 1004, "crew-sunfade-yellow-front": 1001, "tee-ramp-ecru-front": 1002,
+          "hoodie-split-grey-front": 1067, "tee-sequence-black-front": 1011, "hoodie-livefree-black-back": 1030, "tee-tbar-ecru-front": 1006,
+          "tee-stencil-yellow-back": 1026, "hoodie-tape-grey-front": 1033, "tee-bleach-black-front": 1007, "tee-truck-grey-front": 996}
 
 # ---------------------------------------------------------------- plan drawn to scale (10 units per metre)
 ROOMS = [
@@ -360,7 +364,9 @@ def aliases(*ids):
 
 
 # The size claim. It is worded as a plan because the park is not built; see README, "The size claim".
-CLAIM = T("Plănuit: cel mai mare parc indoor de action sports din România", "Planned: the biggest indoor action sports park in Romania")
+CLAIM = T("Plănuim cel mai mare parc indoor de action sports din România", "We are planning the biggest indoor action sports park in Romania")
+CLAIM_NOTE = T("* După suprafața totală planificată a halei (aproximativ 6.000 m²), față de parcurile indoor de action sports deschise sau anunțate public în România, după datele publice consultate în noiembrie 2026.",
+               "* By the planned total floor area of the hall (about 6,000 m²), compared with indoor action sports parks open or publicly announced in Romania, from public information checked in November 2026.")
 
 
 def s_hero(p):
@@ -370,7 +376,7 @@ def s_hero(p):
     return f'''<section class="slide hero" id="top">
   {img}
   <div class="wrap hero-top">
-    <p class="kicker">{p.t(CLAIM)}</p>
+    <p class="kicker">{p.t(CLAIM)}<a class="star" href="#despre-marime" aria-label="{esc(p.t(T("Vezi nota despre comparație", "See the note on the comparison")))}">*</a></p>
     <h1>{p.t(T("Un loc al lor.<br>Hai să-l construim.", "A place of their own.<br>Let's build it."))}</h1>
     <p class="sub">{p.t(T("Aproximativ 6.000 m², în nordul Bucureștiului. Încă nu e deschis.", "About 6,000 m², in north Bucharest. Not open yet."))}</p>
   </div>
@@ -378,7 +384,7 @@ def s_hero(p):
     <div>
       <p class="by">{p.t(T("De la echipa care a construit Action Cloud Brașov", "From the team that built Action Cloud Brașov"))}</p>
       <p class="actions">
-        <a class="btn btn-white" href="#why">{p.t(T("Vezi povestea", "See the story"))}</a>
+        <a class="btn btn-white" href="#park">{p.t(T("Intră în parc", "Step inside"))}</a>
         <a class="btn btn-line" href="#crew">{p.t(T("Intră în Action Crew", "Join the Action Crew"))}</a>
       </p>
     </div>
@@ -446,52 +452,60 @@ def s_proof(p):
 </section>'''
 
 
-def s_park(p):
-    facts = p.labels(p.t(T(["Mii de familii tinere în nordul Bucureștiului", "Rampele în mijloc, fără pereți între ele", "Locația exactă și data deschiderii: încă neanunțate"],
-                           ["Thousands of young families in north Bucharest", "Ramps in the middle, no walls between them", "Exact location and opening date: not announced yet"])))
+def s_map(p):
+    """The centre of the site: the 3D plan with a number on every room. A number brings up that room's card.
+    Without the script the numbers are plain links to the cards, which sit in a row you can scroll."""
     alt = p.t(T("Imagine concept: parcul văzut de sus, fără acoperiș. Rampele umplu mijlocul halei, încăperile numerotate sunt pe margine, intrarea e în față.",
                 "Concept image: the park seen from above with the roof removed. Ramps fill the middle of the hall, numbered rooms sit along the edges, the entrance is at the front."))
+    on_plan = p.t(T("Numărul de pe plan: ", "Number on the plan: "))
+    cards, spots, chips, seen = [], [], "", {}
+    for d in DECKS:
+        first = None
+        for key, num, title, labels in d["cards"]:
+            name = p.t(title or NAMES[num])
+            seen[num] = seen.get(num, 0) + 1
+            cid = f"loc-{num}" if seen[num] == 1 else f"loc-{num}-{seen[num]}"
+            first = first or cid
+            if seen[num] == 1:
+                x, y = SPOTS[num]
+                spots.append(f'<li><a class="spot" href="#{cid}" data-spot="{num}" style="--x:{x}%;--y:{y}%">{num}<span class="vh">, {p.t(NAMES[num])}</span></a></li>')
+            media = p.media(key, p.t(ALT[key]))
+            cards.append(f'<li id="{cid}" data-n="{num}" data-group="{d["id"]}"><div class="card">{media}<div class="card-body">'
+                         f'<h3><span class="num"><span class="vh">{on_plan}</span>{num}</span> {name}</h3>{p.labels(p.t(labels))}</div></div></li>')
+        chips += f'<li><a href="#{first}" data-group="{d["id"]}">{p.t(d["chip"])}</a></li>'
+    assert len(spots) == len(SPOTS) == len(NAMES), "every number on the picture needs a card"
+    img, _ = p.img("plan-3d", alt, sizes="(max-width: 60rem) 100vw, 54rem")
+    total = p.t(T(f"{len(cards)} de locuri", f"{len(cards)} places"))
     return f'''<section class="slide" id="park" data-chapter="park">
-  {aliases("inside")}
-  <div class="wrap duo duo-wide">
-    <div>
-      {p.head(T("Următoarea oprire: nordul Bucureștiului.", "Next stop: north Bucharest."), T("Aproximativ 6.000 m² sub un singur acoperiș: sport, mâncare, magazin și hostel.", "About 6,000 m² under one roof: sport, food, a shop and a hostel."))}
-      {facts}
+  {aliases("inside", "zones", "visit", "arrive", "wheels", "more", "parents")}
+  <div class="wrap map" data-map>
+    <div class="map-head">
+      {p.head(T("Intră în parc.", "Step inside."), T("Apasă pe un număr și vezi ce e acolo.", "Tap a number to see what is there."))}
     </div>
-    <a class="plan-link" href="{p.pre}assets/img/plan-3d.webp" aria-label="{p.t(T("Deschide planul mare", "Open the large plan"))}">{p.media("plan-3d", alt, cls="plan-pic", sizes="(max-width: 60rem) 100vw, 46rem")}</a>
+    <div class="map-pic">
+      {img}
+      <ol class="spots" aria-label="{esc(p.t(T("Locurile din parc, după numărul de pe plan", "The places in the park, by their number on the plan")))}">{"".join(spots)}</ol>
+      <span class="tag">{p.t(TAG["concept"])}</span>
+    </div>
+    <div class="map-side" data-rail>
+      <ul class="chips" aria-label="{esc(p.t(T("Sari la", "Jump to")))}">{chips}</ul>
+      <ul class="rail map-rail" tabindex="0" role="list" aria-label="{esc(p.t(T("Locurile din parc", "The places in the park")))}">{"".join(cards)}</ul>
+      <div class="rail-tools"><p class="rail-count"><span data-count>{total}</span><span class="swipe"> · {p.t(T("glisează", "swipe"))}</span></p>
+        <div class="arrows"><button type="button" data-prev aria-label="{esc(p.t(T("Locul anterior", "Previous place")))}">←</button><button type="button" data-next aria-label="{esc(p.t(T("Locul următor", "Next place")))}">→</button></div></div>
+      <p class="vh" aria-live="polite" data-say></p>
+    </div>
   </div>
   <div class="wrap">
     <details class="more">
       <summary>{p.t(T("Planul la scară și suprafețele", "Scale plan and floor areas"))}</summary>
       <div class="more-body">
-        <div class="plan-scroll" tabindex="0" role="group" aria-label="{p.t(T("Planul la scară, se derulează în lateral", "Scale plan, scrolls sideways"))}">{plan_svg(p)}</div>
+        <div class="plan-scroll" tabindex="0" role="group" aria-label="{esc(p.t(T("Planul la scară, se derulează în lateral", "Scale plan, scrolls sideways")))}">{plan_svg(p)}</div>
         {plan_legend(p)}
-        <p class="note">{p.t(T("Plan orientativ pentru o hală de 100 × 60 m, cu suprafețe aproximative. Se adaptează la clădirea finală.", "Indicative plan for a 100 × 60 m hall, with approximate floor areas. It will be adapted to the final building."))}</p>
+        <p class="note">{p.t(T("Plan orientativ pentru o hală de 100 × 60 m, cu suprafețe aproximative. Se adaptează la clădirea finală. Locația exactă și data deschiderii nu sunt încă anunțate.", "Indicative plan for a 100 × 60 m hall, with approximate floor areas. It will be adapted to the final building. The exact location and the opening date are not announced yet."))}</p>
       </div>
     </details>
   </div>
 </section>'''
-
-
-def s_deck(p, d):
-    """One stop of the walk: a headline and a deck of zone cards, each with its number on the plan."""
-    plan_word = p.t(T("Pe plan: numărul ", "On the plan: number "))
-    cards = []
-    for key, num, title, labels in d["cards"]:
-        name = p.t(title or NAMES[num])
-        m = p.media(key, p.t(ALT[key]))
-        m = m[:-len("</div>")] + f'<span class="pin"><span class="vh">{plan_word}</span>{num}</span></div>'
-        cards.append(f'<div class="card">{m}<div class="card-body"><h3>{name}</h3>{p.labels(p.t(labels))}</div></div>')
-    surface = f' {d["surface"]}' if d["surface"] else ""
-    head = f'''  {aliases(*d["alias"])}
-  <div class="wrap">
-    {p.head(d["head"], d["sub"])}
-  </div>'''
-    if len(cards) <= 3:
-        body = '  <div class="wrap">\n    <div class="grid grid-3">\n      ' + "\n      ".join(cards) + "\n    </div>\n  </div>"
-    else:
-        body = "  " + p.rail(d["id"] + "-rail", [("", c) for c in cards], label=p.t(d["head"]))
-    return f'<section class="slide{surface}" id="{d["id"]}" data-chapter="park">\n{head}\n{body}\n</section>'
 
 
 def s_crew(p):
@@ -508,10 +522,10 @@ def s_crew(p):
       {p.labels(p.t(T(["Noutăți despre parc, pe e-mail", "Datele Action Camps", "Anunț când se deschid comenzile din magazin"], ["Park news by email", "Action Camp dates", "A heads-up when shop orders open"])))}
       <div class="after crew-pic">{pic}</div>
     </div>
-    <form name="crew" method="POST" action="{action}" data-netlify="true" netlify-honeypot="website">
+    <form name="crew" method="POST" action="{action}" data-netlify="true" data-netlify-honeypot="bot-field">
       <input type="hidden" name="form-name" value="crew">
       <input type="hidden" name="language" value="{p.lang}">
-      <p class="hp" aria-hidden="true"><label>Website <input name="website" tabindex="-1" autocomplete="off"></label></p>
+      <p class="hp" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
       <div class="field"><label for="c-name">{p.t(T("Prenume", "First name"))}</label><input id="c-name" name="name" autocomplete="given-name" required></div>
       <div class="field"><label for="c-email">{p.t(T("E-mail", "Email"))}</label><input id="c-email" name="email" type="email" autocomplete="email" required aria-describedby="c-help">
         <p class="help" id="c-help">{p.t(T("Ai sub 16 ani? Roagă un părinte să te înscrie.", "Under 16? Ask a parent to sign you up."))} <a href="https://wa.me/?text={quote(share_text)}" rel="noopener">{p.t(T("Trimite-i pe WhatsApp", "Send it on WhatsApp"))}</a></p></div>
@@ -532,9 +546,10 @@ def s_shop(p):
     mock = p.t(TAG["mock"])
     hang = ""
     for f, name, kind in RACK:
+        tall = RACK_H[f]
         # in English the product name already says what it is ("Big Mark hoodie")
         kind_label = f"<span>{p.t(kind)}</span>" if p.lang == "ro" else ""
-        hang += (f'<li class="hang"><a class="piece" href="{shop}" draggable="false"><span class="cloth"><img src="{p.pre}shop/img/p/{f}.webp" width="760" height="1001" loading="lazy" draggable="false" alt="{esc(mock)}: {esc(name)}"></span>'
+        hang += (f'<li class="hang"><a class="piece" href="{shop}" draggable="false"><span class="cloth"><img src="{p.pre}shop/img/p/{f}.webp" width="760" height="{tall}" loading="lazy" draggable="false" alt="{esc(mock)}: {esc(name)}"></span>'
                  f'<span class="piece-label"><b>{name}</b>{kind_label}</span></a></li>')
     prev = p.t(T("Mută bara spre stânga", "Move the rail left"))
     nxt = p.t(T("Mută bara spre dreapta", "Move the rail right"))
@@ -544,11 +559,11 @@ def s_shop(p):
   </div>
   <div class="rack" data-rack>
     <div class="rack-bar" aria-hidden="true"></div>
-    <ul class="rack-track" tabindex="0" aria-label="{p.t(T("Bara cu haine: hanorace, bluze și tricouri", "Clothes rail: hoodies, crewnecks and tees"))}">{hang}</ul>
+    <ul class="rack-track" tabindex="0" aria-label="{esc(p.t(T("Bara cu haine: hanorace, bluze și tricouri", "Clothes rail: hoodies, crewnecks and tees")))}">{hang}</ul>
     <div class="wrap rail-tools">
       <p class="rail-count">{p.t(T("Trage de bară. Imaginile sunt machete, iar comenzile online se deschid în curând.", "Drag the rail. The pictures are mock-ups and online orders open soon."))}</p>
       <a class="btn btn-white" href="{shop}">{p.t(T("Vezi magazinul", "See the shop"))}</a>
-      <div class="arrows"><button type="button" data-prev aria-label="{prev}">←</button><button type="button" data-next aria-label="{nxt}">→</button></div>
+      <div class="arrows"><button type="button" data-prev aria-label="{esc(prev)}">←</button><button type="button" data-next aria-label="{esc(nxt)}">→</button></div>
     </div>
   </div>
 </section>'''
@@ -576,7 +591,7 @@ def s_sponsors(p):
   {aliases("packages")}
   <div class="wrap">
     {p.head(T("Unde apare brandul tău.", "Where your brand appears."), T("Tu susții parcul, noi îți dăm vizibilitate. De la 100 la 200.000 € pe an.", "You back the park, we give you visibility. From €100 to €200,000 a year."))}
-    <ul class="ladder" aria-label="{p.t(T("Pachetele, după preț", "The packages, by price"))}">{ladder}</ul>
+    <ul class="ladder" aria-label="{esc(p.t(T("Pachetele, după preț", "The packages, by price")))}">{ladder}</ul>
   </div>
   {p.rail("tier-rail", items, cls="tiers", label=p.t(T("Pachetele de sponsorizare", "The sponsorship packages")))}
   <div class="wrap">
@@ -601,10 +616,10 @@ def s_contact(p):
     <div class="split-head">
       {p.head(T("Hai să vorbim.", "Let's talk."), T("Christoph Baier, fondatorul Action Cloud, îți răspunde personal.", "Christoph Baier, founder of Action Cloud, will reply personally."))}
     </div>
-    <form name="sponsor" method="POST" action="{action}" data-netlify="true" netlify-honeypot="website">
+    <form name="sponsor" method="POST" action="{action}" data-netlify="true" data-netlify-honeypot="bot-field">
       <input type="hidden" name="form-name" value="sponsor">
       <input type="hidden" name="language" value="{p.lang}">
-      <p class="hp" aria-hidden="true"><label>Website <input name="website" tabindex="-1" autocomplete="off"></label></p>
+      <p class="hp" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
       <div class="field"><label for="f-package">{p.t(T("Pachetul care te interesează", "Package you are interested in"))}</label><select id="f-package" name="package">{opts}</select></div>
       <div class="field"><label for="f-name">{p.t(T("Nume", "Name"))}</label><input id="f-name" name="name" autocomplete="name" required></div>
       <div class="field"><label for="f-company">{p.t(T("Companie", "Company"))} <span>{optional}</span></label><input id="f-company" name="company" autocomplete="organization"></div>
@@ -622,12 +637,11 @@ def s_contact(p):
 
 
 def sections(p):
-    decks = [s_deck(p, d) for d in DECKS]
-    return [s_hero(p), s_why(p), s_proof(p), s_park(p)] + decks + [s_crew(p), s_shop(p), s_sponsors(p), s_contact(p)]
+    return [s_hero(p), s_map(p), s_why(p), s_proof(p), s_crew(p), s_shop(p), s_sponsors(p), s_contact(p)]
 
 
 # chapter key, id it links to, name in the top bar
-CHAPTERS = [("proof", "why", T("Brașov", "Brașov")), ("park", "park", T("Parcul", "The park")), ("crew", "crew", T("Action Crew", "Action Crew")),
+CHAPTERS = [("park", "park", T("Parcul", "The park")), ("proof", "why", T("Brașov", "Brașov")), ("crew", "crew", T("Action Crew", "Action Crew")),
             ("shop", "shop", T("Magazin", "Shop")), ("sponsors", "sponsors", T("Sponsori", "Sponsors"))]
 
 
@@ -659,7 +673,12 @@ def page(lang):
 <meta property="og:type" content="website">
 <meta property="og:title" content="{esc(title)}">
 <meta property="og:description" content="{esc(desc)}">
-<meta property="og:image" content="{SITE}assets/img/concept-crew.webp">
+<meta property="og:image" content="{SITE}assets/img/og.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Action Cloud">
+<meta property="og:locale" content="{"ro_RO" if lang == "ro" else "en_GB"}">
 <meta property="og:url" content="{self_url}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="{p.pre}assets/fonts/barlow-semi-condensed-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -670,8 +689,8 @@ def page(lang):
 <a class="skip" href="#main">{p.t(T("Sari la conținut", "Skip to content"))}</a>
 
 <header class="bar">
-  <a class="brand" href="#top" aria-label="{p.t(T("Action Cloud București, înapoi sus", "Action Cloud Bucharest, back to top"))}"><img src="{p.pre}assets/img/logo-yellow.webp" width="472" height="256" alt="Action Cloud"></a>
-  <nav class="chapters" aria-label="{p.t(T("Capitole", "Chapters"))}">{nav}</nav>
+  <a class="brand" href="#top" aria-label="{esc(p.t(T("Action Cloud București, înapoi sus", "Action Cloud Bucharest, back to top")))}"><img src="{p.pre}assets/img/logo-yellow.webp" width="472" height="256" alt="Action Cloud"></a>
+  <nav class="chapters" aria-label="{esc(p.t(T("Capitole", "Chapters")))}">{nav}</nav>
   {other}
   <a class="btn btn-yellow btn-small" href="#sponsors">{p.t(T("Devino sponsor", "Become a sponsor"))}</a>
 </header>
@@ -693,6 +712,7 @@ def page(lang):
       <li><a href="{p.pre}shop/?lang={lang}">{p.t(T("Magazin", "Shop"))}</a></li>
     </ul>
     <p>{foot_note}</p>
+    <p id="despre-marime">{p.t(CLAIM_NOTE)}</p>
   </div>
 </footer>
 
@@ -738,7 +758,24 @@ def write(rel, text):
     print("wrote", rel, len(text))
 
 
+def check_pictures():
+    """Stop with a clear message instead of publishing a page with a missing picture."""
+    here = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    missing = []
+    for key, (f, w, h, _) in PICS.items():
+        if not os.path.exists(os.path.join(here, "assets", "img", f)):
+            missing.append(f"assets/img/{f}")
+        if w > 1000 and not os.path.exists(os.path.join(here, "assets", "img", "s", f)):
+            missing.append(f"assets/img/s/{f} (run tools/thumbs.py)")
+    for f in RACK_H:
+        if not os.path.exists(os.path.join(here, "shop", "img", "p", f + ".webp")):
+            missing.append(f"shop/img/p/{f}.webp")
+    if missing:
+        sys.exit("Missing pictures:\n  " + "\n  ".join(missing))
+
+
 if __name__ == "__main__":
+    check_pictures()
     write("index.html", page("ro"))
     write("en/index.html", page("en"))
     write("multumim.html", thanks("ro"))

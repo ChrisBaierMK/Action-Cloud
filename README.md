@@ -19,7 +19,7 @@ The page is a walk in twelve stops: the hero, two stops of proof from Brașov, t
 ## Checking
 
 ```
-node tools/check.js "$PWD"          # behaviour: filters, arrows, forms, no-JS, small screens
+node tools/check.js "$PWD"          # behaviour: the clickable plan, arrows, forms, no-JS, small screens
 node tools/shots.js "$PWD" <out dir> # a screenshot of every slide, desktop and phone
 ```
 

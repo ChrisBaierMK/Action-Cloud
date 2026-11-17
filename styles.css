@@ -95,6 +95,7 @@ a, button, input, select, textarea, summary, [tabindex] { scroll-margin-top: cal
 .green :focus-visible { outline-color: #fff; }
 .green .card { color: var(--black); }
 .head { max-width: 46rem; margin-bottom: clamp(1.5rem, 4vh, 2.5rem); }
+#why .head { max-width: 54rem; }  /* two sentences, one line each on wide screens */
 .head h2, .hero h1 { font-family: var(--display); font-weight: 800; line-height: 1.02; text-wrap: balance; font-size: clamp(2.25rem, min(6vw, 8svh), 4.5rem); }
 .head p, .hero .sub { font-size: clamp(1.125rem, 1.8vw, 1.5rem); line-height: 1.35; margin-top: .85rem; max-width: 40ch; text-wrap: pretty; }
 .after { margin-top: clamp(1.25rem, 3vh, 2rem); }

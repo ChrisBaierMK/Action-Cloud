@@ -401,7 +401,7 @@ def s_why(p):
     return f'''<section class="slide" id="why" data-chapter="proof">
   {aliases("impact")}
   <div class="wrap">
-    {p.head(T("Vin pentru rampe. Rămân pentru gașcă.", "Come for the ramps. Stay for the friends."), T("Așa arată deja la Action Cloud Brașov.", "This is what it already looks like at Action Cloud Brașov."))}
+    {p.head(T("Vin pentru rampe.<br>Rămân pentru comunitate.", "Come for the ramps.<br>Stay for the community."), T("Așa arată deja la Action Cloud Brașov.", "This is what it already looks like at Action Cloud Brașov."))}
     <div class="grid grid-3">
       {grid}
     </div>

@@ -146,6 +146,11 @@ figcaption { font-size: .9375rem; margin-top: .6rem; }
 .plan-hint { display: none; font-size: .9375rem; color: var(--grain); margin-bottom: .5rem; }
 .plan-scroll { overflow-x: auto; }
 .plan-svg { display: block; width: 100%; min-width: 44rem; height: auto; }
+.plan-3d { position: relative; min-width: 44rem; }
+.plan-3d img { display: block; width: 100%; height: auto; }
+.plan-flat { margin-top: 1.5rem; }
+.plan-flat summary { cursor: pointer; font-weight: 600; padding: .5rem 0; }
+.plan-flat .plan-scroll { margin-top: 1rem; }
 .plan-svg rect { stroke: var(--black); stroke-width: 2; }
 .plan-svg .outer { fill: none; stroke-width: 6; }
 .r-w { fill: var(--ply); background: var(--ply); }

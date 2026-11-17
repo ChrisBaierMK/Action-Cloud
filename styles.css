@@ -433,3 +433,4 @@ figcaption { font-size: .9375rem; margin-top: .6rem; }
   .scene.band > img { aspect-ratio: 4 / 3; }
   .scene.tall > img { aspect-ratio: 4 / 3; }
 }
+.scene h4, .scene h5 { margin-top: 0; }

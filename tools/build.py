@@ -58,6 +58,7 @@ PICS = {
     "tier-feature": ("tier-feature.webp", 1600, 1195, "concept"),
     "tier-local": ("tier-local.webp", 1600, 1195, "concept"),
     "tier-supporter": ("tier-supporter.webp", 1600, 1195, "concept"),
+    "tier-supporter-en": ("tier-supporter-en.webp", 1600, 1195, "concept"),
     "park-brasov": ("park-brasov.webp", 989, 900, "real"),
     "build": ("build-2012-2023.webp", 1600, 901, "real"),
     "action-camp": ("action-camp.webp", 1600, 720, "real"),
@@ -126,10 +127,10 @@ class Page:
 NAMES = {
     1: T("Send Room și Fun Room", "Send Room and Fun Room"),
     2: T("Pumptrack", "Pumptrack"),
-    3: T("Săritura mare pe airbag", "Big airbag jump"),
-    4: T("Mega rampa", "Mega ramp"),
+    3: T("Săritură mare pe airbag", "Big airbag jump"),
+    4: T("Mega rampă", "Mega ramp"),
     5: T("Bowl", "Bowl"),
-    6: T("Sala de trambuline", "Trampoline hall"),
+    6: T("Sală de trambuline", "Trampoline hall"),
     7: T("Parkour și street workout", "Parkour and street workout"),
     8: T("Antrenament funcțional și studio de cycling", "Functional training and cycling studio"),
     9: T("Cățărat și traseu ninja", "Climbing and ninja course"),
@@ -142,7 +143,7 @@ NAMES = {
     16: T("Intrare și recepție", "Entrance and reception"),
     17: T("Magazin, service și închirieri", "Shop, service and rentals"),
     18: T("Vestiare, toalete și dușuri", "Changing rooms, toilets and showers"),
-    19: T("Promenada verde", "The green walkway"),
+    19: T("Promenadă verde", "Green walkway"),
     20: T("Depozit și atelier de rampe", "Storage and ramp workshop"),
     21: T("Hostel", "Hostel"),
 }
@@ -520,6 +521,8 @@ def s_sponsors(p):
     for tid, key, name, pr_ro, pr_en, places, labels in TIERS:
         price = pr_ro if p.lang == "ro" else pr_en
         pl = f'<p class="places">{p.t(places)}</p>' if places else ""
+        if p.lang == "en" and key + "-en" in PICS:  # a picture with words in it has an English twin
+            key += "-en"
         img, _ = p.img(key, example + ", " + p.t(name))
         media = f'<div class="media">{img}<span class="tag">{example}</span></div>'
         body = (f'<h3>{p.t(name)}</h3><p class="price">{price} <small>{per}</small></p>{pl}{p.labels(p.t(labels))}'

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Writes an 800 px wide copy of every picture in assets/img to assets/img/s (used by srcset on phones).
+"""Writes a 1,000 px wide copy of every picture in assets/img to assets/img/s (used by srcset on phones).
 
 Run after adding or replacing a picture:  python3 tools/thumbs.py     (needs Pillow)
 """
@@ -17,5 +17,7 @@ for path in sorted(glob.glob(os.path.join(SRC, "*.webp"))):
     if name.startswith("logo-"):
         continue
     im = Image.open(path).convert("RGB")
-    im.resize((800, round(800 * im.size[1] / im.size[0])), Image.LANCZOS).save(os.path.join(OUT, name), quality=78, method=6)
+    if im.size[0] <= 1000:
+        continue
+    im.resize((1000, round(1000 * im.size[1] / im.size[0])), Image.LANCZOS).save(os.path.join(OUT, name), quality=78, method=6)
     print("wrote", os.path.join("assets", "img", "s", name))

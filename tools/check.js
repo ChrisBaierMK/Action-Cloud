@@ -33,6 +33,21 @@ const ok = (name, cond, extra) => console.log((cond ? 'PASS ' : 'FAIL ') + name 
     ok(lang + 'tiers: choosing a package pre-selects it in the form', await p.$eval('#f-package', s => s.options[s.selectedIndex].text) === third, third);
     const tiers = await p.$$eval('#tier-rail .tier', t => t.length), opts = await p.$$eval('#f-package option', o => o.length);
     ok(lang + 'tiers: 7 cards, 8 form options', tiers === 7 && opts === 8, tiers + '/' + opts);
+    await p.locator('#shop').scrollIntoViewIfNeeded(); await p.waitForTimeout(1400);
+    const hang = await p.$$eval('.rack-track .hang', l => l.length);
+    ok(lang + 'rack: 12 pieces hang on the rail, all linking to the shop', hang === 12 && await p.$$eval('.rack-track a.piece', a => a.every(x => /shop\/\?lang=/.test(x.getAttribute('href')))), String(hang));
+    ok(lang + 'rack: pieces are visible once on screen', await p.$$eval('.rack-track .piece', a => a.every(x => getComputedStyle(x).opacity === '1')));
+    const r0 = await p.$eval('.rack-track', r => r.scrollLeft);
+    await p.click('.rack [data-next]'); await p.waitForTimeout(900);
+    const r1 = await p.$eval('.rack-track', r => r.scrollLeft);
+    ok(lang + 'rack: arrow moves the rail', r1 > r0 + 100, r0 + ' -> ' + r1);
+    const box = await p.$eval('.rack-track', r => { const b = r.getBoundingClientRect(); return { x: b.x + b.width / 2, y: b.y + b.height / 2 }; });
+    await p.mouse.move(box.x, box.y); await p.mouse.down(); await p.mouse.move(box.x + 200, box.y, { steps: 8 });
+    const swing = await p.$$eval('.rack-track .hang', l => l.some(x => /rotate/.test(x.style.transform)));
+    await p.mouse.up(); await p.waitForTimeout(300);
+    const r2 = await p.$eval('.rack-track', r => r.scrollLeft);
+    ok(lang + 'rack: dragging moves the rail and the pieces swing', r2 < r1 - 100 && swing, r1 + ' -> ' + r2 + ', swing ' + swing);
+    ok(lang + 'rack: a drag does not open the shop', /index\.html/.test(p.url()) || !/shop/.test(p.url()), p.url());
     ok(lang + 'forms: sponsor and crew are Netlify forms', (await p.$$eval('form[data-netlify]', f => f.map(x => x.getAttribute('name')).join(','))) === 'crew,sponsor');
     ok(lang + 'pictures: every image has alt text and a tag', await p.$$eval('main img', i => i.every(x => x.alt.length > 3)) && await p.$$eval('main .media', m => m.every(x => x.querySelector('.tag'))));
     const dupe = await p.$$eval('main img', i => { const s = i.map(x => x.getAttribute('src')), d = s.filter((x, k) => s.indexOf(x) !== k); return [...new Set(d)]; });
@@ -46,6 +61,7 @@ const ok = (name, cond, extra) => console.log((cond ? 'PASS ' : 'FAIL ') + name 
   const q = await ctx.newPage(); await q.goto(base + '/index.html');
   ok('no JS: all zone cards visible', (await q.$$eval('#zone-rail .rail > li', l => l.filter(x => x.offsetParent !== null).length)) === 20);
   ok('no JS: filter chips and arrows hidden', await q.$eval('.filters', e => getComputedStyle(e).display === 'none') && await q.$eval('.arrows', e => getComputedStyle(e).display === 'none'));
+  ok('no JS: clothes on the rack are visible', await q.$$eval('.rack-track .piece', a => a.length === 12 && a.every(x => getComputedStyle(x).opacity === '1')));
   ok('no JS: no sideways overflow', await q.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
   await ctx.close();
   // Small phone and large desktop

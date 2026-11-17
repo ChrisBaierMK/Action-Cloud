@@ -33,7 +33,7 @@
   --display: "Barlow Semi Condensed", "Arial Narrow", Arial, sans-serif;
   --body: "Barlow", "Helvetica Neue", Arial, sans-serif;
   --gutter: clamp(1rem, 4vw, 3rem);
-  --bar: 3.5rem;
+  --bar: 4.5rem;
   --r: 1.5rem;
   --max: 78rem;
   --edge: max(var(--gutter), calc((100vw - var(--max)) / 2));
@@ -59,7 +59,7 @@ button { font: inherit; color: inherit; }
 /* ---- Top bar ---- */
 .bar { position: fixed; inset: 0 0 auto 0; z-index: 30; height: var(--bar); display: flex; align-items: center; gap: 1rem; padding: 0 var(--gutter); background: var(--wall); color: #fff; }
 .brand { margin-right: auto; display: flex; align-items: center; height: 100%; }
-.brand img { height: 2rem; width: auto; }
+.brand img { height: 3.1rem; width: auto; }
 .chapters { display: flex; gap: 1.25rem; }
 .chapters a { text-decoration: none; font-size: .9375rem; padding: .5rem 0; color: rgb(255 255 255 / .82); }
 .chapters a:hover, .chapters a[aria-current="true"] { color: var(--yellow); }
@@ -136,10 +136,6 @@ button { font: inherit; color: inherit; }
 .rail::-webkit-scrollbar { display: none; }
 .rail > li { flex: 0 0 min(80vw, 21.5rem); scroll-snap-align: start; display: flex; }
 .rail > li > .card { width: 100%; }
-.rail.narrow > li { flex-basis: min(56vw, 15rem); }
-.rail.narrow > li.lead { flex-basis: min(80vw, 23rem); }
-.rail.narrow > li.lead .media { flex: 1; aspect-ratio: auto; min-height: 12rem; }
-.rail.narrow > li.lead .card-body { flex: none; }
 .rail-tools { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 3rem; }
 .rail-count { font-size: .9375rem; color: var(--grain); }
 .dark .rail-count { color: rgb(255 255 255 / .7); }
@@ -216,9 +212,27 @@ button { font: inherit; color: inherit; }
 /* ---- Three ways in ---- */
 .doors .card h3 { font-family: var(--display); font-weight: 800; font-size: clamp(1.75rem, 3vw, 2.4rem); line-height: 1.05; }
 
-/* ---- Shop ---- */
-.product .media { aspect-ratio: 3 / 4; background: #efe9dc; }
-.product .media img { object-fit: contain; }
+/* ---- Clothes rack, as in the shop: pieces hang from a steel rail; drag it and they swing (site.js) ---- */
+.rack { --rail-h: 13px; --piece: clamp(170px, 18vw, 250px); position: relative; margin-top: clamp(.25rem, 1.5vh, 1rem); }
+.rack-bar { height: var(--rail-h); border-radius: 2px; background: linear-gradient(#f2f2f2 0%, #bdbdbd 22%, #7c7c7c 62%, #3c3c3c 100%); box-shadow: 0 8px 14px rgb(0 0 0 / .5); }
+/* the track is pulled up over the rail so each hanger hook goes over it */
+.rack-track { position: relative; z-index: 1; display: flex; gap: clamp(.5rem, 2vw, 1.9rem); margin: calc(-1 * (var(--rail-h) + 24px)) 0 0; padding: 20px var(--edge) 1rem; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; cursor: grab; user-select: none; -webkit-user-select: none; touch-action: pan-x pan-y; }
+.rack-track::-webkit-scrollbar { display: none; }
+.rack-track.grabbing { cursor: grabbing; }
+.rack-track.grabbing .piece { pointer-events: none; }
+.hang { flex: 0 0 var(--piece); transform-origin: 50% 11px; will-change: transform; }
+.piece { display: flex; flex-direction: column; align-items: center; text-align: center; text-decoration: none; color: inherit; border-radius: .75rem; }
+.cloth { display: block; width: 100%; filter: drop-shadow(0 22px 18px rgb(0 0 0 / .55)); transition: transform .25s cubic-bezier(.2, .8, .2, 1); }
+.cloth img { width: 100%; height: auto; -webkit-user-drag: none; }
+.piece:hover .cloth, .piece:focus-visible .cloth { transform: translateY(4px) scale(1.03); transform-origin: 50% 0; }
+.piece-label { display: grid; gap: .1rem; margin-top: .85rem; font-size: .9375rem; color: rgb(255 255 255 / .72); }
+.piece-label b { color: #fff; font-weight: 600; font-size: 1rem; }
+@media (prefers-reduced-motion: no-preference) {
+  /* pieces drop onto the rail the first time the slide comes into view */
+  .js .rack:not(.in) .piece { opacity: 0; }
+  .js .rack.in .piece { animation: drop .7s calc(var(--i, 0) * 70ms + 100ms) cubic-bezier(.3, 1.35, .5, 1) both; }
+  @keyframes drop { from { opacity: 0; transform: translateY(-70px); } }
+}
 
 /* ---- Sponsor tiers ---- */
 .rail.tiers > li { flex-basis: min(84vw, 23.5rem); }
@@ -269,6 +283,7 @@ form .actions .btn { justify-self: auto; }
   .chapters { display: none; }
   .grid-2, .steps, .split, .legend, .duo { grid-template-columns: 1fr; }
   .crew-pic { display: none; }
+  .rack { --piece: min(56vw, 230px); }
   .grid-3 { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; margin-inline: calc(var(--gutter) * -1); padding: .25rem var(--gutter) 1rem; scroll-padding-inline: var(--gutter); scrollbar-width: none; }
   .grid-3::-webkit-scrollbar { display: none; }
   .grid-3 > * { flex: 0 0 min(80vw, 23rem); scroll-snap-align: start; }
@@ -282,7 +297,8 @@ form .actions .btn { justify-self: auto; }
 @media (max-width: 36rem) {
   .tile { padding: .8rem .85rem .9rem; }
   .tile b { font-size: 1.75rem; }
-  .brand img { height: 1.75rem; }
+  :root { --bar: 4rem; }
+  .brand img { height: 2.7rem; }
   .bar { gap: .6rem; }
   .bar .btn { padding-inline: .85rem; }
 }

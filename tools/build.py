@@ -50,7 +50,6 @@ PICS = {
     "hostel": ("concept-hostel.webp", 1600, 1195, "concept"),
     "plan-3d": ("plan-3d.webp", 2000, 1131, "concept"),
     "huddle": ("concept-huddle.webp", 1600, 1195, "concept"),
-    "merch": ("concept-merch.webp", 1600, 1200, "concept"),
     "tier-naming": ("tier-naming.webp", 1600, 1195, "concept"),
     "tier-zone": ("tier-zone.webp", 1600, 1195, "concept"),
     "tier-attraction": ("tier-attraction.webp", 1600, 1195, "concept"),
@@ -84,12 +83,14 @@ class Page:
         return pair[self.lang]
 
     def img(self, key, alt, eager=False, kind=None, sizes="(max-width: 60rem) 82vw, 26rem"):
-        """Every picture exists twice: full size in assets/img and 800 px wide in assets/img/s (see tools/thumbs.py)."""
+        """Every picture exists twice: full size in assets/img and 1,000 px wide in assets/img/s (see tools/thumbs.py)."""
         f, w, h, k = PICS[key]
         kind = kind or k
         full, small = f"{self.pre}assets/img/{f}", f"{self.pre}assets/img/s/{f}"
         load = ' fetchpriority="high"' if eager else ' loading="lazy"'
-        return (f'<img src="{full}" srcset="{small} 800w, {full} {w}w" sizes="{sizes}" width="{w}" height="{h}" alt="{esc(alt)}"{load}>'), kind
+        # pictures that are already 1,000 px wide or less have no smaller copy
+        pick = f' srcset="{small} 1000w, {full} {w}w" sizes="{sizes}"' if w > 1000 else ""
+        return f'<img src="{full}"{pick} width="{w}" height="{h}" alt="{esc(alt)}"{load}>', kind
 
     def media(self, key, alt, cls="", **kw):
         tag_html, kind = self.img(key, alt, **kw)
@@ -202,16 +203,21 @@ TIERS = [
     ("tier-supporter", T("Susținător", "Supporter"), "500", "500", None,
      T(["Numele tău pe peretele susținătorilor", "Numele tău pe site"], ["Your name on the supporter wall", "Your name on the website"])),
 ]
-PRODUCTS = [
-    # file in shop/img/p, name (same in every language), kind
-    ("hoodie-bigmark-black-front", "Big Mark hoodie", T("Hanorac", "Hoodie")),
-    ("tee-cutout-black-front", "Cutout tee", T("Tricou", "Tee")),
-    ("crew-sunfade-yellow-front", "Sunfade crewneck", T("Bluză", "Crewneck")),
-    ("tee-ramp-ecru-front", "Ramp tee", T("Tricou", "Tee")),
-    ("hoodie-split-grey-front", "Split hoodie", T("Hanorac", "Hoodie")),
-    ("tee-sequence-black-front", "Sequence tee", T("Tricou", "Tee")),
-    ("cap-black", "Coping cap", T("Șapcă", "Cap")),
-    ("beanie-yellow", "Off-season beanie", T("Căciulă", "Beanie")),
+HOODIE, TEE, CREWNECK = T("Hanorac", "Hoodie"), T("Tricou", "Tee"), T("Bluză", "Crewneck")
+RACK = [
+    # the pieces that hang on the rail: file in shop/img/p (these photos include the hanger), name (same in every language), kind
+    ("hoodie-bigmark-black-front", "Big Mark hoodie", HOODIE),
+    ("tee-cutout-black-front", "Cutout tee", TEE),
+    ("crew-sunfade-yellow-front", "Sunfade crewneck", CREWNECK),
+    ("tee-ramp-ecru-front", "Ramp tee", TEE),
+    ("hoodie-split-grey-front", "Split hoodie", HOODIE),
+    ("tee-sequence-black-front", "Sequence tee", TEE),
+    ("hoodie-livefree-black-back", "Live Free hoodie", HOODIE),
+    ("tee-tbar-ecru-front", "T-Bar tee", TEE),
+    ("tee-stencil-yellow-back", "Stencil tee", TEE),
+    ("hoodie-tape-grey-front", "Tape hoodie", HOODIE),
+    ("tee-bleach-black-front", "Bleach tee", TEE),
+    ("tee-truck-grey-front", "Truck tee", TEE),
 ]
 
 # ---------------------------------------------------------------- plan drawn to scale (10 units per metre)
@@ -446,24 +452,31 @@ def s_crew(p):
 
 
 def s_shop(p):
+    """The clothes rail from the shop: pieces hang from a steel bar, you drag it and they swing (site.js)."""
     shop = f"{p.pre}shop/?lang={p.lang}"
-    lead = p.card("merch", p.t(T("Fiecare produs construiește o rampă", "Every piece builds a ramp")),
-                  p.t(T(["Mini rampe pentru curțile școlilor", "Prima ajunge la Hărman"], ["Mini ramps for schoolyards", "The first one goes to Hărman"])),
-                  alt=p.t(T("Imagine concept: colțul cu haine Action Cloud din magazinul parcului", "Concept image: the Action Cloud clothing corner in the park shop")))
-    items = [(' class="lead"', lead)]
-    for f, name, kind in PRODUCTS:
-        alt = p.t(TAG["mock"]) + ": " + name
-        items.append(("", f'<a class="card product" href="{shop}"><div class="media"><img src="{p.pre}shop/img/p/{f}.webp" width="760" height="1001" loading="lazy" alt="{esc(alt)}"><span class="tag">{p.t(TAG["mock"])}</span></div>'
-                          f'<div class="card-body"><h3>{name}</h3>{p.labels([p.t(kind)])}</div></a>'))
-    return f'''<section class="slide" id="shop" data-chapter="shop">
+    mock = p.t(TAG["mock"])
+    hang = ""
+    for f, name, kind in RACK:
+        hang += (f'<li class="hang"><a class="piece" href="{shop}" draggable="false"><span class="cloth"><img src="{p.pre}shop/img/p/{f}.webp" width="760" height="1001" loading="lazy" draggable="false" alt="{esc(mock)}: {esc(name)}"></span>'
+                 f'<span class="piece-label"><b>{name}</b><span>{p.t(kind)}</span></span></a></li>')
+    prev = p.t(T("Mută bara spre stânga", "Move the rail left"))
+    nxt = p.t(T("Mută bara spre dreapta", "Move the rail right"))
+    return f'''<section class="slide dark" id="shop" data-chapter="shop">
   <div class="wrap duo">
-    {p.head(T("Poartă Action Cloud.", "Wear Action Cloud."), T("Hanorace, tricouri, șepci și căciuli.", "Hoodies, tees, caps and beanies."))}
+    {p.head(T("Poartă Action Cloud.", "Wear Action Cloud."), T("Fiecare produs construiește o rampă în curtea unei școli. Prima ajunge la Hărman.", "Every piece builds a ramp in a schoolyard. The first one goes to Hărman."))}
     <div class="side">
-      <p class="actions"><a class="btn btn-dark" href="{shop}">{p.t(T("Vezi magazinul", "See the shop"))}</a></p>
-      <p class="note">{p.t(T("Comenzile online se deschid în curând. Imaginile sunt machete, iar prețurile nu sunt încă finale.", "Online orders open soon. The pictures are mock-ups and prices are not final yet."))}</p>
+      <p class="actions"><a class="btn btn-yellow" href="{shop}">{p.t(T("Vezi magazinul", "See the shop"))}</a></p>
+      <p class="note">{p.t(T("Hanorace, tricouri, șepci și căciuli. Comenzile online se deschid în curând, iar prețurile nu sunt încă finale.", "Hoodies, tees, caps and beanies. Online orders open soon and prices are not final yet."))}</p>
     </div>
   </div>
-  {p.rail("shop-rail", items, cls="narrow")}
+  <div class="rack" data-rack>
+    <div class="rack-bar" aria-hidden="true"></div>
+    <ul class="rack-track" aria-label="{p.t(T("Bara cu haine: hanorace, bluze și tricouri", "Clothes rail: hoodies, crewnecks and tees"))}">{hang}</ul>
+    <div class="wrap rail-tools">
+      <p class="rail-count">{p.t(T("Trage de bară. Imaginile sunt machete.", "Drag the rail. The pictures are mock-ups."))}</p>
+      <div class="arrows"><button type="button" data-prev aria-label="{prev}">←</button><button type="button" data-next aria-label="{nxt}">→</button></div>
+    </div>
+  </div>
 </section>'''
 
 

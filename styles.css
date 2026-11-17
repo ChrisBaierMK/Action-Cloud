@@ -148,11 +148,30 @@ figcaption { font-size: .9375rem; margin-top: .6rem; }
 .plan-svg { display: block; width: 100%; min-width: 44rem; height: auto; }
 .plan-3d { position: relative; min-width: 44rem; }
 .plan-3d img { display: block; width: 100%; height: auto; }
-.plan-flat { margin-top: 1.5rem; }
-.plan-flat summary { cursor: pointer; font-weight: 600; padding: .5rem 0; }
-.plan-flat .plan-scroll { margin-top: 1rem; }
-.plan-svg rect { stroke: var(--black); stroke-width: 2; }
-.plan-svg .outer { fill: none; stroke-width: 6; }
+.plan-svg rect { stroke: var(--black); stroke-width: 3; }
+.plan-svg rect.open { stroke-width: 1.5; stroke-dasharray: 6 6; }
+.plan-svg .outer { fill: none; stroke-width: 7; stroke-dasharray: none; }
+.plan-svg .rail { fill: none; stroke: var(--black); stroke-width: 3; }
+.plan-svg .door { stroke: var(--birch); stroke-width: 8; }
+.plan-svg .glass { stroke: #6fc3e8; stroke-width: 6; }
+.plan-svg .exit { stroke: #2e9e4f; stroke-width: 9; }
+.plan-svg .ride { fill: none; stroke: var(--black); stroke-width: 2; opacity: .55; }
+.plan-svg .route { fill: none; stroke: var(--black); stroke-width: 4; }
+.plan-svg .route2 { fill: none; stroke: var(--black); stroke-width: 4; stroke-dasharray: 10 7; }
+.plan-svg .sight { fill: none; stroke: #1c6e94; stroke-width: 2; stroke-dasharray: 3 5; }
+.plan-svg .sm { font-size: 20px; }
+.plan-flow { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 1.5rem clamp(2rem, 5vw, 5rem); margin: 1.75rem 0; }
+.plan-flow h4, .flat-head { font: 600 1.25rem/1.25 var(--body); margin-bottom: .6rem; }
+.plan-flow ol { list-style: decimal; padding-left: 1.25rem; }
+.plan-flow ol li { padding: .25rem 0; max-width: 56ch; }
+.keys li { display: grid; grid-template-columns: 2.5rem 1fr; gap: .6rem; align-items: center; padding: .25rem 0; font-size: 1rem; }
+.key { display: block; height: 0; border-top: 4px solid var(--black); }
+.k-door { border-top: 8px solid var(--birch); outline: 2px solid var(--black); }
+.k-glass { border-top-color: #6fc3e8; border-top-width: 6px; }
+.k-exit { border-top-color: #2e9e4f; border-top-width: 8px; }
+.k-route2 { border-top-style: dashed; }
+.k-sight { border-top: 2px dotted #1c6e94; }
+.k-open { border-top: 2px dashed var(--black); }
 .r-w { fill: var(--ply); background: var(--ply); }
 .r-j { fill: #c9ab74; background: #c9ab74; }
 .r-f { fill: var(--yellow); background: var(--yellow); }
@@ -276,7 +295,7 @@ figcaption { font-size: .9375rem; margin-top: .6rem; }
   .hero-photo img { max-height: 70vh; }
   .who-grid, .section-head, .north, .after-tiers, .contact-grid, .founder-grid { grid-template-columns: 1fr; }
   .quick ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .plan-head { grid-template-columns: 1fr; }
+  .plan-head, .plan-flow { grid-template-columns: 1fr; }
   .legend { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .value-list { grid-template-columns: 1fr; }
   .steps { grid-template-columns: 1fr; }

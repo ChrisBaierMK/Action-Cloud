@@ -1,18 +1,9 @@
 // Action Cloud: small enhancements. The page reads fine without this file;
-// it adds the progress line, rail arrows, the swinging clothes rack, the price chips and package pre-selection.
+// it adds the clickable plan, rail arrows, the swinging clothes rack, the price chips and package pre-selection.
 (function () {
   "use strict";
   var d = document, root = d.documentElement;
   root.classList.add("js");
-
-  // Progress line under the top bar
-  function progress() {
-    var h = root.scrollHeight - window.innerHeight;
-    root.style.setProperty("--p", h > 0 ? Math.min(1, window.scrollY / h).toFixed(4) : "0");
-  }
-  window.addEventListener("scroll", progress, { passive: true });
-  window.addEventListener("resize", progress);
-  progress();
 
   // Highlight the chapter you are in
   var links = {};
@@ -51,30 +42,38 @@
     state();
   });
 
-  // The plan you click: the numbers on the picture and the cards beside it follow each other.
-  // Without this the numbers are plain links to the cards.
+  // The plan you click: a tap anywhere in a room brings up its card, and the number follows the card you swipe to.
+  // Without this the rooms are plain links to the cards.
   d.querySelectorAll("[data-map]").forEach(function (map) {
-    var rail = map.querySelector(".map-rail");
+    var rail = map.querySelector(".map-rail"), pic = map.querySelector(".map-pic");
     if (!rail) return;
     var cards = Array.prototype.slice.call(rail.children), spots = map.querySelectorAll(".spot"), chips = map.querySelectorAll(".chips a");
-    var count = map.querySelector("[data-count]"), say = map.querySelector("[data-say]"), active = -1, waiting = false;
+    var say = map.querySelector("[data-say]"), active = -1, waiting = false;
+    var calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     function left(li) { return li.offsetLeft - (parseFloat(getComputedStyle(rail).paddingLeft) || 0); }
     function mark(list, attr, value) {
       Array.prototype.forEach.call(list, function (el) {
         if (el.getAttribute(attr) === value) el.setAttribute("aria-current", "true"); else el.removeAttribute("aria-current");
       });
     }
-    function show(i, jump, tell) {
+    function show(i, chosen) {
       var li = cards[i];
       if (!li) return;
       if (i !== active) {
         active = i;
         mark(spots, "data-spot", li.getAttribute("data-n"));
         mark(chips, "data-group", li.getAttribute("data-group"));
-        if (count) count.textContent = (i + 1) + " / " + cards.length;
+        // this picture and its neighbours are fetched now; the rest stay lazy
+        [i - 1, i, i + 1].forEach(function (k) { var im = cards[k] && cards[k].querySelector("img"); if (im) im.loading = "eager"; });
       }
-      if (jump) rail.scrollTo({ left: left(li), behavior: "auto" });
-      if (tell && say) say.textContent = li.querySelector(".card-body").innerText.replace(/\s*\n+\s*/g, ". ");
+      if (!chosen) return;
+      rail.scrollTo({ left: left(li), behavior: "auto" });       // far jumps do not slide through the cards in between
+      if (say) say.textContent = li.querySelector(".card-body").innerText.replace(/\s*\n+\s*/g, ". ");
+      // the page stays still, unless the name of the place would be off screen: then the plan goes to the top once
+      var name = li.querySelector("h3").getBoundingClientRect(), bar = d.querySelector(".bar"), top = bar ? bar.getBoundingClientRect().bottom : 0;
+      if (pic && (name.bottom > window.innerHeight || name.top < top)) {
+        window.scrollTo({ top: window.scrollY + pic.getBoundingClientRect().top - top - 8, behavior: calm ? "auto" : "smooth" });
+      }
     }
     function first(attr, value) {
       for (var i = 0; i < cards.length; i++) if (cards[i].getAttribute(attr) === value) return i;
@@ -86,7 +85,7 @@
           var i = first(attr, a.getAttribute(key));
           if (i < 0) return;
           e.preventDefault();
-          show(i, true, true);
+          show(i, true);
         });
       });
     }
@@ -102,9 +101,10 @@
         show(best);
       });
     }, { passive: true });
-    // a link straight to one place (#loc-9) opens on it
+    // a link straight to one place (#loc-9) opens on it; otherwise the first place is chosen
     var at = location.hash ? first("id", location.hash.slice(1)) : -1;
-    show(at < 0 ? 0 : at, at >= 0);
+    show(at < 0 ? 0 : at);
+    if (at >= 0) rail.scrollTo({ left: left(cards[at]), behavior: "auto" });
   });
 
   // Price chips: bring that package into view sideways without moving the page

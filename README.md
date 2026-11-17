@@ -14,7 +14,7 @@ It writes `index.html`, `en/index.html`, `multumim.html` and `en/thanks.html`. D
 
 `styles.css` and `site.js` are written by hand. The page works without `site.js`; the script adds the progress line, deck arrows, the swinging clothes rack, the price chips and package pre-selection.
 
-The page is a walk in seven stops: the hero, the clickable plan (the places are `DECKS` in `tools/build.py`, their positions on the picture `SPOTS`), the community stop, Action Crew, the shop, the sponsor packages (`TIERS`) and the contact form.
+The page is a walk in seven stops: the hero, the clickable plan (in `tools/build.py` the places are `PLACES`, the number discs `SPOTS` and the tappable floor of each room `AREAS`; the build stops if they do not fit together), the community stop, Action Crew, the shop, the sponsor packages (`TIERS`) and the contact form.
 
 ## Checking
 
@@ -60,7 +60,7 @@ So: no indoor action sports venue found comes near 6,000 m², three outdoor ones
 
 ## The plan
 
-`ROOMS` in `tools/build.py` is the plan to scale (100 × 60 m, 6,000 m²); the drawing, the floor-area list and the 3D picture all follow it. The changing rooms, toilets and showers (18) stand in the front right corner against the hostel (21), with one door onto the walkway and one straight into the hostel, so hostel guests reach them after closing without entering the park. A second toilet group (no showers) was added at the entrance (16): the owner asked only for the move, and this group was added because it is the nearest toilet for about 70% of the hall floor. If it stays, it is the park's everyday block, not a small one: an accessible cabin, baby changing, and doors on the park side of the ticket gates. Mini Action (11) and the caged pitch (10) are fenced, each with its own gate onto the walkway, so nobody walks through them to get somewhere else. Known weak spot: the trampolines (6) can only be reached on foot across the pumptrack (2); the next redraw should give them a fenced walking lane along the left wall. When rooms move, redraw `assets/img/plan-3d.webp` from the new drawing.
+`ROOMS` in `tools/build.py` is the plan to scale (100 × 60 m, 6,000 m²); the drawing, the floor-area list and the 3D picture all follow it. The changing rooms, toilets and showers (18) stand in the front right corner against the hostel (21), with one door onto the walkway and one straight into the hostel, so hostel guests reach them after closing without entering the park. A second toilet group (no showers) was added at the entrance (16): the owner asked only for the move, and this group was added because it is the nearest toilet for about 70% of the hall floor. If it stays, it is the park's everyday block, not a small one: an accessible cabin, baby changing, and doors on the park side of the ticket gates. Mini Action (11) and the caged pitch (10) are fenced, each with its own gate onto the walkway, so nobody walks through them to get somewhere else. Known weak spot: the trampolines (6) can only be reached on foot across the pumptrack (2); the next redraw should give them a fenced walking lane along the left wall. When rooms move, redraw `assets/img/plan-3d.webp` from the new drawing, then measure `SPOTS` and trace `AREAS` again on the new picture.
 
 ## Before sending the link widely
 

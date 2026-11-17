@@ -141,23 +141,15 @@ figcaption { font-size: .9375rem; margin-top: .6rem; }
 .section-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 1.5rem clamp(2rem, 5vw, 5rem); align-items: start; margin-bottom: clamp(2rem, 5vw, 4rem); }
 .section-head p { max-width: 62ch; font-size: 1.1875rem; }
 
-.concept { margin-bottom: clamp(1.5rem, 4vw, 3rem); }
-.concept img { width: 100%; }
-.concept figcaption { color: var(--grain); }
 .chapter { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 1.25rem clamp(1.5rem, 5vw, 5rem); align-items: center; padding: clamp(1.25rem, 3vw, 2.5rem) 0; }
 .chapter:nth-of-type(even) .pic { order: 2; }
-.pic svg, .pic img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--wall); }
+.pic img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--wall); }
 .chapter h3 { font-family: var(--display); font-weight: 800; text-transform: uppercase; line-height: 1; text-wrap: balance; font-size: clamp(1.7rem, 3vw, 2.5rem); }
 .chapter p { max-width: 46ch; margin-top: 1rem; }
 .chapter .credit { font-size: .9375rem; color: var(--grain); }
-/* Plan drawings: painted-black wall, plywood ramps, yellow for the line a rider takes */
-.fl { fill: #3b3b3b; }
-.wd { fill: var(--ply); }
-.dk { fill: #000; }
-.yl { fill: var(--yellow); }
-.ln { fill: none; stroke: var(--birch); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
-.yln { fill: none; stroke: var(--yellow); stroke-width: 4; }
-.tr { fill: none; stroke: var(--yellow); stroke-width: 4; stroke-dasharray: 1 10; stroke-linecap: round; }
+/* Computer-generated pictures carry a visible tag so nobody takes them for photos of a finished park */
+.pic.concept { position: relative; }
+.pic .tag { position: absolute; left: 0; bottom: 0; background: var(--wall); color: #fff; font-size: .875rem; padding: .3rem .6rem; }
 
 /* Why north Bucharest + impact */
 .impact { position: relative; background: var(--ply); padding: clamp(3.5rem, 8vw, 7rem) 0 calc(var(--ramp-h) + clamp(3rem, 6vw, 5rem)); }

@@ -386,7 +386,7 @@ def s_hero(p):
   </div>
   <div class="wrap hero-bottom">
     <div>
-      <p class="by">{p.t(T("De la echipa care a construit Action Cloud Brașov", "From the team that built Action Cloud Brașov"))}</p>
+      <p class="by">{p.t(T("De la o echipă care construiește rampe din 2012", "From a team that has been building ramps since 2012"))}</p>
       <p class="actions">
         <a class="btn btn-white" href="#park">{p.t(T("Intră în parc", "Step inside"))}</a>
         <a class="btn btn-line" href="#crew">{p.t(T("Intră în Action Crew", "Join the Action Crew"))}</a>
@@ -398,7 +398,8 @@ def s_hero(p):
 
 
 def s_why(p):
-    """Why it matters, shown with what already happens in Brașov. One stop, about the community, not about any one person."""
+    """Why it matters, shown with photos from the first park, in Brașov. That park is CLOSED: everything about it is in the past tense
+    and the stop says so once. One stop, about the community, not about any one person."""
     cards = [
         ("event-night", T("Un loc de întâlnire", "A place to meet"),
          T(["Seri de eveniment cu balconul plin"], ["Event nights with a full balcony"]),
@@ -427,11 +428,12 @@ def s_why(p):
     return f'''<section class="slide" id="why" data-chapter="proof">
   {aliases("impact", "story", "proof")}
   <div class="wrap">
-    {p.head(T("Vin pentru rampe.<br>Rămân pentru comunitate.", "Come for the ramps.<br>Stay for the community."), T("La Action Cloud Brașov se întâmplă deja, din 2022.", "At Action Cloud Brașov it has been happening since 2022."))}
+    {p.head(T("Vin pentru rampe.<br>Rămân pentru comunitate.", "Come for the ramps.<br>Stay for the community."), T("Am văzut asta la primul nostru parc, la Brașov.", "We saw it at our first park, in Brașov."))}
     <div class="grid grid-3">
       {grid}
     </div>
     <ol class="story" aria-label="{esc(p.t(T("Cum am ajuns aici", "How we got here")))}">{story}</ol>
+    <p class="note">{p.t(T("Parcul din Brașov s-a închis între timp. Fotografiile sunt de acolo.", "The Brașov park has since closed. The photos were taken there."))}</p>
   </div>
 </section>'''
 
@@ -632,15 +634,15 @@ CHAPTERS = [("park", "park", T("Parcul", "The park")), ("proof", "why", T("Comun
 def page(lang):
     p = Page(lang)
     title = p.t(T("Action Cloud București | Un loc al lor", "Action Cloud Bucharest | A place of their own"))
-    desc = p.t(T("În 2022 am deschis la Brașov cel mai mare bikepark indoor din România. Acum plănuim un parc de aproximativ 6.000 m² în nordul Bucureștiului. Intră în Action Crew sau devino sponsor.",
-                 "In 2022 we opened Romania's largest indoor bikepark in Brașov. Now we are planning a park of about 6,000 m² in north Bucharest. Join the Action Crew or become a sponsor."))
+    desc = p.t(T("Plănuim cel mai mare parc indoor de action sports din România: aproximativ 6.000 m², în nordul Bucureștiului. Intră în Action Crew sau devino sponsor.",
+                 "We are planning the biggest indoor action sports park in Romania: about 6,000 m², in north Bucharest. Join the Action Crew or become a sponsor."))
     self_url = SITE if lang == "ro" else SITE + "en/"
     other = ('<a class="lang" href="en/" lang="en" hreflang="en">English</a>' if lang == "ro"
              else '<a class="lang" href="../" lang="ro" hreflang="ro">Română</a>')
     nav = "".join(f'<a href="#{target}" data-for="{k}">{p.t(t)}</a>' for k, target, t in CHAPTERS)
     body = "\n\n".join(sections(p))
-    foot_note = p.t(T("Action Cloud este administrat de asociația Rosenau Cycling. Imaginile marcate „Imagine concept” sunt generate pe calculator și arată planul pentru București. Fotografiile sunt din Brașov.",
-                      "Action Cloud is run by the Rosenau Cycling association. Pictures marked \"Concept image\" are computer-generated and show the plan for Bucharest. The photos are from Brașov."))
+    foot_note = p.t(T("Action Cloud este administrat de asociația Rosenau Cycling. Imaginile marcate „Imagine concept” sunt generate pe calculator și arată planul pentru București. Fotografiile sunt de la primul nostru parc, cel din Brașov, care s-a închis între timp.",
+                      "Action Cloud is run by the Rosenau Cycling association. Pictures marked \"Concept image\" are computer-generated and show the plan for Bucharest. The photos are from our first park, in Brașov, which has since closed."))
     return f'''<!doctype html>
 <html lang="{lang}">
 <head>

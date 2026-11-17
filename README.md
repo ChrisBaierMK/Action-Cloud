@@ -14,7 +14,7 @@ It writes `index.html`, `en/index.html`, `multumim.html` and `en/thanks.html`. D
 
 `styles.css` and `site.js` are written by hand. The page works without `site.js`; the script adds the progress line, deck arrows, the swinging clothes rack, the price chips and package pre-selection.
 
-The page is a walk in twelve stops: the hero, two stops of proof from Brașov, the plan, four decks of zone cards (`DECKS` in `tools/build.py`), Action Crew, the shop, the sponsor packages (`TIERS`) and the contact form.
+The page is a walk in seven stops: the hero, the clickable plan (the places are `DECKS` in `tools/build.py`, their positions on the picture `SPOTS`), the community stop, Action Crew, the shop, the sponsor packages (`TIERS`) and the contact form.
 
 ## Checking
 
@@ -29,7 +29,7 @@ Both need Playwright.
 
 - `assets/img/concept-*.webp`, `tier-*.webp` and `plan-3d.webp` are computer-generated concept images (Higgsfield). The page tags each one "Imagine concept" / "Concept image".
 - Every picture wider than 1,000 px has a 1,000 px copy in `assets/img/s/` for phones. After adding or replacing a picture run `python3 tools/thumbs.py` (needs Pillow).
-- `park-brasov`, `build-2012-2023`, `action-camp`, `event-night`, `founder` and `rider-inverted` are real photos from Brașov, tagged as such.
+- `action-camp`, `event-night` and `rider-inverted` are real photos from the first park, in Brașov, tagged as such. `story-2012` and `story-build` are cut from the `build-2012-2023` collage. `park-brasov` and `founder` are no longer on the page.
 - The to-scale plan is drawn by `tools/build.py` from the `ROOMS` table (metres, 100 × 60 m hall, 6,000 m² in total). `plan-3d.webp` was rendered from that drawing; if `ROOMS` changes, the 3D picture has to be regenerated.
 
 ## Shop
@@ -64,6 +64,7 @@ So: no indoor action sports venue found comes near 6,000 m², three outdoor ones
 
 ## Before sending the link widely
 
+- The Brașov park is closed. The page speaks of it only in the past tense and says so twice in plain words (community stop, footer). Do not write about it as if it were open and do not use it as proof of demand: the owner excluded it from the visitor estimate.
 - The pages carry `<meta name="robots" content="noindex">`. Remove it in `tools/build.py` when the site may be indexed.
 - Opening date, building, funding target and Action Crew perks are not decided and are not stated on the page.
 - Package prices are in euro (100 to 200,000 a year). The currency of payment and the exchange rate are for the contract; the page only says so.

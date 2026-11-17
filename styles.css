@@ -60,7 +60,7 @@ a { color: inherit; text-underline-offset: .18em; }
 :focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
 .impact :focus-visible, .packages :focus-visible { outline-color: var(--black); }
 
-h1, h2, .zone h3, .tier h3, .wordmark {
+h1, h2, .tier h3, .wordmark {
   font-family: var(--display); font-weight: 800; text-transform: uppercase;
   line-height: .92; letter-spacing: .005em; text-wrap: balance;
 }
@@ -143,17 +143,20 @@ figcaption { font-size: .9375rem; margin-top: .6rem; }
 .section-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 1.5rem clamp(2rem, 5vw, 5rem); align-items: start; margin-bottom: clamp(2rem, 5vw, 4rem); }
 .section-head p { max-width: 62ch; font-size: 1.1875rem; }
 
-.zone { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 1rem clamp(2rem, 5vw, 5rem); padding: 1.75rem 0 2rem; border-top: 3px solid var(--black); }
-.zone h3 { font-size: clamp(1.75rem, 3vw, 2.5rem); }
-.zone li { padding: .6rem 0; max-width: 62ch; }
-.zone li + li { border-top: 1px solid rgb(0 0 0 / .22); }
-.zone li:first-child { padding-top: 0; }
-.zone-with-photo figure { margin-top: 1.5rem; }
-.zone-with-photo figcaption, .wide-photo figcaption { color: var(--grain); }
-
-.wide-photo { margin: 1rem 0 clamp(2.5rem, 5vw, 4rem); }
-.wide-photo img { width: 100%; max-height: 34rem; object-fit: cover; }
-.wide-photo figcaption { width: min(100% - 2 * var(--gutter), 76rem); margin-inline: auto; }
+.chapter { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 1.25rem clamp(1.5rem, 5vw, 5rem); align-items: center; padding: clamp(1.25rem, 3vw, 2.5rem) 0; }
+.chapter:nth-of-type(even) .pic { order: 2; }
+.pic svg, .pic img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--wall); }
+.chapter h3 { font-family: var(--display); font-weight: 800; text-transform: uppercase; line-height: .92; text-wrap: balance; font-size: clamp(2rem, 4vw, 3.25rem); }
+.chapter p { max-width: 46ch; margin-top: 1rem; }
+.chapter .credit { font-size: .9375rem; color: var(--grain); }
+/* Plan drawings: painted-black wall, plywood ramps, yellow for the line a rider takes */
+.fl { fill: #3b3b3b; }
+.wd { fill: var(--ply); }
+.dk { fill: #000; }
+.yl { fill: var(--yellow); }
+.ln { fill: none; stroke: var(--birch); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+.yln { fill: none; stroke: var(--yellow); stroke-width: 4; }
+.tr { fill: none; stroke: var(--yellow); stroke-width: 4; stroke-dasharray: 1 10; stroke-linecap: round; }
 
 /* Why north Bucharest + impact */
 .impact { position: relative; background: var(--ply); padding: clamp(3.5rem, 8vw, 7rem) 0 calc(var(--ramp-h) + clamp(3rem, 6vw, 5rem)); }
@@ -203,7 +206,8 @@ figcaption { font-size: .9375rem; margin-top: .6rem; }
   .hero { grid-template-columns: 1fr; }
   .hero-text { padding: 2.5rem var(--gutter) 2.5rem; }
   .hero-photo img { max-height: 70vh; }
-  .who-grid, .section-head, .zone, .north, .after-tiers { grid-template-columns: 1fr; }
+  .who-grid, .section-head, .chapter, .north, .after-tiers { grid-template-columns: 1fr; }
+  .chapter:nth-of-type(even) .pic { order: 0; }
   .reasons { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .tier { grid-template-columns: 1fr; }
   .tier .slots:empty { display: none; }

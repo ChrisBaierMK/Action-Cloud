@@ -83,12 +83,13 @@ class Page:
     def t(self, pair):
         return pair[self.lang]
 
-    def img(self, key, alt, eager=False, kind=None):
+    def img(self, key, alt, eager=False, kind=None, sizes="(max-width: 60rem) 82vw, 26rem"):
+        """Every picture exists twice: full size in assets/img and 800 px wide in assets/img/s (see tools/thumbs.py)."""
         f, w, h, k = PICS[key]
         kind = kind or k
-        src = "assets/img/" + f
+        full, small = f"{self.pre}assets/img/{f}", f"{self.pre}assets/img/s/{f}"
         load = ' fetchpriority="high"' if eager else ' loading="lazy"'
-        return f'<img src="{self.pre}{src}" width="{w}" height="{h}" alt="{esc(alt)}"{load}>', kind
+        return (f'<img src="{full}" srcset="{small} 800w, {full} {w}w" sizes="{sizes}" width="{w}" height="{h}" alt="{esc(alt)}"{load}>'), kind
 
     def media(self, key, alt, cls="", **kw):
         tag_html, kind = self.img(key, alt, **kw)
@@ -293,7 +294,7 @@ def plan_legend(p):
 # ---------------------------------------------------------------- sections
 def s_hero(p):
     img, _ = p.img("crew", p.t(T("Imagine concept: copii, adolescenți și părinți în hanorace Action Cloud, văzuți din spate, privind parcul plin de rampe și plante",
-                               "Concept image: kids, teenagers and parents in Action Cloud hoodies, seen from behind, looking out over a park full of ramps and plants")), eager=True)
+                               "Concept image: kids, teenagers and parents in Action Cloud hoodies, seen from behind, looking out over a park full of ramps and plants")), eager=True, sizes="100vw")
     return f'''<section class="slide hero" id="top">
   {img}
   <div class="wrap hero-top">
@@ -375,7 +376,7 @@ def s_park(p):
       {p.head(T("Planul pentru București.", "The plan for Bucharest."), T("Aproximativ 6.000 m²: rampele în mijloc, cafeneaua și magazinul pe margine, cu vedere spre parc.", "About 6,000 m²: ramps in the middle, café and shop along the edge, facing the park."))}
       {facts}
     </div>
-    <a class="plan-link" href="{p.pre}assets/img/plan-3d.webp" aria-label="{p.t(T("Deschide planul mare", "Open the large plan"))}">{p.media("plan-3d", alt, cls="plan-pic")}</a>
+    <a class="plan-link" href="{p.pre}assets/img/plan-3d.webp" aria-label="{p.t(T("Deschide planul mare", "Open the large plan"))}">{p.media("plan-3d", alt, cls="plan-pic", sizes="(max-width: 60rem) 100vw, 46rem")}</a>
   </div>
   <div class="wrap">
     <details class="more">

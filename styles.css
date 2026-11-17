@@ -282,6 +282,9 @@ a, button, input, select, textarea, summary, [tabindex] { scroll-margin-top: cal
 .spot.long .hit { z-index: 2; top: 64.8% !important; height: max(10%, 24px) !important; transform: translateY(-50%); }
 .spot .disc { position: absolute; z-index: 3; width: var(--spot); height: var(--spot); margin: calc(var(--spot) / -2) 0 0 calc(var(--spot) / -2); border-radius: 50%; display: grid; place-items: center; background: #fff; color: var(--black); font: 800 calc(var(--spot) * .52)/1 var(--display); box-shadow: 0 1px 4px rgb(0 0 0 / .5); cursor: pointer; transition: transform .15s ease, background-color .15s ease; }
 @media (hover: hover) { .spot:hover .disc { background: var(--yellow); } }
+/* the line above the plan says what this device does: a mouse points, a finger taps */
+.by-mouse { display: none; }
+@media (hover: hover) and (pointer: fine) { .js .by-mouse { display: inline; } .js .by-tap { display: none; } }
 .spot[aria-current="true"] .disc { background: var(--yellow); transform: scale(1.32); box-shadow: 0 0 0 3px var(--black), 0 2px 10px rgb(0 0 0 / .55); z-index: 4; }
 .spot:focus-visible { outline: none; }
 .spot:focus-visible .disc { outline: 3px solid var(--black); outline-offset: 2px; box-shadow: 0 0 0 7px #fff; z-index: 5; }

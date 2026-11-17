@@ -42,7 +42,8 @@
     state();
   });
 
-  // The plan you click: a tap anywhere in a room brings up its card, and the number follows the card you swipe to.
+  // The plan you click: a tap anywhere in a room brings up its card (with a mouse, resting on the room is enough),
+  // and the number follows the card you swipe to.
   // Without this the rooms are plain links to the cards.
   d.querySelectorAll("[data-map]").forEach(function (map) {
     var rail = map.querySelector(".map-rail"), pic = map.querySelector(".map-pic");
@@ -68,6 +69,7 @@
       }
       if (!chosen) return;
       rail.scrollTo({ left: left(li), behavior: "auto" });       // far jumps do not slide through the cards in between
+      if (chosen === "rest") return;                              // a resting mouse changes the card and nothing else
       if (say) say.textContent = li.querySelector(".card-body").innerText.replace(/\s*\n+\s*/g, ". ");
       // the page stays still, unless the name of the place would be off screen: then the plan goes to the top once
       var name = li.querySelector("h3").getBoundingClientRect(), bar = d.querySelector(".bar"), top = bar ? bar.getBoundingClientRect().bottom : 0;
@@ -91,6 +93,25 @@
     }
     pick(spots, "data-n", "data-spot");
     pick(chips, "data-group", "data-group");
+    // With a mouse, resting on a room is enough: its card comes up beside the plan, or under it on a narrow window.
+    // Only the card changes; the page stays where it is. A fast pass across the plan on the way elsewhere changes nothing.
+    var rest = 0, restFor = -1, px = 0, py = 0, pt = 0;
+    Array.prototype.forEach.call(spots, function (a) {
+      var i = first("data-n", a.getAttribute("data-spot"));
+      if (i < 0) return;
+      function arm() { clearTimeout(rest); restFor = i; rest = setTimeout(function () { show(i, "rest"); }, 110); }
+      a.addEventListener("pointerenter", function (e) {
+        if (e.pointerType !== "mouse") return;
+        px = e.clientX; py = e.clientY; pt = e.timeStamp; arm();
+      });
+      a.addEventListener("pointermove", function (e) {
+        if (e.pointerType !== "mouse") return;
+        var dt = e.timeStamp - pt, far = Math.abs(e.clientX - px) + Math.abs(e.clientY - py);
+        px = e.clientX; py = e.clientY; pt = e.timeStamp;
+        if (dt > 0 && far / dt > 0.4) arm();                      // still travelling: wait until the pointer slows down
+      });
+      a.addEventListener("pointerleave", function () { if (restFor === i) clearTimeout(rest); });
+    });
     rail.addEventListener("scroll", function () {
       if (waiting) return;
       waiting = true;

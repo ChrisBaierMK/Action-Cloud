@@ -14,7 +14,7 @@ It writes `index.html`, `en/index.html`, `multumim.html` and `en/thanks.html`. D
 
 `styles.css` and `site.js` are written by hand. The page works without `site.js`; the script adds the progress line, deck arrows, the swinging clothes rack, the price chips and package pre-selection.
 
-The page is a walk in seven stops: the hero, the clickable plan (in `tools/build.py` the places are `PLACES`, the number discs `SPOTS` and the tappable floor of each room `AREAS`; the build stops if they do not fit together), the community stop, Action Crew, the shop, the sponsor packages (`TIERS`) and the contact form.
+The page is a walk in seven stops: the hero, the clickable plan (in `tools/build.py` the places are `PLACES`, the number discs `SPOTS` and the tappable floor of each room `AREAS`; the build stops if they do not fit together; with a mouse, resting on a room for a moment brings up its card, a tap or click does the same on any device), the community stop, Action Crew, the shop, the sponsor packages (`TIERS`) and the contact form.
 
 ## Checking
 

@@ -35,6 +35,21 @@ const ok = (name, cond, extra) => console.log((cond ? 'PASS ' : 'FAIL ') + name 
     await p.mouse.click(pb.x + pb.w * 0.69, pb.y + pb.h * 0.50); await p.waitForTimeout(250);
     await p.click('.map-side [data-next]'); await p.waitForTimeout(800);
     ok(lang + 'plan: room 8 has two cards under the same number', (await cur()) === '8' && await p.evaluate(() => { const r = document.querySelector('.map-rail').getBoundingClientRect(); const c = document.getElementById('loc-8-2').getBoundingClientRect(); return Math.abs(c.left - r.left) < 4; }));
+    // with a mouse, resting on a room is enough; the page itself does not move
+    await p.locator('#park').scrollIntoViewIfNeeded(); await p.waitForTimeout(200);
+    const hb = await p.$eval('.map-pic', e => { const b = e.getBoundingClientRect(); return { x: b.left, y: b.top, w: b.width, h: b.height }; });
+    const yh = await p.evaluate(() => scrollY);
+    await p.mouse.move(hb.x + hb.w * 0.10, hb.y + hb.h * 0.08, { steps: 4 }); await p.waitForTimeout(400);   // the floor of room 3, away from its disc
+    const up3 = await p.evaluate(() => { const r = document.querySelector('.map-rail').getBoundingClientRect(); const c = document.getElementById('loc-3').getBoundingClientRect(); return Math.abs(c.left - r.left) < 4; });
+    ok(lang + 'plan: resting the mouse on a room brings up its card and lights its number', up3 && (await cur()) === '3');
+    await p.mouse.move(hb.x + hb.w * 0.59, hb.y + hb.h * 0.08, { steps: 3 }); await p.mouse.move(hb.x + hb.w * 0.59, hb.y - 60, { steps: 2 }); await p.waitForTimeout(400);
+    ok(lang + 'plan: a fast pass over other rooms on the way out changes nothing', (await cur()) === '3');
+    const discs = await p.$$eval('.spot', l => l.map(a => { const b = a.querySelector('.disc').getBoundingClientRect(); return { n: a.getAttribute('data-spot'), x: b.left + b.width / 2, y: b.top + b.height / 2 }; }));
+    const wrong = [];
+    for (const dsc of discs) { await p.mouse.move(dsc.x, dsc.y, { steps: 2 }); await p.waitForTimeout(260); const c = await cur(); if (c !== dsc.n) wrong.push(dsc.n + '>' + c); }
+    ok(lang + 'plan: every number answers to the mouse with its own card', wrong.length === 0, wrong.join(' '));
+    ok(lang + 'plan: hovering never moves the page or the address', Math.abs((await p.evaluate(() => scrollY)) - yh) < 3 && !/#loc/.test(p.url()));
+    await p.mouse.move(2, 2);
     await p.locator('#tier-rail').scrollIntoViewIfNeeded();
     const before = await p.$eval('#tier-rail .rail', r => r.scrollLeft);
     await p.click('#tier-rail [data-next]'); await p.waitForTimeout(700);

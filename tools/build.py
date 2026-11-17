@@ -491,7 +491,8 @@ def s_map(p):
   {aliases("inside", "zones", "visit", "arrive", "wheels", "more", "parents")}
   <div class="wrap map" data-map>
     <div class="map-head">
-      {p.head(T("Intră în parc.", "Step inside."), T("Apasă pe un număr și vezi ce e acolo.", "Tap a number to see what is there."))}
+      {p.head(T("Intră în parc.", "Step inside."), T('<span class="by-tap">Apasă pe un număr</span><span class="by-mouse">Treci cu mouse-ul peste un număr</span> și vezi ce e acolo.',
+                                                         '<span class="by-tap">Tap a number</span><span class="by-mouse">Point at a number</span> to see what is there.'))}
       <a class="skip" href="#locuri">{p.t(T("Sari peste plan", "Skip the plan"))}</a>
     </div>
     <div class="map-pic">

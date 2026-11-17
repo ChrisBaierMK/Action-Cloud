@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Action Cloud — Live free. Take action.</title>
+<meta name="description" content="Hoodies, tees, caps and beanies from Action Cloud, the indoor bikepark in Brașov. Part of every order builds mini ramps for schoolyards.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Stencil+One&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip" href="#rack" data-i18n="skip">Skip to the shop</a>
+
+<header class="bar">
+  <a class="brand" href="#top"><img src="img/action-cloud-logo-yellow.webp" alt="Action Cloud" width="103" height="56"></a>
+  <div class="bar-right">
+  <a class="bar-link" href="../" id="park-link" data-i18n="nav.park">The park</a>
+  <a class="bar-link" href="#contact" data-i18n="nav.contact">Get in touch</a>
+  <select class="lang" id="lang" data-i18n-aria="nav.lang" aria-label="Language">
+    <option value="en" lang="en">EN</option>
+    <option value="ro" lang="ro">RO</option>
+    <option value="hu" lang="hu">HU</option>
+    <option value="de" lang="de">DE</option>
+  </select>
+  <button class="bag-btn" type="button" id="open-bag"><span data-i18n="nav.bag">Bag</span> <span class="bag-count" aria-live="polite">0</span></button>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero" aria-labelledby="hero-title">
+    <img class="hero-bg" src="img/flip-under-logo.webp" alt="" fetchpriority="high">
+    <div class="hero-copy">
+      <h1 id="hero-title">Live free.<br class="narrow"> Take action.</h1>
+      <p data-i18n="hero.sub">Gear from Action Cloud, the indoor bikepark in Brașov.</p>
+    </div>
+
+    <div class="rack-wrap" id="rack">
+      <ul class="shelf" id="shelf" data-i18n-aria="rack.shelf" aria-label="Shelf: caps and beanies"></ul>
+      <div class="rail" aria-hidden="true"></div>
+      <ul class="track" id="track" data-i18n-aria="rack.rail" aria-label="Clothes rail: hoodies, sweatshirts and tees" aria-describedby="rack-hint"></ul>
+      <div class="rack-top">
+        <p class="hint" id="rack-hint" data-i18n="rack.hint">Drag the rail. Tap a piece.</p>
+        <div class="arrows">
+          <button type="button" id="prev" data-i18n-aria="rack.prev" aria-label="Move the rail left">←</button>
+          <button type="button" id="next" data-i18n-aria="rack.next" aria-label="Move the rail right">→</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="tape" aria-hidden="true"><div class="tape-run">
+    <span>Live free · Take action · Live free · Take action · Live free · Take action · Live free · Take action · </span>
+    <span>Live free · Take action · Live free · Take action · Live free · Take action · Live free · Take action · </span>
+  </div></div>
+
+  <section class="ramps" aria-labelledby="ramps-title">
+    <img class="ramps-bg" src="img/ramps-hazard-wall.webp" alt="" loading="lazy">
+    <div class="ramps-copy">
+      <h2 id="ramps-title" data-i18n="ramps.title">Every piece builds a ramp.</h2>
+      <p data-i18n="ramps.text">Part of every order goes into mini ramps for Romanian schoolyards. The first one is for Hărman.</p>
+      <a class="btn btn-inline" href="#contact" data-i18n="ramps.cta">Ask for a ramp at your school</a>
+    </div>
+    <p class="count" data-i18n-aria="ramps.count" aria-label="Ramp 1 of 20"><b>01</b><span>/20</span></p>
+  </section>
+
+  <section class="contact" id="contact" aria-labelledby="contact-title">
+    <div class="contact-copy">
+      <h2 id="contact-title" data-i18n="contact.title">Want a ramp? Want to help?</h2>
+      <p data-i18n="contact.text">Tell us about your school and we'll take it from there. Or back the project as a sponsor or partner. Either way, write to us here.</p>
+    </div>
+
+    <form class="form" id="contact-form" name="contact" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+      <input type="hidden" name="form-name" value="contact">
+      <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+
+      <fieldset class="topics">
+        <legend data-i18n="form.about">What is it about?</legend>
+        <label class="topic"><input type="radio" name="topic" value="A ramp for my school" checked><span data-i18n="form.t.school">A ramp for my school</span></label>
+        <label class="topic"><input type="radio" name="topic" value="Sponsor or partner"><span data-i18n="form.t.partner">Sponsor or partner</span></label>
+        <label class="topic"><input type="radio" name="topic" value="Something else"><span data-i18n="form.t.other">Something else</span></label>
+      </fieldset>
+
+      <div class="field">
+        <label for="f-name" data-i18n="form.name">Your name</label>
+        <input id="f-name" name="name" type="text" autocomplete="name" required>
+        <p class="err" id="e-name"></p>
+      </div>
+
+      <div class="row" data-for="school">
+        <div class="field">
+          <label for="f-school" data-i18n="form.school">School or kindergarten</label>
+          <input id="f-school" name="school" type="text" required>
+          <p class="err" id="e-school"></p>
+        </div>
+        <div class="field">
+          <label for="f-town" data-i18n="form.town">Town or village</label>
+          <input id="f-town" name="town" type="text" autocomplete="address-level2" required>
+          <p class="err" id="e-town"></p>
+        </div>
+      </div>
+
+      <div class="field" data-for="partner" hidden>
+        <label for="f-company" data-i18n="form.company">Company or organisation</label>
+        <input id="f-company" name="company" type="text" autocomplete="organization" required>
+        <p class="err" id="e-company"></p>
+      </div>
+
+      <div class="field">
+        <label for="f-email" data-i18n="form.email">Email we can reply to</label>
+        <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="h-email">
+        <p class="help" id="h-email" data-for="school" data-i18n="form.help">Under 16? Use a parent's or teacher's email and send this together with them.</p>
+        <p class="err" id="e-email"></p>
+      </div>
+
+      <div class="field">
+        <label for="f-message" id="l-message">Tell us about your schoolyard</label>
+        <textarea id="f-message" name="message" rows="4" required></textarea>
+        <p class="err" id="e-message"></p>
+      </div>
+
+      <button type="submit" class="btn" id="f-send" data-i18n="form.send">Send message</button>
+      <p class="form-status" id="f-status" role="status"></p>
+    </form>
+
+    <div class="sent" id="contact-sent" hidden tabindex="-1">
+      <h3 data-i18n="form.sentTitle">Message sent.</h3>
+      <p id="sent-text"></p>
+      <button type="button" class="btn btn-ghost" id="send-another" data-i18n="form.another">Write another message</button>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <img src="img/action-cloud-logo-yellow.webp" alt="Action Cloud" width="74" height="40" loading="lazy">
+  <p><a href="https://www.instagram.com/action.cloud/">Instagram</a><a href="https://www.tiktok.com/@action.cloud">TikTok</a><a href="mailto:chris@actioncloud.co">chris@actioncloud.co</a></p>
+</footer>
+
+<dialog class="sheet" id="product" aria-labelledby="p-name">
+  <button type="button" class="x" data-close data-i18n-aria="p.close" aria-label="Close">×</button>
+  <div class="p-media">
+    <div class="p-art" id="p-art"></div>
+    <div class="p-views" id="p-views" role="group" data-i18n-aria="p.view" aria-label="View" hidden></div>
+  </div>
+  <div class="p-info">
+    <h2 id="p-name"></h2>
+    <p class="p-price" id="p-price"></p>
+    <p class="p-blurb" id="p-blurb"></p>
+    <div class="swatches" id="p-colors" role="group" data-i18n-aria="p.colour" aria-label="Colour"></div>
+    <div class="sizes" id="p-sizes" role="radiogroup" data-i18n-aria="p.size" aria-label="Size"></div>
+    <button type="button" class="btn" id="p-add" data-i18n="p.add">Add to bag</button>
+    <p class="p-hint" id="p-hint" role="status"></p>
+    <section class="p-spec" id="p-spec" aria-labelledby="p-spec-title" hidden>
+      <h3 id="p-spec-title" data-i18n="spec.title">Materials and fit</h3>
+      <dl class="spec-list" id="p-spec-list"></dl>
+      <h3 id="p-chart-title" data-i18n="chart.title">Size chart</h3>
+      <table class="chart" id="p-chart" aria-labelledby="p-chart-title"></table>
+      <p class="spec-note"><span data-i18n="chart.unit">Measurements in cm, garment laid flat.</span> <span data-i18n="spec.note">These are target specs for a piece still in development. Final fabric and measurements are confirmed before orders open.</span></p>
+    </section>
+  </div>
+</dialog>
+
+<dialog class="drawer" id="bag" aria-labelledby="bag-title">
+  <div class="bag-head">
+    <h2 id="bag-title" data-i18n="bag.title">Your bag</h2>
+    <button type="button" class="x" data-close data-i18n-aria="bag.close" aria-label="Close bag">×</button>
+  </div>
+  <ul class="bag-items" id="bag-items"></ul>
+  <p class="bag-empty" id="bag-empty" data-i18n="bag.empty">Your bag is empty. Pick something off the rail.</p>
+  <div class="bag-foot" id="bag-foot">
+    <p class="total"><span data-i18n="bag.total">Total</span><span id="bag-total">€0</span></p>
+    <button type="button" class="btn" id="checkout" data-i18n="bag.checkout">Check out</button>
+    <p class="notice" id="checkout-notice" role="status" hidden></p>
+  </div>
+</dialog>
+
+<script src="i18n.js"></script>
+<script src="shop-config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

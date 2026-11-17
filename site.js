@@ -38,12 +38,14 @@
       var card = rail.querySelector("li:not([hidden])");
       return card ? card.getBoundingClientRect().width + parseFloat(getComputedStyle(rail).columnGap || 16) : 320;
     }
+    var calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // aria-disabled, not disabled: an arrow that reaches the end keeps the keyboard focus
     function state() {
-      prev.disabled = rail.scrollLeft < 8;
-      next.disabled = rail.scrollLeft + rail.clientWidth > rail.scrollWidth - 8;
+      prev.setAttribute("aria-disabled", rail.scrollLeft < 8);
+      next.setAttribute("aria-disabled", rail.scrollLeft + rail.clientWidth > rail.scrollWidth - 8);
     }
-    prev.addEventListener("click", function () { rail.scrollBy({ left: -step(), behavior: "smooth" }); });
-    next.addEventListener("click", function () { rail.scrollBy({ left: step(), behavior: "smooth" }); });
+    prev.addEventListener("click", function () { rail.scrollBy({ left: -step(), behavior: calm ? "auto" : "smooth" }); });
+    next.addEventListener("click", function () { rail.scrollBy({ left: step(), behavior: calm ? "auto" : "smooth" }); });
     rail.addEventListener("scroll", state, { passive: true });
     window.addEventListener("resize", state);
     box._state = state;
@@ -58,6 +60,9 @@
       e.preventDefault();
       var calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       card.scrollIntoView({ behavior: calm ? "auto" : "smooth", block: "nearest", inline: "start" });
+      // keyboard and screen-reader users land on that package's button
+      var go = card.querySelector("[data-pick]");
+      if (go) go.focus({ preventScroll: true });
     });
   });
 
@@ -90,8 +95,8 @@
     function wake() { if (!running && !reduce) { running = true; lastX = track.scrollLeft; requestAnimationFrame(tick); } }
     function ends() {
       if (!prev || !next) return;
-      prev.disabled = track.scrollLeft < 8;
-      next.disabled = track.scrollLeft + track.clientWidth > track.scrollWidth - 8;
+      prev.setAttribute("aria-disabled", track.scrollLeft < 8);
+      next.setAttribute("aria-disabled", track.scrollLeft + track.clientWidth > track.scrollWidth - 8);
     }
     track.addEventListener("scroll", function () { wake(); ends(); }, { passive: true });
     window.addEventListener("resize", ends);
@@ -130,16 +135,17 @@
     if (next) next.addEventListener("click", function () { nudge(1); });
     ends();
 
-    // hovering nudges a piece; now and then a draught runs along the rail while it is on screen
+    // hovering nudges a piece; one draught runs along the rail after it comes on screen, then it rests
     pieces.forEach(function (s) {
       s.el.addEventListener("pointerenter", function (e) {
         if (e.pointerType === "mouse" && !dragging) { s.w += (Math.random() < 0.5 ? -1 : 1) * 1.0; wake(); }
       });
     });
-    setInterval(function () {
+    var gust = setInterval(function () {
       if (reduce || !visible || d.hidden || dragging) return;
       var dir = Math.random() < 0.5 ? -1 : 1;
       pieces.forEach(function (s, i) { setTimeout(function () { s.w += dir * (0.28 + Math.random() * 0.22); wake(); }, i * 110); });
+      clearInterval(gust);
     }, 3400);
 
     // first time on screen: the pieces drop onto the rail (CSS), then swing and settle

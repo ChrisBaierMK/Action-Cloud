@@ -25,7 +25,7 @@ const ok = (name, cond, extra) => console.log((cond ? 'PASS ' : 'FAIL ') + name 
     await p.click('#tier-rail [data-next]'); await p.waitForTimeout(700);
     const after = await p.$eval('#tier-rail .rail', r => r.scrollLeft);
     ok(lang + 'tiers: next arrow scrolls the rail', after > before + 100, before + ' -> ' + after);
-    ok(lang + 'tiers: back arrow disabled at start, enabled after', !(await p.isDisabled('#tier-rail [data-prev]')));
+    ok(lang + 'tiers: back arrow enabled after moving, and still focusable', (await p.getAttribute('#tier-rail [data-prev]', 'aria-disabled')) === 'false' && !(await p.isDisabled('#tier-rail [data-prev]')));
     const third = await p.$$eval('#tier-rail .tier h3', h => h[2].textContent);
     await p.$$eval('#tier-rail .tier a[data-pick]', a => a[2].click()); await p.waitForTimeout(300);
     ok(lang + 'tiers: choosing a package pre-selects it in the form', await p.$eval('#f-package', s => s.options[s.selectedIndex].text) === third, third);

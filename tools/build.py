@@ -112,7 +112,7 @@ class Page:
         prev = self.t(T("Cardul anterior", "Previous card"))
         nxt = self.t(T("Cardul următor", "Next card"))
         swipe = self.t(T("Glisează pentru mai multe", "Swipe for more"))
-        return (f'<div id="{rid}" data-rail>\n<ul class="rail{" " + cls if cls else ""}" tabindex="0" role="group" aria-label="{esc(label)}">{lis}</ul>\n'
+        return (f'<div id="{rid}" data-rail>\n<ul class="rail{" " + cls if cls else ""}" tabindex="0" role="list" aria-label="{esc(label)}">{lis}</ul>\n'
                 f'<div class="wrap rail-tools"><p class="rail-count"><span class="swipe">{swipe}</span></p>'
                 f'<div class="arrows"><button type="button" data-prev aria-label="{prev}">←</button>'
                 f'<button type="button" data-next aria-label="{nxt}">→</button></div></div>\n</div>')
@@ -199,6 +199,37 @@ DECKS = [
              ("hostel", 21, None, T(["Cazare în aceeași clădire", "Pentru tabere și competiții"], ["A place to stay in the same building", "For camps and competitions"])),
          ]),
 ]
+
+# What each concept picture shows, for people who cannot see it (checked against the pictures).
+ALT = {
+    "service": T("Un mecanic repară o bicicletă pe stand, lângă rafturi cu biciclete, trotinete și căști", "A mechanic works on a bike in a repair stand, beside racks of bikes, scooters and helmets"),
+    "entrance": T("Recepție din placaj, cu plante; un vizitator cu rucsac trece prin turnicheți, lângă rafturi cu căști și trotinete", "A plywood reception desk with plants; a visitor with a backpack walks through the ticket gates, beside racks of helmets and scooters"),
+    "burgers": T("Tejghea de burgeri cu meniu luminos; rideri la coadă și la mese înalte", "A burger counter with a lit menu; riders queueing and sitting at high tables"),
+    "mini-action": T("Copii mici cu căști, pe biciclete fără pedale, pe rampe joase; un părinte stă ghemuit lângă ei", "Small children in helmets on balance bikes on low ramps; a parent crouches beside them"),
+    "pumptrack": T("Rideri pe un pumptrack din placaj, cu valuri și viraje în jurul unor jardiniere", "Riders on a plywood pumptrack with rollers and banked turns around planters"),
+    "send-room": T("Rampe de sărituri din placaj și o groapă cu bureți, într-o hală plină de plante", "Plywood jump ramps and a foam pit in a hall full of plants"),
+    "bowl": T("Un bowl adânc din placaj; un skater pe perete, un rider cu trotineta așteaptă pe margine", "A deep plywood bowl; a skater on the wall, a scooter rider waiting on the edge"),
+    "big-airbag": T("O rampă înaltă de start și un rider pe bicicletă, în aer, deasupra unui airbag mare, negru cu galben", "A tall start ramp and a rider on a bike in the air above a large black and yellow airbag"),
+    "mega-ramp": T("Două rampe foarte înalte, un rider în aer între ele și public la balustradă", "Two very tall ramps, a rider in the air between them and spectators at the railing"),
+    "trampolines": T("Copii sărind pe trambuline negre cu margini galbene; unul face un salt, iar în spate e un airbag", "Kids jumping on black trampolines with yellow edges; one is mid-flip, with an airbag behind"),
+    "climbing-ninja": T("Perete de cățărat cu prize colorate și un traseu ninja cu inele și plasă", "A climbing wall with coloured holds and a ninja course with rings and a net"),
+    "parkour": T("Un tânăr sare peste o cutie din placaj; în spate, bare de street workout", "A young man vaults a plywood box; street workout bars behind him"),
+    "street-soccer": T("Copii jucând fotbal pe un teren mic, împrejmuit, cu gazon sintetic, perete cu ținte și coș de baschet", "Kids playing football on a small caged pitch with artificial turf, a target wall and a basketball hoop"),
+    "gaming": T("Cameră cu ecrane mari, canapele și fotolii puf; copii joacă pe console", "A room with big screens, sofas and beanbags; kids playing on consoles"),
+    "birthday": T("Copii la o masă lungă cu tort, baloane și stegulețe; o fereastră mare dă spre rampe", "Kids at a long table with a cake, balloons and bunting; a large window looks onto the ramps"),
+    "cycling": T("Clasă de cycling văzută din spate; printr-un perete de sticlă se văd rampele", "An indoor cycling class seen from behind; the ramps are visible through a glass wall"),
+    "training": T("Sală cu cadru de tracțiuni, greutăți și cutii din placaj; câțiva oameni se antrenează", "A gym with a pull-up rig, weights and plywood boxes; a few people training"),
+    "bistro": T("Cafenea plină de plante; părinți la mese, lângă un perete de sticlă cu vedere spre rampe", "A café full of plants; parents at tables beside a glass wall overlooking the ramps"),
+    "walkway": T("Promenadă cu copaci și plante; un părinte și un copil mic privesc rampele de la balustradă", "A walkway lined with trees and plants; a parent and a small child watch the ramps from the railing"),
+    "hostel": T("Cameră cu paturi supraetajate din lemn, dulapuri, două biciclete și o trotinetă; doi copii își desfac bagajele", "A room with wooden bunk beds, lockers, two bikes and a scooter; two kids unpacking"),
+    "tier-naming": T("Fațada parcului seara, cu firma „Action Cloud by LOGO” și steaguri LOGO la intrare", "The park façade at dusk with an \"Action Cloud by LOGO\" sign and LOGO flags at the entrance"),
+    "tier-zone": T("Poarta unei zone, cu LOGO mare deasupra și bannere LOGO în interior", "The gateway to a zone with a large LOGO above it and LOGO banners inside"),
+    "tier-attraction": T("Mega rampa, cu panouri LOGO pe laterale", "The mega ramp with LOGO panels on its sides"),
+    "tier-programme": T("Un antrenor și un șir de copii în veste galbene cu LOGO, lângă un banner LOGO", "A coach and a row of kids in yellow LOGO bibs next to a LOGO banner"),
+    "tier-feature": T("Un copil pe trotinetă urcă o rampă cu un autocolant LOGO", "A kid on a scooter rides up a ramp carrying a LOGO sticker"),
+    "tier-local": T("Perete cu plăcuțe din placaj; una, luminată, poartă un LOGO, iar un părinte și un copil o privesc", "A wall of plywood plaques; one lit plaque carries a LOGO while a parent and child look at it"),
+    "tier-supporter": T("O mână prinde pe perete o plăcuță din placaj gravată cu „TU”, lângă plăcuțe cu prenume", "A hand fixes a plywood plaque engraved \"YOU\" to the wall, next to plaques with first names"),
+}
 
 TIERS = [
     # id, picture, name, price ro, price en, how many partners, labels (what the sponsor gets)
@@ -323,6 +354,10 @@ def aliases(*ids):
     return "".join(f'<span id="{i}"></span>' for i in ids)
 
 
+# The size claim. It is worded as a plan because the park is not built; see README, "The size claim".
+CLAIM = T("Plănuit: cel mai mare parc indoor de action sports din România", "Planned: the biggest indoor action sports park in Romania")
+
+
 def s_hero(p):
     img, _ = p.img("crew", p.t(T("Imagine concept: copii, adolescenți și părinți în hanorace Action Cloud, văzuți din spate, privind parcul plin de rampe și plante",
                                "Concept image: kids, teenagers and parents in Action Cloud hoodies, seen from behind, looking out over a park full of ramps and plants")),
@@ -330,8 +365,9 @@ def s_hero(p):
     return f'''<section class="slide hero" id="top">
   {img}
   <div class="wrap hero-top">
+    <p class="kicker">{p.t(CLAIM)}</p>
     <h1>{p.t(T("Un loc al lor.<br>Hai să-l construim.", "A place of their own.<br>Let's build it."))}</h1>
-    <p class="sub">{p.t(T("Un parc indoor de aproximativ 6.000 m², plănuit în nordul Bucureștiului. Încă nu e deschis.", "An indoor park of about 6,000 m², planned for north Bucharest. Not open yet."))}</p>
+    <p class="sub">{p.t(T("Aproximativ 6.000 m², în nordul Bucureștiului. Încă nu e deschis.", "About 6,000 m², in north Bucharest. Not open yet."))}</p>
   </div>
   <div class="wrap hero-bottom">
     <div>
@@ -438,7 +474,7 @@ def s_deck(p, d):
     cards = []
     for key, num, title, labels in d["cards"]:
         name = p.t(title or NAMES[num])
-        m = p.media(key, p.t(TAG["concept"]) + ": " + name)
+        m = p.media(key, p.t(ALT[key]))
         m = m[:-len("</div>")] + f'<span class="pin"><span class="vh">{plan_word}</span>{num}</span></div>'
         cards.append(f'<div class="card">{m}<div class="card-body"><h3>{name}</h3>{p.labels(p.t(labels))}</div></div>')
     surface = f' {d["surface"]}' if d["surface"] else ""
@@ -521,9 +557,10 @@ def s_sponsors(p):
     for tid, key, name, pr_ro, pr_en, places, labels in TIERS:
         price = pr_ro if p.lang == "ro" else pr_en
         pl = f'<p class="places">{p.t(places)}</p>' if places else ""
+        alt = p.t(ALT[key])
         if p.lang == "en" and key + "-en" in PICS:  # a picture with words in it has an English twin
             key += "-en"
-        img, _ = p.img(key, example + ", " + p.t(name))
+        img, _ = p.img(key, alt)
         media = f'<div class="media">{img}<span class="tag">{example}</span></div>'
         body = (f'<h3>{p.t(name)}</h3><p class="price">{price} <small>{per}</small></p>{pl}{p.labels(p.t(labels))}'
                 f'<a class="btn btn-dark btn-small" href="#contact" data-pick="{esc(p.t(name))}">{choose}<span class="vh">: {p.t(name)}</span></a>')
@@ -555,10 +592,8 @@ def s_contact(p):
     st = "".join(f"<li>{s}</li>" for s in steps)
     return f'''<section class="slide dark" id="contact" data-chapter="sponsors">
   <div class="wrap split">
-    <div>
+    <div class="split-head">
       {p.head(T("Hai să vorbim.", "Let's talk."), T("Christoph Baier, fondatorul Action Cloud, îți răspunde personal.", "Christoph Baier, founder of Action Cloud, will reply personally."))}
-      <ol class="steps">{st}</ol>
-      <p class="actions after"><a class="btn btn-line" href="mailto:{MAIL}">{MAIL}</a></p>
     </div>
     <form name="sponsor" method="POST" action="{action}" data-netlify="true" netlify-honeypot="website">
       <input type="hidden" name="form-name" value="sponsor">
@@ -572,6 +607,10 @@ def s_contact(p):
       <button class="btn btn-yellow" type="submit">{p.t(T("Trimite mesajul", "Send message"))}</button>
       <p class="help">{p.t(T("Folosim datele doar ca să îți răspundem.", "We use your details only to reply to you."))}</p>
     </form>
+    <div class="split-after">
+      <ol class="steps">{st}</ol>
+      <p class="actions after"><a class="btn btn-line" href="mailto:{MAIL}">{MAIL}</a></p>
+    </div>
   </div>
 </section>'''
 

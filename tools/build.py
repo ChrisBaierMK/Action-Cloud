@@ -432,7 +432,6 @@ def s_why(p):
       {grid}
     </div>
     <ol class="story" aria-label="{esc(p.t(T("Cum am ajuns aici", "How we got here")))}">{story}</ol>
-    <p class="note">{p.t(T("Action Cloud Brașov e administrat de asociația nonprofit Rosenau Cycling, cu sprijinul partenerilor Techno Pro și Skates.ro.", "Action Cloud Brașov is run by the non-profit Rosenau Cycling association, with the support of its partners Techno Pro and Skates.ro."))}</p>
   </div>
 </section>'''
 

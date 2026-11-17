@@ -394,60 +394,27 @@ def s_hero(p):
 
 
 def s_why(p):
+    """Why it matters, shown with what already happens in Brașov. One stop, about the community, not about any one person."""
     cards = [
-        ("event-night", T("Un loc de întâlnire", "A meeting place"),
-         T(["Seară de eveniment la Brașov"], ["Event night in Brașov"]),
+        ("event-night", T("Un loc de întâlnire", "A place to meet"),
+         T(["Seri de eveniment cu balconul plin"], ["Event nights with a full balcony"]),
          T("Eveniment de seară la Brașov: un rider cu capul în jos deasupra rampei, iar publicul filmează de la balcon", "Event night in Brașov: a rider inverted above the ramp while the crowd films from the balcony")),
-        ("action-camp", T("Action Camps", "Action Camps"),
-         T(["Tabere de bicicletă și trotinetă"], ["Bike and scooter camps"]),
+        ("action-camp", T("Cresc împreună", "Growing up together"),
+         T(["Action Camps: tabere de bicicletă și trotinetă"], ["Action Camps: bike and scooter camps"]),
          T("Action Camp la Brașov: copii care fac încălzirea pe rampe", "Action Camp in Brașov: kids warming up on the ramps")),
-        ("rider", T("În interior, tot anul", "Indoors, all year round"),
+        ("rider", T("Un loc al lor, tot anul", "A place of their own, all year"),
          T(["Și iarna, și pe ploaie", "Pe roți, casca e obligatorie"], ["In winter and in the rain", "Helmets are required on wheels"]),
          T("Un rider cu cască, cu capul în jos deasupra rampei, sub sigla Action Cloud din Brașov", "A rider in a helmet, upside down above the ramp, under the Action Cloud sign in Brașov")),
     ]
     grid = "\n      ".join(p.card(k, p.t(t), p.t(l), alt=p.t(a)) for k, t, l, a in cards)
     return f'''<section class="slide" id="why" data-chapter="proof">
-  {aliases("impact")}
+  {aliases("impact", "story", "proof")}
   <div class="wrap">
-    {p.head(T("Vin pentru rampe.<br>Rămân pentru comunitate.", "Come for the ramps.<br>Stay for the community."), T("Așa arată deja la Action Cloud Brașov.", "This is what it already looks like at Action Cloud Brașov."))}
+    {p.head(T("Vin pentru rampe.<br>Rămân pentru comunitate.", "Come for the ramps.<br>Stay for the community."), T("La Action Cloud Brașov se întâmplă deja, din 2022.", "At Action Cloud Brașov it has been happening since 2022."))}
     <div class="grid grid-3">
       {grid}
     </div>
-    <p class="note">{p.t(T("În plan, la București: Action Cups, dimineți pentru școli și aniversări pentru copii.", "Planned for Bucharest: Action Cups, school mornings and kids' birthday parties."))}</p>
-  </div>
-</section>'''
-
-
-def s_proof(p):
-    tiles = [("2022", T("deschis la Brașov", "opened in Brașov")),
-             ("1.000+" if p.lang == "ro" else "1,000+", T("rideri antrenați de fondator", "riders coached by the founder")),
-             ("20M+", T("vizualizări ale fondatorului, online", "views of the founder's videos"))]
-    th = "".join(f'<li class="tile"><b>{b}</b><span>{p.t(s)}</span></li>' for b, s in tiles)
-    cards = [
-        ("park-brasov", T("Construit de echipa noastră", "Built by our own team"),
-         T(["La standarde europene", "Cu sprijinul sponsorilor"], ["To European standards", "With sponsors' support"]),
-         T("Parcul Action Cloud din Brașov: rampe din placaj, pereți vopsiți în galben și negru și bannere pe perete", "The Action Cloud park in Brașov: plywood ramps, walls painted yellow and black, and banners along the wall"), {}),
-        ("founder", T("Christoph Baier, fondator", "Christoph Baier, founder"),
-         T(["Fost campion național la downhill", "Participant la „Românii au talent”", "Rider, constructor, antrenor"],
-           ["Former Romanian downhill champion", "Appeared on Romania's Got Talent", "Rider, builder, coach"]),
-         T("Christoph Baier cu bicicleta pe o rampă, sub sigla Action Cloud", "Christoph Baier with his bike on a ramp, under the Action Cloud sign"), {}),
-        ("build", T("Am început cu o rampă într-un hambar", "We started with one ramp in a barn"),
-         T(["2012: prima rampă", "2023: parcul e gata"], ["2012: the first ramp", "2023: the park is finished"]),
-         T("Fotografii din 2012 până în 2023: o rampă într-un hambar, rampe în curte, structuri de lemn în hală și parcul terminat", "Photos from 2012 to 2023: a ramp in a barn, backyard ramps, timber frames in the hall and the finished park"),
-         {"kind": "photos", "cls": "whole"}),
-    ]
-    grid = "\n      ".join(p.card(k, p.t(t), p.t(l), alt=p.t(a), **kw) for k, t, l, a, kw in cards)
-    return f'''<section class="slide dark" id="proof" data-chapter="proof">
-  {aliases("story")}
-  <div class="wrap duo">
-    {p.head(T("Am mai construit unul.", "We've built one before."), T("Action Cloud Brașov, deschis în 2022: cel mai mare bikepark indoor din România.", "Action Cloud Brașov, opened in 2022: Romania's largest indoor bikepark."))}
-    <ul class="tiles">{th}</ul>
-  </div>
-  <div class="wrap">
-    <div class="grid grid-3">
-      {grid}
-    </div>
-    <p class="note">{p.t(T("Parcul este administrat de asociația nonprofit Rosenau Cycling. Parteneri la Brașov: Techno Pro, Skates.ro.", "The park is run by the non-profit Rosenau Cycling association. Partners in Brașov: Techno Pro, Skates.ro."))}</p>
+    <p class="note">{p.t(T("Action Cloud Brașov e administrat de asociația nonprofit Rosenau Cycling, cu sprijinul partenerilor Techno Pro și Skates.ro.", "Action Cloud Brașov is run by the non-profit Rosenau Cycling association, with the support of its partners Techno Pro and Skates.ro."))}</p>
   </div>
 </section>'''
 
@@ -637,11 +604,11 @@ def s_contact(p):
 
 
 def sections(p):
-    return [s_hero(p), s_map(p), s_why(p), s_proof(p), s_crew(p), s_shop(p), s_sponsors(p), s_contact(p)]
+    return [s_hero(p), s_map(p), s_why(p), s_crew(p), s_shop(p), s_sponsors(p), s_contact(p)]
 
 
 # chapter key, id it links to, name in the top bar
-CHAPTERS = [("park", "park", T("Parcul", "The park")), ("proof", "why", T("Brașov", "Brașov")), ("crew", "crew", T("Action Crew", "Action Crew")),
+CHAPTERS = [("park", "park", T("Parcul", "The park")), ("proof", "why", T("Comunitatea", "Community")), ("crew", "crew", T("Action Crew", "Action Crew")),
             ("shop", "shop", T("Magazin", "Shop")), ("sponsors", "sponsors", T("Sponsori", "Sponsors"))]
 
 

@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ballerina</title>
+<meta name="description" content="Ballerina. Clothes made by a person, for people who don&rsquo;t know what to believe.">
+<meta name="theme-color" content="#2B2723">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="Ballerina">
+<meta property="og:description" content="Clothes made by a person, for people who don&rsquo;t know what to believe.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Playfair+Display:ital,wght@0,800;1,800&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip" href="#rail" data-i18n="skip">Skip to the clothes</a>
+
+<header class="top">
+  <a class="logo" href="#top">
+    <img data-hand="logo" src="img/hand/logo.png" alt="Ballerina" width="560" height="190">
+  </a>
+  <div class="top__tools">
+    <label class="lang">
+      <span class="vh" data-i18n="nav.lang">Language</span>
+      <select id="lang"></select>
+    </label>
+    <button class="scrap e1 bagbtn" id="bagOpen" type="button" aria-haspopup="dialog">
+      <span data-i18n="bag.word">Bag</span>
+      <span class="count" id="bagCount" aria-hidden="true">0</span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- 1. The studio -->
+  <section class="hero" id="top" aria-labelledby="heroTitle">
+    <picture class="hero__room">
+      <source media="(max-width: 700px) and (orientation: portrait)" srcset="img/studio-mobile.webp" width="752" height="1344">
+      <img src="img/studio.webp" alt="" width="1344" height="752" fetchpriority="high" decoding="async">
+    </picture>
+
+    <div class="hero__text">
+      <h1 id="heroTitle">
+        <img data-hand="hero.line" src="img/hand/hero.line.png" alt="I am not a robot." width="560" height="120">
+        <img class="line2" data-hand="hero.line2" src="img/hand/hero.line2.png" alt="I think." width="220" height="60">
+      </h1>
+      <p data-i18n="hero.sub">Clothes for people who aren&rsquo;t sure any more.</p>
+    </div>
+
+    <div class="stage" id="rail" role="region" tabindex="-1" data-i18n-aria="rail.label" aria-label="The barre. Clothes hanging in the studio.">
+      <div class="stage__in">
+        <div class="barre" aria-hidden="true"><span class="barre__tube"></span></div>
+        <ul class="track" id="track" role="list"></ul>
+      </div>
+    </div>
+
+    <button class="btn arrow arrow--prev" id="railPrev" type="button" data-i18n-aria="rail.prev" aria-label="Move the barre left">
+      <span aria-hidden="true">&larr;</span>
+    </button>
+    <button class="btn arrow arrow--next" id="railNext" type="button" data-i18n-aria="rail.next" aria-label="Move the barre right">
+      <span aria-hidden="true">&rarr;</span>
+    </button>
+
+    <p class="hint">
+      <img data-hand="rail.hint" src="img/hand/rail.hint.png" alt="Drag the barre. Tap a piece." width="320" height="40">
+    </p>
+  </section>
+
+  <!-- 3. Made by hand -->
+  <section class="made" aria-labelledby="madeTitle">
+    <div class="wrap made__grid">
+      <figure class="taped" data-photo="hands">
+        <img src="img/hands.webp" data-i18n-alt="made.alt" alt="Placeholder for a photograph of hands at work." width="1600" height="1067" loading="lazy" decoding="async">
+      </figure>
+      <div>
+        <h2 id="madeTitle">
+          <img data-hand="made.title" src="img/hand/made.title.png" alt="Made by a person." width="440" height="80" loading="lazy">
+        </h2>
+        <p class="lead" data-i18n="made.lead">I don&rsquo;t know what to believe. I know who made this.</p>
+        <p data-i18n="made.text">[WHO MAKES THE PIECES, WHERE, AND HOW LONG ONE TAKES]</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Public tender -->
+  <section class="tender" aria-labelledby="tenderTitle">
+    <div class="wrap tender__grid">
+      <div>
+        <p class="kicker" data-i18n="tender.kicker">Public tender</p>
+        <h2 id="tenderTitle">
+          <img data-hand="tender.title" src="img/hand/tender.title.png" alt="Tender No. 001" width="440" height="80" loading="lazy">
+        </h2>
+        <p data-i18n="tender.intro">One piece, made once, sold by sealed bid.</p>
+        <figure class="taped" data-photo="tender">
+          <img src="img/tender-001.webp" data-i18n-alt="tender.alt" alt="Placeholder for a photograph of the first one-off piece." width="1600" height="1067" loading="lazy" decoding="async">
+        </figure>
+        <p data-i18n="tender.story">[THE STORY OF THE PIECE]</p>
+        <dl class="facts">
+          <div data-fact><dt data-i18n="tender.reserve">Reserve price</dt><dd data-i18n="tender.reserve.v">[RESERVE PRICE]</dd></div>
+          <div data-fact><dt data-i18n="tender.closes">Closes</dt><dd data-i18n="tender.closes.v">[CLOSING DATE]</dd></div>
+        </dl>
+      </div>
+
+      <div class="card">
+        <h3 data-i18n="tender.form">Register your interest</h3>
+        <p class="note" data-i18n="tender.note">This registers your interest. It is not a bid.</p>
+        <form class="form" name="tender-001" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field" data-form>
+          <input type="hidden" name="form-name" value="tender-001">
+          <input type="hidden" name="lang" value="en" data-lang-field>
+          <p class="hp"><label><span data-i18n="form.hp">Leave this field empty</span> <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+          <div class="field">
+            <label for="tName" data-i18n="form.name">Name</label>
+            <input id="tName" name="name" type="text" autocomplete="name" required
+                   data-err-required="err.name" aria-describedby="tNameErr">
+            <p class="err" id="tNameErr"></p>
+          </div>
+          <div class="field">
+            <label for="tEmail" data-i18n="form.email">Email</label>
+            <input id="tEmail" name="email" type="email" autocomplete="email" inputmode="email" required
+                   data-err-required="err.email" data-err-invalid="err.email.bad" aria-describedby="tEmailErr">
+            <p class="err" id="tEmailErr"></p>
+          </div>
+          <div class="field">
+            <label for="tMsg" data-i18n="form.message">Message (optional)</label>
+            <textarea id="tMsg" name="message" rows="4"></textarea>
+          </div>
+          <button class="scrap scrap--ink e1 big" type="submit" data-label="tender.send" data-i18n="tender.send">Register interest</button>
+          <p class="form__status" role="status"></p>
+          <p class="privacy"><span data-i18n="form.privacy">Your details are sent through Netlify Forms.</span> <span data-i18n="form.privacy.tbd">[PRIVACY NOTICE: WHO HOLDS YOUR DETAILS AND WHAT THEY ARE USED FOR]</span></p>
+        </form>
+        <p class="sent" tabindex="-1" hidden data-i18n="tender.sent">Sent. Your interest in Tender No. 001 is registered.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Waiting list -->
+  <section class="wait" aria-labelledby="waitTitle">
+    <div class="wrap wait__in">
+      <h2 id="waitTitle">
+        <img data-hand="wait.title" src="img/hand/wait.title.png" alt="Tell me when it opens." width="440" height="80" loading="lazy">
+      </h2>
+      <form class="form form--row" name="waitlist" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field" data-form>
+        <input type="hidden" name="form-name" value="waitlist">
+        <input type="hidden" name="lang" value="en" data-lang-field>
+        <p class="hp"><label><span data-i18n="form.hp">Leave this field empty</span> <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <div class="field">
+          <label for="wEmail" data-i18n="form.email">Email</label>
+          <input id="wEmail" name="email" type="email" autocomplete="email" inputmode="email" required
+                 data-err-required="err.email" data-err-invalid="err.email.bad" aria-describedby="wEmailErr">
+          <p class="err" id="wEmailErr"></p>
+        </div>
+        <button class="scrap scrap--ink e3 big" type="submit" data-label="wait.send" data-i18n="wait.send">Tell me</button>
+        <p class="form__status" role="status"></p>
+        <p class="privacy"><span data-i18n="form.privacy">Your details are sent through Netlify Forms.</span> <span data-i18n="form.privacy.tbd">[PRIVACY NOTICE: WHO HOLDS YOUR DETAILS AND WHAT THEY ARE USED FOR]</span></p>
+      </form>
+      <p class="sent" tabindex="-1" hidden data-i18n="wait.sent">Sent. You are on the list.</p>
+    </div>
+  </section>
+</main>
+
+<!-- 6. Footer -->
+<footer class="foot">
+  <div class="wrap foot__in">
+    <img class="foot__logo" data-hand="logo" src="img/hand/logo.png" alt="Ballerina" width="560" height="190" loading="lazy">
+    <ul class="foot__links" role="list">
+      <li data-fact><span data-i18n="foot.instagram">Instagram</span> <span id="footInstagram"></span></li>
+      <li data-fact><span data-i18n="foot.tiktok">TikTok</span> <span id="footTiktok"></span></li>
+      <li data-fact><span data-i18n="foot.contact">Contact</span> <span id="footEmail"></span></li>
+    </ul>
+    <p class="foot__legal" data-i18n="foot.legal">[COMPANY NAME AND ADDRESS]</p>
+  </div>
+</footer>
+
+<!-- Product panel: a page torn from a magazine -->
+<dialog class="sheet" id="product" aria-labelledby="pName">
+  <div class="sheet__paper">
+    <button class="btn x" type="button" data-close data-i18n-aria="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+    <div class="sheet__photo">
+      <div class="taped taped--photo"><img id="pImg" alt="" width="896" height="1120"></div>
+      <p class="standin" id="pStandIn" data-i18n="p.standin" hidden>Stand-in picture. Not a photograph of the finished piece.</p>
+      <fieldset class="chips views" id="pViews">
+        <legend class="vh" data-i18n="p.view">Side</legend>
+      </fieldset>
+    </div>
+
+    <div class="sheet__body">
+      <h2 id="pName"></h2>
+      <p class="price" id="pPrice"></p>
+      <p id="pBlurb"></p>
+      <dl class="madeby">
+        <div data-fact><dt data-i18n="p.edition">Edition</dt><dd id="pEdition"></dd></div>
+        <div data-fact><dt data-i18n="p.madeby">Made by</dt><dd id="pMadeBy"></dd></div>
+      </dl>
+
+      <form id="pForm" novalidate>
+        <fieldset class="chips" id="pColors">
+          <legend><span data-i18n="p.color">Colour</span>: <span id="pColorName"></span></legend>
+        </fieldset>
+        <fieldset class="chips" id="pSizes" aria-describedby="pSizeErr">
+          <legend data-i18n="p.size">Size</legend>
+        </fieldset>
+        <p class="err" id="pSizeErr"></p>
+        <button class="scrap scrap--ink e1 big" type="submit" data-i18n="p.add">Add to bag</button>
+        <p class="form__status" id="pStatus" role="status"></p>
+      </form>
+
+      <details data-fact>
+        <summary data-i18n="p.materials">Materials</summary>
+        <p id="pMaterials"></p>
+      </details>
+      <details data-fact>
+        <summary data-i18n="p.chart">Size chart</summary>
+        <div id="pChart"></div>
+      </details>
+      <details data-fact>
+        <summary data-i18n="p.care">Care</summary>
+        <p id="pCare"></p>
+      </details>
+      <details data-fact>
+        <summary data-i18n="p.shipping">Shipping and returns</summary>
+        <p id="pShipping"></p>
+      </details>
+    </div>
+  </div>
+</dialog>
+
+<!-- Bag drawer -->
+<dialog class="drawer" id="bag" aria-labelledby="bagTitle">
+  <div class="drawer__in">
+    <header class="drawer__head">
+      <h2 id="bagTitle" data-i18n="bag.title">Your bag</h2>
+      <button class="btn x" type="button" data-close data-i18n-aria="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </header>
+    <p id="bagEmpty" data-i18n="bag.empty">Your bag is empty. Take something off the barre.</p>
+    <ul class="lines" id="bagList" role="list"></ul>
+    <div class="drawer__foot" id="bagFoot" hidden>
+      <p class="total" data-fact><span data-i18n="bag.total">Total</span> <strong id="bagTotal"></strong></p>
+      <button class="scrap scrap--ink e1 big" id="checkout" type="button" data-i18n="bag.checkout">Check out</button>
+      <p class="form__status" id="checkoutMsg" role="status"></p>
+    </div>
+  </div>
+</dialog>
+
+<script src="shop-config.js"></script>
+<script src="i18n.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

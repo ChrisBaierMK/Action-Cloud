@@ -1,0 +1,183 @@
+/*
+ * Ballerina shop configuration.
+ *
+ * PLACEHOLDERS. Nothing below marked null has been decided yet:
+ *   - every price is null and shows on the page as [PRICE]
+ *   - currency is null (set an ISO code such as "RON" or "EUR" when prices exist)
+ *   - materials, care and size charts are null and show as [MATERIALS] / [CARE
+ *     INSTRUCTIONS] / [SIZE CHART]
+ *   - edition (how many of a design exist), madeBy and shipping are null
+ *   - contact details are null and show as [HANDLE] / [EMAIL]
+ *
+ * STAND-INS. The product pictures in img/p/ and the logo in img/hand/ are
+ * AI-generated stand-ins, not photographs of finished pieces. While standIn is
+ * true the product panel says so under the picture. Replace the files with real
+ * photographs and real handwriting, then set standIn to false.
+ * The swatch hex values are read off the stand-in pictures, not off fabric.
+ *
+ * Product pictures are named
+ *   <id>-<colour id>-front.webp and <id>-<colour id>-back.webp
+ * 896 x 1120 px, transparent, on a hanger, hook at the top centre.
+ *
+ * Visible product text can be overridden per language in i18n.js under
+ * "p.<id>.name" and "p.<id>.blurb". The values here are the default.
+ */
+window.SHOP = {
+  brand: "Ballerina",
+
+  /* false = public. Undecided facts and missing photographs are left out of the
+             page, and handwritten phrases with no image are set in type.
+     true  = working draft. Every undecided fact shows as a [PLACEHOLDER] and
+             every missing image as a labelled grey box. */
+  showPlaceholders: false,
+
+  /* Handwritten phrases that have an image in img/hand/ (the i18n key is the
+     file name). Add a key here once its handwriting is scanned. */
+  hand: ["logo"],
+
+  /* Page photographs that exist. false = still a grey placeholder. */
+  photos: { hands: false, tender: false },
+
+  /* true while img/p/ holds stand-in pictures instead of real photographs. */
+  standIn: true,
+
+  /* ISO 4217 code, or null while prices are undecided. */
+  currency: null,
+
+  /* null = orders are not open. The Check out button says so and takes no payment.
+     When a real checkout exists, put its URL here; the bag is sent to it as
+     ?items=<id>:<colour>:<size>:<qty>,... */
+  checkoutUrl: null,
+
+  /* One sentence: who makes the pieces, where, and how long one takes. Shown on
+     every piece. A product can carry its own madeBy to override it. */
+  madeBy: null,
+
+  /* One or two sentences on shipping and returns. */
+  shipping: null,
+
+  contact: {
+    email: null,       /* "name@example.com" */
+    instagram: null,   /* handle without @ */
+    tiktok: null       /* handle without @ */
+  },
+
+  /* One entry per kind of garment. chart example:
+     { unit: "cm", measures: ["Chest", "Length"], rows: { S: [50, 68], M: [53, 70] } } */
+  specs: {
+    tee:    { materials: null, care: null, chart: null },
+    hoodie: { materials: null, care: null, chart: null },
+    jacket: { materials: null, care: null, chart: null }
+  },
+
+  /* edition: how many pieces of this design exist (a number), or null.
+     where: "barre" (hangs on the barre), "hooks" (long pieces, high hook rail),
+            "bench" (small items on the bench under the barre)
+     Each design exists in one colour. */
+  products: [
+    {
+      id: "tee-patch",
+      name: "Patch tee",
+      kind: "tee",
+      where: "barre",
+      price: null,
+      edition: null,
+      blurb: "Washed black. A torn grey patch across the chest, with the name written by hand.",
+      sizes: ["S", "M", "L", "XL"],
+      colors: [{ id: "black", name: "Washed black", hex: "#2f2d2c" }],
+      views: ["front", "back"],
+      spec: "tee"
+    },
+    {
+      id: "tee-ransom",
+      name: "Ransom tee",
+      kind: "tee",
+      where: "barre",
+      price: null,
+      edition: null,
+      blurb: "The name in nine cut-out letters, each a different typeface and colour, stitched on one by one.",
+      sizes: ["S", "M", "L", "XL"],
+      colors: [{ id: "ecru", name: "Ecru", hex: "#e6d9c0" }],
+      views: ["front"],
+      spec: "tee"
+    },
+    {
+      id: "tee-unprompted",
+      name: "Unprompted tee",
+      kind: "tee",
+      where: "barre",
+      price: null,
+      edition: null,
+      blurb: "Washed black. One word on the chest, small: Unprompted. Nobody asked for it.",
+      sizes: ["S", "M", "L", "XL"],
+      colors: [{ id: "black", name: "Washed black", hex: "#2f2d2c" }],
+      views: ["front", "back"],
+      spec: "tee"
+    },
+    {
+      id: "tee-clipping",
+      name: "Clipping tee",
+      kind: "tee",
+      where: "barre",
+      price: null,
+      edition: null,
+      blurb: "The name as a headline cut from a newspaper with scissors, sewn across the chest.",
+      sizes: ["S", "M", "L", "XL"],
+      colors: [{ id: "red", name: "Faded brick red", hex: "#a8483c" }],
+      views: ["front"],
+      spec: "tee"
+    },
+    {
+      id: "tee-allegedly",
+      name: "Allegedly tee",
+      kind: "tee",
+      where: "barre",
+      price: null,
+      edition: null,
+      blurb: "Grey. One word in pencil: Allegedly. For everything you’re not sure about.",
+      sizes: ["S", "M", "L", "XL"],
+      colors: [{ id: "grey", name: "Grey", hex: "#8d8b87" }],
+      views: ["front", "back"],
+      spec: "tee"
+    },
+    {
+      id: "tee-torn",
+      name: "Torn page tee",
+      kind: "tee",
+      where: "barre",
+      price: null,
+      edition: null,
+      blurb: "The name on a page ripped out by hand, torn edges and all.",
+      sizes: ["S", "M", "L", "XL"],
+      colors: [{ id: "pink", name: "Dusty pink", hex: "#d9a3a6" }],
+      views: ["front"],
+      spec: "tee"
+    },
+    {
+      id: "hoodie-notarobot",
+      name: "Not a Robot hoodie",
+      kind: "hoodie",
+      where: "barre",
+      price: null,
+      edition: null,
+      blurb: "Washed black. On the front, small: I am not a robot. On the back, large: I think.",
+      sizes: ["S", "M", "L", "XL"],
+      colors: [{ id: "black", name: "Washed black", hex: "#2f2d2c" }],
+      views: ["front", "back"],
+      spec: "hoodie"
+    },
+    {
+      id: "blazer-minister",
+      name: "Minister jacket",
+      kind: "jacket",
+      where: "hooks",
+      price: null,
+      edition: null,
+      blurb: "A boxy blazer cut from newspaper-print cloth, with empty patch pockets and the name on the chest.",
+      sizes: ["S", "M", "L", "XL"],
+      colors: [{ id: "newsprint", name: "Newsprint", hex: "#c9c6bd" }],
+      views: ["front", "back"],
+      spec: "jacket"
+    }
+  ]
+};

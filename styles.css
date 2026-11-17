@@ -92,7 +92,7 @@ button { font: inherit; color: inherit; }
 .green :focus-visible { outline-color: #fff; }
 .green .card { color: var(--black); }
 .head { max-width: 46rem; margin-bottom: clamp(1.5rem, 4vh, 2.5rem); }
-.head h2, .hero h1 { font-family: var(--display); font-weight: 800; line-height: 1.02; text-wrap: balance; font-size: clamp(2.25rem, 6vw, 4.5rem); }
+.head h2, .hero h1 { font-family: var(--display); font-weight: 800; line-height: 1.02; text-wrap: balance; font-size: clamp(2.25rem, min(6vw, 8svh), 4.5rem); }
 .head p, .hero .sub { font-size: clamp(1.125rem, 1.8vw, 1.5rem); line-height: 1.35; margin-top: .85rem; max-width: 40ch; text-wrap: pretty; }
 .after { margin-top: clamp(1.25rem, 3vh, 2rem); }
 /* Words on one side, the supporting piece on the other */
@@ -108,9 +108,9 @@ button { font: inherit; color: inherit; }
 .hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; z-index: -2; }
 .hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgb(0 0 0 / .8) 0%, rgb(0 0 0 / .42) 26%, rgb(0 0 0 / 0) 46%, rgb(0 0 0 / 0) 70%, rgb(0 0 0 / .72) 100%); }
 .hero-top { padding-top: calc(var(--bar) + clamp(1.5rem, 6vh, 4rem)); }
-.hero h1 { font-size: clamp(2.1rem, 6.4vw, 5rem); }
-.hero .sub { max-width: 46ch; }
-.hero .by { margin-bottom: .75rem; font-weight: 600; font-size: 1rem; }
+.hero h1 { font-size: clamp(2.1rem, min(6.4vw, 10svh), 5rem); }
+.hero .sub { max-width: 60ch; text-shadow: 0 0 .5em rgb(0 0 0 / .9), 0 0 1.4em rgb(0 0 0 / .75), 0 1px 2px rgb(0 0 0 / .8); }
+.hero .by { margin-bottom: .75rem; font-weight: 600; font-size: 1rem; text-shadow: 0 0 .5em rgb(0 0 0 / .9), 0 1px 2px rgb(0 0 0 / .8); }
 .hero-bottom { padding-bottom: clamp(1.5rem, 5vh, 3rem); display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1rem; }
 
 /* ---- Picture tags: every image says what it is ---- */
@@ -126,13 +126,18 @@ button { font: inherit; color: inherit; }
 /* position: relative keeps visually hidden helper text inside the card, so it cannot widen the page */
 .card { position: relative; background: var(--card); border-radius: var(--r); overflow: hidden; display: flex; flex-direction: column; color: inherit; text-decoration: none; }
 .card .media { border-radius: 0; aspect-ratio: 4 / 3; flex: none; }
+/* on short screens the pictures give way before the words do */
+.card:not(.tier) .media { max-height: 31svh; width: 100%; }
 .card-body { padding: 1.1rem 1.25rem 1.35rem; display: grid; gap: .6rem; align-content: start; flex: 1; }
 .card h3 { font: 600 1.3125rem/1.2 var(--body); text-wrap: balance; }
 .card p { font-size: 1rem; line-height: 1.4; }
-.card.whole .media img { object-fit: contain; }
+.card.whole .media img { object-fit: contain; object-position: 50% 100%; }
+.media img[src*="rider-inverted"] { object-position: 50% 0; }
 .labels { display: flex; flex-wrap: wrap; gap: .4rem; }
-.labels li { font-size: .9375rem; line-height: 1.2; padding: .38rem .7rem; border-radius: 999px; border: 1.5px solid rgb(0 0 0 / .22); }
-.dark .labels li { border-color: rgb(255 255 255 / .35); }
+/* labels are short facts, not controls: soft filled chips with no outline, unlike buttons */
+.labels li { font-size: .9375rem; line-height: 1.2; padding: .38rem .7rem; border-radius: .6rem; background: rgb(0 0 0 / .07); }
+.dark .labels li, .dark .card .labels li { background: rgb(255 255 255 / .13); }
+.green .card .labels li { background: rgb(0 0 0 / .07); }
 .card .btn { justify-self: start; margin-top: .35rem; }
 
 .grid { display: grid; gap: clamp(.75rem, 1.6vw, 1.25rem); }
@@ -144,7 +149,9 @@ button { font: inherit; color: inherit; }
 .rail::-webkit-scrollbar { display: none; }
 .rail > li { flex: 0 0 min(80vw, 21.5rem); scroll-snap-align: start; display: flex; }
 .rail > li > .card { width: 100%; }
-.rail-tools { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 3rem; }
+.rail-tools { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .75rem 1rem; min-height: 3rem; }
+.rail-tools .btn { flex: none; }
+.rail-tools .rail-count { flex: 1 1 14rem; }
 .rail-count { font-size: .9375rem; color: var(--grain); }
 .green .rail-count { color: rgb(255 255 255 / .85); }
 /* the swipe hint is for touch screens; with a mouse the arrows do the job */
@@ -167,6 +174,8 @@ button { font: inherit; color: inherit; }
 /* ---- Plan ---- */
 .plan-pic { aspect-ratio: 2000 / 1131; }
 .plan-link { display: block; border-radius: var(--r); }
+/* keep the tag off the numbered zones */
+.plan-pic .tag { top: auto; bottom: .5rem; left: .5rem; }
 .plan-scroll { overflow-x: auto; border-radius: var(--r); }
 .plan-scroll > * { min-width: 44rem; }
 .more { margin-top: 1rem; }
@@ -217,7 +226,7 @@ button { font: inherit; color: inherit; }
 .doors .card h3 { font-family: var(--display); font-weight: 800; font-size: clamp(1.75rem, 3vw, 2.4rem); line-height: 1.05; }
 
 /* ---- Clothes rack, as in the shop: pieces hang from a steel rail; drag it and they swing (site.js) ---- */
-.rack { --rail-h: 13px; --piece: clamp(170px, 18vw, 250px); position: relative; margin-top: clamp(.25rem, 1.5vh, 1rem); }
+.rack { --rail-h: 13px; --piece: clamp(150px, min(18vw, 26svh), 250px); position: relative; margin-top: clamp(.25rem, 1.5vh, 1rem); }
 .rack-bar { height: var(--rail-h); border-radius: 2px; background: linear-gradient(#f2f2f2 0%, #bdbdbd 22%, #7c7c7c 62%, #3c3c3c 100%); box-shadow: 0 8px 14px rgb(0 0 0 / .5); }
 /* the track is pulled up over the rail so each hanger hook goes over it */
 .rack-track { position: relative; z-index: 1; display: flex; gap: clamp(.5rem, 2vw, 1.9rem); margin: calc(-1 * (var(--rail-h) + 24px)) 0 0; padding: 20px var(--edge) 1rem; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; cursor: grab; user-select: none; -webkit-user-select: none; touch-action: pan-x pan-y; }
@@ -245,6 +254,9 @@ button { font: inherit; color: inherit; }
 .ladder { display: flex; flex-wrap: wrap; gap: .5rem; }
 .ladder a { display: inline-flex; align-items: center; min-height: 2.75rem; padding: .4rem 1rem; border-radius: 999px; border: 2px solid var(--black); font: 800 1.125rem/1 var(--display); text-decoration: none; font-variant-numeric: tabular-nums; }
 .ladder a:hover { background: var(--black); color: var(--yellow); }
+.tier .card-body { display: flex; flex-direction: column; }
+.tier .card-body .btn { margin-top: auto; align-self: flex-start; }
+.tier .card-body .labels { margin-bottom: .9rem; }
 .tier .price { font-family: var(--display); font-weight: 800; font-size: clamp(1.9rem, 3.2vw, 2.5rem); line-height: 1; }
 .tier .price small { font: 400 1rem/1 var(--body); }
 .tier .places { font-size: .9375rem; color: var(--grain); }
@@ -289,21 +301,39 @@ form .actions .btn { justify-self: auto; }
 @media (max-width: 60rem) {
   .chapters { display: none; }
   .grid-2, .steps, .split, .legend, .duo { grid-template-columns: 1fr; }
-  .crew-pic { display: none; }
-  .rack { --piece: min(56vw, 230px); }
+  .crew-pic { margin-top: 1rem; }
+  .crew-pic .media { aspect-ratio: 5 / 2; max-width: none; }
+  .rack { --piece: min(56vw, 30svh, 230px); }
   .grid-3 { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; margin-inline: calc(var(--gutter) * -1); padding: .25rem var(--gutter) 1rem; scroll-padding-inline: var(--gutter); scrollbar-width: none; }
   .grid-3::-webkit-scrollbar { display: none; }
   .grid-3 > * { flex: 0 0 min(80vw, 23rem); scroll-snap-align: start; }
   .tile { padding: 1rem; }
   .tile span { font-size: .875rem; }
   .slide { align-content: start; }
-  .hero { align-content: stretch; }
-  .hero > img { object-position: 62% 0; }
+  /* hero: nothing is written on the picture; words above it, buttons below */
+  .hero { align-content: stretch; grid-template-rows: auto minmax(12rem, 1fr) auto; }
+  .hero-top { grid-row: 1; padding-bottom: 1.1rem; }
+  .hero > img { position: static; grid-row: 2; z-index: auto; height: 0; min-height: 100%; object-position: 50% 40%; }
+  .hero::before { display: none; }
+  .hero-bottom { grid-row: 3; padding-top: 1rem; }
+  .hero .sub, .hero .by { text-shadow: none; }
+  /* contact: the form first, what happens next after it */
+  #contact .split > div:first-child { display: contents; }
+  #contact .head { margin-bottom: 0; }
+  #contact form { order: 1; }
+  #contact .steps { order: 2; }
+  #contact .actions.after { order: 3; margin-top: 0; }
+  /* plan numbers are too small to follow on a phone */
+  .pin { display: none; }
   .arrows { display: none !important; }
 }
 @media (max-width: 36rem) {
-  .tile { padding: .8rem .85rem .9rem; }
-  .tile b { font-size: 1.75rem; }
+  /* the three numbers as one slim strip */
+  .tiles { gap: 0; background: var(--card); border-radius: var(--r); overflow: hidden; }
+  .tile { background: none; border-radius: 0; padding: .75rem .8rem .8rem; }
+  .tile + .tile { border-left: 1px solid rgb(255 255 255 / .16); }
+  .tile b { font-size: 1.6rem; }
+  .tile span { font-size: .8125rem; }
   :root { --bar: 4rem; }
   .brand img { height: 2.7rem; }
   .bar { gap: .6rem; }

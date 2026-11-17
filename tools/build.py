@@ -336,7 +336,7 @@ def s_hero(p):
     <div>
       <p class="by">{p.t(T("De la echipa care a construit Action Cloud Brașov", "From the team that built Action Cloud Brașov"))}</p>
       <p class="actions">
-        <a class="btn btn-yellow" href="#sponsors">{p.t(T("Devino sponsor", "Become a sponsor"))}</a>
+        <a class="btn btn-white" href="#why">{p.t(T("Vezi povestea", "See the story"))}</a>
         <a class="btn btn-line" href="#crew">{p.t(T("Intră în Action Crew", "Join the Action Crew"))}</a>
       </p>
     </div>
@@ -372,8 +372,8 @@ def s_why(p):
 
 def s_proof(p):
     tiles = [("2022", T("deschis la Brașov", "opened in Brașov")),
-             ("1.000+" if p.lang == "ro" else "1,000+", T("rideri antrenați de fondator, în tabere și cursuri", "riders coached by the founder at camps and courses")),
-             ("20M+", T("vizualizări ale fondatorului pe Instagram și TikTok", "views of the founder's content on Instagram and TikTok"))]
+             ("1.000+" if p.lang == "ro" else "1,000+", T("rideri antrenați de fondator", "riders coached by the founder")),
+             ("20M+", T("vizualizări ale fondatorului, online", "views of the founder's videos"))]
     th = "".join(f'<li class="tile"><b>{b}</b><span>{p.t(s)}</span></li>' for b, s in tiles)
     cards = [
         ("park-brasov", T("Construit de echipa noastră", "Built by our own team"),
@@ -497,18 +497,15 @@ def s_shop(p):
     prev = p.t(T("Mută bara spre stânga", "Move the rail left"))
     nxt = p.t(T("Mută bara spre dreapta", "Move the rail right"))
     return f'''<section class="slide dark" id="shop" data-chapter="shop">
-  <div class="wrap duo">
+  <div class="wrap">
     {p.head(T("Poartă Action Cloud.", "Wear Action Cloud."), T("O parte din fiecare comandă merge către mini rampe în curțile școlilor. Prima e pentru Hărman.", "Part of every order goes into mini ramps for schoolyards. The first one is for Hărman."))}
-    <div class="side">
-      <p class="actions"><a class="btn btn-white" href="{shop}">{p.t(T("Vezi magazinul", "See the shop"))}</a></p>
-      <p class="note">{p.t(T("Hanorace, tricouri, șepci și căciuli. Comenzile online se deschid în curând, iar prețurile nu sunt încă finale.", "Hoodies, tees, caps and beanies. Online orders open soon and prices are not final yet."))}</p>
-    </div>
   </div>
   <div class="rack" data-rack>
     <div class="rack-bar" aria-hidden="true"></div>
     <ul class="rack-track" tabindex="0" aria-label="{p.t(T("Bara cu haine: hanorace, bluze și tricouri", "Clothes rail: hoodies, crewnecks and tees"))}">{hang}</ul>
     <div class="wrap rail-tools">
-      <p class="rail-count">{p.t(T("Trage de bară. Imaginile sunt machete.", "Drag the rail. The pictures are mock-ups."))}</p>
+      <p class="rail-count">{p.t(T("Trage de bară. Imaginile sunt machete, iar comenzile online se deschid în curând.", "Drag the rail. The pictures are mock-ups and online orders open soon."))}</p>
+      <a class="btn btn-white" href="{shop}">{p.t(T("Vezi magazinul", "See the shop"))}</a>
       <div class="arrows"><button type="button" data-prev aria-label="{prev}">←</button><button type="button" data-next aria-label="{nxt}">→</button></div>
     </div>
   </div>
@@ -564,10 +561,10 @@ def s_contact(p):
       <input type="hidden" name="form-name" value="sponsor">
       <input type="hidden" name="language" value="{p.lang}">
       <p class="hp" aria-hidden="true"><label>Website <input name="website" tabindex="-1" autocomplete="off"></label></p>
+      <div class="field"><label for="f-package">{p.t(T("Pachetul care te interesează", "Package you are interested in"))}</label><select id="f-package" name="package">{opts}</select></div>
       <div class="field"><label for="f-name">{p.t(T("Nume", "Name"))}</label><input id="f-name" name="name" autocomplete="name" required></div>
       <div class="field"><label for="f-company">{p.t(T("Companie", "Company"))} <span>{optional}</span></label><input id="f-company" name="company" autocomplete="organization"></div>
       <div class="field"><label for="f-email">{p.t(T("E-mail", "Email"))}</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
-      <div class="field"><label for="f-package">{p.t(T("Pachetul care te interesează", "Package you are interested in"))}</label><select id="f-package" name="package">{opts}</select></div>
       <div class="field"><label for="f-message">{p.t(T("Mesaj", "Message"))} <span>{optional}</span></label><textarea id="f-message" name="message" rows="3"></textarea></div>
       <button class="btn btn-yellow" type="submit">{p.t(T("Trimite mesajul", "Send message"))}</button>
       <p class="help">{p.t(T("Folosim datele doar ca să îți răspundem.", "We use your details only to reply to you."))}</p>

@@ -1,5 +1,5 @@
 // Action Cloud: small enhancements. The page reads fine without this file;
-// it adds the progress line, rail arrows, zone filters, the swinging clothes rack and package pre-selection.
+// it adds the progress line, rail arrows, the swinging clothes rack, the price chips and package pre-selection.
 (function () {
   "use strict";
   var d = document, root = d.documentElement;
@@ -50,35 +50,15 @@
     state();
   });
 
-  // Zone filters: one chip at a time; "all" resets
-  d.querySelectorAll("[data-filters]").forEach(function (bar) {
-    var box = d.getElementById(bar.getAttribute("data-filters"));
-    if (!box) return;
-    var rail = box.querySelector(".rail"), count = box.querySelector(".rail-count");
-    var buttons = bar.querySelectorAll("button");
-    function label(n) {
-      if (!count) return;
-      var t = n === 1 ? count.getAttribute("data-one") : (n >= 20 ? count.getAttribute("data-many") : count.getAttribute("data-few"));
-      count.textContent = (t || "{n}").replace("{n}", n);
-    }
-    function apply(tag) {
-      var n = 0;
-      rail.querySelectorAll(":scope > li").forEach(function (li) {
-        var show = tag === "all" || (" " + (li.getAttribute("data-tags") || "") + " ").indexOf(" " + tag + " ") > -1;
-        li.hidden = !show;
-        if (show) n++;
-      });
-      label(n);
-      rail.scrollTo({ left: 0 });
-      if (box._state) box._state();
-    }
-    buttons.forEach(function (b) {
-      b.addEventListener("click", function () {
-        buttons.forEach(function (o) { o.setAttribute("aria-pressed", o === b ? "true" : "false"); });
-        apply(b.getAttribute("data-tag"));
-      });
+  // Price chips: bring that package into view sideways without moving the page
+  d.querySelectorAll("a[data-jump]").forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      var card = d.getElementById(a.getAttribute("href").slice(1));
+      if (!card || !card.scrollIntoView) return;
+      e.preventDefault();
+      var calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      card.scrollIntoView({ behavior: calm ? "auto" : "smooth", block: "nearest", inline: "start" });
     });
-    apply("all");
   });
 
   // Clothes rack: each hanging piece is a damped pendulum pushed by how fast the rail moves,

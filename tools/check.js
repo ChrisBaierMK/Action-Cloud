@@ -9,19 +9,17 @@ const ok = (name, cond, extra) => console.log((cond ? 'PASS ' : 'FAIL ') + name 
     const errs = []; p.on('pageerror', e => errs.push(String(e)));
     await p.goto(base + '/' + lang + 'index.html');
     await p.waitForTimeout(200);
-    const all = await p.$$eval('#zone-rail .rail > li', l => l.filter(x => !x.hidden).length);
-    ok(lang + 'zones: 20 cards shown by default', all === 20, String(all));
-    await p.click('.filters button[data-tag="a2"]');
-    const a2 = await p.$$eval('#zone-rail .rail > li', l => l.filter(x => !x.hidden).map(x => x.querySelector('h3').textContent));
-    ok(lang + 'zones: age 2–6 filter narrows the list', a2.length > 0 && a2.length < 20 && a2.some(t => /Mini Action/.test(t)), a2.join(' | '));
-    ok(lang + 'zones: count text updates', (await p.textContent('#zone-rail .rail-count')).startsWith(String(a2.length)), await p.textContent('#zone-rail .rail-count'));
-    ok(lang + 'zones: pressed state moves', await p.getAttribute('.filters button[data-tag="a2"]', 'aria-pressed') === 'true' && await p.getAttribute('.filters button[data-tag="all"]', 'aria-pressed') === 'false');
-    for (const tag of ['a7', 'a13', 'ad', 'sc', 'bmx', 'mtb', 'sk', 'nw']) {
-      await p.click(`.filters button[data-tag="${tag}"]`);
-      const n = await p.$$eval('#zone-rail .rail > li', l => l.filter(x => !x.hidden).length);
-      if (!(n > 0 && n < 20)) ok(lang + 'zones: filter ' + tag, false, String(n));
-    }
-    await p.click('.filters button[data-tag="all"]');
+    const decks = await p.$$eval('#arrive .card, #wheels .card, #more .card, #parents .card', c => c.length);
+    ok(lang + 'walk: 20 zone cards across the four stops', decks === 20, String(decks));
+    const per = await p.evaluate(() => ['arrive', 'wheels', 'more', 'parents'].map(id => document.querySelectorAll('#' + id + ' .card').length).join('/'));
+    ok(lang + 'walk: 3 / 6 / 6 / 5 cards per stop', per === '3/6/6/5', per);
+    const pins = await p.$$eval('.pin', l => l.map(x => x.lastChild.textContent.trim()));
+    ok(lang + 'walk: every card carries its plan number', pins.length === 20 && pins.every(n => +n >= 1 && +n <= 21), pins.join(','));
+    await p.locator('#wheels-rail').scrollIntoViewIfNeeded();
+    const w0 = await p.$eval('#wheels-rail .rail', r => r.scrollLeft);
+    await p.click('#wheels-rail [data-next]'); await p.waitForTimeout(700);
+    ok(lang + 'walk: arrows move a deck', (await p.$eval('#wheels-rail .rail', r => r.scrollLeft)) > w0 + 100);
+    ok(lang + 'walk: decks can be reached with the keyboard', await p.$$eval('.rail', l => l.every(x => x.tabIndex === 0 && x.getAttribute('aria-label'))));
     await p.locator('#tier-rail').scrollIntoViewIfNeeded();
     const before = await p.$eval('#tier-rail .rail', r => r.scrollLeft);
     await p.click('#tier-rail [data-next]'); await p.waitForTimeout(700);
@@ -32,6 +30,12 @@ const ok = (name, cond, extra) => console.log((cond ? 'PASS ' : 'FAIL ') + name 
     await p.$$eval('#tier-rail .tier a[data-pick]', a => a[2].click()); await p.waitForTimeout(300);
     ok(lang + 'tiers: choosing a package pre-selects it in the form', await p.$eval('#f-package', s => s.options[s.selectedIndex].text) === third, third);
     const tiers = await p.$$eval('#tier-rail .tier', t => t.length), opts = await p.$$eval('#f-package option', o => o.length);
+    await p.locator('#sponsors').scrollIntoViewIfNeeded(); await p.waitForTimeout(300);
+    const y0 = await p.evaluate(() => scrollY);
+    await p.$$eval('.ladder a', a => a[6].click()); await p.waitForTimeout(900);
+    const seen = await p.evaluate(() => { const c = document.getElementById('pachet-sustinator').getBoundingClientRect(); return c.left >= 0 && c.right <= innerWidth + 1; });
+    ok(lang + 'tiers: a price chip brings its package into view without moving the page', seen && Math.abs((await p.evaluate(() => scrollY)) - y0) < 5);
+    ok(lang + 'tiers: 7 price chips', (await p.$$eval('.ladder a', a => a.length)) === 7);
     ok(lang + 'tiers: 7 cards, 8 form options', tiers === 7 && opts === 8, tiers + '/' + opts);
     await p.locator('#shop').scrollIntoViewIfNeeded(); await p.waitForTimeout(1400);
     const hang = await p.$$eval('.rack-track .hang', l => l.length);
@@ -59,8 +63,8 @@ const ok = (name, cond, extra) => console.log((cond ? 'PASS ' : 'FAIL ') + name 
   // Without JavaScript everything is still there
   const ctx = await b.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
   const q = await ctx.newPage(); await q.goto(base + '/index.html');
-  ok('no JS: all zone cards visible', (await q.$$eval('#zone-rail .rail > li', l => l.filter(x => x.offsetParent !== null).length)) === 20);
-  ok('no JS: filter chips and arrows hidden', await q.$eval('.filters', e => getComputedStyle(e).display === 'none') && await q.$eval('.arrows', e => getComputedStyle(e).display === 'none'));
+  ok('no JS: all 20 zone cards are in the page', (await q.$$eval('#arrive .card, #wheels .card, #more .card, #parents .card', l => l.filter(x => x.offsetParent !== null).length)) === 20);
+  ok('no JS: arrows hidden, swipe hint shown', await q.$eval('.arrows', e => getComputedStyle(e).display === 'none') && await q.$eval('.swipe', e => getComputedStyle(e).display !== 'none'));
   ok('no JS: clothes on the rack are visible', await q.$$eval('.rack-track .piece', a => a.length === 12 && a.every(x => getComputedStyle(x).opacity === '1')));
   ok('no JS: no sideways overflow', await q.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
   await ctx.close();

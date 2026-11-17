@@ -73,6 +73,8 @@ button { font: inherit; color: inherit; }
 .light .btn-yellow:hover, .ply .btn-yellow:hover { background: var(--black); color: var(--yellow); }
 .btn-dark { background: var(--black); color: #fff; }
 .btn-dark:hover { background: var(--wall); color: var(--yellow); }
+.btn-white { background: #fff; color: var(--black); }
+.btn-white:hover { background: var(--yellow); }
 .btn-line { border-color: currentColor; background: transparent; }
 .btn-line:hover { background: var(--black); color: #fff; border-color: var(--black); }
 .dark .btn-line:hover, .hero .btn-line:hover { background: #fff; color: var(--black); border-color: #fff; }
@@ -85,6 +87,10 @@ button { font: inherit; color: inherit; }
 .dark { background: var(--wall); color: #fff; --card: #383838; }
 .ply { background: var(--ply); }
 .yellow { background: var(--yellow); }
+/* leaf green is used once, for the parents' stop */
+.green { background: var(--leaf); color: #fff; }
+.green :focus-visible { outline-color: #fff; }
+.green .card { color: var(--black); }
 .head { max-width: 46rem; margin-bottom: clamp(1.5rem, 4vh, 2.5rem); }
 .head h2, .hero h1 { font-family: var(--display); font-weight: 800; line-height: 1.02; text-wrap: balance; font-size: clamp(2.25rem, 6vw, 4.5rem); }
 .head p, .hero .sub { font-size: clamp(1.125rem, 1.8vw, 1.5rem); line-height: 1.35; margin-top: .85rem; max-width: 40ch; text-wrap: pretty; }
@@ -102,8 +108,9 @@ button { font: inherit; color: inherit; }
 .hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; z-index: -2; }
 .hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgb(0 0 0 / .8) 0%, rgb(0 0 0 / .42) 26%, rgb(0 0 0 / 0) 46%, rgb(0 0 0 / 0) 70%, rgb(0 0 0 / .72) 100%); }
 .hero-top { padding-top: calc(var(--bar) + clamp(1.5rem, 6vh, 4rem)); }
-.hero h1 { font-size: clamp(2.5rem, 6.4vw, 5rem); max-width: 16ch; }
+.hero h1 { font-size: clamp(2.1rem, 6.4vw, 5rem); }
 .hero .sub { max-width: 46ch; }
+.hero .by { margin-bottom: .75rem; font-weight: 600; font-size: 1rem; }
 .hero-bottom { padding-bottom: clamp(1.5rem, 5vh, 3rem); display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1rem; }
 
 /* ---- Picture tags: every image says what it is ---- */
@@ -122,6 +129,7 @@ button { font: inherit; color: inherit; }
 .card-body { padding: 1.1rem 1.25rem 1.35rem; display: grid; gap: .6rem; align-content: start; flex: 1; }
 .card h3 { font: 600 1.3125rem/1.2 var(--body); text-wrap: balance; }
 .card p { font-size: 1rem; line-height: 1.4; }
+.card.whole .media img { object-fit: contain; }
 .labels { display: flex; flex-wrap: wrap; gap: .4rem; }
 .labels li { font-size: .9375rem; line-height: 1.2; padding: .38rem .7rem; border-radius: 999px; border: 1.5px solid rgb(0 0 0 / .22); }
 .dark .labels li { border-color: rgb(255 255 255 / .35); }
@@ -138,21 +146,16 @@ button { font: inherit; color: inherit; }
 .rail > li > .card { width: 100%; }
 .rail-tools { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 3rem; }
 .rail-count { font-size: .9375rem; color: var(--grain); }
+.green .rail-count { color: rgb(255 255 255 / .85); }
+/* the swipe hint is for touch screens; with a mouse the arrows do the job */
+@media (hover: hover) and (pointer: fine) { .js .swipe { display: none; } }
 .dark .rail-count { color: rgb(255 255 255 / .7); }
 .arrows { display: none; gap: .5rem; margin-left: auto; }
 .js .arrows { display: flex; }
 .arrows button { width: 3rem; height: 3rem; border-radius: 50%; border: 2px solid currentColor; background: transparent; cursor: pointer; font-size: 1.25rem; line-height: 1; }
 .arrows button:hover { background: var(--black); color: #fff; border-color: var(--black); }
-.dark .arrows button:hover { background: #fff; color: var(--black); border-color: #fff; }
+.dark .arrows button:hover, .green .arrows button:hover { background: #fff; color: var(--black); border-color: #fff; }
 .arrows button:disabled { opacity: .3; cursor: default; }
-
-/* ---- Filter chips ---- */
-.filters { display: none; gap: .5rem; overflow-x: auto; padding: .25rem var(--edge) .9rem; scrollbar-width: none; }
-.filters::-webkit-scrollbar { display: none; }
-.js .filters { display: flex; }
-.filters button { flex: none; min-height: 2.75rem; padding: .5rem 1.1rem; border-radius: 999px; border: 2px solid var(--black); background: transparent; font-weight: 600; cursor: pointer; white-space: nowrap; }
-.filters button[aria-pressed="true"] { background: var(--black); color: var(--yellow); }
-.filters .gap { flex: none; width: 1px; background: rgb(0 0 0 / .25); margin: .4rem .35rem; }
 
 /* ---- Big-number tiles ---- */
 .tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(.75rem, 1.6vw, 1.25rem); }
@@ -207,7 +210,8 @@ button { font: inherit; color: inherit; }
 .note { font-size: .9375rem; color: var(--grain); margin-top: 1rem; max-width: 70ch; }
 .dark .note { color: rgb(255 255 255 / .72); }
 .yellow .note { color: var(--black); }
-.ply .note, .ply .rail-count, .ply .tier .places { color: #4f432b; }
+.ply .note, .ply .rail-count { color: #4f432b; }
+.yellow .rail-count { color: var(--black); }
 
 /* ---- Three ways in ---- */
 .doors .card h3 { font-family: var(--display); font-weight: 800; font-size: clamp(1.75rem, 3vw, 2.4rem); line-height: 1.05; }
@@ -236,7 +240,11 @@ button { font: inherit; color: inherit; }
 
 /* ---- Sponsor tiers ---- */
 .rail.tiers > li { flex-basis: min(84vw, 23.5rem); }
-.tier .media { aspect-ratio: 16 / 9; }
+.tier .media { aspect-ratio: 4 / 3; }
+/* every price at a glance; each chip jumps to its card */
+.ladder { display: flex; flex-wrap: wrap; gap: .5rem; }
+.ladder a { display: inline-flex; align-items: center; min-height: 2.75rem; padding: .4rem 1rem; border-radius: 999px; border: 2px solid var(--black); font: 800 1.125rem/1 var(--display); text-decoration: none; font-variant-numeric: tabular-nums; }
+.ladder a:hover { background: var(--black); color: var(--yellow); }
 .tier .price { font-family: var(--display); font-weight: 800; font-size: clamp(1.9rem, 3.2vw, 2.5rem); line-height: 1; }
 .tier .price small { font: 400 1rem/1 var(--body); }
 .tier .places { font-size: .9375rem; color: var(--grain); }
@@ -258,7 +266,6 @@ form { display: grid; gap: .9rem; }
 .field input, .field select, .field textarea { font: inherit; color: var(--black); background: #fff; border: 2px solid var(--black); border-radius: .85rem; padding: .7rem .85rem; width: 100%; min-height: 3rem; }
 .dark .field input, .dark .field select, .dark .field textarea { border-color: #fff; }
 .field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
-.yellow .field input:focus-visible, .yellow .field select:focus-visible, .yellow .field textarea:focus-visible { outline-color: var(--black); }
 .help { font-size: .9375rem; opacity: .85; }
 form .btn { justify-self: start; }
 .hp { position: absolute; left: -999rem; }
@@ -304,6 +311,7 @@ form .actions .btn { justify-self: auto; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
+  /* the page never moves by itself */
+  html { scroll-behavior: auto; scroll-snap-type: none; }
   .btn { transition: none; }
 }

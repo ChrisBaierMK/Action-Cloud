@@ -7,4 +7,4 @@ Before going live:
 - Replace the placeholder email in the contact section of both pages (search for `REPLACE-WITH-REAL-EMAIL`).
 - Remove `<meta name="robots" content="noindex">` from both pages.
 
-Fonts (Big Shoulders Stencil, Barlow) are self-hosted under the SIL Open Font License.
+Fonts (Barlow, Barlow Semi Condensed) are self-hosted under the SIL Open Font License.

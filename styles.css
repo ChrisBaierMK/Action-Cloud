@@ -215,6 +215,9 @@ figcaption { font-size: .9375rem; margin-top: .6rem; }
 @media (max-width: 36rem) {
   body { font-size: 1.0625rem; }
   .wordmark span { display: none; }
+  .top { gap: .6rem; }
+  .wordmark { font-size: 1.35rem; }
+  .top .btn-small { padding: .6rem .7rem; white-space: nowrap; }
   .reasons { grid-template-columns: 1fr; }
   .facts div { grid-template-columns: 1fr; gap: .15rem; }
 }
@@ -223,3 +226,7 @@ figcaption { font-size: .9375rem; margin-top: .6rem; }
   html { scroll-behavior: auto; }
   .btn { transition: none; }
 }
+
+/* Language switch */
+.lang { font-size: 1rem; padding: .5rem 0; }
+.lang:hover { color: var(--yellow); }

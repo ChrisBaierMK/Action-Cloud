@@ -8,6 +8,15 @@
 <!-- Draft: keeps search engines out until prices, contact details and claims are confirmed. Remove to go live. -->
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#262626">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="ro" href="https://actioncloud-bucharest-sponsors.netlify.app/">
+<link rel="alternate" hreflang="en" href="https://actioncloud-bucharest-sponsors.netlify.app/en/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Action Cloud Bucharest: sponsor the park">
+<meta property="og:description" content="Romania's biggest action-sports park and family hub is coming to north Bucharest: about 6,000 m² where kids ride, jump, play and celebrate. Become a sponsor.">
+<meta property="og:image" content="https://actioncloud-bucharest-sponsors.netlify.app/assets/img/park-brasov.webp">
+<meta property="og:url" content="https://actioncloud-bucharest-sponsors.netlify.app/en/">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="../assets/fonts/barlow-semi-condensed-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -60,6 +69,14 @@
           <dt>Partners so far</dt>
           <dd>Rosenau Cycling, Techno Pro, Skates.ro</dd>
         </div>
+        <div>
+          <dt>Reach</dt>
+          <dd>More than 20 million views on Instagram and TikTok for Christoph's content.</dd>
+        </div>
+        <div>
+          <dt>Coaching</dt>
+          <dd>More than 1,000 riders coached at camps and clinics.</dd>
+        </div>
       </dl>
     </div>
     <figure class="who-photo">
@@ -82,6 +99,11 @@
       <h2>Walk through the park</h2>
       <p>About 6,000 m² under one roof, room by room. The drawings show our plan for Bucharest. The photos are from our park in Brașov.</p>
     </div>
+
+    <figure class="concept">
+      <img src="../assets/img/concept-hall.webp" width="1024" height="688" loading="lazy" alt="Concept image: a large hall with plywood ramps, a pumptrack, a bowl, a mega ramp and a yellow airbag, with the Action Cloud sign on the back wall">
+      <figcaption>Computer-generated concept image: how the Bucharest hall could look. Not a photograph.</figcaption>
+    </figure>
 
     <article class="chapter">
       <div class="pic"><svg viewBox="0 0 400 300" role="img" aria-label="Drawing: a jump line with a takeoff, a landing and a quarter pipe at the end"><rect class="fl" y="250" width="400" height="50"/><path class="wd" d="M30 250Q95 250 122 188V250Z"/><path class="wd" d="M190 250V196H214Q255 202 302 250Z"/><path class="wd" d="M400 250H322Q384 244 390 140H400Z"/><path class="tr" d="M122 184Q160 96 206 190"/><circle class="yl" cx="162" cy="134" r="7"/></svg></div>
@@ -302,11 +324,33 @@
 </section>
 
 <section class="contact" id="contact">
-  <div class="wrap">
-    <h2>Put your name on the park</h2>
-    <p>Talk to Christoph Baier, founder of Action Cloud, about the package that fits your brand.</p>
-    <!-- TODO before launch: replace the address below with Christoph's real email, and add a phone number. -->
-    <p class="actions"><a class="btn btn-yellow" href="mailto:REPLACE-WITH-REAL-EMAIL@example.com?subject=Sponsoring%20Action%20Cloud%20Bucharest">Email Christoph</a></p>
+  <div class="wrap contact-grid">
+    <div>
+      <h2>Put your name on the park</h2>
+      <p>Tell us which package interests you. Christoph Baier, founder of Action Cloud, will reply in person.</p>
+      <p class="ig">Or message him on Instagram: <a href="https://instagram.com/chris.baier" rel="noopener">@chris.baier</a></p>
+    </div>
+    <form name="sponsor" method="POST" action="/en/thanks.html" data-netlify="true" netlify-honeypot="website">
+      <input type="hidden" name="form-name" value="sponsor">
+      <input type="hidden" name="language" value="en">
+      <p class="hp"><label>Website <input name="website" tabindex="-1" autocomplete="off"></label></p>
+      <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" autocomplete="name" required></div>
+      <div class="field"><label for="f-company">Company <span>(optional)</span></label><input id="f-company" name="company" autocomplete="organization"></div>
+      <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+      <div class="field"><label for="f-package">Package you are interested in</label>
+        <select id="f-package" name="package">
+            <option>Not sure yet</option>
+            <option>Naming partner</option>
+            <option>Zone partner</option>
+            <option>Attraction partner</option>
+            <option>Programme partner</option>
+            <option>Feature partner</option>
+            <option>Local partner</option>
+            <option>Community supporter</option>
+        </select></div>
+      <div class="field"><label for="f-message">Message <span>(optional)</span></label><textarea id="f-message" name="message" rows="4"></textarea></div>
+      <button class="btn btn-yellow" type="submit">Send message</button>
+    </form>
   </div>
 </section>
 

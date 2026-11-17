@@ -141,6 +141,9 @@ figcaption { font-size: .9375rem; margin-top: .6rem; }
 .section-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 1.5rem clamp(2rem, 5vw, 5rem); align-items: start; margin-bottom: clamp(2rem, 5vw, 4rem); }
 .section-head p { max-width: 62ch; font-size: 1.1875rem; }
 
+.concept { margin-bottom: clamp(1.5rem, 4vw, 3rem); }
+.concept img { width: 100%; }
+.concept figcaption { color: var(--grain); }
 .chapter { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 1.25rem clamp(1.5rem, 5vw, 5rem); align-items: center; padding: clamp(1.25rem, 3vw, 2.5rem) 0; }
 .chapter:nth-of-type(even) .pic { order: 2; }
 .pic svg, .pic img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--wall); }
@@ -197,6 +200,23 @@ figcaption { font-size: .9375rem; margin-top: .6rem; }
 .contact h2 { color: var(--yellow); font-size: clamp(2.5rem, 6vw, 5.25rem); }
 .contact p { font-size: clamp(1.15rem, 1.7vw, 1.4rem); max-width: 40ch; margin: 1.5rem 0 2rem; }
 
+.contact-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2rem clamp(2rem, 5vw, 5rem); align-items: start; }
+.contact .ig { font-size: 1.125rem; }
+.contact .ig a { color: var(--yellow); }
+.contact form { display: grid; gap: 1rem; }
+.field { display: grid; gap: .35rem; }
+.field label { font-weight: 600; font-size: 1rem; }
+.field label span { font-weight: 400; opacity: .75; }
+.field input, .field select, .field textarea {
+  font: inherit; color: var(--black); background: #fff; border: 2px solid #fff; border-radius: 2px;
+  padding: .7rem .8rem; width: 100%; min-height: 3rem;
+}
+.field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
+.contact form .btn { justify-self: start; cursor: pointer; font-family: var(--body); }
+.contact .hp { position: absolute; left: -999rem; margin: 0; }
+.thanks { min-height: 100vh; display: grid; align-items: center; }
+.thanks h1 { color: var(--yellow); }
+
 .foot { background: var(--black); color: #fff; padding: 1.5rem 0; font-size: 1rem; }
 .foot .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 2rem; }
 
@@ -206,7 +226,7 @@ figcaption { font-size: .9375rem; margin-top: .6rem; }
   .hero { grid-template-columns: 1fr; }
   .hero-text { padding: 2.5rem var(--gutter) 2.5rem; }
   .hero-photo img { max-height: 70vh; }
-  .who-grid, .section-head, .chapter, .north, .after-tiers { grid-template-columns: 1fr; }
+  .who-grid, .section-head, .chapter, .north, .after-tiers, .contact-grid { grid-template-columns: 1fr; }
   .chapter:nth-of-type(even) .pic { order: 0; }
   .reasons { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .tier { grid-template-columns: 1fr; }

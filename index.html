@@ -8,6 +8,15 @@
 <!-- Draft: keeps search engines out until prices, contact details and claims are confirmed. Remove to go live. -->
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#262626">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="ro" href="https://actioncloud-bucharest-sponsors.netlify.app/">
+<link rel="alternate" hreflang="en" href="https://actioncloud-bucharest-sponsors.netlify.app/en/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Action Cloud București: sponsorizează parcul">
+<meta property="og:description" content="Cel mai mare parc de sporturi de acțiune și hub pentru familii din România vine în nordul Bucureștiului: aproximativ 6.000 m² unde copiii se dau, sar, se joacă și sărbătoresc. Devino sponsor.">
+<meta property="og:image" content="https://actioncloud-bucharest-sponsors.netlify.app/assets/img/park-brasov.webp">
+<meta property="og:url" content="https://actioncloud-bucharest-sponsors.netlify.app/">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="assets/fonts/barlow-semi-condensed-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -60,6 +69,14 @@
           <dt>Parteneri până acum</dt>
           <dd>Rosenau Cycling, Techno Pro, Skates.ro</dd>
         </div>
+        <div>
+          <dt>Audiență</dt>
+          <dd>Peste 20 de milioane de vizualizări pe Instagram și TikTok pentru conținutul lui Christoph.</dd>
+        </div>
+        <div>
+          <dt>Antrenament</dt>
+          <dd>Peste 1.000 de rideri antrenați în tabere și clinici.</dd>
+        </div>
       </dl>
     </div>
     <figure class="who-photo">
@@ -82,6 +99,11 @@
       <h2>O plimbare prin parc</h2>
       <p>Aproximativ 6.000 m² sub același acoperiș, zonă cu zonă. Desenele arată planul nostru pentru București. Fotografiile sunt din parcul nostru din Brașov.</p>
     </div>
+
+    <figure class="concept">
+      <img src="assets/img/concept-hall.webp" width="1024" height="688" loading="lazy" alt="Imagine concept: o hală mare cu rampe din placaj, pumptrack, bowl, mega rampă și airbag galben, cu sigla Action Cloud pe peretele din spate">
+      <figcaption>Imagine concept generată pe calculator: așa ar putea arăta hala din București. Nu este o fotografie.</figcaption>
+    </figure>
 
     <article class="chapter">
       <div class="pic"><svg viewBox="0 0 400 300" role="img" aria-label="Desen: o linie de sărituri cu rampă de lansare, aterizare și un quarter pipe la capăt"><rect class="fl" y="250" width="400" height="50"/><path class="wd" d="M30 250Q95 250 122 188V250Z"/><path class="wd" d="M190 250V196H214Q255 202 302 250Z"/><path class="wd" d="M400 250H322Q384 244 390 140H400Z"/><path class="tr" d="M122 184Q160 96 206 190"/><circle class="yl" cx="162" cy="134" r="7"/></svg></div>
@@ -302,11 +324,33 @@
 </section>
 
 <section class="contact" id="contact">
-  <div class="wrap">
-    <h2>Pune-ți numele pe parc</h2>
-    <p>Vorbește cu Christoph Baier, fondatorul Action Cloud, despre pachetul potrivit pentru brandul tău.</p>
-    <!-- TODO before launch: replace the address below with Christoph's real email, and add a phone number. -->
-    <p class="actions"><a class="btn btn-yellow" href="mailto:REPLACE-WITH-REAL-EMAIL@example.com?subject=Sponsorizare%20Action%20Cloud%20Bucure%C8%99ti">Scrie-i lui Christoph</a></p>
+  <div class="wrap contact-grid">
+    <div>
+      <h2>Pune-ți numele pe parc</h2>
+      <p>Spune-ne ce pachet te interesează. Christoph Baier, fondatorul Action Cloud, îți răspunde personal.</p>
+      <p class="ig">Sau scrie-i pe Instagram: <a href="https://instagram.com/chris.baier" rel="noopener">@chris.baier</a></p>
+    </div>
+    <form name="sponsor" method="POST" action="/multumim.html" data-netlify="true" netlify-honeypot="website">
+      <input type="hidden" name="form-name" value="sponsor">
+      <input type="hidden" name="language" value="ro">
+      <p class="hp"><label>Website <input name="website" tabindex="-1" autocomplete="off"></label></p>
+      <div class="field"><label for="f-name">Nume</label><input id="f-name" name="name" autocomplete="name" required></div>
+      <div class="field"><label for="f-company">Companie <span>(opțional)</span></label><input id="f-company" name="company" autocomplete="organization"></div>
+      <div class="field"><label for="f-email">E-mail</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+      <div class="field"><label for="f-package">Pachetul care te interesează</label>
+        <select id="f-package" name="package">
+            <option>Încă nu știu</option>
+            <option>Partener de naming</option>
+            <option>Partener de zonă</option>
+            <option>Partener de atracție</option>
+            <option>Partener de program</option>
+            <option>Partener de element</option>
+            <option>Partener local</option>
+            <option>Susținător al comunității</option>
+        </select></div>
+      <div class="field"><label for="f-message">Mesaj <span>(opțional)</span></label><textarea id="f-message" name="message" rows="4"></textarea></div>
+      <button class="btn btn-yellow" type="submit">Trimite mesajul</button>
+    </form>
   </div>
 </section>
 

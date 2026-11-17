@@ -4,7 +4,7 @@ Sponsor site for Action Cloud Bucharest, in Romanian (`index.html`) and English 
 
 Before going live:
 
-- Replace the placeholder email in the contact section of both pages (search for `REPLACE-WITH-REAL-EMAIL`).
+- Sponsor enquiries arrive through the Netlify form named `sponsor`; set up email notifications for it in the Netlify dashboard.
 - Remove `<meta name="robots" content="noindex">` from both pages.
 
 Fonts (Barlow, Barlow Semi Condensed) are self-hosted under the SIL Open Font License.

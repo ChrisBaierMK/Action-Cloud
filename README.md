@@ -40,6 +40,28 @@ Both need Playwright.
 
 Three Netlify forms: `sponsor` and `crew` on the main pages, `contact` in the shop. Set up email notifications for them in the Netlify dashboard.
 
+## The size claim
+
+The line above the headline says the park is *planned* as the biggest *indoor* action sports park in Romania. Both words carry the claim; it is false without either of them. The wording is `CLAIM` in `tools/build.py`.
+
+What it rests on (web search results read on 17 November 2026; the pages themselves could not be opened, so treat the figures as leads to re-check, not as proof):
+
+| Venue | Kind | Reported area |
+| --- | --- | --- |
+| RideMore Center, Miercurea Ciuc | indoor skate, trampolines, climbing | 1,600 m² (whole centre) |
+| Municipal indoor skatepark, Cluj-Napoca (contract signed, not built) | indoor skatepark | about 1,060 to 1,410 m² |
+| Indoor trampoline parks in Bucharest | indoor trampolines | about 2,300 to 3,000 m² each |
+| Skatepark Fartec, Brașov | outdoor, under road overpasses | about 10,200 m² |
+| Skate Park Obor, Sibiu | outdoor | over 10,000 m² (whole plot) |
+| Gravity Park, Constanța | outdoor | about 8,500 m² |
+| Superland, Brașov | indoor children's amusement park, not action sports | about 17,000 m² |
+
+So: no indoor action sports venue found comes near 6,000 m², three outdoor ones are bigger, and one indoor park of another kind is far bigger. Not checked: projects announced for 2026 and 2027. Re-check the list before the claim goes on anything printed or paid for, and keep the proof on file: Romanian advertising rules expect an advertiser to be able to back a superlative.
+
+## The plan
+
+`ROOMS` in `tools/build.py` is the plan to scale (100 × 60 m, 6,000 m²); the drawing, the floor-area list and the 3D picture all follow it. The changing rooms, toilets and showers (18) stand in the front right corner against the hostel (21), with one door onto the walkway and one straight into the hostel; a small toilet group stays at the entrance (16). When rooms move, redraw `assets/img/plan-3d.webp` from the new drawing.
+
 ## Before sending the link widely
 
 - The pages carry `<meta name="robots" content="noindex">`. Remove it in `tools/build.py` when the site may be indexed.

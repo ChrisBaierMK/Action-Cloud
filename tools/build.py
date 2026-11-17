@@ -140,7 +140,7 @@ NAMES = {
     13: T("Sală de gaming", "Gaming room"),
     14: T("Cafenea pentru părinți", "Café for parents"),
     15: T("Burger bar", "Burger bar"),
-    16: T("Intrare și recepție", "Entrance and reception"),
+    16: T("Intrare, recepție și toalete", "Entrance, reception and toilets"),
     17: T("Magazin, service și închirieri", "Shop, service and rentals"),
     18: T("Vestiare, toalete și dușuri", "Changing rooms, toilets and showers"),
     19: T("Promenadă verde", "Green walkway"),
@@ -159,7 +159,8 @@ DECKS = [
          cards=[
              ("service", 17, None, T(["Service pentru biciclete și trotinete", "Depozitare pentru bicicleta ta", "Închiriezi tot ce-ți trebuie"],
                                      ["Bike and scooter service", "Storage for your own bike", "Rent everything you need"])),
-             ("entrance", 16, None, T(["Bilet online", "Pe roți, casca e obligatorie"], ["Online ticket", "Helmets are required on wheels"])),
+             ("entrance", 16, T("Intrare și recepție", "Entrance and reception"),
+              T(["Bilet online", "Pe roți, casca e obligatorie", "Toalete chiar la intrare"], ["Online ticket", "Helmets are required on wheels", "Toilets right by the entrance"])),
              ("burgers", 15, None, T(["Lângă cafeneaua părinților", "Vedere spre rampe"], ["Next to the parents' café", "View of the ramps"])),
          ]),
     dict(id="wheels", surface="", alias=("zones", "visit"),
@@ -196,7 +197,7 @@ DECKS = [
              ("training", 8, T("Antrenament funcțional", "Functional training"), T(["Pentru rideri și părinți"], ["For riders and parents"])),
              ("bistro", 14, None, T(["Vedere spre Mini Action", "Plină de plante"], ["Looks onto Mini Action", "Full of plants"])),
              ("walkway", 19, None, T(["Plante de-a lungul promenadei", "Bănci cu vedere spre rampe"], ["Plants all along the walkway", "Benches facing the ramps"])),
-             ("hostel", 21, None, T(["Cazare în aceeași clădire", "Pentru tabere și competiții"], ["A place to stay in the same building", "For camps and competitions"])),
+             ("hostel", 21, None, T(["Cazare în aceeași clădire", "Dușuri și toalete alături", "Pentru tabere și competiții"], ["A place to stay in the same building", "Showers and toilets next door", "For camps and competitions"])),
          ]),
 ]
 
@@ -285,13 +286,13 @@ ROOMS = [
     (9, 78, 28, 12, 20, "j", 1),
     (10, 50, 28, 16, 20, "j", 1),
     (11, 38, 28, 12, 20, "f", 1),
-    (12, 82, 52, 18, 8, "f", 0),
-    (13, 72, 52, 10, 8, "f", 0),
-    (14, 42, 52, 16, 8, "f", 0),
-    (15, 58, 52, 14, 8, "f", 0),
-    (16, 30, 52, 12, 8, "s", 0),
-    (17, 16, 52, 14, 8, "s", 0),
-    (18, 0, 52, 16, 8, "s", 0),
+    (12, 66, 52, 18, 8, "f", 0),
+    (13, 0, 52, 10, 8, "f", 0),
+    (14, 36, 52, 16, 8, "f", 0),
+    (15, 52, 52, 14, 8, "f", 0),
+    (16, 24, 52, 12, 8, "s", 0),
+    (17, 10, 52, 14, 8, "s", 0),
+    (18, 84, 52, 16, 8, "s", 0),
     (19, 0, 48, 90, 4, "s", 1),
     (20, 82, 0, 8, 10, "s", 0),
     (21, 90, 0, 10, 52, "h", 0),
@@ -302,12 +303,14 @@ CATS = [("w", T("Pe roți", "On wheels")), ("j", T("Fără roți", "No wheels"))
 
 
 def plan_svg(p):
-    # doors and gates: front rooms onto the walkway, three gates from the walkway into the hall, outside doors
-    doors = [(65, 520, 95, 520), (215, 520, 245, 520), (335, 520, 405, 520), (485, 520, 515, 520), (635, 520, 665, 520),
-             (755, 520, 785, 520), (850, 520, 880, 520), (900, 486, 900, 514), (845, 100, 875, 100), (700, 480, 740, 480),
-             (45, 480, 85, 480), (420, 480, 460, 480), (800, 480, 840, 480), (345, 600, 395, 600), (1000, 250, 1000, 280), (835, 0, 885, 0)]
-    glass = [(425, 520, 480, 520), (520, 520, 575, 520), (585, 520, 630, 520), (670, 520, 715, 520), (725, 520, 750, 520),
-             (790, 520, 815, 520), (825, 520, 845, 520), (885, 520, 897, 520)]
+    # doors and gates: front rooms onto the walkway (one door per party room), three gates from the walkway into the hall,
+    # the wash block opening both onto the walkway and straight into the hostel, the training room, the workshop, outside doors
+    doors = [(35, 520, 65, 520), (155, 520, 185, 520), (265, 520, 335, 520), (425, 520, 455, 520), (575, 520, 605, 520),
+             (680, 520, 700, 520), (740, 520, 760, 520), (800, 520, 820, 520), (855, 520, 885, 520), (935, 520, 965, 520),
+             (900, 486, 900, 514), (845, 100, 875, 100), (700, 480, 740, 480),
+             (45, 480, 85, 480), (420, 480, 460, 480), (800, 480, 840, 480), (275, 600, 325, 600), (1000, 250, 1000, 280), (835, 0, 885, 0)]
+    glass = [(8, 520, 30, 520), (70, 520, 94, 520), (365, 520, 420, 520), (460, 520, 515, 520), (525, 520, 570, 520),
+             (610, 520, 655, 520), (664, 520, 676, 520), (704, 520, 736, 520), (764, 520, 796, 520), (824, 520, 836, 520)]
 
     def lines(cls, seg):
         return "".join(f'<path class="{cls}" d="M{a} {b}L{x} {y}"/>' for a, b, x, y in seg)
@@ -320,7 +323,7 @@ def plan_svg(p):
         o += f'<rect class="r-{c}{" open" if op else ""}" x="{x * 10}" y="{y * 10}" width="{w * 10}" height="{h * 10}"/>'
     o += '<rect class="outer" x="0" y="0" width="1000" height="600"/><path class="rail-line" d="M0 480H900"/>'
     o += lines("glass", glass) + lines("door", doors)
-    for cls, ds in (("route", ["M345 590V545", "M330 500H65V440"]), ("route2", ["M410 500H820"])):
+    for cls, ds in (("route", ["M300 590V545", "M285 500H65V440"]), ("route2", ["M340 500H820"])):
         o += "".join(f'<path class="{cls}" d="{d}" marker-end="url(#ah)"/>' for d in ds)
     for n, x, y, w, h, c, op in ROOMS:
         cx, cy = x * 10 + w * 5, y * 10 + h * 5 + 10
@@ -329,7 +332,7 @@ def plan_svg(p):
         if n == 16:
             cx += 25
         o += f'<text class="n n-{c}{" sm" if n == 19 else ""}" x="{cx}" y="{cy}" text-anchor="middle">{n}</text>'
-    o += f'<text class="lbl" x="405" y="640">{p.t(T("Intrare", "Entrance"))}</text>'
+    o += f'<text class="lbl" x="335" y="640">{p.t(T("Intrare", "Entrance"))}</text>'
     o += '<path class="scale" d="M880 636H980M880 628V644M980 628V644"/><text class="lbl" x="930" y="626" text-anchor="middle">10 m</text></svg>'
     return o
 

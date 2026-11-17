@@ -299,6 +299,15 @@ a, button, input, select, textarea, summary, [tabindex] { scroll-margin-top: cal
   .chips { flex-wrap: wrap; overflow: visible; }
 }
 
+/* ---- How we got here: three small steps under the community cards ---- */
+.story { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(.75rem, 1.6vw, 1.25rem); margin-top: clamp(1rem, 2.5vh, 1.5rem); }
+.story li { display: flex; align-items: center; gap: .9rem; min-width: 0; }
+.story img { flex: none; width: 5.5rem; height: 5.5rem; border-radius: 1rem; object-fit: cover; background: var(--wall); }
+.story p { font-size: 1.0625rem; line-height: 1.25; font-weight: 600; text-wrap: balance; }
+.story b { display: block; font: 800 1.5rem/1 var(--display); margin-bottom: .25rem; }
+.story small { display: block; margin-top: .25rem; font-weight: 400; font-size: .8125rem; color: var(--grain); }
+#why .card .media { max-height: calc(27 * var(--svh)); }  /* leaves room for the story strip on one screen */
+
 /* ---- Forms ---- */
 .split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2rem clamp(2rem, 5vw, 5rem); align-items: center; }
 .split .head { margin-bottom: 1.25rem; }
@@ -337,7 +346,7 @@ form .actions .btn { justify-self: auto; }
 /* ---- Narrow screens ---- */
 @media (max-width: 60rem) {
   .chapters { display: none; }
-  .steps, .split, .legend, .duo { grid-template-columns: 1fr; }
+  .steps, .split, .legend, .duo, .story { grid-template-columns: 1fr; }
   .crew-pic { margin-top: 1rem; }
   .crew-pic .media { aspect-ratio: 5 / 2; max-width: none; }
   .rack { --piece: min(56vw, calc(30 * var(--svh)), 230px); }

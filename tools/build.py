@@ -67,6 +67,10 @@ PICS = {
     "event-night": ("event-night.webp", 1229, 922, "real"),
     "founder": ("founder.webp", 1600, 1067, "real"),
     "rider": ("rider-inverted.webp", 989, 900, "real"),
+    # small squares for the story strip; the two photos are cut from the 2012-2023 collage, which is all we have of them
+    "story-2012": ("story-2012.webp", 216, 216, "real"),
+    "story-build": ("story-build.webp", 250, 250, "real"),
+    "story-next": ("story-next.webp", 400, 400, "concept"),
 }
 TAG = {
     "concept": T("Imagine concept", "Concept image"),
@@ -407,6 +411,19 @@ def s_why(p):
          T("Un rider cu cască, cu capul în jos deasupra rampei, sub sigla Action Cloud din Brașov", "A rider in a helmet, upside down above the ramp, under the Action Cloud sign in Brașov")),
     ]
     grid = "\n      ".join(p.card(k, p.t(t), p.t(l), alt=p.t(a)) for k, t, l, a in cards)
+    # how it got here, in three small steps: where it started, how it was built, where it goes now
+    steps = [
+        ("story-2012", "2012", T("Primele sărituri, în fân", "The first jumps, into hay"), T("Fotografie reală", "Real photo"),
+         T("Un rider sare cu bicicleta într-un hambar, peste o rampă de lemn, cu fân pe jos", "A rider jumps a bike in a barn, over a wooden ramp, with hay on the floor")),
+        ("story-build", "Brașov", T("L-am construit noi, rampă cu rampă", "We built it ourselves, ramp by ramp"), T("Fotografie reală", "Real photo"),
+         T("Scheletul din lemn al unei rampe mari, în construcție, cu doi oameni lucrând sus pe el", "The timber frame of a large ramp under construction, with two people working at the top")),
+        ("story-next", p.t(T("Acum", "Now")), T("Următorul nivel: București", "The next level: Bucharest"), TAG["concept"],
+         T("Planul parcului din București, văzut de sus", "The plan of the Bucharest park, seen from above")),
+    ]
+    story = ""
+    for key, when, what, kind, alt in steps:
+        img, _ = p.img(key, p.t(alt))
+        story += f"<li>{img}<p><b>{when}</b>{p.t(what)}<small>{p.t(kind)}</small></p></li>"
     return f'''<section class="slide" id="why" data-chapter="proof">
   {aliases("impact", "story", "proof")}
   <div class="wrap">
@@ -414,6 +431,7 @@ def s_why(p):
     <div class="grid grid-3">
       {grid}
     </div>
+    <ol class="story" aria-label="{esc(p.t(T("Cum am ajuns aici", "How we got here")))}">{story}</ol>
     <p class="note">{p.t(T("Action Cloud Brașov e administrat de asociația nonprofit Rosenau Cycling, cu sprijinul partenerilor Techno Pro și Skates.ro.", "Action Cloud Brașov is run by the non-profit Rosenau Cycling association, with the support of its partners Techno Pro and Skates.ro."))}</p>
   </div>
 </section>'''

@@ -173,12 +173,14 @@ figcaption { font-size: .9375rem; margin-top: .6rem; }
 .packages .ramp { fill: var(--wall); }
 .tiers { border-bottom: 3px solid var(--black); }
 .tier {
-  display: grid; grid-template-columns: minmax(0, 1.25fr) 7rem minmax(0, 1.6fr);
+  display: grid; grid-template-columns: minmax(0, 1.25fr) 11rem minmax(0, 1.6fr);
   gap: .5rem clamp(1rem, 3vw, 3rem); align-items: baseline;
   padding: 1.5rem 0; border-top: 3px solid var(--black);
 }
 .tier p { max-width: 52ch; }
-.tier .slots { font-weight: 600; }
+.tier .slots { white-space: nowrap; }
+.tier .price { display: block; font-weight: 600; font-size: 1.375rem; line-height: 1.2; font-variant-numeric: tabular-nums; }
+.tier .places { display: block; }
 /* Type size steps down with the tier, so the order of the list is also the order of visibility on site */
 .tier-1 h3 { font-size: clamp(2.1rem, 4.2vw, 3.5rem); }
 .tier-2 h3 { font-size: clamp(1.8rem, 3.3vw, 2.75rem); }
@@ -208,7 +210,6 @@ figcaption { font-size: .9375rem; margin-top: .6rem; }
   .chapter:nth-of-type(even) .pic { order: 0; }
   .reasons { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .tier { grid-template-columns: 1fr; }
-  .tier .slots:empty { display: none; }
 }
 @media (max-width: 36rem) {
   body { font-size: 1.0625rem; }

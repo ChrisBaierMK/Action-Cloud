@@ -36,7 +36,7 @@ PICS = {
     "pumptrack": ("concept-pumptrack.webp", 1600, 1195, "concept"),
     "big-airbag": ("concept-big-airbag.webp", 1600, 1195, "concept"),
     "mega-ramp": ("concept-mega-ramp.webp", 1600, 1195, "concept"),
-    "bowl": ("concept-bowl.webp", 1600, 1195, "concept"),
+    "padel": ("concept-padel.webp", 1600, 1195, "concept"),
     "trampolines": ("concept-trampolines.webp", 1600, 1195, "concept"),
     "parkour": ("concept-parkour.webp", 1600, 1195, "concept"),
     "climbing-ninja": ("concept-climbing-ninja.webp", 1600, 1195, "concept"),
@@ -135,7 +135,7 @@ NAMES = {
     2: T("Pumptrack", "Pumptrack"),
     3: T("Săritură mare pe airbag", "Big airbag jump"),
     4: T("Mega rampă", "Mega ramp"),
-    5: T("Bowl", "Bowl"),
+    5: T("Teren de padel", "Padel court"),
     6: T("Sală de trambuline", "Trampoline hall"),
     7: T("Parkour și street workout", "Parkour and street workout"),
     8: T("Antrenament funcțional și studio de cycling", "Functional training and cycling studio"),
@@ -164,7 +164,7 @@ PLACES = [
     ("big-airbag", 3, None, T(["De la 13 ani", "Bicicletă, schiuri, snowboard", "Trucuri cu aterizare moale"],
                               ["Ages 13 and up", "Bike, skis, snowboard", "Tricks with a soft landing"])),
     ("mega-ramp", 4, None, T(["Pentru profesioniști", "Show-uri și Action Cups"], ["For pros", "Shows and Action Cups"])),
-    ("bowl", 5, None, T(["De la 7 ani", "Skate, trotinetă, BMX"], ["Ages 7 and up", "Skateboard, scooter, BMX"])),
+    ("padel", 5, None, T(["Teren cu pereți de sticlă", "Se joacă în patru", "Rachete de închiriat"], ["Glass-walled court", "Played in fours", "Rackets to rent"])),
     ("trampolines", 6, None, T(["De la 7 ani", "Salturi și rotații", "Aterizare pe airbag"], ["Ages 7 and up", "Flips and spins", "Airbag landing"])),
     ("parkour", 7, None, T(["De la 13 ani", "Cutii, ziduri, bare"], ["Ages 13 and up", "Boxes, walls, bars"])),
     ("cycling", 8, T("Studio de cycling", "Cycling studio"), T(["Te antrenezi cât copiii sunt în parc"], ["Train while the kids are in the park"])),
@@ -236,7 +236,7 @@ ALT = {
     "mini-action": T("Copii mici cu căști, pe biciclete fără pedale, pe rampe joase; un părinte stă ghemuit lângă ei", "Small children in helmets on balance bikes on low ramps; a parent crouches beside them"),
     "pumptrack": T("Rideri pe un pumptrack din placaj, cu valuri și viraje în jurul unor jardiniere", "Riders on a plywood pumptrack with rollers and banked turns around planters"),
     "send-room": T("Rampe de sărituri din placaj și o groapă cu bureți, într-o hală plină de plante", "Plywood jump ramps and a foam pit in a hall full of plants"),
-    "bowl": T("Un bowl adânc din placaj; un skater pe perete, un rider cu trotineta așteaptă pe margine", "A deep plywood bowl; a skater on the wall, a scooter rider waiting on the edge"),
+    "padel": T("Un teren de padel în sală, cu gazon albastru și pereți de sticlă; patru jucători la dublu, iar în spate sigla Action Cloud", "An indoor padel court with blue turf and glass walls; four players in a doubles rally, the Action Cloud sign behind them"),
     "big-airbag": T("O rampă înaltă de start și un rider pe bicicletă, în aer, deasupra unui airbag mare, negru cu galben", "A tall start ramp and a rider on a bike in the air above a large black and yellow airbag"),
     "mega-ramp": T("Două rampe foarte înalte, un rider în aer între ele și public la balustradă", "Two very tall ramps, a rider in the air between them and spectators at the railing"),
     "trampolines": T("Copii sărind pe trambuline negre cu margini galbene; unul face un salt, iar în spate e un airbag", "Kids jumping on black trampolines with yellow edges; one is mid-flip, with an airbag behind"),
@@ -270,8 +270,8 @@ TIERS = [
      T(["O zonă îți poartă numele", "Logo la intrarea și pe rampele zonei", "Clipuri filmate în zonă"],
        ["A zone carries your name", "Logo at the zone's entrance and on its ramps", "Clips shot in the zone"])),
     ("pachet-atractie", "tier-attraction", T("Partener de atracție", "Attraction partner"), "20.000", "20,000", T("4 parteneri", "4 partners"),
-     T(["Mega rampă, airbag, bowl sau cățărat", "Logo pe atracție", "Clipuri filmate acolo"],
-       ["Mega ramp, airbag, bowl or climbing", "Logo on the attraction", "Clips shot there"])),
+     T(["Mega rampă, airbag, padel sau cățărat", "Logo pe atracție", "Clipuri filmate acolo"],
+       ["Mega ramp, airbag, padel or climbing", "Logo on the attraction", "Clips shot there"])),
     ("pachet-program", "tier-programme", T("Partener de program", "Programme partner"), "10.000", "10,000", T("3 parteneri", "3 partners"),
      T(["Tabere, Action Cups sau programul pentru școli", "Programul îți poartă numele", "Mostre la tabere și evenimente"],
        ["Camps, Action Cups or the school programme", "The programme carries your name", "Samples at camps and events"])),
@@ -312,7 +312,7 @@ ROOMS = [
     (2, 0, 28, 24, 20, "w", 1),
     (3, 0, 0, 36, 10, "w", 1),
     (4, 36, 0, 46, 10, "w", 1),
-    (5, 24, 28, 14, 20, "w", 1),
+    (5, 24, 28, 14, 20, "j", 1),   # one padel court, 20 x 10 m, with 2 m on each long side
     (6, 0, 10, 22, 18, "j", 1),
     (7, 78, 10, 12, 18, "j", 1),
     (8, 66, 28, 12, 20, "j", 0),
@@ -331,7 +331,7 @@ ROOMS = [
     (21, 90, 0, 10, 52, "s", 0),
 ]
 assert sum(r[3] * r[4] for r in ROOMS) == 6000
-# Four groups, used by the chips above the cards, the legend and the colours of the drawing. They follow the numbers: 1-5, 6-10, 11-15, 16-21.
+# Four groups, used by the chips above the cards, the legend and the colours of the drawing. They follow the numbers: 1-4, 5-10, 11-15, 16-21.
 CATS = [("w", T("Pe roți", "On wheels")), ("j", T("Fără roți", "No wheels")), ("f", T("Familii", "Families")), ("s", T("Servicii", "Services"))]
 GROUP = {r[0]: r[5] for r in ROOMS}
 

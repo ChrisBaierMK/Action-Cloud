@@ -252,6 +252,32 @@ a, button, input, select, textarea, summary, [tabindex] { scroll-margin-top: cal
 .rail.tiers > li { flex-basis: min(84vw, 23.5rem); }
 .tier .media { aspect-ratio: 4 / 3; }
 /* every price at a glance; each chip jumps to its card */
+/* The visitor estimate for sponsors: three figures on a dark panel, always with the word "estimate", the range and the note */
+.sp-top { display: grid; gap: 1.1rem clamp(1.5rem, 4vw, 3rem); margin-bottom: clamp(1.1rem, 3vh, 1.75rem); }
+.sp-top .head { margin-bottom: 0; }
+.crowd { background: var(--black); color: #fff; border-radius: var(--r); padding: 1.1rem 1.35rem 1.2rem; max-width: 42rem; }
+.crowd h3 { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .6rem; font-size: 1.0625rem; font-weight: 600; line-height: 1.25; }
+.crowd .est { font-size: .875rem; line-height: 1; padding: .3rem .65rem; border-radius: 999px; background: var(--yellow); color: var(--black); }
+.crowd ul { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .9rem 1.25rem; margin-top: .9rem; }
+.crowd li { display: grid; gap: .3rem; align-content: start; }
+.crowd strong { font: 800 clamp(1.875rem, 2.7vw, 2.5rem)/1 var(--display); color: var(--yellow); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.crowd li > span { font-size: 1rem; line-height: 1.3; }
+.crowd small { display: block; margin-top: .15rem; font-size: .9375rem; color: rgb(255 255 255 / .8); }
+.crowd p { margin-top: .9rem; font-size: .9375rem; line-height: 1.45; color: rgb(255 255 255 / .86); max-width: 62ch; }
+.crowd details { margin-top: .35rem; font-size: .9375rem; }
+.crowd details { margin-top: .75rem; }
+.crowd summary { display: inline-flex; align-items: center; min-height: 2.75rem; padding: .35rem 1rem; border-radius: 999px; border: 2px solid rgb(255 255 255 / .7); cursor: pointer; font-weight: 600; list-style: none; }
+.crowd summary::-webkit-details-marker { display: none; }
+.crowd summary::after { content: "+"; content: "+" / ""; margin-left: .5rem; font-size: 1.125rem; line-height: 1; }
+.crowd details[open] summary::after { content: "–"; content: "–" / ""; }
+.crowd details p { margin-top: .6rem; }
+.crowd summary:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; border-radius: .25rem; }
+@media (min-width: 60.0625rem) { .sp-top { grid-template-columns: minmax(0, 1fr) minmax(0, 40rem); align-items: end; } }
+@media (max-width: 34rem) {
+  .crowd ul { grid-template-columns: 1fr; gap: .7rem; }
+  .crowd li { grid-template-columns: 7.75rem minmax(0, 1fr); gap: .75rem; align-items: center; }
+  .crowd strong { font-size: 1.875rem; }
+}
 .ladder { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: .75rem; }
 /* what every sponsor asks first, as two labelled lines */
 .facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .9rem clamp(1.5rem, 4vw, 3rem); margin-top: 1.1rem; max-width: 64rem; }

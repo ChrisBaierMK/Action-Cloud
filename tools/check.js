@@ -65,6 +65,11 @@ const ok = (name, cond, extra) => console.log((cond ? 'PASS ' : 'FAIL ') + name 
     await p.$$eval('.ladder a', a => a[6].click()); await p.waitForTimeout(900);
     const seen = await p.evaluate(() => { const c = document.getElementById('pachet-sustinator').getBoundingClientRect(); return c.left >= 0 && c.right <= innerWidth + 1; });
     ok(lang + 'tiers: a price chip brings its package into view without moving the page', seen && Math.abs((await p.evaluate(() => scrollY)) - y0) < 5);
+    // the visitor estimate: three figures, each with its range, under the word "estimate", with the planned-not-built note
+    const crowd = await p.$eval('.crowd', c => ({ est: c.querySelector('.est').textContent.trim(), n: [...c.querySelectorAll('li strong')].map(x => x.textContent.replace(/\s+/g, ' ').trim()), spans: [...c.querySelectorAll('li small')].map(x => x.textContent.trim()), note: c.querySelector(':scope > p').textContent, how: !!c.querySelector('details summary') }));
+    ok(lang + 'estimate: three figures under the word estimate, each with its range or its remainder', /^Estima(re|te)$/.test(crowd.est) && crowd.n.length === 3 && /50[.,]000/.test(crowd.n[0]) && /75[.,]000/.test(crowd.n[1]) && /^6 (din|in) 10$/.test(crowd.n[2]) && /32[.,]000.*77[.,]000/.test(crowd.spans[0]) && /45[.,]000.*110[.,]000/.test(crowd.spans[1]), crowd.n.join(' | '));
+    ok(lang + 'estimate: says the park is planned and these are not counts, and offers the method', /(nu construit|not built)/.test(crowd.note) && /(nu numărători|not counts)/.test(crowd.note) && crowd.how);
+    ok(lang + 'estimate: no reach, impression or unique-visitor figure anywhere on the page', !(await p.evaluate(() => /impresii|impressions|reach|vizitatori unici|unique visitors|140[.,]000|210[.,]000/i.test(document.body.innerText))));
     ok(lang + 'tiers: 7 price chips', (await p.$$eval('.ladder a', a => a.length)) === 7);
     ok(lang + 'tiers: 7 cards, 8 form options', tiers === 7 && opts === 8, tiers + '/' + opts);
     await p.locator('#shop').scrollIntoViewIfNeeded(); await p.waitForTimeout(1400);

@@ -588,6 +588,37 @@ def s_shop(p):
 </section>'''
 
 
+# The visitor estimate shown to sponsors: entries through the door, parents included, for the planned hall of about
+# 6,000 m². These are the corrected figures of the visitor study (a skeptic's review of two estimates), not a count.
+# They always appear with the word "estimate", their range and the note below; never as reach, impressions or
+# "different people". See "The visitor estimate" in the README before changing a figure.
+CROWD = [
+    (T("50.000", "50,000"), T("intrări în primul an", "entries in the first year"),
+     T("între 32.000 și 77.000", "between 32,000 and 77,000")),
+    (T("75.000", "75,000"), T("intrări pe an, din anul 3", "entries a year, from year 3"),
+     T("între 45.000 și 110.000", "between 45,000 and 110,000")),
+]
+CROWD_MIX = (T("6 din 10", "6 in 10"), T("au sub 18 ani", "are under 18"),
+             T("restul: părinți și rideri adulți", "the rest: parents and adult riders"))
+
+
+def crowd(p):
+    about = p.t(T("circa", "about"))
+    rows = "".join(f'<li><strong><span aria-hidden="true">≈&nbsp;</span><span class="vh">{about} </span>{p.t(n)}</strong>'
+                   f'<span>{p.t(what)}<small>{p.t(span)}</small></span></li>' for n, what, span in CROWD)
+    n, what, span = CROWD_MIX
+    rows += f'<li><strong>{p.t(n)}</strong><span>{p.t(what)}<small>{p.t(span)}</small></span></li>'
+    return f'''<div class="crowd" id="estimare">
+      <h3><span class="est">{p.t(T("Estimare", "Estimate"))}</span> {p.t(T("Câți oameni intră pe ușă", "How many people come through the door"))}</h3>
+      <ul>{rows}</ul>
+      <p>{p.t(T("Parcul e în plan, nu construit: sunt estimări, nu numărători. O intrare înseamnă oricine trece de ușă, inclusiv părinții. După deschidere îți raportăm intrările numărate la ușă.", "The park is planned, not built: these are estimates, not counts. An entry is anyone who comes through the door, parents included. Once open, we report the entries counted at the door."))}</p>
+      <details>
+        <summary>{p.t(T("Cum am estimat", "How we estimated"))}</summary>
+        <p>{p.t(T("Am pornit de la câte vizite pe metru pătrat raportează parcurile indoor de action sports din străinătate și am aplicat cifra prudentă la planul nostru de aproximativ 6.000 m². În România nu există o sală comparabilă și nimeni nu a numărat câți oameni practică aceste sporturi. Primul an e socotit la circa 70% dintr-un an așezat. Cam patru din cinci intrări sunt participanți plătitori; restul sunt adulți însoțitori. Împărțirea pe vârste e o presupunere, pe care o înlocuim cu date din bilete la șase luni după deschidere.", "We started from the visits per square metre that indoor action sports parks abroad report, and applied the cautious figure to our plan of about 6,000 m². There is no comparable hall in Romania, and nobody has counted how many people here ride. The first year is taken at about 70% of a settled year. About four in five entries are paying participants; the rest are accompanying adults. The split by age is an assumption, which we replace with ticket data six months after opening."))}</p>
+      </details>
+    </div>'''
+
+
 def s_sponsors(p):
     per = p.t(T("/ an", "/ year"))
     per_said = p.t(T("pe an", "a year"))
@@ -609,7 +640,10 @@ def s_sponsors(p):
     return f'''<section class="slide yellow" id="sponsors" data-chapter="sponsors">
   {aliases("packages")}
   <div class="wrap">
-    {p.head(T("Unde apare brandul tău.", "Where your brand appears."), T("Tu susții parcul, noi îți dăm vizibilitate. De la 100 la 200.000 € pe an.", "You back the park, we give you visibility. From €100 to €200,000 a year."))}
+    <div class="sp-top">
+      {p.head(T("Unde apare brandul tău.", "Where your brand appears."), T("Tu susții parcul, noi îți dăm vizibilitate. De la 100 la 200.000 € pe an.", "You back the park, we give you visibility. From €100 to €200,000 a year."))}
+      {crowd(p)}
+    </div>
     <ul class="ladder" aria-label="{esc(p.t(T("Pachetele, după preț", "The packages, by price")))}">{ladder}</ul>
   </div>
   {p.rail("tier-rail", items, cls="tiers", label=p.t(T("Pachetele de sponsorizare", "The sponsorship packages")))}

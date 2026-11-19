@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Builds the Action Cloud pages from one source of content.
 
-Run:  python3 tools/build.py            (writes index.html, en/index.html, the two thank-you pages and the take-action pages in action/ and en/action/)
+Run:  python3 tools/build.py            (writes index.html, en/index.html, the thank-you pages and the short take-action addresses in action/ and en/action/)
 
 Every visible text lives in this file as a (Romanian, English) pair, so the two pages cannot drift apart.
 The pages are plain HTML; styles.css and site.js are hand-written and not generated.
@@ -690,11 +690,12 @@ def s_contact(p):
 
 
 def sections(p):
-    return [s_hero(p), s_map(p), s_why(p), s_crew(p), s_shop(p), s_sponsors(p), s_contact(p)]
+    return [s_hero(p), s_map(p), s_why(p), s_action(p), s_crew(p), s_shop(p), s_sponsors(p), s_contact(p)]
 
 
 # chapter key, id it links to, name in the top bar
-CHAPTERS = [("park", "park", T("Parcul", "The park")), ("proof", "why", T("Comunitatea", "Community")), ("crew", "crew", T("Action Crew", "Action Crew")),
+CHAPTERS = [("park", "park", T("Parcul", "The park")), ("proof", "why", T("Comunitatea", "Community")), ("action", "action", T("Căutăm spațiu", "Space wanted")),
+            ("crew", "crew", T("Action Crew", "Action Crew")),
             ("shop", "shop", T("Magazin", "Shop"))]
 
 
@@ -736,6 +737,7 @@ def page(lang):
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="{p.pre}assets/fonts/barlow-semi-condensed-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{p.pre}styles.css">
+<script>if(location.hash)document.documentElement.className+=" jump"</script>
 </head>
 <body>
 
@@ -769,6 +771,7 @@ def page(lang):
 </footer>
 
 <script src="{p.pre}site.js" defer></script>
+<script src="{p.pre}action.js" defer></script>
 </body>
 </html>
 '''
@@ -885,13 +888,10 @@ def action_shell(p, title, desc, rel, body, script=""):
 """
 
 
-def action_page(lang):
-    p = Page(lang, pre="../" if lang == "ro" else "../../")
+def action_form(p):
+    """The take-action form: one question (how can you help?), then only the fields for that answer, then how to reach the person."""
     t = p.t
     optional = t(T("(opțional)", "(optional)"))
-    title = t(T("Action Cloud | Hai să-l construim împreună", "Action Cloud | Let's build it together"))
-    desc = t(T("Căutăm un partener cu un spațiu de aproximativ 6.000 m² pentru un parc de action sports cum n-a mai existat în România. Spune-ne cum ne poți ajuta.",
-               "We are looking for a partner with a space of about 6,000 m² for an action sports park Romania has never seen. Tell us how you can help."))
 
     def field(fid, name, label, kind="text", req=False, opt=False, attrs="", help_=None, options=None, rows=3):
         """One labelled field. req: required always. data-req: required only while its group is the chosen one (action.js)."""
@@ -951,27 +951,9 @@ def action_page(lang):
               field("a-c-skill", "crew-cum", T("Cu ce ne poți ajuta?", "What can you help with?"), attrs=" data-req",
                     help_=T("De exemplu: tâmplărie, transport, filmare, electricitate, organizare.", "For example: carpentry, transport, filming, electrics, organising."))),
     ])
-    photo = p.media("park-brasov", t(T("Rampele din lemn ale parcului Action Cloud din Brașov, într-o hală cu dungi galbene și negre pe pereți",
-                                       "The wooden ramps of the Action Cloud park in Brașov, in a hall with yellow and black stripes on the walls")),
-                    eager=True, sizes="(max-width: 60rem) 100vw, 34rem")
-    body = f"""<main id="main">
-
-<section class="act-top">
-  <div class="wrap">
-    <div class="act-words">
-      <p class="kicker">{t(T("Action Cloud își caută casa", "Action Cloud is looking for a home"))}</p>
-      <h1>{t(T("Hai să facem un parc cum n-a mai existat în România.", "Let's build a park Romania has never seen."))}</h1>
-      <p class="sub">{t(T("Avem 800 m² de rampe, echipa care le-a construit și comunitatea. Ne lipsește spațiul: aproximativ 6.000 m².", "We have 800 m² of ramps, the team that built them and the community. What is missing is the space: about 6,000 m²."))}</p>
-    </div>
-    {photo}
-  </div>
-</section>
-
-<section class="act">
-  <div class="wrap">
-    <form name="action" method="POST" action="/{ACTION_THANKS[lang]}" data-netlify="true" data-netlify-honeypot="bot-field">
+    return f"""<form name="action" method="POST" action="/{ACTION_THANKS[p.lang]}" data-netlify="true" data-netlify-honeypot="bot-field">
       <input type="hidden" name="form-name" value="action">
-      <input type="hidden" name="language" value="{lang}">
+      <input type="hidden" name="language" value="{p.lang}">
       <input type="hidden" name="subject" value="Action Cloud: formular nou (%{{submissionId}})">
       <p class="hp" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
       <fieldset class="choices">
@@ -995,12 +977,67 @@ def action_page(lang):
         <button class="btn btn-dark" type="submit">{t(T("Trimite", "Send"))}</button>
         <p class="help">{t(T("Îți răspunde Chris, personal. Folosim datele doar pentru acest proiect și le ștergem la cerere:", "Chris replies personally. We use your details only for this project and delete them on request:"))} <a href="mailto:{MAIL}">{MAIL}</a>. {t(T("Ai sub 16 ani? Roagă un părinte să completeze.", "Under 16? Ask a parent to fill this in."))}</p>
       </fieldset>
-    </form>
-  </div>
-</section>
+    </form>"""
 
-</main>"""
-    return action_shell(p, title, desc, ACTION_URL[lang], body, script=f'\n<script src="{p.pre}action.js" defer></script>')
+
+ACTION_TITLE = T("Action Cloud | Hai să-l construim împreună", "Action Cloud | Let's build it together")
+ACTION_DESC = T("Căutăm un partener cu un spațiu de aproximativ 6.000 m² pentru un parc de action sports cum n-a mai existat în România. Spune-ne cum ne poți ajuta.",
+                "We are looking for a partner with a space of about 6,000 m² for an action sports park Romania has never seen. Tell us how you can help.")
+
+
+def s_action(p):
+    """The take-action stop of the main page. Links from a video or a DM land here: /action/?tip=spatiu is sent on to /?tip=spatiu#action."""
+    t = p.t
+    photo = p.media("park-brasov", t(T("Rampele din lemn ale parcului Action Cloud din Brașov, într-o hală cu dungi galbene și negre pe pereți",
+                                       "The wooden ramps of the Action Cloud park in Brașov, in a hall with yellow and black stripes on the walls")),
+                    sizes="(max-width: 60rem) 100vw, 34rem")
+    return f'''<section class="slide ply act-slide" id="action" data-chapter="action">
+  {aliases("ajuta", "help")}
+  <div class="wrap">
+    <div class="act-intro">
+      {p.head(T("Action Cloud își caută casa.", "Action Cloud is looking for a home."), T("Avem 800 m² de rampe, echipa care le-a construit și comunitatea. Ne lipsește spațiul: aproximativ 6.000 m².", "We have 800 m² of ramps, the team that built them and the community. What is missing is the space: about 6,000 m²."))}
+      {photo}
+    </div>
+    <div class="act">
+      {action_form(p)}
+    </div>
+  </div>
+</section>'''
+
+
+def action_page(lang):
+    """/action/ and /en/action/ are the short addresses given out in videos and DMs. They hold no page of their own:
+    they send the visitor to the take-action stop of the main page and keep the chosen answer (?tip=spatiu).
+    The link-preview tags stay here, because a messenger reads them from this address and does not follow the redirect."""
+    t = lambda pair: pair[lang]
+    title, desc = t(ACTION_TITLE), t(ACTION_DESC)
+    return f"""<!doctype html>
+<html lang="{lang}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{title}</title>
+<meta name="description" content="{esc(desc)}">
+<meta name="robots" content="noindex">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{esc(title)}">
+<meta property="og:description" content="{esc(desc)}">
+<meta property="og:image" content="{SITE}assets/img/og-action.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Action Cloud">
+<meta property="og:locale" content="{"ro_RO" if lang == "ro" else "en_GB"}">
+<meta property="og:url" content="{SITE}{ACTION_URL[lang]}">
+<meta name="twitter:card" content="summary_large_image">
+<script>location.replace("../" + location.search + "#action");</script>
+<noscript><meta http-equiv="refresh" content="0; url=../#action"></noscript>
+</head>
+<body>
+<p><a href="../#action">{t(T("Action Cloud: cum ne poți ajuta", "Action Cloud: how you can help"))}</a></p>
+</body>
+</html>
+"""
 
 
 def action_thanks(lang):

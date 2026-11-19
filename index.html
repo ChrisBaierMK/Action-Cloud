@@ -24,6 +24,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="assets/fonts/barlow-semi-condensed-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
+<script>if(location.hash)document.documentElement.className+=" jump"</script>
 </head>
 <body>
 
@@ -31,7 +32,7 @@
 
 <header class="bar">
   <a class="brand" href="#top" aria-label="Action Cloud București, înapoi sus"><img src="assets/img/logo-yellow.webp" width="472" height="256" alt="Action Cloud"></a>
-  <nav class="chapters" aria-label="Capitole"><a href="#park" data-for="park">Parcul</a><a href="#why" data-for="proof">Comunitatea</a><a href="#crew" data-for="crew">Action Crew</a><a href="#shop" data-for="shop">Magazin</a></nav>
+  <nav class="chapters" aria-label="Capitole"><a href="#park" data-for="park">Parcul</a><a href="#why" data-for="proof">Comunitatea</a><a href="#action" data-for="action">Căutăm spațiu</a><a href="#crew" data-for="crew">Action Crew</a><a href="#shop" data-for="shop">Magazin</a></nav>
   <a class="lang" href="en/" lang="en" hreflang="en">English</a>
   <a class="btn btn-yellow btn-small" href="#sponsors">Devino sponsor</a>
 </header>
@@ -104,6 +105,45 @@
     </div>
     <ol class="story" aria-label="Cum am ajuns aici"><li><img src="assets/img/story-2012.webp" width="216" height="216" alt="Un rider sare cu bicicleta într-un hambar, peste o rampă de lemn, cu fân pe jos" loading="lazy"><p><b>2012</b>Primele sărituri, în fân<small>Fotografie reală</small></p></li><li><img src="assets/img/story-build.webp" width="250" height="250" alt="Scheletul din lemn al unei rampe mari, în construcție, cu doi oameni lucrând sus pe el" loading="lazy"><p><b>Brașov</b>L-am construit noi, rampă cu rampă<small>Fotografie reală</small></p></li><li><img src="assets/img/story-next.webp" width="400" height="400" alt="Planul parcului din București, văzut de sus" loading="lazy"><p><b>Acum</b>Următorul nivel: București<small>Imagine concept</small></p></li></ol>
     <p class="note">Parcul din Brașov s-a închis între timp. Fotografiile sunt de acolo.</p>
+  </div>
+</section>
+
+<section class="slide ply act-slide" id="action" data-chapter="action">
+  <span id="ajuta"></span><span id="help"></span>
+  <div class="wrap">
+    <div class="act-intro">
+      <div class="head"><h2>Action Cloud își caută casa.</h2><p>Avem 800 m² de rampe, echipa care le-a construit și comunitatea. Ne lipsește spațiul: aproximativ 6.000 m².</p></div>
+      <div class="media"><img src="assets/img/park-brasov.webp" width="989" height="900" alt="Rampele din lemn ale parcului Action Cloud din Brașov, într-o hală cu dungi galbene și negre pe pereți" loading="lazy"><span class="tag real">Fotografie din Brașov</span></div>
+    </div>
+    <div class="act">
+      <form name="action" method="POST" action="/action/multumim/" data-netlify="true" data-netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="action">
+      <input type="hidden" name="language" value="ro">
+      <input type="hidden" name="subject" value="Action Cloud: formular nou (%{submissionId})">
+      <p class="hp" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+      <fieldset class="choices">
+        <legend>Cum ne poți ajuta?</legend>
+        <label class="choice"><input type="radio" name="ajutor" value="Am un spațiu" data-key="spatiu" required><b>Am un spațiu</b><span>Ideal 6.000 m², dar spune-ne și dacă ai mai puțin.</span></label><label class="choice"><input type="radio" name="ajutor" value="Știu pe cineva cu un spațiu" data-key="cunosc" required><b>Știu pe cineva cu un spațiu</b><span>Ne faci legătura. Atât.</span></label><label class="choice"><input type="radio" name="ajutor" value="Vreau să-mi aduc afacerea în parc" data-key="afacere" required><b>Vreau să-mi aduc afacerea în parc</b><span>Crossfit, yoga, cycling, cafenea, restaurant, petreceri.</span></label><label class="choice"><input type="radio" name="ajutor" value="Vreau să sponsorizez" data-key="sponsor" required><b>Vreau să sponsorizez</b><span>Cu bani, produse sau servicii.</span></label><label class="choice"><input type="radio" name="ajutor" value="Vreau să pun umărul" data-key="crew" required><b>Vreau să pun umărul</b><span>La construit, filmat sau organizat.</span></label>
+      </fieldset>
+      <p class="pick" data-pick>Alege un răspuns. Îți arătăm doar întrebările pentru el.</p>
+      <fieldset class="group" data-group="spatiu"><legend>Spațiul tău</legend><ul class="labels"><li>Noi construim și conducem parcul</li><li>Tu primești o parte din încasări</li><li>Copii și părinți în clădirea ta</li></ul><div class="pair"><div class="field"><label for="a-s-town">Oraș sau zonă</label><input id="a-s-town" name="spatiu-oras" type="text" data-req autocomplete="address-level2"></div><div class="field"><label for="a-s-area">Suprafață, în m²</label><input id="a-s-area" name="spatiu-mp" type="text" data-req inputmode="numeric"></div></div><div class="pair"><div class="field"><label for="a-s-height">Înălțime liberă, în m <span>(opțional)</span></label><input id="a-s-height" name="spatiu-inaltime" type="text" inputmode="decimal"></div><div class="field"><label for="a-s-isu">Are ISU pentru public?</label><select id="a-s-isu" name="spatiu-isu"><option>Nu știu</option><option>Da</option><option>Nu</option></select></div></div><div class="field"><label for="a-s-notes">Ce ar trebui să știm despre el? <span>(opțional)</span></label><textarea id="a-s-notes" name="spatiu-detalii" rows="3"></textarea></div></fieldset><fieldset class="group" data-group="cunosc"><legend>Omul pe care îl știi</legend><div class="field"><label for="a-k-who">Cine este și ce spațiu are?</label><textarea id="a-k-who" name="cunosc-cine" rows="3" data-req aria-describedby="a-k-who-help"></textarea><p class="help" id="a-k-who-help">Nu trece aici telefonul lui. Întreabă-l întâi, apoi vă punem noi în legătură.</p></div><div class="field"><label for="a-k-town">Oraș sau zonă <span>(opțional)</span></label><input id="a-k-town" name="cunosc-oras" type="text"></div></fieldset><fieldset class="group" data-group="afacere"><legend>Afacerea ta</legend><div class="field"><label for="a-b-kind">Ce vrei să aduci în parc?</label><select id="a-b-kind" name="afacere-tip"><option>Crossfit sau sală de fitness</option><option>Yoga</option><option>Cycling</option><option>Trambuline</option><option>Cățărat</option><option>Cafenea</option><option>Restaurant</option><option>Petreceri pentru copii</option><option>Magazin</option><option>Altceva</option></select></div><div class="pair"><div class="field"><label for="a-b-name">Numele afacerii <span>(opțional)</span></label><input id="a-b-name" name="afacere-nume" type="text" autocomplete="organization"></div><div class="field"><label for="a-b-area">De câți m² ai nevoie? <span>(opțional)</span></label><input id="a-b-area" name="afacere-mp" type="text" inputmode="numeric"></div></div></fieldset><fieldset class="group" data-group="sponsor"><legend>Sponsorizarea</legend><div class="pair"><div class="field"><label for="a-p-company">Companie</label><input id="a-p-company" name="sponsor-firma" type="text" data-req autocomplete="organization"></div><div class="field"><label for="a-p-how">Cum vrei să ajuți?</label><select id="a-p-how" name="sponsor-cum"><option>Încă nu știu</option><option>Bani</option><option>Produse</option><option>Servicii</option></select></div></div></fieldset><fieldset class="group" data-group="crew"><legend>Ce știi să faci</legend><div class="field"><label for="a-c-skill">Cu ce ne poți ajuta?</label><input id="a-c-skill" name="crew-cum" type="text" data-req aria-describedby="a-c-skill-help"><p class="help" id="a-c-skill-help">De exemplu: tâmplărie, transport, filmare, electricitate, organizare.</p></div></fieldset>
+      <fieldset class="group" data-rest>
+        <legend>Cum te găsim</legend>
+        <div class="pair">
+          <div class="field"><label for="a-name">Nume</label><input id="a-name" name="name" type="text" required autocomplete="name"></div>
+          <div class="field"><label for="a-phone">Telefon (WhatsApp)</label><input id="a-phone" name="phone" type="tel" required autocomplete="tel"></div>
+        </div>
+        <div class="pair">
+          <div class="field"><label for="a-email">E-mail <span>(opțional)</span></label><input id="a-email" name="email" type="email" autocomplete="email"></div>
+          <div class="field"><label for="a-insta">Instagram <span>(opțional)</span></label><input id="a-insta" name="instagram" type="text" autocapitalize="none" spellcheck="false"></div>
+        </div>
+        <div class="field"><label for="a-message">Mesaj <span>(opțional)</span></label><textarea id="a-message" name="message" rows="3"></textarea></div>
+        <label class="check"><input type="checkbox" name="consent" value="da" required> <span>Sunt de acord ca Action Cloud să mă contacteze în legătură cu acest proiect.</span></label>
+        <button class="btn btn-dark" type="submit">Trimite</button>
+        <p class="help">Îți răspunde Chris, personal. Folosim datele doar pentru acest proiect și le ștergem la cerere: <a href="mailto:chris@actioncloud.co">chris@actioncloud.co</a>. Ai sub 16 ani? Roagă un părinte să completeze.</p>
+      </fieldset>
+    </form>
+    </div>
   </div>
 </section>
 
@@ -223,5 +263,6 @@
 </footer>
 
 <script src="site.js" defer></script>
+<script src="action.js" defer></script>
 </body>
 </html>

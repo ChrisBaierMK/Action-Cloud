@@ -14,7 +14,7 @@ It writes `index.html`, `en/index.html`, `multumim.html` and `en/thanks.html`. D
 
 `styles.css` and `site.js` are written by hand. The page works without `site.js`; the script adds the progress line, deck arrows, the swinging clothes rack, the price chips and package pre-selection.
 
-The page is a walk in seven stops: the hero, the clickable plan (in `tools/build.py` the places are `PLACES`, the number discs `SPOTS` and the tappable floor of each room `AREAS`; the build stops if they do not fit together; with a mouse, resting on a room for a moment brings up its card, a tap or click does the same on any device), the community stop, Action Crew, the shop, the sponsor packages (`TIERS`) and the contact form.
+The page is a walk in eight stops: the hero, the clickable plan (in `tools/build.py` the places are `PLACES`, the number discs `SPOTS` and the tappable floor of each room `AREAS`; the build stops if they do not fit together; with a mouse, resting on a room for a moment brings up its card, a tap or click does the same on any device), the community stop, the take-action stop, Action Crew, the shop, the sponsor packages (`TIERS`) and the contact form.
 
 ## Checking
 
@@ -29,24 +29,24 @@ Both need Playwright.
 
 - `assets/img/concept-*.webp`, `tier-*.webp` and `plan-3d.webp` are computer-generated concept images (Higgsfield). The page tags each one "Imagine concept" / "Concept image".
 - Every picture wider than 1,000 px has a 1,000 px copy in `assets/img/s/` for phones. After adding or replacing a picture run `python3 tools/thumbs.py` (needs Pillow).
-- `action-camp`, `event-night` and `rider-inverted` are real photos from the first park, in Brașov, tagged as such. `story-2012` and `story-build` are cut from the `build-2012-2023` collage. `park-brasov` is the picture on the take-action page; `founder` is no longer on any page. `og-action.jpg` is the link preview of the take-action page, cut from `action-camp`.
+- `action-camp`, `event-night` and `rider-inverted` are real photos from the first park, in Brașov, tagged as such. `story-2012` and `story-build` are cut from the `build-2012-2023` collage. `park-brasov` is the picture in the take-action stop; `founder` is no longer on any page. `og-action.jpg` is the link preview of the short address `/action/`, cut from `action-camp`.
 - The to-scale plan is drawn by `tools/build.py` from the `ROOMS` table (metres, 100 × 60 m hall, 6,000 m² in total). `plan-3d.webp` was rendered from that drawing; if `ROOMS` changes, the 3D picture has to be regenerated.
 
 ## Shop
 
 `shop/` is the Action Cloud clothing shop (the same files as the `actioncloud-ro` Netlify project). Products and prices are in `shop/shop-config.js`. Prices are placeholders and checkout is not connected: while `checkoutUrl` is `null` the shop tells people to email their order.
 
-## Take-action page
+## Take-action stop
 
-`/action/` (Romanian) and `/en/action/` (English) are the page a video or a DM link sends people to. It asks one question first, "how can you help?", with five answers: I have a space, I know someone with a space, I want to bring my business into the park, I want to sponsor, I want to lend a hand. Only the fields for the chosen answer follow, then name and phone. The answers and their texts are `HELP` in `tools/build.py`; the pages are written by `action_page` and `action_thanks`.
+The take-action form is one stop of the main page (`#action`, between the community stop and Action Crew, "Căutăm spațiu" in the top bar). It is not a page of its own: the owner asked for an add-on to the site, not a second site. It asks one question first, "how can you help?", with five answers: I have a space, I know someone with a space, I want to bring my business into the park, I want to sponsor, I want to lend a hand. Only the fields for the chosen answer follow, then name and phone. The answers and their texts are `HELP` in `tools/build.py`; the stop is written by `s_action` and the form by `action_form`.
 
-A link can arrive with the answer already chosen: `/action/?tip=spatiu` (also `cunosc`, `afacere`, `sponsor`, `crew`). Use these as the buttons of the Instagram DM that answers a comment keyword.
+`/action/` (Romanian) and `/en/action/` (English) are the short addresses given out in videos and DMs. They are small files that send the visitor on to the stop and keep the chosen answer: `/action/?tip=spatiu` lands on `/?tip=spatiu#action` with "Am un spațiu" chosen (also `cunosc`, `afacere`, `sponsor`, `crew`). They keep their own link-preview tags and picture (`og-action.jpg`), because a messenger reads those from the address it was given. Use these as the buttons of the Instagram DM that answers a comment keyword. The thank-you pages stay at `/action/multumim/` and `/en/action/thanks/` (`action_thanks`).
 
-`action.js` hides the groups that were not chosen. Without it every group is shown and the form still sends. The page asks for a space of about 6,000 m² and says smaller ones are welcome too, so no offer is turned away by the form. It states the offer to someone with a space (we build and run the park, they get a share of the takings); change both in `HELP` and `action_page` if they change. The top bar links to the main page, which still describes the 6,000 m² plan for Bucharest.
+`action.js` hides the groups that were not chosen; it is loaded by the main pages. Without it every group is shown and the form still sends. The stop asks for a space of about 6,000 m² and says smaller ones are welcome too, so no offer is turned away by the form. It states the offer to someone with a space (we build and run the park, they get a share of the takings); change both in `HELP` and `action_form` if they change. The stop says "800 m² of ramps"; the feasibility plan was built on 1,000 m², so one of the two has to be corrected once the ramps are measured.
 
 ## Forms
 
-Four Netlify forms: `sponsor` and `crew` on the main pages, `contact` in the shop, `action` on the take-action page. Set up email notifications for them in the Netlify dashboard; until then submissions only show in the dashboard. The `action` form sends its answers under Romanian field names in both languages (`ajutor`, `spatiu-oras`, `spatiu-mp`, ...), so the inbox reads the same.
+Four Netlify forms: `sponsor` and `crew` on the main pages, `contact` in the shop, `action` in the take-action stop of the main page. Set up email notifications for them in the Netlify dashboard; until then submissions only show in the dashboard. The `action` form sends its answers under Romanian field names in both languages (`ajutor`, `spatiu-oras`, `spatiu-mp`, ...), so the inbox reads the same.
 
 ## The size claim
 

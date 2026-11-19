@@ -87,7 +87,22 @@ const ok = (name, cond, extra) => console.log((cond ? 'PASS ' : 'FAIL ') + name 
     const r2 = await p.$eval('.rack-track', r => r.scrollLeft);
     ok(lang + 'rack: dragging moves the rail and the pieces swing', r2 < r1 - 100 && swing, r1 + ' -> ' + r2 + ', swing ' + swing);
     ok(lang + 'rack: a drag does not open the shop', /index\.html/.test(p.url()) || !/shop/.test(p.url()), p.url());
-    ok(lang + 'forms: sponsor and crew are Netlify forms', (await p.$$eval('form[data-netlify]', f => f.map(x => x.getAttribute('name')).join(','))) === 'crew,sponsor');
+    ok(lang + 'forms: action, crew and sponsor are Netlify forms', (await p.$$eval('form[data-netlify]', f => f.map(x => x.getAttribute('name')).sort().join(','))) === 'action,crew,sponsor');
+    // the take-action stop: one question, then only the fields for the chosen answer
+    await p.locator('#action').scrollIntoViewIfNeeded(); await p.waitForTimeout(200);
+    const act = () => p.evaluate(() => { const f = document.querySelector('form[name="action"]'), c = f.querySelector('input[name="ajutor"]:checked'); return { n: f.querySelectorAll('input[name="ajutor"]').length, key: c ? c.getAttribute('data-key') : '', open: [...f.querySelectorAll('[data-group]')].filter(g => !g.hidden).map(g => g.getAttribute('data-group')).join(), rest: !f.querySelector('[data-rest]').hidden, off: [...f.querySelectorAll('[data-group][hidden] input, [data-group][hidden] select, [data-group][hidden] textarea')].every(x => x.disabled) }; });
+    const a0 = await act();
+    ok(lang + 'action: the stop is on the main page with five answers, nothing chosen, and a link in the top bar', a0.n === 5 && a0.key === '' && a0.open === '' && !a0.rest && await p.$('.chapters a[href="#action"]') !== null);
+    await p.click('.choice:has(input[data-key="afacere"])'); await p.waitForTimeout(500);
+    const a1 = await act();
+    ok(lang + 'action: choosing an answer opens only its questions and the contact fields', a1.key === 'afacere' && a1.open === 'afacere' && a1.rest && a1.off, JSON.stringify(a1));
+    const tipPage = await b.newPage({ viewport: { width: 390, height: 844 } });
+    await tipPage.goto(base + '/' + lang + 'index.html?tip=spatiu#action'); await tipPage.waitForTimeout(700);
+    const tip = await tipPage.evaluate(() => { const c = document.querySelector('input[name="ajutor"]:checked'), s = document.getElementById('action').getBoundingClientRect(); return { key: c ? c.getAttribute('data-key') : '', value: c ? c.value : '', top: s.top, wide: document.documentElement.scrollWidth - innerWidth }; });
+    ok(lang + 'action: a link with ?tip=spatiu opens on the stop with "Am un spațiu" chosen', tip.key === 'spatiu' && tip.value === 'Am un spațiu' && Math.abs(tip.top) < 160 && tip.wide <= 0, JSON.stringify(tip));
+    await tipPage.close();
+    const stub = require('fs').readFileSync(process.argv[2] + '/' + lang + 'action/index.html', 'utf8');
+    ok(lang + 'action: the short address sends people on to the stop and keeps the chosen answer', stub.includes('location.replace("../" + location.search + "#action")') && stub.includes('<noscript><meta http-equiv="refresh" content="0; url=../#action"></noscript>') && stub.includes('og-action.jpg') && !stub.includes('<form'));
     ok(lang + 'pictures: every image has alt text and a tag', await p.$$eval('main img', i => i.every(x => x.alt.length > 3)) && await p.$$eval('main .media', m => m.every(x => x.querySelector('.tag'))));
     const dupe = await p.$$eval('main img', i => { const s = i.map(x => x.getAttribute('src')), d = s.filter((x, k) => s.indexOf(x) !== k); return [...new Set(d)]; });
     ok(lang + 'pictures: each used once', dupe.length === 0, dupe.join(', '));
@@ -105,6 +120,7 @@ const ok = (name, cond, extra) => console.log((cond ? 'PASS ' : 'FAIL ') + name 
   ok('phone: every room is a target of at least 24 by 24 px', tiny === 0, String(tiny));
   ok('no JS: arrows hidden, swipe hint shown', await q.$eval('.arrows', e => getComputedStyle(e).display === 'none') && await q.$eval('.swipe', e => getComputedStyle(e).display !== 'none'));
   ok('no JS: clothes on the rack are visible', await q.$$eval('.rack-track .piece', a => a.length === 12 && a.every(x => getComputedStyle(x).opacity === '1')));
+  ok('no JS: the take-action form shows every group and can still be sent', (await q.$$eval('form[name="action"] [data-group]', l => l.filter(g => g.offsetParent !== null).length)) === 5 && (await q.$$eval('form[name="action"] [required]', l => l.map(x => x.name).filter(n => n !== 'ajutor').join())) === 'name,phone,consent');
   ok('no JS: no sideways overflow', await q.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
   await ctx.close();
   // Small phone and large desktop

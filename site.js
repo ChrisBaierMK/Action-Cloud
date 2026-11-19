@@ -4,6 +4,8 @@
   "use strict";
   var d = document, root = d.documentElement;
   root.classList.add("js");
+  // arriving with an anchor jumps straight to it (set in the page head); links clicked afterwards glide as usual
+  window.addEventListener("load", function () { setTimeout(function () { root.classList.remove("jump"); }, 400); });
 
   // Highlight the chapter you are in
   var links = {};

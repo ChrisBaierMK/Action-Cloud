@@ -549,7 +549,7 @@ def s_sponsors(p):
         img, _ = p.img(key, alt)
         media = f'<div class="media">{img}<span class="tag">{example}</span></div>'
         body = (f'<h3>{p.t(name)}</h3><p class="price">{price} <small>{per}</small></p>{pl}{p.labels(p.t(labels))}'
-                f'<a class="btn btn-dark btn-small" href="#action" data-pick="{esc(p.t(name))}">{choose}<span class="vh">: {p.t(name)}</span></a>')
+                f'<a class="btn btn-dark btn-small" href="#action" data-pick="{esc(name["ro"])}">{choose}<span class="vh">: {p.t(name)}</span></a>')
         items.append((f' id="{tid}"', f'<div class="card tier">{media}<div class="card-body">{body}</div></div>'))
         ladder += f'<li><a href="#{tid}" data-jump><span class="vh">{p.t(name)}: </span>{price}<span class="vh"> {per_said}</span></a></li>'
     return f'''<section class="slide yellow" id="sponsors" data-chapter="sponsors">
@@ -663,25 +663,26 @@ def page(lang):
 '''
 
 
-# ---------------------------------------------------------------- take action: the page a video sends people to
-# One question first (how can you help?), then only the fields for that answer, then how to reach the person.
+# ---------------------------------------------------------------- the one form of the site (the last stop, #action)
+# One question first (how do you want to join in?), then one short line for that answer, then a name and a way to reach the person.
 # One Netlify form, "action". A link can arrive with the answer already chosen: /action/?tip=spatiu
-# key (also the ?tip= value), what the form sends (Romanian in both languages, so the inbox reads the same), title, line under it
+# key (also the ?tip= value), what the form sends (Romanian in both languages, so the inbox reads the same), the answer as shown,
+# the word that goes into the subject of the notification mail
 HELP = [
-    ("spatiu", "Am sau știu un spațiu", T("Am sau știu un spațiu", "I have or know of a space")),
-    ("sponsor", "Vreau să sponsorizez", T("Vreau să sponsorizez", "I want to sponsor")),
-    ("afacere", "Vreau să-mi aduc afacerea în parc", T("Vreau să-mi aduc afacerea în parc", "I want to bring my business in")),
-    ("crew", "Vreau să pun umărul", T("Vreau să pun umărul", "I want to lend a hand")),
-    ("stiri", "Vreau doar noutăți (Action Crew)", T("Vreau noutăți: Action Crew", "Keep me posted: Action Crew")),
+    ("spatiu", "Am sau știu un spațiu", T("Am sau știu un spațiu", "I have or know of a space"), "SPAȚIU"),
+    ("sponsor", "Vreau să sponsorizez", T("Vreau să sponsorizez", "I want to sponsor"), "SPONSOR"),
+    ("afacere", "Vreau să-mi aduc afacerea în parc", T("Vreau să-mi aduc afacerea în parc", "I want to bring my business into the park"), "AFACERE"),
+    ("crew", "Vreau să pun umărul", T("Vreau să pun umărul", "I want to lend a hand"), "AJUTOR"),
+    ("stiri", "Vreau noutăți: Action Crew", T("Vreau noutăți: Action Crew", "Keep me posted: Action Crew"), "noutăți"),
 ]
 ACTION_URL = {"ro": "action/", "en": "en/action/"}
 ACTION_THANKS = {"ro": "action/multumim/", "en": "en/action/thanks/"}
 
 
 def action_shell(p, title, desc, rel, body, script=""):
-    """The head and the frame shared by the take-action page and its thank-you page. rel: the page's path from the site root."""
+    """The head and the frame of the two thank-you pages. rel: the page's path from the site root."""
     other_lang = "en" if p.lang == "ro" else "ro"
-    other = (f'<a class="lang" href="{p.pre}{ACTION_URL[other_lang]}" lang="{other_lang}" hreflang="{other_lang}">'
+    other = (f'<a class="lang" href="{p.pre}{ACTION_THANKS[other_lang]}" lang="{other_lang}" hreflang="{other_lang}">'
              f'{"English" if other_lang == "en" else "Română"}</a>')
     home = p.pre if p.lang == "ro" else p.pre + "en/"
     return f"""<!doctype html>
@@ -695,8 +696,8 @@ def action_shell(p, title, desc, rel, body, script=""):
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#262626">
 <link rel="icon" href="{p.pre}assets/favicon.svg" type="image/svg+xml">
-<link rel="alternate" hreflang="ro" href="{SITE}{ACTION_URL["ro"]}">
-<link rel="alternate" hreflang="en" href="{SITE}{ACTION_URL["en"]}">
+<link rel="alternate" hreflang="ro" href="{SITE}{ACTION_THANKS["ro"]}">
+<link rel="alternate" hreflang="en" href="{SITE}{ACTION_THANKS["en"]}">
 <meta property="og:type" content="website">
 <meta property="og:title" content="{esc(title)}">
 <meta property="og:description" content="{esc(desc)}">
@@ -731,8 +732,8 @@ def action_shell(p, title, desc, rel, body, script=""):
       <li><a href="mailto:{MAIL}">{MAIL}</a></li>
       <li><a href="{home}">{p.t(T("Vezi conceptul", "See the concept"))}</a></li>
     </ul>
-    <p>{p.t(T("Action Cloud este administrat de asociația nonprofit Rosenau Cycling. Parcul este încă un plan: nu avem încă un spațiu și nicio dată de deschidere. Fotografia este de la primul nostru parc, cel din Brașov, care s-a închis între timp.",
-              "Action Cloud is run by the non-profit Rosenau Cycling association. The park is still a plan: there is no space and no opening date yet. The photo is from our first park, in Brașov, which has since closed."))}</p>
+    <p>{p.t(T("Action Cloud este administrat de asociația nonprofit Rosenau Cycling. Parcul este încă un plan: nu avem încă un spațiu și nicio dată de deschidere.",
+              "Action Cloud is run by the non-profit Rosenau Cycling association. The park is still a plan: there is no space and no opening date yet."))}</p>
   </div>
 </footer>
 {script}
@@ -742,53 +743,60 @@ def action_shell(p, title, desc, rel, body, script=""):
 
 
 def action_form(p):
-    """The one form of the site: one question (how are you in?), then one short line for that answer, then a name and a way to reach the person."""
+    """The one form of the site: one question (how do you want to join in?), then one short line for that answer, then a name and a way to reach the person."""
     t = p.t
     optional = t(T("(opțional)", "(optional)"))
 
     def field(fid, name, label, kind="text", req=False, opt=False, attrs="", help_=None, options=None, hint=None):
-        lab = f'{t(label)}{" <span>" + optional + "</span>" if opt else ""}'
+        lab = f'<span data-label>{t(label)}</span>{" <span>" + optional + "</span>" if opt else ""}'
         need = " required" if req else ""
         hid = f' aria-describedby="{fid}-help"' if help_ else ""
         ph = f' placeholder="{esc(t(hint))}"' if hint else ""
         if kind == "select":
-            control = f'<select id="{fid}" name="{name}"{need}{attrs}{hid}>' + "".join(f"<option>{o}</option>" for o in options) + "</select>"
+            control = f'<select id="{fid}" name="{name}"{need}{attrs}{hid}>' + "".join(f'<option value="{esc(v)}">{o}</option>' for v, o in options) + "</select>"
         else:
             control = f'<input id="{fid}" name="{name}" type="{kind}"{need}{attrs}{ph}{hid}>'
         tail = f'<p class="help" id="{fid}-help">{t(help_)}</p>' if help_ else ""
         return f'<div class="field"><label for="{fid}">{lab}</label>{control}{tail}</div>'
 
-    choices = "".join(f'<label class="choice"><input type="radio" name="ajutor" value="{esc(value)}" data-key="{key}" required><b>{t(name)}</b></label>'
-                      for key, value, name in HELP)
-    packages = [t(T("Încă nu știu", "Not sure yet"))] + [t(tier[2]) for tier in TIERS]
+    choices = "".join(f'<label class="choice"><input type="radio" name="ajutor" value="{esc(value)}" data-key="{key}" data-subject="{esc(word)}" required><b>{t(name)}</b></label>'
+                      for key, value, name, word in HELP)
+    # the package is stored under its Romanian name in both languages, so the inbox reads the same; "not sure yet" stores nothing
+    packages = [("", t(T("Încă nu știu", "Not sure yet")))] + [(tier[2]["ro"], t(tier[2])) for tier in TIERS]
+    home = SITE if p.lang == "ro" else SITE + "en/"
+    to_parent = t(T("Vreau să intru în Action Crew, e gratuit. Mă înscrii? ", "I want to join the Action Crew, it's free. Will you sign me up? ")) + SITE + ACTION_URL[p.lang] + "?tip=stiri"
     # one short line per answer; action.js shows only the chosen one
     groups = "".join(f'<div class="group" data-group="{key}">{inner}</div>' for key, inner in [
         ("spatiu", field("a-space", "spatiu", T("Unde e și cât de mare?", "Where is it, and how big?"), opt=True, hint=T("ex. Otopeni, 6.000 m²", "e.g. Otopeni, 6,000 m²"),
-                         help_=T("Căutăm aproximativ 6.000 m², dar spune-ne și dacă e mai mic. Noi construim și conducem parcul, tu primești o parte din încasări.",
-                                 "We are looking for about 6,000 m², but tell us even if it is smaller. We build and run the park, you get a share of the takings."))),
-        ("sponsor", '<div class="pair">' + field("a-company", "sponsor-firma", T("Compania", "Company"), opt=True, attrs=' autocomplete="organization"')
-         + field("f-package", "pachet", T("Pachetul", "Package"), kind="select", options=packages) + "</div>"),
-        ("afacere", field("a-business", "afacere", T("Ce afacere?", "What business?"), opt=True, hint=T("ex. cafenea, crossfit, yoga", "e.g. café, CrossFit, yoga"))),
-        ("crew", field("a-skill", "crew-cum", T("Cu ce ne poți ajuta?", "What can you help with?"), opt=True, hint=T("ex. tâmplărie, filmare, transport", "e.g. carpentry, filming, transport"))),
-        ("stiri", f'<p class="help">{t(T("Gratuit. Când anunțăm locația și data deschiderii, tu afli primul. Te poți dezabona oricând.", "Free. When we announce the location and the opening date, you hear first. You can unsubscribe at any time."))}</p>'),
+                         help_=T("Și mai mic e bun. Noi construim și conducem parcul, tu primești o parte din încasări. Dacă spațiul e al altcuiva, lasă datele tale și vorbește tu întâi cu el.",
+                                 "Smaller is fine too. We build and run the park, you get a share of the takings. If the space belongs to someone else, leave your own details and talk to them first."))),
+        ("sponsor", '<div class="pair">' + field("a-company", "sponsor-firma", T("Companie", "Company"), opt=True, attrs=' autocomplete="organization"')
+         + field("f-package", "pachet", T("Pachet", "Package"), kind="select", options=packages) + "</div>"),
+        ("afacere", field("a-business", "afacere", T("Ce afacere?", "What business?"), opt=True, hint=T("ex. cafenea, CrossFit, yoga", "e.g. café, CrossFit, yoga"))),
+        ("crew", field("a-skill", "ajutor-cum", T("Cu ce ne poți ajuta?", "What can you help with?"), opt=True, hint=T("ex. tâmplărie, filmare, transport", "e.g. carpentry, filming, transport"))),
+        ("stiri", f'<p class="help"><b>Action Crew:</b> {t(T("gratuit. Îți scriem pe e-mail când anunțăm locația și data deschiderii, iar tu afli printre primii. Te poți dezabona oricând. Ai sub 16 ani?", "free. We email you when we announce the location and the opening date, so you are among the first to know. You can unsubscribe at any time. Under 16?"))} '
+                  f'<a href="https://wa.me/?text={quote(to_parent)}" rel="noopener">{t(T("Trimite pagina unui părinte", "Send the page to a parent"))}</a>.</p>'),
     ])
+    contact_title = esc(t(T("Scrie un număr de telefon sau o adresă de e-mail", "Enter a phone number or an email address")))
+    name_title = esc(t(T("Scrie numele tău", "Enter your name")))
     return f"""<form name="action" method="POST" action="/{ACTION_THANKS[p.lang]}" data-netlify="true" data-netlify-honeypot="bot-field">
       <input type="hidden" name="form-name" value="action">
       <input type="hidden" name="language" value="{p.lang}">
-      <input type="hidden" name="subject" value="Action Cloud: formular nou (%{{submissionId}})">
+      <input type="hidden" name="subject" value="Action Cloud: formular nou (%{{submissionId}})" data-subject-field>
       <p class="hp" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
       <fieldset class="choices">
-        <legend>{t(T("Cum intri în joc?", "How are you joining in?"))}</legend>
+        <legend>{t(T("Cum intri în joc?", "How do you want to join in?"))}</legend>
         {choices}
+        <button type="button" class="change" data-change hidden>{t(T("Schimbă răspunsul", "Change the answer"))}</button>
       </fieldset>
       <div class="rest" data-rest>
         {groups}
         <div class="pair">
-          {field("a-name", "name", T("Nume", "Name"), req=True, attrs=' autocomplete="name"')}
-          {field("a-contact", "contact", T("Telefon sau e-mail", "Phone or email"), req=True, attrs=' autocapitalize="none" spellcheck="false"')}
+          {field("a-name", "name", T("Nume", "Name"), req=True, attrs=f' autocomplete="name" pattern=".*\\S.*" title="{name_title}"')}
+          {field("a-contact", "contact", T("Telefon sau e-mail", "Phone or email"), req=True, attrs=f' autocomplete="tel" autocapitalize="none" spellcheck="false" pattern="\\s*(\\+?[\\d\\s\\(\\)\\.\\-]{{9,}}|[^@\\s]+@[^@\\s]+\\.[^@\\s]{{2,}})\\s*" title="{contact_title}" data-contact data-email-label="{esc(t(T("E-mail", "Email")))}"')}
         </div>
         <button class="btn btn-yellow" type="submit">{t(T("Trimite", "Send"))}</button>
-        <p class="help">{t(T("Îți răspunde Chris, personal. Folosim datele doar pentru acest proiect și le ștergem la cerere:", "Chris replies personally. We use your details only for this project and delete them on request:"))} <a href="mailto:{MAIL}">{MAIL}</a>. {t(T("Ai sub 16 ani? Roagă un părinte să completeze.", "Under 16? Ask a parent to fill this in."))}</p>
+        <p class="help">{t(T("Mesajele le citește Chris. Datele ajung la asociația nonprofit Rosenau Cycling, care administrează Action Cloud; le folosim doar pentru acest proiect și le ștergem la cerere:", "Chris reads the messages. Your details go to the non-profit Rosenau Cycling association, which runs Action Cloud; we use them only for this project and delete them on request:"))} <a href="mailto:{MAIL}">{MAIL}</a>. {t(T("Ai sub 16 ani? Roagă un părinte să completeze în locul tău.", "Under 16? Ask a parent to fill this in for you."))}</p>
       </div>
     </form>"""
 
@@ -809,7 +817,7 @@ def s_action(p):
   {aliases("crew", "join", "contact", "ajuta", "help")}
   <div class="wrap">
     <div class="act-intro">
-      {p.head(T("Hai să-l construim împreună.", "Let's build it together."), T("Avem 800 m² de rampe, echipa care le-a construit și comunitatea. Ne lipsește spațiul: aproximativ 6.000 m².", "We have 800 m² of ramps, the team that built them and the community. What is missing is the space: about 6,000 m²."))}
+      {p.head(T('Hai <span class="nb">să-l</span> construim împreună.', "Let's build it together."), T("Avem 800 m² de rampe, echipa care le-a construit și comunitatea. Ne lipsește spațiul: aproximativ 6.000 m².", "We have 800 m² of ramps, the team that built them and the community. What is missing is the space: about 6,000 m²."))}
       {photo}
     </div>
     <div class="act">
@@ -863,15 +871,49 @@ def action_thanks(lang):
     body = f"""<main id="main" class="thanks dark act-thanks">
   <div class="wrap">
     <h1>{t(T("Mulțumim!", "Thank you!"))}</h1>
-    <p>{t(T("Am primit. Îți răspunde Chris, personal.", "Got it. Chris will reply personally."))}</p>
-    <p>{t(T("Încă un lucru: trimite pagina unui om care are un spațiu sau știe pe cineva.", "One more thing: send the page to someone who has a space, or knows someone who does."))}</p>
+    <p>{t(T("Am primit. Dacă e nevoie de un răspuns, îți scrie sau te sună Chris. Dacă ai cerut noutăți, ești pe listă.", "Got it. If a reply is needed, Chris will write or call. If you asked for news, you are on the list."))}</p>
+    <p>{t(T("Știi pe cineva cu un spațiu mare? Trimite-i pagina.", "Do you know someone with a large space? Send them the page."))}</p>
     <p class="actions">
       <a class="btn btn-yellow" href="https://wa.me/?text={quote(share)}" rel="noopener">{t(T("Trimite pe WhatsApp", "Send on WhatsApp"))}</a>
-      <a class="btn btn-line" href="https://www.instagram.com/action.cloud/" rel="noopener">{t(T("Urmărește @action.cloud", "Follow @action.cloud"))}</a>
+      <a class="btn btn-line" href="{p.pre if lang == "ro" else p.pre + "en/"}">{t(T("Înapoi la site", "Back to the site"))}</a>
     </p>
   </div>
 </main>"""
     return action_shell(p, title, t(T("Am primit mesajul tău.", "We have your message.")), ACTION_THANKS[lang], body)
+
+
+def not_found():
+    """404.html, shown for any address that does not exist and for the working files that _redirects keeps away from visitors.
+    It can be served at any depth, so every path in it starts at the site root."""
+    return f"""<!doctype html>
+<html lang="ro" class="plain">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pagina nu există | Action Cloud</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#262626">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="bar">
+  <a class="brand" href="/" aria-label="Action Cloud, pagina principală"><img src="/assets/img/logo-yellow.webp" width="472" height="256" alt="Action Cloud"></a>
+  <a class="lang" href="/en/" lang="en" hreflang="en">English</a>
+</header>
+<main id="main" class="thanks dark act-thanks">
+  <div class="wrap">
+    <h1>Pagina asta nu există.</h1>
+    <p lang="en">This page does not exist.</p>
+    <p class="actions">
+      <a class="btn btn-yellow" href="/">Înapoi la site</a>
+      <a class="btn btn-line" href="/en/" lang="en">Back to the site</a>
+    </p>
+  </div>
+</main>
+</body>
+</html>
+"""
 
 
 def write(rel, text):
@@ -900,6 +942,7 @@ if __name__ == "__main__":
     check_plan()
     write("index.html", page("ro"))
     write("en/index.html", page("en"))
+    write("404.html", not_found())
     for lang in LANGS:
         write(ACTION_URL[lang] + "index.html", action_page(lang))
         write(ACTION_THANKS[lang] + "index.html", action_thanks(lang))

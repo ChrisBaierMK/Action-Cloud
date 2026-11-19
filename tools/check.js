@@ -1,8 +1,14 @@
-// Behaviour checks on the built page: the clickable plan, arrows, the take-action stop, package pre-selection, no-JS and small screens.
+// Behaviour checks on the built page: the clickable plan, arrows, the sponsor packages, the one form, no-JS and small screens.
 const { chromium } = require('playwright');
 const base = 'file://' + process.argv[2];
 const ok = (name, cond, extra) => console.log((cond ? 'PASS ' : 'FAIL ') + name + (extra ? '  ' + extra : ''));
 (async () => {
+  // the redirect of the short address needs a real server; everything else runs from the files
+  const http = require('http'), fs = require('fs'), path = require('path');
+  const types = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.webp': 'image/webp', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml', '.woff2': 'font/woff2' };
+  const server = http.createServer((q, r) => { let f = path.join(process.argv[2], decodeURIComponent(q.url.split('?')[0])); if (f.endsWith(path.sep) || (fs.existsSync(f) && fs.statSync(f).isDirectory())) f = path.join(f, 'index.html'); fs.readFile(f, (e, d) => { if (e) { r.writeHead(404); r.end(); } else { r.writeHead(200, { 'content-type': types[path.extname(f)] || 'application/octet-stream' }); r.end(d); } }); });
+  await new Promise(done => server.listen(0, '127.0.0.1', done));
+  const web = 'http://127.0.0.1:' + server.address().port;
   const b = await chromium.launch();
   for (const lang of ['', 'en/']) {
     const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
@@ -72,32 +78,55 @@ const ok = (name, cond, extra) => console.log((cond ? 'PASS ' : 'FAIL ') + name 
     ok(lang + 'estimate: no reach, impression or unique-visitor figure anywhere on the page', !(await p.evaluate(() => /impresii|impressions|reach|vizitatori unici|unique visitors|140[.,]000|210[.,]000/i.test(document.body.innerText))));
     ok(lang + 'tiers: 7 price chips', (await p.$$eval('.ladder a', a => a.length)) === 7);
     ok(lang + 'tiers: 7 cards, 8 form options', tiers === 7 && opts === 8, tiers + '/' + opts);
-    ok(lang + 'shop: the clothing shop is gone from the page (no stop, no link, no clothes rail)', !(await p.$('#shop')) && !(await p.$('.rack')) && (await p.$$eval('a[href]', l => l.filter(a => /(^|\/)shop\//.test(a.getAttribute('href'))).length)) === 0 && !require('fs').existsSync(process.argv[2] + '/shop'));
     ok(lang + 'form: the page has one form, a Netlify form named action', (await p.$$eval('form', f => f.map(x => x.getAttribute('name') + (x.hasAttribute('data-netlify') ? '' : '!')).join(','))) === 'action');
-    ok(lang + 'form: a package chosen on its card opens the form on the sponsor answer', await p.$eval('input[name="ajutor"]:checked', c => c.getAttribute('data-key')) === 'sponsor' && !(await p.$eval('[data-group="sponsor"]', g => g.hidden)));
+    ok(lang + 'form: a package chosen on its card opens the form on the sponsor answer, with the package stored under its Romanian name', await p.$eval('input[name="ajutor"]:checked', c => c.getAttribute('data-key')) === 'sponsor' && !(await p.$eval('[data-group="sponsor"]', g => g.hidden)) && /^Partener de /.test(await p.$eval('#f-package', x => x.value)));
+    ok(lang + 'form: the old anchors crew, join and contact are still on the form stop', await p.evaluate(() => ['crew', 'join', 'contact'].every(id => document.getElementById(id) && document.getElementById(id).closest('#action'))));
     // the one form: one question, then one short line for the chosen answer, then name and contact
-    const act = pg => pg.evaluate(() => { const f = document.querySelector('form[name="action"]'), c = f.querySelector('input[name="ajutor"]:checked'), seen = e => e.offsetParent !== null && !e.closest('.hp'); return { n: f.querySelectorAll('input[name="ajutor"]').length, key: c ? c.getAttribute('data-key') : '', open: [...f.querySelectorAll('[data-group]')].filter(g => !g.hidden).map(g => g.getAttribute('data-group')).join(), rest: !f.querySelector('[data-rest]').hidden, off: [...f.querySelectorAll('[data-group][hidden] input, [data-group][hidden] select')].every(x => x.disabled), fields: [...f.querySelectorAll('input:not([type=radio]):not([type=hidden]), select, textarea')].filter(seen).length, send: (() => { const r = f.querySelector('button[type=submit]').getBoundingClientRect(); return r.top >= 0 && r.bottom <= innerHeight; })(), wide: document.documentElement.scrollWidth - innerWidth }; });
-    const ph = await b.newPage({ viewport: { width: 390, height: 844 } });
+    const act = pg => pg.evaluate(() => { const f = document.querySelector('form[name="action"]'), c = f.querySelector('input[name="ajutor"]:checked'), seen = e => e.offsetParent !== null && !e.closest('.hp'), bar = document.querySelector('.bar').getBoundingClientRect().bottom, box = e => e.getBoundingClientRect(); const row = c && box(c.closest('.choice')), send = box(f.querySelector('button[type=submit]')), ct = f.querySelector('[data-contact]'); return { n: f.querySelectorAll('input[name="ajutor"]').length, key: c ? c.getAttribute('data-key') : '', open: [...f.querySelectorAll('[data-group]')].filter(g => !g.hidden).map(g => g.getAttribute('data-group')).join(), rest: !f.querySelector('[data-rest]').hidden, rows: [...f.querySelectorAll('.choice')].filter(seen).length, fields: [...f.querySelectorAll('input:not([type=radio]):not([type=hidden]), select, textarea')].filter(seen).length, send: send.top >= bar && send.bottom <= innerHeight, rowSeen: !!row && row.top >= bar - 1 && row.bottom <= innerHeight, contact: ct.type + '/' + f.querySelector('label[for="a-contact"] [data-label]').textContent, subject: f.querySelector('[name=subject]').value, wide: document.documentElement.scrollWidth - innerWidth }; });
+    const ph = await b.newPage({ viewport: { width: 390, height: 844 }, hasTouch: true });
     await ph.goto(base + '/' + lang + 'index.html'); await ph.waitForTimeout(300);
     const f0 = await act(ph);
-    ok(lang + 'form: five answers, nothing chosen and no fields until one is', f0.n === 5 && f0.key === '' && f0.open === '' && !f0.rest && f0.fields === 0, JSON.stringify(f0));
-    await ph.click('.hero .actions a[data-tip="stiri"]'); await ph.waitForTimeout(1300);
+    ok(lang + 'form: five answers, nothing chosen and no fields until one is', f0.n === 5 && f0.rows === 5 && f0.key === '' && f0.open === '' && !f0.rest && f0.fields === 0, JSON.stringify(f0));
+    await ph.click('.hero .actions a[data-tip="stiri"]'); await ph.waitForTimeout(1500);
     const f1 = await act(ph);
-    ok(lang + 'form: "Join the Action Crew" leads to the form with the news answer chosen: two fields', f1.key === 'stiri' && f1.open === 'stiri' && f1.rest && f1.fields === 2, JSON.stringify(f1));
-    await ph.click('.choice:has(input[data-key="afacere"])'); await ph.waitForTimeout(800);
+    ok(lang + 'form: "Join the Action Crew" shows the news answer alone, asks for name and email, and Send is on screen', f1.key === 'stiri' && f1.open === 'stiri' && f1.rows === 1 && f1.fields === 2 && /^email\/E-?mail$/.test(f1.contact) && f1.send && f1.rowSeen && /noutăți/.test(f1.subject), JSON.stringify(f1));
+    await ph.click('[data-change]'); await ph.waitForTimeout(200);
+    const f1b = await act(ph);
+    await ph.click('.choice:has(input[data-key="afacere"])'); await ph.waitForTimeout(900);
     const f2 = await act(ph);
-    ok(lang + 'form: another answer swaps the one line, switches the others off and keeps Send in view', f2.key === 'afacere' && f2.open === 'afacere' && f2.off && f2.fields === 3 && f2.send && f2.wide <= 0, JSON.stringify(f2));
+    ok(lang + 'form: "Change the answer" brings the five back; another answer swaps the one line and keeps its row and Send on screen', f1b.rows === 5 && f2.key === 'afacere' && f2.open === 'afacere' && f2.rows === 1 && f2.fields === 3 && /^text\//.test(f2.contact) && f2.send && f2.rowSeen && /AFACERE/.test(f2.subject) && f2.wide <= 0, JSON.stringify(f2));
     const most = [];
-    for (const k of ['spatiu', 'sponsor', 'afacere', 'crew', 'stiri']) { await ph.click('.choice:has(input[data-key="' + k + '"])'); await ph.waitForTimeout(120); most.push((await act(ph)).fields); }
-    ok(lang + 'form: no answer asks for more than four fields', Math.max(...most) <= 4, most.join(','));
-    for (const [tip, key] of [['spatiu', 'spatiu'], ['cunosc', 'spatiu'], ['sponsor', 'sponsor']]) {
-      await ph.goto(base + '/' + lang + 'index.html?tip=' + tip + '#action'); await ph.waitForTimeout(700);
-      const t = await ph.evaluate(() => { const c = document.querySelector('input[name="ajutor"]:checked'), s = document.getElementById('action').getBoundingClientRect(); return { key: c ? c.getAttribute('data-key') : '', value: c ? c.value : '', top: s.top }; });
-      ok(lang + 'form: a link with ?tip=' + tip + ' opens on the form with its answer chosen', t.key === key && Math.abs(t.top) < 160 && (key !== 'spatiu' || t.value === 'Am sau știu un spațiu'), JSON.stringify(t));
+    for (const k of ['spatiu', 'sponsor', 'afacere', 'crew', 'stiri']) { await ph.click('[data-change]'); await ph.click('.choice:has(input[data-key="' + k + '"])'); await ph.waitForTimeout(150); const a = await act(ph); most.push(a.fields + (a.send && a.rowSeen ? '' : '!')); }
+    ok(lang + 'form: no answer asks for more than four fields, and each keeps its row and Send on a phone screen', most.every(x => /^[1-4]$/.test(x)), most.join(','));
+    // what is accepted as a way to reach the person, and what is sent
+    const valid = await ph.evaluate(() => { const f = document.querySelector('form[name="action"]'); document.querySelector('[data-change]').click(); f.querySelector('input[data-key="sponsor"]').click(); const n = f.querySelector('#a-name'), c = f.querySelector('#a-contact'); const t = (name, v) => { n.value = name; c.value = v; return f.checkValidity(); }; const r = { bad: [t('Ana', 'x'), t('Ana', '   '), t('Ana', '0722'), t('Ana', 'ana@gmail'), t('  ', '0722 123 456')], good: [t('Ana', '0722 123 456'), t('Ana', '+40 722 123 456'), t('Ana', 'ana@example.com')] }; f.querySelector('#a-company').value = 'Firma'; f.querySelector('#a-space').value = 'nu trebuie trimis'; t('Ana', '0722 123 456'); let sent = null; f.addEventListener('submit', e => { e.preventDefault(); sent = [...new FormData(f).keys()].join(); }); f.querySelector('button[type=submit]').click(); r.sent = sent; return r; });
+    ok(lang + 'form: the contact must look like a phone number or an email address, and the name cannot be blank', valid.bad.every(x => x === false) && valid.good.every(x => x === true), JSON.stringify(valid));
+    ok(lang + 'form: only the chosen line is sent', valid.sent === 'form-name,language,subject,bot-field,ajutor,sponsor-firma,pachet,name,contact', String(valid.sent));
+    for (const [tip, key] of [['spatiu', 'spatiu'], ['cunosc', 'spatiu'], ['SPONSOR', 'sponsor'], ['<script>', '']]) {
+      await ph.goto(base + '/' + lang + 'index.html?tip=' + encodeURIComponent(tip) + '#action'); await ph.waitForTimeout(800);
+      const t = await act(ph);
+      ok(lang + 'form: a link with ?tip=' + tip + (key ? ' opens on its answer with the fields and Send on screen' : ' does no harm'), t.key === key && (key ? t.rows === 1 && t.send && t.rowSeen : t.rows === 5 && !t.rest), JSON.stringify(t));
     }
+    await ph.goto(base + '/' + lang + 'index.html#crew'); await ph.waitForTimeout(800);
+    ok(lang + 'form: the old sign-up link #crew opens the news answer', (await act(ph)).key === 'stiri');
     await ph.close();
+    // a laptop: a double click keeps its answer, nothing slides under the top bar, and at the very end of the page the question is still in sight
+    for (const [w, h] of [[1440, 900], [1366, 650], [1024, 768]]) {
+      const lp = await b.newPage({ viewport: { width: w, height: h } });
+      await lp.goto(base + '/' + lang + 'index.html'); await lp.waitForTimeout(300);
+      await lp.keyboard.press('End'); await lp.waitForTimeout(900);
+      const end = await lp.evaluate(() => { const bar = document.querySelector('.bar').getBoundingClientRect().bottom, l = document.querySelector('.choices legend').getBoundingClientRect(), r = [...document.querySelectorAll('.choice')].map(x => x.getBoundingClientRect()); return l.top >= bar - 1 && r.every(x => x.top >= bar && x.bottom <= innerHeight); });
+      await lp.dblclick('.choice:has(input[data-key="crew"])'); await lp.waitForTimeout(900);
+      const dc = await act(lp);
+      ok(lang + `form at ${w}x${h}: at the end of the page the question and all five answers are in sight; a double click keeps its answer, its row and Send on screen`, end && dc.key === 'crew' && dc.rowSeen && dc.send, JSON.stringify({ end, key: dc.key, row: dc.rowSeen, send: dc.send }));
+      await lp.close();
+    }
+    // the short address, followed for real over http
+    const rd = await b.newPage({ viewport: { width: 390, height: 844 } });
+    await rd.goto(web + '/' + lang + 'action/?tip=cunosc'); await rd.waitForTimeout(900);
     const stub = require('fs').readFileSync(process.argv[2] + '/' + lang + 'action/index.html', 'utf8');
-    ok(lang + 'form: the short address sends people on to the form and keeps the chosen answer', stub.includes('location.replace("../" + location.search + "#action")') && stub.includes('<noscript><meta http-equiv="refresh" content="0; url=../#action"></noscript>') && stub.includes('og-action.jpg') && !stub.includes('<form'));
+    ok(lang + 'form: the short address sends people on to the form and keeps the chosen answer', new URL(rd.url()).pathname === '/' + lang && /tip=cunosc/.test(rd.url()) && /#action$/.test(rd.url()) && (await act(rd)).key === 'spatiu' && stub.includes('og-action.jpg') && stub.includes('<noscript><meta http-equiv="refresh" content="0; url=../#action"></noscript>') && !stub.includes('<form'), rd.url());
+    await rd.close();
     ok(lang + 'shop: the clothing shop is gone from the page (no stop, no link, no clothes rail)', !(await p.$('#shop')) && !(await p.$('.rack')) && (await p.$$eval('a[href]', l => l.filter(a => /(^|\/)shop\//.test(a.getAttribute('href'))).length)) === 0 && !require('fs').existsSync(process.argv[2] + '/shop'));
     ok(lang + 'pictures: every image has alt text and a tag', await p.$$eval('main img', i => i.every(x => x.alt.length > 3)) && await p.$$eval('main .media', m => m.every(x => x.querySelector('.tag'))));
     const dupe = await p.$$eval('main img', i => { const s = i.map(x => x.getAttribute('src')), d = s.filter((x, k) => s.indexOf(x) !== k); return [...new Set(d)]; });
@@ -129,4 +158,5 @@ const ok = (name, cond, extra) => console.log((cond ? 'PASS ' : 'FAIL ') + name 
     await r.close();
   }
   await b.close();
+  server.close();
 })();

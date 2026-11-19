@@ -2,6 +2,8 @@
 
 Written 19 November 2026. One file with every decision, number, text and link from this work, so any person or session can pick it up without the chat.
 
+**Later the same day, in the site session:** the form page of section 8 is live, but not as a page of its own. At the owner's request it became part of the main page, the clothing shop was removed, and the three forms of the site were merged into one short form in the last stop (`#action`). The addresses of section 7 still work; `?tip=cunosc` now opens the same answer as `?tip=spatiu`. The field names and what was dropped are in `README.md`, "The one form". This file is not served by the site.
+
 Confidence tags used here:
 
 - **[Certain]** checked arithmetic, or something read from a source.

@@ -1,6 +1,6 @@
 # Action-Cloud
 
-The Action Cloud Bucharest site: the story of the park, the Action Crew sign-up, the clothing shop and the sponsor packages. Romanian at `/`, English at `/en/`, the shop at `/shop/`. Static files, hosted on Netlify as `actioncloud-bucharest-sponsors`.
+The Action Cloud Bucharest site: the story of the park, the take-action form, the Action Crew sign-up and the sponsor packages. Romanian at `/`, English at `/en/`. Static files, hosted on Netlify as `actioncloud-bucharest-sponsors`.
 
 ## Editing the pages
 
@@ -12,9 +12,9 @@ python3 tools/build.py
 
 It writes `index.html`, `en/index.html`, `multumim.html` and `en/thanks.html`. Do not edit those four files by hand.
 
-`styles.css` and `site.js` are written by hand. The page works without `site.js`; the script adds the progress line, deck arrows, the swinging clothes rack, the price chips and package pre-selection.
+`styles.css` and `site.js` are written by hand. The page works without `site.js`; the script adds the progress line, deck arrows, the price chips and package pre-selection.
 
-The page is a walk in eight stops: the hero, the clickable plan (in `tools/build.py` the places are `PLACES`, the number discs `SPOTS` and the tappable floor of each room `AREAS`; the build stops if they do not fit together; with a mouse, resting on a room for a moment brings up its card, a tap or click does the same on any device), the community stop, the take-action stop, Action Crew, the shop, the sponsor packages (`TIERS`) and the contact form.
+The page is a walk in seven stops: the hero, the clickable plan (in `tools/build.py` the places are `PLACES`, the number discs `SPOTS` and the tappable floor of each room `AREAS`; the build stops if they do not fit together; with a mouse, resting on a room for a moment brings up its card, a tap or click does the same on any device), the community stop, the take-action stop, Action Crew, the sponsor packages (`TIERS`) and the contact form.
 
 ## Checking
 
@@ -34,7 +34,7 @@ Both need Playwright.
 
 ## Shop
 
-`shop/` is the Action Cloud clothing shop (the same files as the `actioncloud-ro` Netlify project). Products and prices are in `shop/shop-config.js`. Prices are placeholders and checkout is not connected: while `checkoutUrl` is `null` the shop tells people to email their order.
+The clothing shop was taken out of this site on 19 November 2026 at the owner's request: the "Magazin" stop with the clothes rail, its link in the top bar and the footer, the "shop orders" promise in the Action Crew stop, and the `/shop/` folder. The shop itself is a separate Netlify project (`actioncloud-ro`), which this site no longer links to and which was not touched. Everything removed is in the git history (the commit before "Remove the clothing shop"). Room 17 on the plan, "Shop, service and rentals", is the park's own bike and skate shop and stays.
 
 ## Take-action stop
 
@@ -46,7 +46,7 @@ The take-action form is one stop of the main page (`#action`, between the commun
 
 ## Forms
 
-Four Netlify forms: `sponsor` and `crew` on the main pages, `contact` in the shop, `action` in the take-action stop of the main page. Set up email notifications for them in the Netlify dashboard; until then submissions only show in the dashboard. The `action` form sends its answers under Romanian field names in both languages (`ajutor`, `spatiu-oras`, `spatiu-mp`, ...), so the inbox reads the same.
+Three Netlify forms on the main pages: `sponsor`, `crew` and `action` (the take-action stop). Set up email notifications for them in the Netlify dashboard; until then submissions only show in the dashboard. The `action` form sends its answers under Romanian field names in both languages (`ajutor`, `spatiu-oras`, `spatiu-mp`, ...), so the inbox reads the same.
 
 ## The size claim
 

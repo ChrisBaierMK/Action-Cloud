@@ -1,4 +1,4 @@
-// Behaviour checks on the built page: the clickable plan, arrows, package pre-selection, no-JS and small screens.
+// Behaviour checks on the built page: the clickable plan, arrows, the take-action stop, package pre-selection, no-JS and small screens.
 const { chromium } = require('playwright');
 const base = 'file://' + process.argv[2];
 const ok = (name, cond, extra) => console.log((cond ? 'PASS ' : 'FAIL ') + name + (extra ? '  ' + extra : ''));
@@ -72,21 +72,7 @@ const ok = (name, cond, extra) => console.log((cond ? 'PASS ' : 'FAIL ') + name 
     ok(lang + 'estimate: no reach, impression or unique-visitor figure anywhere on the page', !(await p.evaluate(() => /impresii|impressions|reach|vizitatori unici|unique visitors|140[.,]000|210[.,]000/i.test(document.body.innerText))));
     ok(lang + 'tiers: 7 price chips', (await p.$$eval('.ladder a', a => a.length)) === 7);
     ok(lang + 'tiers: 7 cards, 8 form options', tiers === 7 && opts === 8, tiers + '/' + opts);
-    await p.locator('#shop').scrollIntoViewIfNeeded(); await p.waitForTimeout(1400);
-    const hang = await p.$$eval('.rack-track .hang', l => l.length);
-    ok(lang + 'rack: 12 pieces hang on the rail, all linking to the shop', hang === 12 && await p.$$eval('.rack-track a.piece', a => a.every(x => /shop\/\?lang=/.test(x.getAttribute('href')))), String(hang));
-    ok(lang + 'rack: pieces are visible once on screen', await p.$$eval('.rack-track .piece', a => a.every(x => getComputedStyle(x).opacity === '1')));
-    const r0 = await p.$eval('.rack-track', r => r.scrollLeft);
-    await p.click('.rack [data-next]'); await p.waitForTimeout(900);
-    const r1 = await p.$eval('.rack-track', r => r.scrollLeft);
-    ok(lang + 'rack: arrow moves the rail', r1 > r0 + 100, r0 + ' -> ' + r1);
-    const box = await p.$eval('.rack-track', r => { const b = r.getBoundingClientRect(); return { x: b.x + b.width / 2, y: b.y + b.height / 2 }; });
-    await p.mouse.move(box.x, box.y); await p.mouse.down(); await p.mouse.move(box.x + 200, box.y, { steps: 8 });
-    const swing = await p.$$eval('.rack-track .hang', l => l.some(x => /rotate/.test(x.style.transform)));
-    await p.mouse.up(); await p.waitForTimeout(300);
-    const r2 = await p.$eval('.rack-track', r => r.scrollLeft);
-    ok(lang + 'rack: dragging moves the rail and the pieces swing', r2 < r1 - 100 && swing, r1 + ' -> ' + r2 + ', swing ' + swing);
-    ok(lang + 'rack: a drag does not open the shop', /index\.html/.test(p.url()) || !/shop/.test(p.url()), p.url());
+    ok(lang + 'shop: the clothing shop is gone from the page (no stop, no link, no clothes rail)', !(await p.$('#shop')) && !(await p.$('.rack')) && (await p.$$eval('a[href]', l => l.filter(a => /(^|\/)shop\//.test(a.getAttribute('href'))).length)) === 0 && !require('fs').existsSync(process.argv[2] + '/shop'));
     ok(lang + 'forms: action, crew and sponsor are Netlify forms', (await p.$$eval('form[data-netlify]', f => f.map(x => x.getAttribute('name')).sort().join(','))) === 'action,crew,sponsor');
     // the take-action stop: one question, then only the fields for the chosen answer
     await p.locator('#action').scrollIntoViewIfNeeded(); await p.waitForTimeout(200);
@@ -119,7 +105,6 @@ const ok = (name, cond, extra) => console.log((cond ? 'PASS ' : 'FAIL ') + name 
   const tiny = await q.$$eval('.spot', l => l.filter(a => { const r = [...a.querySelectorAll('.hit')].map(x => x.getBoundingClientRect()); const w = Math.max(...r.map(b => b.right)) - Math.min(...r.map(b => b.left)), h = Math.max(...r.map(b => b.bottom)) - Math.min(...r.map(b => b.top)); return w < 24 || h < 24; }).length);
   ok('phone: every room is a target of at least 24 by 24 px', tiny === 0, String(tiny));
   ok('no JS: arrows hidden, swipe hint shown', await q.$eval('.arrows', e => getComputedStyle(e).display === 'none') && await q.$eval('.swipe', e => getComputedStyle(e).display !== 'none'));
-  ok('no JS: clothes on the rack are visible', await q.$$eval('.rack-track .piece', a => a.length === 12 && a.every(x => getComputedStyle(x).opacity === '1')));
   ok('no JS: the take-action form shows every group and can still be sent', (await q.$$eval('form[name="action"] [data-group]', l => l.filter(g => g.offsetParent !== null).length)) === 5 && (await q.$$eval('form[name="action"] [required]', l => l.map(x => x.name).filter(n => n !== 'ajutor').join())) === 'name,phone,consent');
   ok('no JS: no sideways overflow', await q.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
   await ctx.close();

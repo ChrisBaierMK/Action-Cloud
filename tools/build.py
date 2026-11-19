@@ -284,27 +284,6 @@ TIERS = [
      T(["Numele tău pe peretele susținătorilor", "Numele tău pe site"], ["Your name on the supporter wall", "Your name on the website"])),
 ]
 
-HOODIE, TEE, CREWNECK = T("Hanorac", "Hoodie"), T("Tricou", "Tee"), T("Bluză", "Crewneck")
-RACK = [
-    # the pieces that hang on the rail: file in shop/img/p (these photos include the hanger), name (same in every language), kind
-    ("hoodie-bigmark-black-front", "Big Mark hoodie", HOODIE),
-    ("tee-cutout-black-front", "Cutout tee", TEE),
-    ("crew-sunfade-yellow-front", "Sunfade crewneck", CREWNECK),
-    ("tee-ramp-ecru-front", "Ramp tee", TEE),
-    ("hoodie-split-grey-front", "Split hoodie", HOODIE),
-    ("tee-sequence-black-front", "Sequence tee", TEE),
-    ("hoodie-livefree-black-back", "Live Free hoodie", HOODIE),
-    ("tee-tbar-ecru-front", "T-Bar tee", TEE),
-    ("tee-stencil-yellow-back", "Stencil tee", TEE),
-    ("hoodie-tape-grey-front", "Tape hoodie", HOODIE),
-    ("tee-bleach-black-front", "Bleach tee", TEE),
-    ("tee-truck-grey-front", "Truck tee", TEE),
-]
-# real height in px of each 760 px wide photo on the rail
-RACK_H = {"hoodie-bigmark-black-front": 1021, "tee-cutout-black-front": 1004, "crew-sunfade-yellow-front": 1001, "tee-ramp-ecru-front": 1002,
-          "hoodie-split-grey-front": 1067, "tee-sequence-black-front": 1011, "hoodie-livefree-black-back": 1030, "tee-tbar-ecru-front": 1006,
-          "tee-stencil-yellow-back": 1026, "hoodie-tape-grey-front": 1033, "tee-bleach-black-front": 1007, "tee-truck-grey-front": 996}
-
 # ---------------------------------------------------------------- plan drawn to scale (10 units per metre)
 ROOMS = [
     # number, x, y, width, depth (metres), colour group, open to the hall?, name
@@ -552,37 +531,8 @@ def s_crew(p):
       </p>
     </form>
     <div class="split-after">
-      {p.labels(p.t(T(["Datele Action Camps", "Anunț când se deschid comenzile din magazin"], ["Action Camp dates", "A heads-up when shop orders open"])))}
+      {p.labels(p.t(T(["Datele Action Camps"], ["Action Camp dates"])))}
       <div class="crew-pic">{pic}</div>
-    </div>
-  </div>
-</section>'''
-
-
-def s_shop(p):
-    """The clothes rail from the shop: pieces hang from a steel bar, you drag it and they swing (site.js)."""
-    shop = f"{p.pre}shop/?lang={p.lang}"
-    mock = p.t(TAG["mock"])
-    hang = ""
-    for f, name, kind in RACK:
-        tall = RACK_H[f]
-        # in English the product name already says what it is ("Big Mark hoodie")
-        kind_label = f"<span>{p.t(kind)}</span>" if p.lang == "ro" else ""
-        hang += (f'<li class="hang"><a class="piece" href="{shop}" draggable="false"><span class="cloth"><img src="{p.pre}shop/img/p/{f}.webp" width="760" height="{tall}" loading="lazy" draggable="false" alt="{esc(mock)}: {esc(name)}"></span>'
-                 f'<span class="piece-label"><b>{name}</b>{kind_label}</span></a></li>')
-    prev = p.t(T("Mută bara spre stânga", "Move the rail left"))
-    nxt = p.t(T("Mută bara spre dreapta", "Move the rail right"))
-    return f'''<section class="slide dark" id="shop" data-chapter="shop">
-  <div class="wrap">
-    {p.head(T("Poartă Action Cloud.", "Wear Action Cloud."), T("O parte din fiecare comandă merge către mini rampe în curțile școlilor. Prima e pentru Hărman.", "Part of every order goes into mini ramps for schoolyards. The first one is for Hărman."))}
-  </div>
-  <div class="rack" data-rack>
-    <div class="rack-bar" aria-hidden="true"></div>
-    <ul class="rack-track" tabindex="0" aria-label="{esc(p.t(T("Bara cu haine: hanorace, bluze și tricouri", "Clothes rail: hoodies, crewnecks and tees")))}">{hang}</ul>
-    <div class="wrap rail-tools">
-      <p class="rail-count">{p.t(T("Trage de bară. Imaginile sunt machete, iar comenzile online se deschid în curând.", "Drag the rail. The pictures are mock-ups and online orders open soon."))}</p>
-      <a class="btn btn-white" href="{shop}">{p.t(T("Vezi magazinul", "See the shop"))}</a>
-      <div class="arrows"><button type="button" data-prev aria-label="{esc(prev)}">←</button><button type="button" data-next aria-label="{esc(nxt)}">→</button></div>
     </div>
   </div>
 </section>'''
@@ -690,13 +640,12 @@ def s_contact(p):
 
 
 def sections(p):
-    return [s_hero(p), s_map(p), s_why(p), s_action(p), s_crew(p), s_shop(p), s_sponsors(p), s_contact(p)]
+    return [s_hero(p), s_map(p), s_why(p), s_action(p), s_crew(p), s_sponsors(p), s_contact(p)]
 
 
 # chapter key, id it links to, name in the top bar
 CHAPTERS = [("park", "park", T("Parcul", "The park")), ("proof", "why", T("Comunitatea", "Community")), ("action", "action", T("Căutăm spațiu", "Space wanted")),
-            ("crew", "crew", T("Action Crew", "Action Crew")),
-            ("shop", "shop", T("Magazin", "Shop"))]
+            ("crew", "crew", T("Action Crew", "Action Crew"))]
 
 
 def page(lang):
@@ -763,7 +712,6 @@ def page(lang):
       <li><a href="https://www.instagram.com/action.cloud/" rel="noopener">Instagram</a></li>
       <li><a href="https://www.tiktok.com/@action.cloud" rel="noopener">TikTok</a></li>
       <li><a href="mailto:{MAIL}">{MAIL}</a></li>
-      <li><a href="{p.pre}shop/?lang={lang}">{p.t(T("Magazin", "Shop"))}</a></li>
     </ul>
     <p>{foot_note}</p>
     <p id="despre-marime">{p.t(CLAIM_NOTE)}</p>
@@ -1077,9 +1025,6 @@ def check_pictures():
             missing.append(f"assets/img/{f}")
         if w > 1000 and not os.path.exists(os.path.join(here, "assets", "img", "s", f)):
             missing.append(f"assets/img/s/{f} (run tools/thumbs.py)")
-    for f in RACK_H:
-        if not os.path.exists(os.path.join(here, "shop", "img", "p", f + ".webp")):
-            missing.append(f"shop/img/p/{f}.webp")
     if missing:
         sys.exit("Missing pictures:\n  " + "\n  ".join(missing))
 

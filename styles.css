@@ -235,27 +235,6 @@ a, button, input, select, textarea, summary, [tabindex] { scroll-margin-top: cal
 .yellow .rail-count { color: var(--black); }
 
 
-/* ---- Clothes rack, as in the shop: pieces hang from a steel rail; drag it and they swing (site.js) ---- */
-.rack { --rail-h: 13px; --piece: clamp(150px, min(18vw, calc(26 * var(--svh))), 250px); position: relative; margin-top: clamp(.25rem, 1.5vh, 1rem); }
-.rack-bar { height: var(--rail-h); border-radius: 2px; background: linear-gradient(#f2f2f2 0%, #bdbdbd 22%, #7c7c7c 62%, #3c3c3c 100%); box-shadow: 0 8px 14px rgb(0 0 0 / .5); }
-/* the track is pulled up over the rail so each hanger hook goes over it */
-.rack-track { position: relative; z-index: 1; display: flex; gap: clamp(.5rem, 2vw, 1.9rem); margin: calc(-1 * (var(--rail-h) + 24px)) 0 0; padding: 20px var(--edge) 1rem; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; cursor: grab; user-select: none; -webkit-user-select: none; touch-action: manipulation; }
-.rack-track::-webkit-scrollbar { display: none; }
-.rack-track.grabbing { cursor: grabbing; }
-.rack-track.grabbing .piece { pointer-events: none; }
-.hang { flex: 0 0 var(--piece); transform-origin: 50% 11px; will-change: transform; }
-.piece { display: flex; flex-direction: column; align-items: center; text-align: center; text-decoration: none; color: inherit; border-radius: .75rem; }
-.cloth { display: block; width: 100%; filter: drop-shadow(0 22px 18px rgb(0 0 0 / .55)); transition: transform .25s cubic-bezier(.2, .8, .2, 1); }
-.cloth img { width: 100%; height: auto; -webkit-user-drag: none; }
-.piece:hover .cloth, .piece:focus-visible .cloth { transform: translateY(4px) scale(1.03); transform-origin: 50% 0; }
-.piece-label { display: grid; gap: .1rem; margin-top: .85rem; font-size: .9375rem; color: rgb(255 255 255 / .72); }
-.piece-label b { color: #fff; font-weight: 600; font-size: 1rem; }
-@media (prefers-reduced-motion: no-preference) {
-  /* pieces drop onto the rail the first time the slide comes into view */
-  .js .rack:not(.in) .piece { opacity: 0; }
-  .js .rack.in .piece { animation: drop .7s calc(var(--i, 0) * 70ms + 100ms) cubic-bezier(.3, 1.35, .5, 1) both; }
-  @keyframes drop { from { opacity: 0; transform: translateY(-70px); } }
-}
 
 /* ---- Sponsor tiers ---- */
 .rail.tiers > li { flex-basis: min(84vw, 23.5rem); }
@@ -394,7 +373,6 @@ form .actions .btn { justify-self: auto; }
   .split, .legend, .duo, .story, .facts { grid-template-columns: 1fr; }
   .crew-pic { margin-top: 1rem; }
   .crew-pic .media { aspect-ratio: 5 / 2; max-width: none; }
-  .rack { --piece: min(56vw, calc(30 * var(--svh)), 230px); }
   .grid-3 { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; margin-inline: calc(var(--gutter) * -1); padding: .25rem var(--gutter) 1rem; scroll-padding-inline: var(--gutter); scrollbar-width: none; }
   .grid-3::-webkit-scrollbar { display: none; }
   .grid-3 > * { flex: 0 0 min(80vw, 23rem); scroll-snap-align: start; }
@@ -444,7 +422,7 @@ form .actions .btn { justify-self: auto; }
 @media (prefers-reduced-motion: reduce) {
   /* the page never moves by itself */
   html { scroll-behavior: auto; scroll-snap-type: none; }
-  .btn, .cloth, .spot { transition: none; }
+  .btn, .spot { transition: none; }
 }
 
 /* ---- Take action (/action/): one page, one form. First "how can you help?", then only the fields for that answer ---- */

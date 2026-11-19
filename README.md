@@ -29,16 +29,24 @@ Both need Playwright.
 
 - `assets/img/concept-*.webp`, `tier-*.webp` and `plan-3d.webp` are computer-generated concept images (Higgsfield). The page tags each one "Imagine concept" / "Concept image".
 - Every picture wider than 1,000 px has a 1,000 px copy in `assets/img/s/` for phones. After adding or replacing a picture run `python3 tools/thumbs.py` (needs Pillow).
-- `action-camp`, `event-night` and `rider-inverted` are real photos from the first park, in Brașov, tagged as such. `story-2012` and `story-build` are cut from the `build-2012-2023` collage. `park-brasov` and `founder` are no longer on the page.
+- `action-camp`, `event-night` and `rider-inverted` are real photos from the first park, in Brașov, tagged as such. `story-2012` and `story-build` are cut from the `build-2012-2023` collage. `park-brasov` is the picture on the take-action page; `founder` is no longer on any page. `og-action.jpg` is the link preview of the take-action page, cut from `action-camp`.
 - The to-scale plan is drawn by `tools/build.py` from the `ROOMS` table (metres, 100 × 60 m hall, 6,000 m² in total). `plan-3d.webp` was rendered from that drawing; if `ROOMS` changes, the 3D picture has to be regenerated.
 
 ## Shop
 
 `shop/` is the Action Cloud clothing shop (the same files as the `actioncloud-ro` Netlify project). Products and prices are in `shop/shop-config.js`. Prices are placeholders and checkout is not connected: while `checkoutUrl` is `null` the shop tells people to email their order.
 
+## Take-action page
+
+`/action/` (Romanian) and `/en/action/` (English) are the page a video or a DM link sends people to. It asks one question first, "how can you help?", with five answers: I have a space, I know someone with a space, I want to bring my business into the park, I want to sponsor, I want to lend a hand. Only the fields for the chosen answer follow, then name and phone. The answers and their texts are `HELP` in `tools/build.py`; the pages are written by `action_page` and `action_thanks`.
+
+A link can arrive with the answer already chosen: `/action/?tip=spatiu` (also `cunosc`, `afacere`, `sponsor`, `crew`). Use these as the buttons of the Instagram DM that answers a comment keyword.
+
+`action.js` hides the groups that were not chosen. Without it every group is shown and the form still sends. The page states the offer to someone with a space (we build and run the park, they get a share of the takings); change it in `action_page` if the offer changes. The top bar links to the main page, which still describes the 6,000 m² plan for Bucharest.
+
 ## Forms
 
-Three Netlify forms: `sponsor` and `crew` on the main pages, `contact` in the shop. Set up email notifications for them in the Netlify dashboard.
+Four Netlify forms: `sponsor` and `crew` on the main pages, `contact` in the shop, `action` on the take-action page. Set up email notifications for them in the Netlify dashboard; until then submissions only show in the dashboard. The `action` form sends its answers under Romanian field names in both languages (`ajutor`, `spatiu-oras`, `spatiu-mp`, ...), so the inbox reads the same.
 
 ## The size claim
 

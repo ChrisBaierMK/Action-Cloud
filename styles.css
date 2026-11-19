@@ -437,3 +437,50 @@ form .actions .btn { justify-self: auto; }
   html { scroll-behavior: auto; scroll-snap-type: none; }
   .btn, .cloth, .spot { transition: none; }
 }
+
+/* ---- Take action (/action/): one page, one form. First "how can you help?", then only the fields for that answer ---- */
+/* a plain page is one form, not a walk through slides: nothing snaps, so a chosen group stays where it was scrolled to */
+html.plain { scroll-snap-type: none; }
+.act-top { background: var(--wall); color: #fff; padding: calc(var(--bar) + clamp(1.5rem, 5vh, 3.5rem)) 0 clamp(1.5rem, 5vh, 3.5rem); }
+.act-top .wrap { display: grid; gap: 1.5rem clamp(2rem, 5vw, 5rem); align-items: center; }
+.act-top h1 { font: 800 clamp(2.2rem, 7.4vw, 4.4rem)/1.02 var(--display); text-wrap: balance; }
+.act-top .sub { font-size: clamp(1.125rem, 1.8vw, 1.4rem); line-height: 1.35; margin-top: .9rem; max-width: 34ch; text-wrap: pretty; }
+.act-top .media { aspect-ratio: 2 / 1; }
+@media (min-width: 60.0625rem) {
+  .act-top { padding-bottom: clamp(1.5rem, 4vh, 2.5rem); padding-top: calc(var(--bar) + clamp(1.25rem, 4vh, 2.5rem)); }
+  .act-top .wrap { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); }
+  .act-top .media { aspect-ratio: 16 / 10; }
+}
+.act { padding: clamp(1.75rem, 5vh, 3.5rem) 0 clamp(2.5rem, 8vh, 5rem); }
+.act form { max-width: 44rem; gap: clamp(1.5rem, 4vh, 2.25rem); }
+.act legend { padding: 0; font: 800 clamp(1.6rem, 4.4vw, 2.25rem)/1.05 var(--display); margin-bottom: .9rem; }
+.choices { display: grid; gap: .6rem; }
+/* each answer is a whole row you can tap; the chosen one turns hazard yellow */
+.choice { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: .9rem; align-items: center; min-height: 4.25rem; padding: .9rem 1.1rem; background: #fff; border: 2px solid var(--black); border-radius: 1.1rem; cursor: pointer; }
+.choice input { grid-row: 1 / span 2; width: 1.5rem; height: 1.5rem; margin: 0; accent-color: var(--black); }
+.choice b { font-weight: 600; font-size: 1.1875rem; line-height: 1.2; }
+.choice span { grid-column: 2; font-size: 1rem; line-height: 1.3; }
+@media (hover: hover) { .choice:hover { background: var(--ply); } }
+.choice.on, .choice:has(input:checked) { background: var(--yellow); }
+.choice:focus-within { outline: 3px solid var(--black); outline-offset: 3px; }
+.choice input:focus-visible { outline: none; }
+.group { display: grid; gap: .9rem; scroll-margin-top: calc(var(--bar) + .75rem); }
+/* a rule above each heading, so the answer and its questions read as steps */
+.group legend { width: 100%; padding-top: clamp(1.1rem, 3vh, 1.5rem); border-top: 2px solid var(--black); }
+/* shown only while nothing is chosen, and only when the script can act on a choice */
+.pick { display: none; font-size: 1.125rem; line-height: 1.4; max-width: 30ch; color: var(--grain); }
+.js .pick { display: block; }
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .9rem; align-items: start; }
+@media (max-width: 36rem) { .pair { grid-template-columns: 1fr; } }
+/* wide screens: the answers stay on the left, the questions for the chosen one open beside them */
+@media (min-width: 60.0625rem) {
+  .act form { max-width: none; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); column-gap: clamp(2.5rem, 6vw, 6rem); align-items: start; }
+  .act .choices { grid-column: 1; grid-row: 1 / span 12; position: sticky; top: calc(var(--bar) + 1.25rem); }
+  .act .group, .act .pick { grid-column: 2; }
+  .act .pick { padding-top: 3.6rem; }
+  .act .group:not([data-rest]) legend, .js .act .group legend { border-top: 0; padding-top: 0; }
+  .js .act .group[data-rest] legend { border-top: 2px solid var(--black); padding-top: clamp(1.1rem, 3vh, 1.5rem); }
+}
+.act .help a { font-weight: 600; }
+.act-thanks { padding-top: var(--bar); }
+.act-thanks p { max-width: 36ch; }

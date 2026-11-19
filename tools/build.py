@@ -808,7 +808,7 @@ def thanks(lang):
 # key (also the ?tip= value), what the form sends (Romanian in both languages, so the inbox reads the same), title, line under it
 HELP = [
     ("spatiu", "Am un spațiu", T("Am un spațiu", "I have a space"),
-     T("Cel puțin 1.500 m². Devii partener în proiect.", "At least 1,500 m². You become a partner in the project.")),
+     T("Ideal 6.000 m², dar spune-ne și dacă ai mai puțin.", "Ideally 6,000 m², but tell us even if you have less.")),
     ("cunosc", "Știu pe cineva cu un spațiu", T("Știu pe cineva cu un spațiu", "I know someone with a space"),
      T("Ne faci legătura. Atât.", "You put us in touch. That's all.")),
     ("afacere", "Vreau să-mi aduc afacerea în parc", T("Vreau să-mi aduc afacerea în parc", "I want to bring my business into the park"),
@@ -890,8 +890,8 @@ def action_page(lang):
     t = p.t
     optional = t(T("(opțional)", "(optional)"))
     title = t(T("Action Cloud | Hai să-l construim împreună", "Action Cloud | Let's build it together"))
-    desc = t(T("Căutăm un partener cu un spațiu de cel puțin 1.500 m² pentru un parc de action sports cum n-a mai existat în România. Spune-ne cum ne poți ajuta.",
-               "We are looking for a partner with a space of at least 1,500 m² for an action sports park Romania has never seen. Tell us how you can help."))
+    desc = t(T("Căutăm un partener cu un spațiu de aproximativ 6.000 m² pentru un parc de action sports cum n-a mai existat în România. Spune-ne cum ne poți ajuta.",
+               "We are looking for a partner with a space of about 6,000 m² for an action sports park Romania has never seen. Tell us how you can help."))
 
     def field(fid, name, label, kind="text", req=False, opt=False, attrs="", help_=None, options=None, rows=3):
         """One labelled field. req: required always. data-req: required only while its group is the chosen one (action.js)."""
@@ -961,7 +961,7 @@ def action_page(lang):
     <div class="act-words">
       <p class="kicker">{t(T("Action Cloud își caută casa", "Action Cloud is looking for a home"))}</p>
       <h1>{t(T("Hai să facem un parc cum n-a mai existat în România.", "Let's build a park Romania has never seen."))}</h1>
-      <p class="sub">{t(T("Avem 800 m² de rampe, echipa care le-a construit și comunitatea. Ne lipsește spațiul.", "We have 800 m² of ramps, the team that built them and the community. What is missing is the space."))}</p>
+      <p class="sub">{t(T("Avem 800 m² de rampe, echipa care le-a construit și comunitatea. Ne lipsește spațiul: aproximativ 6.000 m².", "We have 800 m² of ramps, the team that built them and the community. What is missing is the space: about 6,000 m²."))}</p>
     </div>
     {photo}
   </div>
@@ -1007,8 +1007,8 @@ def action_thanks(lang):
     p = Page(lang, pre="../../" if lang == "ro" else "../../../")
     t = p.t
     title = t(T("Mulțumim | Action Cloud", "Thank you | Action Cloud"))
-    share = t(T("Action Cloud caută un spațiu de cel puțin 1.500 m² pentru un parc de action sports. Știi pe cineva? ",
-                "Action Cloud is looking for a space of at least 1,500 m² for an action sports park. Do you know someone? ")) + SITE + ACTION_URL[lang]
+    share = t(T("Action Cloud caută un spațiu de aproximativ 6.000 m² pentru un parc de action sports. Știi pe cineva? ",
+                "Action Cloud is looking for a space of about 6,000 m² for an action sports park. Do you know someone? ")) + SITE + ACTION_URL[lang]
     body = f"""<main id="main" class="thanks dark act-thanks">
   <div class="wrap">
     <h1>{t(T("Mulțumim!", "Thank you!"))}</h1>

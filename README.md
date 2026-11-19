@@ -42,7 +42,7 @@ Both need Playwright.
 
 A link can arrive with the answer already chosen: `/action/?tip=spatiu` (also `cunosc`, `afacere`, `sponsor`, `crew`). Use these as the buttons of the Instagram DM that answers a comment keyword.
 
-`action.js` hides the groups that were not chosen. Without it every group is shown and the form still sends. The page states the offer to someone with a space (we build and run the park, they get a share of the takings); change it in `action_page` if the offer changes. The top bar links to the main page, which still describes the 6,000 m² plan for Bucharest.
+`action.js` hides the groups that were not chosen. Without it every group is shown and the form still sends. The page asks for a space of about 6,000 m² and says smaller ones are welcome too, so no offer is turned away by the form. It states the offer to someone with a space (we build and run the park, they get a share of the takings); change both in `HELP` and `action_page` if they change. The top bar links to the main page, which still describes the 6,000 m² plan for Bucharest.
 
 ## Forms
 

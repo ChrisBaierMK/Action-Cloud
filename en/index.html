@@ -32,7 +32,7 @@
 
 <header class="bar">
   <a class="brand" href="#top" aria-label="Action Cloud Bucharest, back to top"><img src="../assets/img/logo-yellow.webp" width="472" height="256" alt="Action Cloud"></a>
-  <nav class="chapters" aria-label="Chapters"><a href="#park" data-for="park">The park</a><a href="#why" data-for="proof">Community</a><a href="#action" data-for="action">Space wanted</a><a href="#crew" data-for="crew">Action Crew</a></nav>
+  <nav class="chapters" aria-label="Chapters"><a href="#park" data-for="park">The park</a><a href="#why" data-for="proof">Community</a><a href="#action" data-for="action" data-tip="spatiu">Space wanted</a></nav>
   <a class="lang" href="../" lang="ro" hreflang="ro">Română</a>
   <a class="btn btn-yellow btn-small" href="#sponsors">Become a sponsor</a>
 </header>
@@ -51,7 +51,7 @@
       <p class="by">From a team that has been building ramps since 2012</p>
       <p class="actions">
         <a class="btn btn-white" href="#park">See the park</a>
-        <a class="btn btn-line" href="#crew">Join the Action Crew</a>
+        <a class="btn btn-line" href="#action" data-tip="stiri">Join the Action Crew</a>
       </p>
     </div>
     <span class="tag">Concept image</span>
@@ -79,7 +79,7 @@
     </div>
     <div class="map-foot">
       <p class="note">Indicative plan: it will be adapted to the final building. The location and the opening date are not announced yet.</p>
-      <p class="actions"><a class="btn btn-dark btn-small" href="#crew">Join the Action Crew</a><a class="btn btn-line btn-small" href="#sponsors">Become a sponsor</a></p>
+      <p class="actions"><a class="btn btn-dark btn-small" href="#action" data-tip="spatiu">I have a space</a><a class="btn btn-line btn-small" href="#action" data-tip="stiri">Join the Action Crew</a><a class="btn btn-line btn-small" href="#sponsors">Become a sponsor</a></p>
     </div>
   </div>
   <div class="wrap">
@@ -108,72 +108,6 @@
   </div>
 </section>
 
-<section class="slide ply act-slide" id="action" data-chapter="action">
-  <span id="ajuta"></span><span id="help"></span>
-  <div class="wrap">
-    <div class="act-intro">
-      <div class="head"><h2>Action Cloud is looking for a home.</h2><p>We have 800 m² of ramps, the team that built them and the community. What is missing is the space: about 6,000 m².</p></div>
-      <div class="media"><img src="../assets/img/park-brasov.webp" width="989" height="900" alt="The wooden ramps of the Action Cloud park in Brașov, in a hall with yellow and black stripes on the walls" loading="lazy"><span class="tag real">Photo from Brașov</span></div>
-    </div>
-    <div class="act">
-      <form name="action" method="POST" action="/en/action/thanks/" data-netlify="true" data-netlify-honeypot="bot-field">
-      <input type="hidden" name="form-name" value="action">
-      <input type="hidden" name="language" value="en">
-      <input type="hidden" name="subject" value="Action Cloud: formular nou (%{submissionId})">
-      <p class="hp" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
-      <fieldset class="choices">
-        <legend>How can you help?</legend>
-        <label class="choice"><input type="radio" name="ajutor" value="Am un spațiu" data-key="spatiu" required><b>I have a space</b><span>Ideally 6,000 m², but tell us even if you have less.</span></label><label class="choice"><input type="radio" name="ajutor" value="Știu pe cineva cu un spațiu" data-key="cunosc" required><b>I know someone with a space</b><span>You put us in touch. That's all.</span></label><label class="choice"><input type="radio" name="ajutor" value="Vreau să-mi aduc afacerea în parc" data-key="afacere" required><b>I want to bring my business into the park</b><span>CrossFit, yoga, cycling, café, restaurant, parties.</span></label><label class="choice"><input type="radio" name="ajutor" value="Vreau să sponsorizez" data-key="sponsor" required><b>I want to sponsor</b><span>With money, products or services.</span></label><label class="choice"><input type="radio" name="ajutor" value="Vreau să pun umărul" data-key="crew" required><b>I want to lend a hand</b><span>Building, filming or organising.</span></label>
-      </fieldset>
-      <p class="pick" data-pick>Choose an answer. We show only the questions that go with it.</p>
-      <fieldset class="group" data-group="spatiu"><legend>Your space</legend><ul class="labels"><li>We build and run the park</li><li>You get a share of the takings</li><li>Kids and parents in your building</li></ul><div class="pair"><div class="field"><label for="a-s-town">Town or area</label><input id="a-s-town" name="spatiu-oras" type="text" data-req autocomplete="address-level2"></div><div class="field"><label for="a-s-area">Floor area, in m²</label><input id="a-s-area" name="spatiu-mp" type="text" data-req inputmode="numeric"></div></div><div class="pair"><div class="field"><label for="a-s-height">Clear height, in m <span>(optional)</span></label><input id="a-s-height" name="spatiu-inaltime" type="text" inputmode="decimal"></div><div class="field"><label for="a-s-isu">Fire-safety permit (ISU) for the public?</label><select id="a-s-isu" name="spatiu-isu"><option>I don't know</option><option>Yes</option><option>No</option></select></div></div><div class="field"><label for="a-s-notes">What should we know about it? <span>(optional)</span></label><textarea id="a-s-notes" name="spatiu-detalii" rows="3"></textarea></div></fieldset><fieldset class="group" data-group="cunosc"><legend>The person you know</legend><div class="field"><label for="a-k-who">Who is it, and what space do they have?</label><textarea id="a-k-who" name="cunosc-cine" rows="3" data-req aria-describedby="a-k-who-help"></textarea><p class="help" id="a-k-who-help">Don't put their phone number here. Ask them first, then we connect you.</p></div><div class="field"><label for="a-k-town">Town or area <span>(optional)</span></label><input id="a-k-town" name="cunosc-oras" type="text"></div></fieldset><fieldset class="group" data-group="afacere"><legend>Your business</legend><div class="field"><label for="a-b-kind">What do you want to bring into the park?</label><select id="a-b-kind" name="afacere-tip"><option>CrossFit or a gym</option><option>Yoga</option><option>Cycling</option><option>Trampolines</option><option>Climbing</option><option>Café</option><option>Restaurant</option><option>Children's parties</option><option>Shop</option><option>Something else</option></select></div><div class="pair"><div class="field"><label for="a-b-name">Name of the business <span>(optional)</span></label><input id="a-b-name" name="afacere-nume" type="text" autocomplete="organization"></div><div class="field"><label for="a-b-area">How many m² do you need? <span>(optional)</span></label><input id="a-b-area" name="afacere-mp" type="text" inputmode="numeric"></div></div></fieldset><fieldset class="group" data-group="sponsor"><legend>Your sponsorship</legend><div class="pair"><div class="field"><label for="a-p-company">Company</label><input id="a-p-company" name="sponsor-firma" type="text" data-req autocomplete="organization"></div><div class="field"><label for="a-p-how">How do you want to help?</label><select id="a-p-how" name="sponsor-cum"><option>Not sure yet</option><option>Money</option><option>Products</option><option>Services</option></select></div></div></fieldset><fieldset class="group" data-group="crew"><legend>What you can do</legend><div class="field"><label for="a-c-skill">What can you help with?</label><input id="a-c-skill" name="crew-cum" type="text" data-req aria-describedby="a-c-skill-help"><p class="help" id="a-c-skill-help">For example: carpentry, transport, filming, electrics, organising.</p></div></fieldset>
-      <fieldset class="group" data-rest>
-        <legend>How we reach you</legend>
-        <div class="pair">
-          <div class="field"><label for="a-name">Name</label><input id="a-name" name="name" type="text" required autocomplete="name"></div>
-          <div class="field"><label for="a-phone">Phone (WhatsApp)</label><input id="a-phone" name="phone" type="tel" required autocomplete="tel"></div>
-        </div>
-        <div class="pair">
-          <div class="field"><label for="a-email">Email <span>(optional)</span></label><input id="a-email" name="email" type="email" autocomplete="email"></div>
-          <div class="field"><label for="a-insta">Instagram <span>(optional)</span></label><input id="a-insta" name="instagram" type="text" autocapitalize="none" spellcheck="false"></div>
-        </div>
-        <div class="field"><label for="a-message">Message <span>(optional)</span></label><textarea id="a-message" name="message" rows="3"></textarea></div>
-        <label class="check"><input type="checkbox" name="consent" value="da" required> <span>I agree that Action Cloud may contact me about this project.</span></label>
-        <button class="btn btn-dark" type="submit">Send</button>
-        <p class="help">Chris replies personally. We use your details only for this project and delete them on request: <a href="mailto:chris@actioncloud.co">chris@actioncloud.co</a>. Under 16? Ask a parent to fill this in.</p>
-      </fieldset>
-    </form>
-    </div>
-  </div>
-</section>
-
-<section class="slide" id="crew" data-chapter="crew">
-  <span id="join"></span>
-  <div class="wrap split">
-    <div class="split-head">
-      <div class="head"><h2>Join the Action Crew.</h2><p>Free. When we announce the location and the opening date, you hear first.</p></div>
-    </div>
-    <form name="crew" method="POST" action="/en/thanks.html" data-netlify="true" data-netlify-honeypot="bot-field">
-      <input type="hidden" name="form-name" value="crew">
-      <input type="hidden" name="language" value="en">
-      <p class="hp" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
-      <div class="field"><label for="c-name">First name</label><input id="c-name" name="name" autocomplete="given-name" required></div>
-      <div class="field"><label for="c-email">Email</label><input id="c-email" name="email" type="email" autocomplete="email" required aria-describedby="c-help">
-        <p class="help" id="c-help">Under 16? Ask a parent to sign you up.</p></div>
-      <div class="field"><label for="c-ride">What do you ride?</label><select id="c-ride" name="rides"><option>Scooter</option><option>BMX</option><option>Mountain bike</option><option>Skateboard</option><option>Something else</option><option>I'm a parent</option></select></div>
-      <label class="check"><input type="checkbox" name="consent" value="yes" required> <span>I want to get Action Cloud news by email. I can unsubscribe at any time.</span></label>
-      <p class="actions">
-        <button class="btn btn-dark" type="submit">Join the Action Crew</button>
-        <a class="btn btn-line" href="https://wa.me/?text=I%20want%20to%20join%20the%20Action%20Crew%2C%20it%27s%20free.%20Will%20you%20sign%20me%20up%3F%20https%3A//actioncloud-bucharest-sponsors.netlify.app/en/%23crew" rel="noopener">Send to a parent on WhatsApp</a>
-      </p>
-    </form>
-    <div class="split-after">
-      <ul class="labels"><li>Action Camp dates</li></ul>
-      <div class="crew-pic"><div class="media"><img src="../assets/img/concept-huddle.webp" srcset="../assets/img/s/concept-huddle.webp 1000w, ../assets/img/concept-huddle.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Concept image: hands stacked in the middle of a circle of riders in Action Cloud hoodies" loading="lazy"><span class="tag">Concept image</span></div></div>
-    </div>
-  </div>
-</section>
-
 <section class="slide yellow" id="sponsors" data-chapter="sponsors">
   <span id="packages"></span>
   <div class="wrap">
@@ -192,13 +126,14 @@
     <ul class="ladder" aria-label="The packages, by price"><li><a href="#pachet-principal" data-jump><span class="vh">Main partner: </span>€200,000<span class="vh"> a year</span></a></li><li><a href="#pachet-zona" data-jump><span class="vh">Zone partner: </span>€50,000<span class="vh"> a year</span></a></li><li><a href="#pachet-atractie" data-jump><span class="vh">Attraction partner: </span>€20,000<span class="vh"> a year</span></a></li><li><a href="#pachet-program" data-jump><span class="vh">Programme partner: </span>€10,000<span class="vh"> a year</span></a></li><li><a href="#pachet-rampa" data-jump><span class="vh">Ramp partner: </span>€3,000<span class="vh"> a year</span></a></li><li><a href="#pachet-local" data-jump><span class="vh">Local partner: </span>€1,000<span class="vh"> a year</span></a></li><li><a href="#pachet-sustinator" data-jump><span class="vh">Supporter: </span>€100<span class="vh"> a year</span></a></li></ul>
   </div>
   <div id="tier-rail" data-rail>
-<ul class="rail tiers" tabindex="0" role="list" aria-label="The sponsorship packages"><li id="pachet-principal"><div class="card tier"><div class="media"><img src="../assets/img/tier-naming.webp" srcset="../assets/img/s/tier-naming.webp 1000w, ../assets/img/tier-naming.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="The park façade at dusk with an &quot;Action Cloud by LOGO&quot; sign and LOGO flags at the entrance" loading="lazy"><span class="tag">Concept image: example placement</span></div><div class="card-body"><h3>Main partner</h3><p class="price">€200,000 <small>/ year</small></p><p class="places">One partner only</p><ul class="labels"><li>"Action Cloud by your brand"</li><li>Logo at the main entrance</li><li>In everything we publish and at events</li></ul><a class="btn btn-dark btn-small" href="#contact" data-pick="Main partner">Choose this package<span class="vh">: Main partner</span></a></div></div></li><li id="pachet-zona"><div class="card tier"><div class="media"><img src="../assets/img/tier-zone.webp" srcset="../assets/img/s/tier-zone.webp 1000w, ../assets/img/tier-zone.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="The gateway to a zone with a large LOGO above it and LOGO banners inside" loading="lazy"><span class="tag">Concept image: example placement</span></div><div class="card-body"><h3>Zone partner</h3><p class="price">€50,000 <small>/ year</small></p><p class="places">4–5 partners</p><ul class="labels"><li>A zone carries your name</li><li>Logo at the zone's entrance and on its ramps</li><li>Clips shot in the zone</li></ul><a class="btn btn-dark btn-small" href="#contact" data-pick="Zone partner">Choose this package<span class="vh">: Zone partner</span></a></div></div></li><li id="pachet-atractie"><div class="card tier"><div class="media"><img src="../assets/img/tier-attraction.webp" srcset="../assets/img/s/tier-attraction.webp 1000w, ../assets/img/tier-attraction.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="The mega ramp with LOGO panels on its sides" loading="lazy"><span class="tag">Concept image: example placement</span></div><div class="card-body"><h3>Attraction partner</h3><p class="price">€20,000 <small>/ year</small></p><p class="places">4 partners</p><ul class="labels"><li>Mega ramp, airbag, padel or climbing</li><li>Logo on the attraction</li><li>Clips shot there</li></ul><a class="btn btn-dark btn-small" href="#contact" data-pick="Attraction partner">Choose this package<span class="vh">: Attraction partner</span></a></div></div></li><li id="pachet-program"><div class="card tier"><div class="media"><img src="../assets/img/tier-programme.webp" srcset="../assets/img/s/tier-programme.webp 1000w, ../assets/img/tier-programme.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="A coach and a row of kids in yellow LOGO bibs next to a LOGO banner" loading="lazy"><span class="tag">Concept image: example placement</span></div><div class="card-body"><h3>Programme partner</h3><p class="price">€10,000 <small>/ year</small></p><p class="places">3 partners</p><ul class="labels"><li>Camps, Action Cups or the school programme</li><li>The programme carries your name</li><li>Samples at camps and events</li></ul><a class="btn btn-dark btn-small" href="#contact" data-pick="Programme partner">Choose this package<span class="vh">: Programme partner</span></a></div></div></li><li id="pachet-rampa"><div class="card tier"><div class="media"><img src="../assets/img/tier-feature.webp" srcset="../assets/img/s/tier-feature.webp 1000w, ../assets/img/tier-feature.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="A kid on a scooter rides up a ramp carrying a LOGO sticker" loading="lazy"><span class="tag">Concept image: example placement</span></div><div class="card-body"><h3>Ramp partner</h3><p class="price">€3,000 <small>/ year</small></p><ul class="labels"><li>Logo on a ramp, a wall or an obstacle</li><li>Social media mentions</li><li>Product placement in clips</li></ul><a class="btn btn-dark btn-small" href="#contact" data-pick="Ramp partner">Choose this package<span class="vh">: Ramp partner</span></a></div></div></li><li id="pachet-local"><div class="card tier"><div class="media"><img src="../assets/img/tier-local.webp" srcset="../assets/img/s/tier-local.webp 1000w, ../assets/img/tier-local.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="A wall of plywood plaques; one lit plaque carries a LOGO while a parent and child look at it" loading="lazy"><span class="tag">Concept image: example placement</span></div><div class="card-body"><h3>Local partner</h3><p class="price">€1,000 <small>/ year</small></p><ul class="labels"><li>Logo on the supporter wall</li><li>Logo on the website, with a link</li></ul><a class="btn btn-dark btn-small" href="#contact" data-pick="Local partner">Choose this package<span class="vh">: Local partner</span></a></div></div></li><li id="pachet-sustinator"><div class="card tier"><div class="media"><img src="../assets/img/tier-supporter-en.webp" srcset="../assets/img/s/tier-supporter-en.webp 1000w, ../assets/img/tier-supporter-en.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="A hand fixes a plywood plaque engraved &quot;YOU&quot; to the wall, next to plaques with first names" loading="lazy"><span class="tag">Concept image: example placement</span></div><div class="card-body"><h3>Supporter</h3><p class="price">€100 <small>/ year</small></p><ul class="labels"><li>Your name on the supporter wall</li><li>Your name on the website</li></ul><a class="btn btn-dark btn-small" href="#contact" data-pick="Supporter">Choose this package<span class="vh">: Supporter</span></a></div></div></li></ul>
+<ul class="rail tiers" tabindex="0" role="list" aria-label="The sponsorship packages"><li id="pachet-principal"><div class="card tier"><div class="media"><img src="../assets/img/tier-naming.webp" srcset="../assets/img/s/tier-naming.webp 1000w, ../assets/img/tier-naming.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="The park façade at dusk with an &quot;Action Cloud by LOGO&quot; sign and LOGO flags at the entrance" loading="lazy"><span class="tag">Concept image: example placement</span></div><div class="card-body"><h3>Main partner</h3><p class="price">€200,000 <small>/ year</small></p><p class="places">One partner only</p><ul class="labels"><li>"Action Cloud by your brand"</li><li>Logo at the main entrance</li><li>In everything we publish and at events</li></ul><a class="btn btn-dark btn-small" href="#action" data-pick="Main partner">Choose this package<span class="vh">: Main partner</span></a></div></div></li><li id="pachet-zona"><div class="card tier"><div class="media"><img src="../assets/img/tier-zone.webp" srcset="../assets/img/s/tier-zone.webp 1000w, ../assets/img/tier-zone.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="The gateway to a zone with a large LOGO above it and LOGO banners inside" loading="lazy"><span class="tag">Concept image: example placement</span></div><div class="card-body"><h3>Zone partner</h3><p class="price">€50,000 <small>/ year</small></p><p class="places">4–5 partners</p><ul class="labels"><li>A zone carries your name</li><li>Logo at the zone's entrance and on its ramps</li><li>Clips shot in the zone</li></ul><a class="btn btn-dark btn-small" href="#action" data-pick="Zone partner">Choose this package<span class="vh">: Zone partner</span></a></div></div></li><li id="pachet-atractie"><div class="card tier"><div class="media"><img src="../assets/img/tier-attraction.webp" srcset="../assets/img/s/tier-attraction.webp 1000w, ../assets/img/tier-attraction.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="The mega ramp with LOGO panels on its sides" loading="lazy"><span class="tag">Concept image: example placement</span></div><div class="card-body"><h3>Attraction partner</h3><p class="price">€20,000 <small>/ year</small></p><p class="places">4 partners</p><ul class="labels"><li>Mega ramp, airbag, padel or climbing</li><li>Logo on the attraction</li><li>Clips shot there</li></ul><a class="btn btn-dark btn-small" href="#action" data-pick="Attraction partner">Choose this package<span class="vh">: Attraction partner</span></a></div></div></li><li id="pachet-program"><div class="card tier"><div class="media"><img src="../assets/img/tier-programme.webp" srcset="../assets/img/s/tier-programme.webp 1000w, ../assets/img/tier-programme.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="A coach and a row of kids in yellow LOGO bibs next to a LOGO banner" loading="lazy"><span class="tag">Concept image: example placement</span></div><div class="card-body"><h3>Programme partner</h3><p class="price">€10,000 <small>/ year</small></p><p class="places">3 partners</p><ul class="labels"><li>Camps, Action Cups or the school programme</li><li>The programme carries your name</li><li>Samples at camps and events</li></ul><a class="btn btn-dark btn-small" href="#action" data-pick="Programme partner">Choose this package<span class="vh">: Programme partner</span></a></div></div></li><li id="pachet-rampa"><div class="card tier"><div class="media"><img src="../assets/img/tier-feature.webp" srcset="../assets/img/s/tier-feature.webp 1000w, ../assets/img/tier-feature.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="A kid on a scooter rides up a ramp carrying a LOGO sticker" loading="lazy"><span class="tag">Concept image: example placement</span></div><div class="card-body"><h3>Ramp partner</h3><p class="price">€3,000 <small>/ year</small></p><ul class="labels"><li>Logo on a ramp, a wall or an obstacle</li><li>Social media mentions</li><li>Product placement in clips</li></ul><a class="btn btn-dark btn-small" href="#action" data-pick="Ramp partner">Choose this package<span class="vh">: Ramp partner</span></a></div></div></li><li id="pachet-local"><div class="card tier"><div class="media"><img src="../assets/img/tier-local.webp" srcset="../assets/img/s/tier-local.webp 1000w, ../assets/img/tier-local.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="A wall of plywood plaques; one lit plaque carries a LOGO while a parent and child look at it" loading="lazy"><span class="tag">Concept image: example placement</span></div><div class="card-body"><h3>Local partner</h3><p class="price">€1,000 <small>/ year</small></p><ul class="labels"><li>Logo on the supporter wall</li><li>Logo on the website, with a link</li></ul><a class="btn btn-dark btn-small" href="#action" data-pick="Local partner">Choose this package<span class="vh">: Local partner</span></a></div></div></li><li id="pachet-sustinator"><div class="card tier"><div class="media"><img src="../assets/img/tier-supporter-en.webp" srcset="../assets/img/s/tier-supporter-en.webp 1000w, ../assets/img/tier-supporter-en.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="A hand fixes a plywood plaque engraved &quot;YOU&quot; to the wall, next to plaques with first names" loading="lazy"><span class="tag">Concept image: example placement</span></div><div class="card-body"><h3>Supporter</h3><p class="price">€100 <small>/ year</small></p><ul class="labels"><li>Your name on the supporter wall</li><li>Your name on the website</li></ul><a class="btn btn-dark btn-small" href="#action" data-pick="Supporter">Choose this package<span class="vh">: Supporter</span></a></div></div></li></ul>
 <div class="wrap rail-tools"><p class="rail-count"><span class="swipe">Swipe for more</span></p><div class="arrows"><button type="button" data-prev aria-label="Previous card">←</button><button type="button" data-next aria-label="Next card">→</button></div></div>
 </div>
   <div class="wrap">
     <dl class="facts">
       <div><dt>In every package</dt><dd>Invitations to events and Action Cups. From "Ramp partner" up, you also get product placement in clips.</dd></div>
       <div><dt>Until it opens</dt><dd>The Bucharest park is still a plan. Visibility in the park starts when it opens, and we agree together what you get until then.</dd></div>
+      <div><dt>The contract</dt><dd>It is signed with the non-profit Rosenau Cycling association. We agree the contract period and the payment currency together; prices are in euro.</dd></div>
     </dl>
     <details class="more">
       <summary>Tax advantage for companies</summary>
@@ -207,26 +142,33 @@
   </div>
 </section>
 
-<section class="slide dark" id="contact" data-chapter="sponsors">
-  <div class="wrap split">
-    <div class="split-head">
-      <div class="head"><h2>Let's talk.</h2><p>Christoph Baier, founder of Action Cloud, will reply personally.</p></div>
+<section class="slide dark act-slide" id="action" data-chapter="action">
+  <span id="crew"></span><span id="join"></span><span id="contact"></span><span id="ajuta"></span><span id="help"></span>
+  <div class="wrap">
+    <div class="act-intro">
+      <div class="head"><h2>Let's build it together.</h2><p>We have 800 m² of ramps, the team that built them and the community. What is missing is the space: about 6,000 m².</p></div>
+      <div class="media"><img src="../assets/img/park-brasov.webp" width="989" height="900" alt="The wooden ramps of the Action Cloud park in Brașov, in a hall with yellow and black stripes on the walls" loading="lazy"><span class="tag real">Photo from Brașov</span></div>
     </div>
-    <form name="sponsor" method="POST" action="/en/thanks.html" data-netlify="true" data-netlify-honeypot="bot-field">
-      <input type="hidden" name="form-name" value="sponsor">
+    <div class="act">
+      <form name="action" method="POST" action="/en/action/thanks/" data-netlify="true" data-netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="action">
       <input type="hidden" name="language" value="en">
+      <input type="hidden" name="subject" value="Action Cloud: formular nou (%{submissionId})">
       <p class="hp" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
-      <div class="field"><label for="f-package">Package you are interested in</label><select id="f-package" name="package"><option>Not sure yet</option><option>Main partner</option><option>Zone partner</option><option>Attraction partner</option><option>Programme partner</option><option>Ramp partner</option><option>Local partner</option><option>Supporter</option></select></div>
-      <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" autocomplete="name" required></div>
-      <div class="field"><label for="f-company">Company <span>(optional)</span></label><input id="f-company" name="company" autocomplete="organization"></div>
-      <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
-      <div class="field"><label for="f-message">Message <span>(optional)</span></label><textarea id="f-message" name="message" rows="3"></textarea></div>
-      <button class="btn btn-yellow" type="submit">Send message</button>
-      <p class="help">We use your details only to reply to you.</p>
+      <fieldset class="choices">
+        <legend>How are you joining in?</legend>
+        <label class="choice"><input type="radio" name="ajutor" value="Am sau știu un spațiu" data-key="spatiu" required><b>I have or know of a space</b></label><label class="choice"><input type="radio" name="ajutor" value="Vreau să sponsorizez" data-key="sponsor" required><b>I want to sponsor</b></label><label class="choice"><input type="radio" name="ajutor" value="Vreau să-mi aduc afacerea în parc" data-key="afacere" required><b>I want to bring my business in</b></label><label class="choice"><input type="radio" name="ajutor" value="Vreau să pun umărul" data-key="crew" required><b>I want to lend a hand</b></label><label class="choice"><input type="radio" name="ajutor" value="Vreau doar noutăți (Action Crew)" data-key="stiri" required><b>Keep me posted: Action Crew</b></label>
+      </fieldset>
+      <div class="rest" data-rest>
+        <div class="group" data-group="spatiu"><div class="field"><label for="a-space">Where is it, and how big? <span>(optional)</span></label><input id="a-space" name="spatiu" type="text" placeholder="e.g. Otopeni, 6,000 m²" aria-describedby="a-space-help"><p class="help" id="a-space-help">We are looking for about 6,000 m², but tell us even if it is smaller. We build and run the park, you get a share of the takings.</p></div></div><div class="group" data-group="sponsor"><div class="pair"><div class="field"><label for="a-company">Company <span>(optional)</span></label><input id="a-company" name="sponsor-firma" type="text" autocomplete="organization"></div><div class="field"><label for="f-package">Package</label><select id="f-package" name="pachet"><option>Not sure yet</option><option>Main partner</option><option>Zone partner</option><option>Attraction partner</option><option>Programme partner</option><option>Ramp partner</option><option>Local partner</option><option>Supporter</option></select></div></div></div><div class="group" data-group="afacere"><div class="field"><label for="a-business">What business? <span>(optional)</span></label><input id="a-business" name="afacere" type="text" placeholder="e.g. café, CrossFit, yoga"></div></div><div class="group" data-group="crew"><div class="field"><label for="a-skill">What can you help with? <span>(optional)</span></label><input id="a-skill" name="crew-cum" type="text" placeholder="e.g. carpentry, filming, transport"></div></div><div class="group" data-group="stiri"><p class="help">Free. When we announce the location and the opening date, you hear first. You can unsubscribe at any time.</p></div>
+        <div class="pair">
+          <div class="field"><label for="a-name">Name</label><input id="a-name" name="name" type="text" required autocomplete="name"></div>
+          <div class="field"><label for="a-contact">Phone or email</label><input id="a-contact" name="contact" type="text" required autocapitalize="none" spellcheck="false"></div>
+        </div>
+        <button class="btn btn-yellow" type="submit">Send</button>
+        <p class="help">Chris replies personally. We use your details only for this project and delete them on request: <a href="mailto:chris@actioncloud.co">chris@actioncloud.co</a>. Under 16? Ask a parent to fill this in.</p>
+      </div>
     </form>
-    <div class="split-after">
-      <p class="note">The sponsorship contract is signed with the non-profit Rosenau Cycling association. We agree the contract period and the payment currency together; prices are in euro.</p>
-      <p class="actions after"><a class="btn btn-line" href="mailto:chris@actioncloud.co">chris@actioncloud.co</a></p>
     </div>
   </div>
 </section>

@@ -32,7 +32,7 @@
 
 <header class="bar">
   <a class="brand" href="#top" aria-label="Action Cloud București, înapoi sus"><img src="assets/img/logo-yellow.webp" width="472" height="256" alt="Action Cloud"></a>
-  <nav class="chapters" aria-label="Capitole"><a href="#park" data-for="park">Parcul</a><a href="#why" data-for="proof">Comunitatea</a><a href="#action" data-for="action">Căutăm spațiu</a><a href="#crew" data-for="crew">Action Crew</a></nav>
+  <nav class="chapters" aria-label="Capitole"><a href="#park" data-for="park">Parcul</a><a href="#why" data-for="proof">Comunitatea</a><a href="#action" data-for="action" data-tip="spatiu">Căutăm spațiu</a></nav>
   <a class="lang" href="en/" lang="en" hreflang="en">English</a>
   <a class="btn btn-yellow btn-small" href="#sponsors">Devino sponsor</a>
 </header>
@@ -51,7 +51,7 @@
       <p class="by">De la o echipă care construiește rampe din 2012</p>
       <p class="actions">
         <a class="btn btn-white" href="#park">Vezi parcul</a>
-        <a class="btn btn-line" href="#crew">Intră în Action Crew</a>
+        <a class="btn btn-line" href="#action" data-tip="stiri">Intră în Action Crew</a>
       </p>
     </div>
     <span class="tag">Imagine concept</span>
@@ -79,7 +79,7 @@
     </div>
     <div class="map-foot">
       <p class="note">Plan orientativ: se adaptează la clădirea finală. Locația și data deschiderii nu sunt încă anunțate.</p>
-      <p class="actions"><a class="btn btn-dark btn-small" href="#crew">Intră în Action Crew</a><a class="btn btn-line btn-small" href="#sponsors">Devino sponsor</a></p>
+      <p class="actions"><a class="btn btn-dark btn-small" href="#action" data-tip="spatiu">Am un spațiu</a><a class="btn btn-line btn-small" href="#action" data-tip="stiri">Intră în Action Crew</a><a class="btn btn-line btn-small" href="#sponsors">Devino sponsor</a></p>
     </div>
   </div>
   <div class="wrap">
@@ -108,72 +108,6 @@
   </div>
 </section>
 
-<section class="slide ply act-slide" id="action" data-chapter="action">
-  <span id="ajuta"></span><span id="help"></span>
-  <div class="wrap">
-    <div class="act-intro">
-      <div class="head"><h2>Action Cloud își caută casa.</h2><p>Avem 800 m² de rampe, echipa care le-a construit și comunitatea. Ne lipsește spațiul: aproximativ 6.000 m².</p></div>
-      <div class="media"><img src="assets/img/park-brasov.webp" width="989" height="900" alt="Rampele din lemn ale parcului Action Cloud din Brașov, într-o hală cu dungi galbene și negre pe pereți" loading="lazy"><span class="tag real">Fotografie din Brașov</span></div>
-    </div>
-    <div class="act">
-      <form name="action" method="POST" action="/action/multumim/" data-netlify="true" data-netlify-honeypot="bot-field">
-      <input type="hidden" name="form-name" value="action">
-      <input type="hidden" name="language" value="ro">
-      <input type="hidden" name="subject" value="Action Cloud: formular nou (%{submissionId})">
-      <p class="hp" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
-      <fieldset class="choices">
-        <legend>Cum ne poți ajuta?</legend>
-        <label class="choice"><input type="radio" name="ajutor" value="Am un spațiu" data-key="spatiu" required><b>Am un spațiu</b><span>Ideal 6.000 m², dar spune-ne și dacă ai mai puțin.</span></label><label class="choice"><input type="radio" name="ajutor" value="Știu pe cineva cu un spațiu" data-key="cunosc" required><b>Știu pe cineva cu un spațiu</b><span>Ne faci legătura. Atât.</span></label><label class="choice"><input type="radio" name="ajutor" value="Vreau să-mi aduc afacerea în parc" data-key="afacere" required><b>Vreau să-mi aduc afacerea în parc</b><span>Crossfit, yoga, cycling, cafenea, restaurant, petreceri.</span></label><label class="choice"><input type="radio" name="ajutor" value="Vreau să sponsorizez" data-key="sponsor" required><b>Vreau să sponsorizez</b><span>Cu bani, produse sau servicii.</span></label><label class="choice"><input type="radio" name="ajutor" value="Vreau să pun umărul" data-key="crew" required><b>Vreau să pun umărul</b><span>La construit, filmat sau organizat.</span></label>
-      </fieldset>
-      <p class="pick" data-pick>Alege un răspuns. Îți arătăm doar întrebările pentru el.</p>
-      <fieldset class="group" data-group="spatiu"><legend>Spațiul tău</legend><ul class="labels"><li>Noi construim și conducem parcul</li><li>Tu primești o parte din încasări</li><li>Copii și părinți în clădirea ta</li></ul><div class="pair"><div class="field"><label for="a-s-town">Oraș sau zonă</label><input id="a-s-town" name="spatiu-oras" type="text" data-req autocomplete="address-level2"></div><div class="field"><label for="a-s-area">Suprafață, în m²</label><input id="a-s-area" name="spatiu-mp" type="text" data-req inputmode="numeric"></div></div><div class="pair"><div class="field"><label for="a-s-height">Înălțime liberă, în m <span>(opțional)</span></label><input id="a-s-height" name="spatiu-inaltime" type="text" inputmode="decimal"></div><div class="field"><label for="a-s-isu">Are ISU pentru public?</label><select id="a-s-isu" name="spatiu-isu"><option>Nu știu</option><option>Da</option><option>Nu</option></select></div></div><div class="field"><label for="a-s-notes">Ce ar trebui să știm despre el? <span>(opțional)</span></label><textarea id="a-s-notes" name="spatiu-detalii" rows="3"></textarea></div></fieldset><fieldset class="group" data-group="cunosc"><legend>Omul pe care îl știi</legend><div class="field"><label for="a-k-who">Cine este și ce spațiu are?</label><textarea id="a-k-who" name="cunosc-cine" rows="3" data-req aria-describedby="a-k-who-help"></textarea><p class="help" id="a-k-who-help">Nu trece aici telefonul lui. Întreabă-l întâi, apoi vă punem noi în legătură.</p></div><div class="field"><label for="a-k-town">Oraș sau zonă <span>(opțional)</span></label><input id="a-k-town" name="cunosc-oras" type="text"></div></fieldset><fieldset class="group" data-group="afacere"><legend>Afacerea ta</legend><div class="field"><label for="a-b-kind">Ce vrei să aduci în parc?</label><select id="a-b-kind" name="afacere-tip"><option>Crossfit sau sală de fitness</option><option>Yoga</option><option>Cycling</option><option>Trambuline</option><option>Cățărat</option><option>Cafenea</option><option>Restaurant</option><option>Petreceri pentru copii</option><option>Magazin</option><option>Altceva</option></select></div><div class="pair"><div class="field"><label for="a-b-name">Numele afacerii <span>(opțional)</span></label><input id="a-b-name" name="afacere-nume" type="text" autocomplete="organization"></div><div class="field"><label for="a-b-area">De câți m² ai nevoie? <span>(opțional)</span></label><input id="a-b-area" name="afacere-mp" type="text" inputmode="numeric"></div></div></fieldset><fieldset class="group" data-group="sponsor"><legend>Sponsorizarea</legend><div class="pair"><div class="field"><label for="a-p-company">Companie</label><input id="a-p-company" name="sponsor-firma" type="text" data-req autocomplete="organization"></div><div class="field"><label for="a-p-how">Cum vrei să ajuți?</label><select id="a-p-how" name="sponsor-cum"><option>Încă nu știu</option><option>Bani</option><option>Produse</option><option>Servicii</option></select></div></div></fieldset><fieldset class="group" data-group="crew"><legend>Ce știi să faci</legend><div class="field"><label for="a-c-skill">Cu ce ne poți ajuta?</label><input id="a-c-skill" name="crew-cum" type="text" data-req aria-describedby="a-c-skill-help"><p class="help" id="a-c-skill-help">De exemplu: tâmplărie, transport, filmare, electricitate, organizare.</p></div></fieldset>
-      <fieldset class="group" data-rest>
-        <legend>Cum te găsim</legend>
-        <div class="pair">
-          <div class="field"><label for="a-name">Nume</label><input id="a-name" name="name" type="text" required autocomplete="name"></div>
-          <div class="field"><label for="a-phone">Telefon (WhatsApp)</label><input id="a-phone" name="phone" type="tel" required autocomplete="tel"></div>
-        </div>
-        <div class="pair">
-          <div class="field"><label for="a-email">E-mail <span>(opțional)</span></label><input id="a-email" name="email" type="email" autocomplete="email"></div>
-          <div class="field"><label for="a-insta">Instagram <span>(opțional)</span></label><input id="a-insta" name="instagram" type="text" autocapitalize="none" spellcheck="false"></div>
-        </div>
-        <div class="field"><label for="a-message">Mesaj <span>(opțional)</span></label><textarea id="a-message" name="message" rows="3"></textarea></div>
-        <label class="check"><input type="checkbox" name="consent" value="da" required> <span>Sunt de acord ca Action Cloud să mă contacteze în legătură cu acest proiect.</span></label>
-        <button class="btn btn-dark" type="submit">Trimite</button>
-        <p class="help">Îți răspunde Chris, personal. Folosim datele doar pentru acest proiect și le ștergem la cerere: <a href="mailto:chris@actioncloud.co">chris@actioncloud.co</a>. Ai sub 16 ani? Roagă un părinte să completeze.</p>
-      </fieldset>
-    </form>
-    </div>
-  </div>
-</section>
-
-<section class="slide" id="crew" data-chapter="crew">
-  <span id="join"></span>
-  <div class="wrap split">
-    <div class="split-head">
-      <div class="head"><h2>Intră în Action Crew.</h2><p>Gratuit. Când anunțăm locația și data deschiderii, tu afli primul.</p></div>
-    </div>
-    <form name="crew" method="POST" action="/multumim.html" data-netlify="true" data-netlify-honeypot="bot-field">
-      <input type="hidden" name="form-name" value="crew">
-      <input type="hidden" name="language" value="ro">
-      <p class="hp" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
-      <div class="field"><label for="c-name">Prenume</label><input id="c-name" name="name" autocomplete="given-name" required></div>
-      <div class="field"><label for="c-email">E-mail</label><input id="c-email" name="email" type="email" autocomplete="email" required aria-describedby="c-help">
-        <p class="help" id="c-help">Ai sub 16 ani? Roagă un părinte să te înscrie.</p></div>
-      <div class="field"><label for="c-ride">Cu ce te dai?</label><select id="c-ride" name="rides"><option>Trotinetă</option><option>BMX</option><option>Mountain bike</option><option>Skate</option><option>Altceva</option><option>Sunt părinte</option></select></div>
-      <label class="check"><input type="checkbox" name="consent" value="yes" required> <span>Vreau să primesc pe e-mail noutăți de la Action Cloud. Mă pot dezabona oricând.</span></label>
-      <p class="actions">
-        <button class="btn btn-dark" type="submit">Intră în Action Crew</button>
-        <a class="btn btn-line" href="https://wa.me/?text=Vreau%20s%C4%83%20intru%20%C3%AEn%20Action%20Crew%2C%20e%20gratuit.%20M%C4%83%20%C3%AEnscrii%3F%20https%3A//actioncloud-bucharest-sponsors.netlify.app/%23crew" rel="noopener">Trimite unui părinte pe WhatsApp</a>
-      </p>
-    </form>
-    <div class="split-after">
-      <ul class="labels"><li>Datele Action Camps</li></ul>
-      <div class="crew-pic"><div class="media"><img src="assets/img/concept-huddle.webp" srcset="assets/img/s/concept-huddle.webp 1000w, assets/img/concept-huddle.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Imagine concept: mâini strânse la mijloc, într-un cerc de rideri în hanorace Action Cloud" loading="lazy"><span class="tag">Imagine concept</span></div></div>
-    </div>
-  </div>
-</section>
-
 <section class="slide yellow" id="sponsors" data-chapter="sponsors">
   <span id="packages"></span>
   <div class="wrap">
@@ -192,13 +126,14 @@
     <ul class="ladder" aria-label="Pachetele, după preț"><li><a href="#pachet-principal" data-jump><span class="vh">Partener principal: </span>200.000&nbsp;€<span class="vh"> pe an</span></a></li><li><a href="#pachet-zona" data-jump><span class="vh">Partener de zonă: </span>50.000&nbsp;€<span class="vh"> pe an</span></a></li><li><a href="#pachet-atractie" data-jump><span class="vh">Partener de atracție: </span>20.000&nbsp;€<span class="vh"> pe an</span></a></li><li><a href="#pachet-program" data-jump><span class="vh">Partener de program: </span>10.000&nbsp;€<span class="vh"> pe an</span></a></li><li><a href="#pachet-rampa" data-jump><span class="vh">Partener de rampă: </span>3.000&nbsp;€<span class="vh"> pe an</span></a></li><li><a href="#pachet-local" data-jump><span class="vh">Partener local: </span>1.000&nbsp;€<span class="vh"> pe an</span></a></li><li><a href="#pachet-sustinator" data-jump><span class="vh">Susținător: </span>100&nbsp;€<span class="vh"> pe an</span></a></li></ul>
   </div>
   <div id="tier-rail" data-rail>
-<ul class="rail tiers" tabindex="0" role="list" aria-label="Pachetele de sponsorizare"><li id="pachet-principal"><div class="card tier"><div class="media"><img src="assets/img/tier-naming.webp" srcset="assets/img/s/tier-naming.webp 1000w, assets/img/tier-naming.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Fațada parcului seara, cu firma „Action Cloud by LOGO” și steaguri LOGO la intrare" loading="lazy"><span class="tag">Imagine concept: exemplu de amplasare</span></div><div class="card-body"><h3>Partener principal</h3><p class="price">200.000&nbsp;€ <small>/ an</small></p><p class="places">Un singur partener</p><ul class="labels"><li>„Action Cloud by brandul tău”</li><li>Logo la intrarea principală</li><li>Apari în tot ce publicăm și la evenimente</li></ul><a class="btn btn-dark btn-small" href="#contact" data-pick="Partener principal">Alege pachetul<span class="vh">: Partener principal</span></a></div></div></li><li id="pachet-zona"><div class="card tier"><div class="media"><img src="assets/img/tier-zone.webp" srcset="assets/img/s/tier-zone.webp 1000w, assets/img/tier-zone.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Poarta unei zone, cu LOGO mare deasupra și bannere LOGO în interior" loading="lazy"><span class="tag">Imagine concept: exemplu de amplasare</span></div><div class="card-body"><h3>Partener de zonă</h3><p class="price">50.000&nbsp;€ <small>/ an</small></p><p class="places">4–5 parteneri</p><ul class="labels"><li>O zonă îți poartă numele</li><li>Logo la intrarea și pe rampele zonei</li><li>Clipuri filmate în zonă</li></ul><a class="btn btn-dark btn-small" href="#contact" data-pick="Partener de zonă">Alege pachetul<span class="vh">: Partener de zonă</span></a></div></div></li><li id="pachet-atractie"><div class="card tier"><div class="media"><img src="assets/img/tier-attraction.webp" srcset="assets/img/s/tier-attraction.webp 1000w, assets/img/tier-attraction.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Mega rampa, cu panouri LOGO pe laterale" loading="lazy"><span class="tag">Imagine concept: exemplu de amplasare</span></div><div class="card-body"><h3>Partener de atracție</h3><p class="price">20.000&nbsp;€ <small>/ an</small></p><p class="places">4 parteneri</p><ul class="labels"><li>Mega rampă, airbag, padel sau cățărat</li><li>Logo pe atracție</li><li>Clipuri filmate acolo</li></ul><a class="btn btn-dark btn-small" href="#contact" data-pick="Partener de atracție">Alege pachetul<span class="vh">: Partener de atracție</span></a></div></div></li><li id="pachet-program"><div class="card tier"><div class="media"><img src="assets/img/tier-programme.webp" srcset="assets/img/s/tier-programme.webp 1000w, assets/img/tier-programme.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Un antrenor și un șir de copii în veste galbene cu LOGO, lângă un banner LOGO" loading="lazy"><span class="tag">Imagine concept: exemplu de amplasare</span></div><div class="card-body"><h3>Partener de program</h3><p class="price">10.000&nbsp;€ <small>/ an</small></p><p class="places">3 parteneri</p><ul class="labels"><li>Tabere, Action Cups sau programul pentru școli</li><li>Programul îți poartă numele</li><li>Mostre la tabere și evenimente</li></ul><a class="btn btn-dark btn-small" href="#contact" data-pick="Partener de program">Alege pachetul<span class="vh">: Partener de program</span></a></div></div></li><li id="pachet-rampa"><div class="card tier"><div class="media"><img src="assets/img/tier-feature.webp" srcset="assets/img/s/tier-feature.webp 1000w, assets/img/tier-feature.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Un copil pe trotinetă urcă o rampă cu un autocolant LOGO" loading="lazy"><span class="tag">Imagine concept: exemplu de amplasare</span></div><div class="card-body"><h3>Partener de rampă</h3><p class="price">3.000&nbsp;€ <small>/ an</small></p><ul class="labels"><li>Logo pe o rampă, un perete sau un obstacol</li><li>Mențiuni pe rețelele sociale</li><li>Plasare de produs în clipuri</li></ul><a class="btn btn-dark btn-small" href="#contact" data-pick="Partener de rampă">Alege pachetul<span class="vh">: Partener de rampă</span></a></div></div></li><li id="pachet-local"><div class="card tier"><div class="media"><img src="assets/img/tier-local.webp" srcset="assets/img/s/tier-local.webp 1000w, assets/img/tier-local.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Perete cu plăcuțe din placaj; una, luminată, poartă un LOGO, iar un părinte și un copil o privesc" loading="lazy"><span class="tag">Imagine concept: exemplu de amplasare</span></div><div class="card-body"><h3>Partener local</h3><p class="price">1.000&nbsp;€ <small>/ an</small></p><ul class="labels"><li>Logo pe peretele susținătorilor</li><li>Logo pe site, cu link</li></ul><a class="btn btn-dark btn-small" href="#contact" data-pick="Partener local">Alege pachetul<span class="vh">: Partener local</span></a></div></div></li><li id="pachet-sustinator"><div class="card tier"><div class="media"><img src="assets/img/tier-supporter.webp" srcset="assets/img/s/tier-supporter.webp 1000w, assets/img/tier-supporter.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="O mână prinde pe perete o plăcuță din placaj gravată cu „TU”, lângă plăcuțe cu prenume" loading="lazy"><span class="tag">Imagine concept: exemplu de amplasare</span></div><div class="card-body"><h3>Susținător</h3><p class="price">100&nbsp;€ <small>/ an</small></p><ul class="labels"><li>Numele tău pe peretele susținătorilor</li><li>Numele tău pe site</li></ul><a class="btn btn-dark btn-small" href="#contact" data-pick="Susținător">Alege pachetul<span class="vh">: Susținător</span></a></div></div></li></ul>
+<ul class="rail tiers" tabindex="0" role="list" aria-label="Pachetele de sponsorizare"><li id="pachet-principal"><div class="card tier"><div class="media"><img src="assets/img/tier-naming.webp" srcset="assets/img/s/tier-naming.webp 1000w, assets/img/tier-naming.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Fațada parcului seara, cu firma „Action Cloud by LOGO” și steaguri LOGO la intrare" loading="lazy"><span class="tag">Imagine concept: exemplu de amplasare</span></div><div class="card-body"><h3>Partener principal</h3><p class="price">200.000&nbsp;€ <small>/ an</small></p><p class="places">Un singur partener</p><ul class="labels"><li>„Action Cloud by brandul tău”</li><li>Logo la intrarea principală</li><li>Apari în tot ce publicăm și la evenimente</li></ul><a class="btn btn-dark btn-small" href="#action" data-pick="Partener principal">Alege pachetul<span class="vh">: Partener principal</span></a></div></div></li><li id="pachet-zona"><div class="card tier"><div class="media"><img src="assets/img/tier-zone.webp" srcset="assets/img/s/tier-zone.webp 1000w, assets/img/tier-zone.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Poarta unei zone, cu LOGO mare deasupra și bannere LOGO în interior" loading="lazy"><span class="tag">Imagine concept: exemplu de amplasare</span></div><div class="card-body"><h3>Partener de zonă</h3><p class="price">50.000&nbsp;€ <small>/ an</small></p><p class="places">4–5 parteneri</p><ul class="labels"><li>O zonă îți poartă numele</li><li>Logo la intrarea și pe rampele zonei</li><li>Clipuri filmate în zonă</li></ul><a class="btn btn-dark btn-small" href="#action" data-pick="Partener de zonă">Alege pachetul<span class="vh">: Partener de zonă</span></a></div></div></li><li id="pachet-atractie"><div class="card tier"><div class="media"><img src="assets/img/tier-attraction.webp" srcset="assets/img/s/tier-attraction.webp 1000w, assets/img/tier-attraction.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Mega rampa, cu panouri LOGO pe laterale" loading="lazy"><span class="tag">Imagine concept: exemplu de amplasare</span></div><div class="card-body"><h3>Partener de atracție</h3><p class="price">20.000&nbsp;€ <small>/ an</small></p><p class="places">4 parteneri</p><ul class="labels"><li>Mega rampă, airbag, padel sau cățărat</li><li>Logo pe atracție</li><li>Clipuri filmate acolo</li></ul><a class="btn btn-dark btn-small" href="#action" data-pick="Partener de atracție">Alege pachetul<span class="vh">: Partener de atracție</span></a></div></div></li><li id="pachet-program"><div class="card tier"><div class="media"><img src="assets/img/tier-programme.webp" srcset="assets/img/s/tier-programme.webp 1000w, assets/img/tier-programme.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Un antrenor și un șir de copii în veste galbene cu LOGO, lângă un banner LOGO" loading="lazy"><span class="tag">Imagine concept: exemplu de amplasare</span></div><div class="card-body"><h3>Partener de program</h3><p class="price">10.000&nbsp;€ <small>/ an</small></p><p class="places">3 parteneri</p><ul class="labels"><li>Tabere, Action Cups sau programul pentru școli</li><li>Programul îți poartă numele</li><li>Mostre la tabere și evenimente</li></ul><a class="btn btn-dark btn-small" href="#action" data-pick="Partener de program">Alege pachetul<span class="vh">: Partener de program</span></a></div></div></li><li id="pachet-rampa"><div class="card tier"><div class="media"><img src="assets/img/tier-feature.webp" srcset="assets/img/s/tier-feature.webp 1000w, assets/img/tier-feature.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Un copil pe trotinetă urcă o rampă cu un autocolant LOGO" loading="lazy"><span class="tag">Imagine concept: exemplu de amplasare</span></div><div class="card-body"><h3>Partener de rampă</h3><p class="price">3.000&nbsp;€ <small>/ an</small></p><ul class="labels"><li>Logo pe o rampă, un perete sau un obstacol</li><li>Mențiuni pe rețelele sociale</li><li>Plasare de produs în clipuri</li></ul><a class="btn btn-dark btn-small" href="#action" data-pick="Partener de rampă">Alege pachetul<span class="vh">: Partener de rampă</span></a></div></div></li><li id="pachet-local"><div class="card tier"><div class="media"><img src="assets/img/tier-local.webp" srcset="assets/img/s/tier-local.webp 1000w, assets/img/tier-local.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Perete cu plăcuțe din placaj; una, luminată, poartă un LOGO, iar un părinte și un copil o privesc" loading="lazy"><span class="tag">Imagine concept: exemplu de amplasare</span></div><div class="card-body"><h3>Partener local</h3><p class="price">1.000&nbsp;€ <small>/ an</small></p><ul class="labels"><li>Logo pe peretele susținătorilor</li><li>Logo pe site, cu link</li></ul><a class="btn btn-dark btn-small" href="#action" data-pick="Partener local">Alege pachetul<span class="vh">: Partener local</span></a></div></div></li><li id="pachet-sustinator"><div class="card tier"><div class="media"><img src="assets/img/tier-supporter.webp" srcset="assets/img/s/tier-supporter.webp 1000w, assets/img/tier-supporter.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="O mână prinde pe perete o plăcuță din placaj gravată cu „TU”, lângă plăcuțe cu prenume" loading="lazy"><span class="tag">Imagine concept: exemplu de amplasare</span></div><div class="card-body"><h3>Susținător</h3><p class="price">100&nbsp;€ <small>/ an</small></p><ul class="labels"><li>Numele tău pe peretele susținătorilor</li><li>Numele tău pe site</li></ul><a class="btn btn-dark btn-small" href="#action" data-pick="Susținător">Alege pachetul<span class="vh">: Susținător</span></a></div></div></li></ul>
 <div class="wrap rail-tools"><p class="rail-count"><span class="swipe">Glisează pentru mai multe</span></p><div class="arrows"><button type="button" data-prev aria-label="Cardul anterior">←</button><button type="button" data-next aria-label="Cardul următor">→</button></div></div>
 </div>
   <div class="wrap">
     <dl class="facts">
       <div><dt>În toate pachetele</dt><dd>Invitații la evenimente și la Action Cups. De la „Partener de rampă” în sus, primești și plasare de produs în clipuri.</dd></div>
       <div><dt>Până la deschidere</dt><dd>Parcul din București este încă în plan. Vizibilitatea din parc începe la deschidere, iar ce primești până atunci stabilim împreună.</dd></div>
+      <div><dt>Contractul</dt><dd>Se semnează cu asociația nonprofit Rosenau Cycling. Perioada și moneda de plată le stabilim împreună; prețurile sunt în euro.</dd></div>
     </dl>
     <details class="more">
       <summary>Avantaj fiscal pentru firme</summary>
@@ -207,26 +142,33 @@
   </div>
 </section>
 
-<section class="slide dark" id="contact" data-chapter="sponsors">
-  <div class="wrap split">
-    <div class="split-head">
-      <div class="head"><h2>Hai să vorbim.</h2><p>Christoph Baier, fondatorul Action Cloud, îți răspunde personal.</p></div>
+<section class="slide dark act-slide" id="action" data-chapter="action">
+  <span id="crew"></span><span id="join"></span><span id="contact"></span><span id="ajuta"></span><span id="help"></span>
+  <div class="wrap">
+    <div class="act-intro">
+      <div class="head"><h2>Hai să-l construim împreună.</h2><p>Avem 800 m² de rampe, echipa care le-a construit și comunitatea. Ne lipsește spațiul: aproximativ 6.000 m².</p></div>
+      <div class="media"><img src="assets/img/park-brasov.webp" width="989" height="900" alt="Rampele din lemn ale parcului Action Cloud din Brașov, într-o hală cu dungi galbene și negre pe pereți" loading="lazy"><span class="tag real">Fotografie din Brașov</span></div>
     </div>
-    <form name="sponsor" method="POST" action="/multumim.html" data-netlify="true" data-netlify-honeypot="bot-field">
-      <input type="hidden" name="form-name" value="sponsor">
+    <div class="act">
+      <form name="action" method="POST" action="/action/multumim/" data-netlify="true" data-netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="action">
       <input type="hidden" name="language" value="ro">
+      <input type="hidden" name="subject" value="Action Cloud: formular nou (%{submissionId})">
       <p class="hp" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
-      <div class="field"><label for="f-package">Pachetul care te interesează</label><select id="f-package" name="package"><option>Încă nu știu</option><option>Partener principal</option><option>Partener de zonă</option><option>Partener de atracție</option><option>Partener de program</option><option>Partener de rampă</option><option>Partener local</option><option>Susținător</option></select></div>
-      <div class="field"><label for="f-name">Nume</label><input id="f-name" name="name" autocomplete="name" required></div>
-      <div class="field"><label for="f-company">Companie <span>(opțional)</span></label><input id="f-company" name="company" autocomplete="organization"></div>
-      <div class="field"><label for="f-email">E-mail</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
-      <div class="field"><label for="f-message">Mesaj <span>(opțional)</span></label><textarea id="f-message" name="message" rows="3"></textarea></div>
-      <button class="btn btn-yellow" type="submit">Trimite mesajul</button>
-      <p class="help">Folosim datele doar ca să îți răspundem.</p>
+      <fieldset class="choices">
+        <legend>Cum intri în joc?</legend>
+        <label class="choice"><input type="radio" name="ajutor" value="Am sau știu un spațiu" data-key="spatiu" required><b>Am sau știu un spațiu</b></label><label class="choice"><input type="radio" name="ajutor" value="Vreau să sponsorizez" data-key="sponsor" required><b>Vreau să sponsorizez</b></label><label class="choice"><input type="radio" name="ajutor" value="Vreau să-mi aduc afacerea în parc" data-key="afacere" required><b>Vreau să-mi aduc afacerea în parc</b></label><label class="choice"><input type="radio" name="ajutor" value="Vreau să pun umărul" data-key="crew" required><b>Vreau să pun umărul</b></label><label class="choice"><input type="radio" name="ajutor" value="Vreau doar noutăți (Action Crew)" data-key="stiri" required><b>Vreau noutăți: Action Crew</b></label>
+      </fieldset>
+      <div class="rest" data-rest>
+        <div class="group" data-group="spatiu"><div class="field"><label for="a-space">Unde e și cât de mare? <span>(opțional)</span></label><input id="a-space" name="spatiu" type="text" placeholder="ex. Otopeni, 6.000 m²" aria-describedby="a-space-help"><p class="help" id="a-space-help">Căutăm aproximativ 6.000 m², dar spune-ne și dacă e mai mic. Noi construim și conducem parcul, tu primești o parte din încasări.</p></div></div><div class="group" data-group="sponsor"><div class="pair"><div class="field"><label for="a-company">Compania <span>(opțional)</span></label><input id="a-company" name="sponsor-firma" type="text" autocomplete="organization"></div><div class="field"><label for="f-package">Pachetul</label><select id="f-package" name="pachet"><option>Încă nu știu</option><option>Partener principal</option><option>Partener de zonă</option><option>Partener de atracție</option><option>Partener de program</option><option>Partener de rampă</option><option>Partener local</option><option>Susținător</option></select></div></div></div><div class="group" data-group="afacere"><div class="field"><label for="a-business">Ce afacere? <span>(opțional)</span></label><input id="a-business" name="afacere" type="text" placeholder="ex. cafenea, crossfit, yoga"></div></div><div class="group" data-group="crew"><div class="field"><label for="a-skill">Cu ce ne poți ajuta? <span>(opțional)</span></label><input id="a-skill" name="crew-cum" type="text" placeholder="ex. tâmplărie, filmare, transport"></div></div><div class="group" data-group="stiri"><p class="help">Gratuit. Când anunțăm locația și data deschiderii, tu afli primul. Te poți dezabona oricând.</p></div>
+        <div class="pair">
+          <div class="field"><label for="a-name">Nume</label><input id="a-name" name="name" type="text" required autocomplete="name"></div>
+          <div class="field"><label for="a-contact">Telefon sau e-mail</label><input id="a-contact" name="contact" type="text" required autocapitalize="none" spellcheck="false"></div>
+        </div>
+        <button class="btn btn-yellow" type="submit">Trimite</button>
+        <p class="help">Îți răspunde Chris, personal. Folosim datele doar pentru acest proiect și le ștergem la cerere: <a href="mailto:chris@actioncloud.co">chris@actioncloud.co</a>. Ai sub 16 ani? Roagă un părinte să completeze.</p>
+      </div>
     </form>
-    <div class="split-after">
-      <p class="note">Contractul de sponsorizare se semnează cu asociația nonprofit Rosenau Cycling. Perioada și moneda de plată le stabilim împreună; prețurile sunt în euro.</p>
-      <p class="actions after"><a class="btn btn-line" href="mailto:chris@actioncloud.co">chris@actioncloud.co</a></p>
     </div>
   </div>
 </section>

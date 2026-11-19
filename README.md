@@ -1,6 +1,6 @@
 # Action-Cloud
 
-The Action Cloud Bucharest site: the story of the park, the take-action form, the Action Crew sign-up and the sponsor packages. Romanian at `/`, English at `/en/`. Static files, hosted on Netlify as `actioncloud-bucharest-sponsors`.
+The Action Cloud Bucharest site: the story of the park, the sponsor packages and one form for everyone who wants in. Romanian at `/`, English at `/en/`. Static files, hosted on Netlify as `actioncloud-bucharest-sponsors`.
 
 ## Editing the pages
 
@@ -10,11 +10,11 @@ Every text on the two pages lives in `tools/build.py` as a Romanian / English pa
 python3 tools/build.py
 ```
 
-It writes `index.html`, `en/index.html`, `multumim.html` and `en/thanks.html`. Do not edit those four files by hand.
+It writes `index.html`, `en/index.html`, the short addresses `action/index.html` and `en/action/index.html`, and the thank-you pages under them. Do not edit those files by hand.
 
 `styles.css` and `site.js` are written by hand. The page works without `site.js`; the script adds the progress line, deck arrows, the price chips and package pre-selection.
 
-The page is a walk in seven stops: the hero, the clickable plan (in `tools/build.py` the places are `PLACES`, the number discs `SPOTS` and the tappable floor of each room `AREAS`; the build stops if they do not fit together; with a mouse, resting on a room for a moment brings up its card, a tap or click does the same on any device), the community stop, the take-action stop, Action Crew, the sponsor packages (`TIERS`) and the contact form.
+The page is a walk in five stops: the hero, the clickable plan (in `tools/build.py` the places are `PLACES`, the number discs `SPOTS` and the tappable floor of each room `AREAS`; the build stops if they do not fit together; with a mouse, resting on a room for a moment brings up its card, a tap or click does the same on any device), the community stop, the sponsor packages (`TIERS`) and the one form (see below).
 
 ## Checking
 
@@ -29,24 +29,26 @@ Both need Playwright.
 
 - `assets/img/concept-*.webp`, `tier-*.webp` and `plan-3d.webp` are computer-generated concept images (Higgsfield). The page tags each one "Imagine concept" / "Concept image".
 - Every picture wider than 1,000 px has a 1,000 px copy in `assets/img/s/` for phones. After adding or replacing a picture run `python3 tools/thumbs.py` (needs Pillow).
-- `action-camp`, `event-night` and `rider-inverted` are real photos from the first park, in Brașov, tagged as such. `story-2012` and `story-build` are cut from the `build-2012-2023` collage. `park-brasov` is the picture in the take-action stop; `founder` is no longer on any page. `og-action.jpg` is the link preview of the short address `/action/`, cut from `action-camp`.
+- `action-camp`, `event-night` and `rider-inverted` are real photos from the first park, in Brașov, tagged as such. `story-2012` and `story-build` are cut from the `build-2012-2023` collage. `park-brasov` is the picture beside the form; `founder` is no longer on any page. `og-action.jpg` is the link preview of the short address `/action/`, cut from `action-camp`.
 - The to-scale plan is drawn by `tools/build.py` from the `ROOMS` table (metres, 100 × 60 m hall, 6,000 m² in total). `plan-3d.webp` was rendered from that drawing; if `ROOMS` changes, the 3D picture has to be regenerated.
 
 ## Shop
 
 The clothing shop was taken out of this site on 19 November 2026 at the owner's request: the "Magazin" stop with the clothes rail, its link in the top bar and the footer, the "shop orders" promise in the Action Crew stop, and the `/shop/` folder. The shop itself is a separate Netlify project (`actioncloud-ro`), which this site no longer links to and which was not touched. Everything removed is in the git history (the commit before "Remove the clothing shop"). Room 17 on the plan, "Shop, service and rentals", is the park's own bike and skate shop and stays.
 
-## Take-action stop
+## The one form
 
-The take-action form is one stop of the main page (`#action`, between the community stop and Action Crew, "Căutăm spațiu" in the top bar). It is not a page of its own: the owner asked for an add-on to the site, not a second site. It asks one question first, "how can you help?", with five answers: I have a space, I know someone with a space, I want to bring my business into the park, I want to sponsor, I want to lend a hand. Only the fields for the chosen answer follow, then name and phone. The answers and their texts are `HELP` in `tools/build.py`; the stop is written by `s_action` and the form by `action_form`.
+The site has one form, in the last stop of the main page (`#action`, "Căutăm spațiu" in the top bar). On 19 November 2026 the owner asked for the three forms (take action, Action Crew sign-up, sponsor contact) to become one, simpler and with few details. It asks one question, "Cum intri în joc?", with five answers (`HELP` in `tools/build.py`): I have or know of a space, I want to sponsor, I want to bring my business in, I want to lend a hand, keep me posted (Action Crew). Choosing an answer shows one short optional line for it (the sponsor answer shows company and package), then name and "phone or email", and Send. No answer asks for more than four fields. The stop is written by `s_action`, the form by `action_form`.
 
-`/action/` (Romanian) and `/en/action/` (English) are the short addresses given out in videos and DMs. They are small files that send the visitor on to the stop and keep the chosen answer: `/action/?tip=spatiu` lands on `/?tip=spatiu#action` with "Am un spațiu" chosen (also `cunosc`, `afacere`, `sponsor`, `crew`). They keep their own link-preview tags and picture (`og-action.jpg`), because a messenger reads those from the address it was given. Use these as the buttons of the Instagram DM that answers a comment keyword. The thank-you pages stay at `/action/multumim/` and `/en/action/thanks/` (`action_thanks`).
+Every button that used to lead to a form of its own now leads here with its answer chosen (`data-tip` on the link, read by `action.js`): "Join the Action Crew" in the hero and under the plan, "I have a space" under the plan, "Căutăm spațiu" in the top bar, and "Choose this package" on a sponsor card (`data-pick`, which also fills in the package). The old anchors `#crew`, `#join` and `#contact` still land on the stop.
 
-`action.js` hides the groups that were not chosen; it is loaded by the main pages. Without it every group is shown and the form still sends. The stop asks for a space of about 6,000 m² and says smaller ones are welcome too, so no offer is turned away by the form. It states the offer to someone with a space (we build and run the park, they get a share of the takings); change both in `HELP` and `action_form` if they change. The stop says "800 m² of ramps"; the feasibility plan was built on 1,000 m², so one of the two has to be corrected once the ramps are measured.
+`/action/` (Romanian) and `/en/action/` (English) are the short addresses given out in videos and DMs. They are small files that send the visitor on to the form and keep the chosen answer: `/action/?tip=spatiu` lands on `/?tip=spatiu#action` with "Am sau știu un spațiu" chosen (also `sponsor`, `afacere`, `crew`, `stiri`; the older `cunosc` now means `spatiu`). They keep their own link-preview tags and picture (`og-action.jpg`), because a messenger reads those from the address it was given. The thank-you pages are at `/action/multumim/` and `/en/action/thanks/` (`action_thanks`).
+
+`action.js` hides the lines that were not chosen; it is loaded by the main pages. Without it every line is shown and the form still sends. What was dropped on purpose, to keep the form short: the separate Action Crew questions (what you ride, the newsletter tick box: choosing the news answer is the opt-in), the space details (height, fire permit, notes), the business type list, the free message, the consent tick box (the line under Send says what the details are used for) and the "send to a parent on WhatsApp" button. No lawyer has read the consent wording. The stop says "800 m² of ramps"; the feasibility plan was built on 1,000 m², so one of the two has to be corrected once the ramps are measured.
 
 ## Forms
 
-Three Netlify forms on the main pages: `sponsor`, `crew` and `action` (the take-action stop). Set up email notifications for them in the Netlify dashboard; until then submissions only show in the dashboard. The `action` form sends its answers under Romanian field names in both languages (`ajutor`, `spatiu-oras`, `spatiu-mp`, ...), so the inbox reads the same.
+One Netlify form, `action`, on the main pages. The older forms `crew` and `sponsor` no longer exist on the site; what they collected earlier stays in the Netlify dashboard. Set up email notifications for them in the Netlify dashboard; until then submissions only show in the dashboard. The `action` form sends its answers under Romanian field names in both languages (`ajutor`, `spatiu-oras`, `spatiu-mp`, ...), so the inbox reads the same.
 
 ## The size claim
 

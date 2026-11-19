@@ -1,5 +1,5 @@
 // Action Cloud: small enhancements. The page reads fine without this file;
-// it adds the clickable plan, rail arrows, the price chips and package pre-selection.
+// it adds the clickable plan, rail arrows and the price chips. The form has its own file, action.js.
 (function () {
   "use strict";
   var d = document, root = d.documentElement;
@@ -142,16 +142,6 @@
       // keyboard and screen-reader users land on that package's button
       var go = card.querySelector("[data-pick]");
       if (go) go.focus({ preventScroll: true });
-    });
-  });
-
-  // Choosing a package fills it in on the form
-  d.querySelectorAll("[data-pick]").forEach(function (a) {
-    a.addEventListener("click", function () {
-      var sel = d.getElementById("f-package");
-      if (!sel) return;
-      var want = a.getAttribute("data-pick");
-      Array.prototype.forEach.call(sel.options, function (o, i) { if (o.value === want) sel.selectedIndex = i; });
     });
   });
 })();

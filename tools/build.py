@@ -131,26 +131,25 @@ class Page:
 # One name per zone, used on the cards and on the plan. Keyed by the number on the plan.
 NAMES = {
     1: T("Send Room și Fun Room", "Send Room and Fun Room"),
-    2: T("Pumptrack", "Pumptrack"),
-    3: T("Săritură mare pe airbag", "Big airbag jump"),
-    4: T("Mega rampă", "Mega ramp"),
+    2: T("Linie de sărituri pe airbag", "Airbag jump line"),
+    3: T("Pumptrack din asfalt", "Asphalt pumptrack"),
+    4: T("Sală de trambuline", "Trampoline hall"),
     5: T("Teren de padel", "Padel court"),
-    6: T("Sală de trambuline", "Trampoline hall"),
-    7: T("Parkour și street workout", "Parkour and street workout"),
-    8: T("Antrenament funcțional și studio de cycling", "Functional training and cycling studio"),
-    9: T("Cățărat și traseu ninja", "Climbing and ninja course"),
-    10: T("Street soccer și baschet", "Street soccer and basketball"),
-    11: T("Mini Action", "Mini Action"),
-    12: T("3 săli de petreceri", "3 party rooms"),
-    13: T("Sală de gaming", "Gaming room"),
-    14: T("Cafenea pentru părinți", "Café for parents"),
-    15: T("Burger bar", "Burger bar"),
-    16: T("Intrare, recepție și toalete", "Entrance, reception and toilets"),
-    17: T("Magazin, service și închirieri", "Shop, service and rentals"),
-    18: T("Vestiare, toalete și dușuri", "Changing rooms, toilets and showers"),
-    19: T("Promenadă verde", "Green walkway"),
-    20: T("Depozit și atelier de rampe", "Storage and ramp workshop"),
-    21: T("Hostel", "Hostel"),
+    6: T("Parkour și street workout", "Parkour and street workout"),
+    7: T("Antrenament funcțional și studio de cycling", "Functional training and cycling studio"),
+    8: T("Cățărat și traseu ninja", "Climbing and ninja course"),
+    9: T("Street soccer și baschet", "Street soccer and basketball"),
+    10: T("Mini Action", "Mini Action"),
+    11: T("3 săli de petreceri", "3 party rooms"),
+    12: T("Sală de gaming", "Gaming room"),
+    13: T("Cafenea pentru părinți", "Café for parents"),
+    14: T("Burger bar", "Burger bar"),
+    15: T("Intrare, recepție și toalete", "Entrance, reception and toilets"),
+    16: T("Magazin, service și închirieri", "Shop, service and rentals"),
+    17: T("Vestiare, toalete și dușuri", "Changing rooms, toilets and showers"),
+    18: T("Promenadă verde", "Green walkway"),
+    19: T("Depozit și atelier de rampe", "Storage and ramp workshop"),
+    20: T("Hostel", "Hostel"),
 }
 
 # The places in the park, in the order of their numbers on the plan. "Next" follows this order.
@@ -159,44 +158,44 @@ NAMES = {
 PLACES = [
     ("send-room", 1, None, T(["Fun Room: începători", "Send Room: avansați", "Trotinetă, BMX, MTB, skate"],
                              ["Fun Room: beginners", "Send Room: advanced", "Scooter, BMX, MTB, skateboard"])),
-    ("pumptrack", 2, None, T(["De la 7 ani", "Orice are roți", "Prinzi viteză fără să pedalezi"], ["Ages 7 and up", "Anything on wheels", "Build speed without pedalling"])),
-    ("big-airbag", 3, None, T(["De la 13 ani", "Bicicletă, schiuri, snowboard", "Trucuri cu aterizare moale"],
-                              ["Ages 13 and up", "Bike, skis, snowboard", "Tricks with a soft landing"])),
-    ("mega-ramp", 4, None, T(["Pentru profesioniști", "Show-uri și Action Cups"], ["For pros", "Shows and Action Cups"])),
+    ("big-airbag", 2, None, T(["De la 13 ani", "Trei starturi, unul pentru începători", "Trucuri cu aterizare moale"],
+                              ["Ages 13 and up", "Three starts, one for beginners", "Tricks with a soft landing"])),
+    ("pumptrack", 3, None, T(["De la 4 ani", "Asfalt: bicicletă, trotinetă, role, skate", "Prinzi viteză fără să pedalezi"],
+                             ["Ages 4 and up", "Asphalt: bike, scooter, skates, skateboard", "Build speed without pedalling"])),
+    ("trampolines", 4, None, T(["De la 5 ani", "Aproape 900 m²", "Dodgeball și groapă cu bureți"], ["Ages 5 and up", "Almost 900 m²", "Dodgeball and a foam pit"])),
     ("padel", 5, None, T(["Teren cu pereți de sticlă", "Se joacă în patru", "Rachete de închiriat"], ["Glass-walled court", "Played in fours", "Rackets to rent"])),
-    ("trampolines", 6, None, T(["De la 7 ani", "Salturi și rotații", "Aterizare pe airbag"], ["Ages 7 and up", "Flips and spins", "Airbag landing"])),
-    ("parkour", 7, None, T(["De la 13 ani", "Cutii, ziduri, bare"], ["Ages 13 and up", "Boxes, walls, bars"])),
-    ("cycling", 8, T("Studio de cycling", "Cycling studio"), T(["Te antrenezi cât copiii sunt în parc"], ["Train while the kids are in the park"])),
-    ("training", 8, T("Antrenament funcțional", "Functional training"), T(["Pentru rideri și părinți"], ["For riders and parents"])),
-    ("climbing-ninja", 9, None, T(["De la 7 ani", "Perete de cățărat", "Traseu cu obstacole"], ["Ages 7 and up", "Climbing wall", "Obstacle course"])),
-    ("street-soccer", 10, None, T(["Teren în cușcă", "Perete cu ținte"], ["Caged pitch", "Target wall"])),
-    ("mini-action", 11, None, T(["2–6 ani", "Biciclete fără pedale", "Loc de joacă tip soft play"], ["Ages 2–6", "Balance bikes", "Soft play"])),
-    ("birthday", 12, None, T(["Aniversări pentru copii"], ["Kids' birthday parties"])),
-    ("gaming", 13, None, T(["Console și ecrane mari", "Pauză între sesiuni"], ["Consoles and big screens", "A break between sessions"])),
-    ("bistro", 14, None, T(["Vedere spre Mini Action", "Plină de plante"], ["Looks onto Mini Action", "Full of plants"])),
-    ("burgers", 15, None, T(["Vedere spre street soccer și baschet"], ["Looks onto street soccer and basketball"])),
-    ("entrance", 16, None, T(["Bilet și acordul părinților, online", "Aglomerația live, pe site", "Masă de înfășat pentru bebeluși"],
+    ("parkour", 6, None, T(["De la 13 ani", "Cutii, ziduri, bare"], ["Ages 13 and up", "Boxes, walls, bars"])),
+    ("cycling", 7, T("Studio de cycling", "Cycling studio"), T(["Te antrenezi cât copiii sunt în parc"], ["Train while the kids are in the park"])),
+    ("training", 7, T("Antrenament funcțional", "Functional training"), T(["Pentru rideri și părinți"], ["For riders and parents"])),
+    ("climbing-ninja", 8, None, T(["De la 7 ani", "Perete de cățărat", "Traseu cu obstacole"], ["Ages 7 and up", "Climbing wall", "Obstacle course"])),
+    ("street-soccer", 9, None, T(["Teren în cușcă", "Perete cu ținte"], ["Caged pitch", "Target wall"])),
+    ("mini-action", 10, None, T(["2–6 ani", "Biciclete fără pedale", "Loc de joacă tip soft play"], ["Ages 2–6", "Balance bikes", "Soft play"])),
+    ("birthday", 11, None, T(["Aniversări pentru copii"], ["Kids' birthday parties"])),
+    ("gaming", 12, None, T(["Console și ecrane mari", "Pauză între sesiuni"], ["Consoles and big screens", "A break between sessions"])),
+    ("bistro", 13, None, T(["Vedere spre Mini Action", "Plină de plante"], ["Looks onto Mini Action", "Full of plants"])),
+    ("burgers", 14, None, T(["Vedere spre street soccer și baschet"], ["Looks onto street soccer and basketball"])),
+    ("entrance", 15, None, T(["Bilet și acordul părinților, online", "Aglomerația live, pe site", "Masă de înfășat pentru bebeluși"],
                              ["Ticket and parental consent, online", "Live crowd level on the website", "Baby changing table"])),
-    ("service", 17, None, T(["Service pentru biciclete și trotinete", "Dulapuri și loc pentru bicicleta ta", "Închiriezi tot ce-ți trebuie"],
+    ("service", 16, None, T(["Service pentru biciclete și trotinete", "Dulapuri și loc pentru bicicleta ta", "Închiriezi tot ce-ți trebuie"],
                             ["Bike and scooter service", "Lockers and storage for your own bike", "Rent everything you need"])),
-    ("wash", 18, None, T(["Ușă direct din hostel", "Dulapuri pentru echipament"], ["A door straight from the hostel", "Lockers for your gear"])),
-    ("walkway", 19, None, T(["Bănci cu vedere spre rampe"], ["Benches facing the ramps"])),
-    ("workshop", 20, None, T(["Aici se construiesc și se repară rampele"], ["Where the ramps are built and repaired"])),
-    ("hostel", 21, None, T(["Cazare în aceeași clădire", "Pentru tabere și competiții"], ["A place to stay in the same building", "For camps and competitions"])),
+    ("wash", 17, None, T(["Ușă direct din hostel", "Dulapuri pentru echipament"], ["A door straight from the hostel", "Lockers for your gear"])),
+    ("walkway", 18, None, T(["Bănci cu vedere spre rampe"], ["Benches facing the ramps"])),
+    ("workshop", 19, None, T(["Aici se construiesc și se repară rampele"], ["Where the ramps are built and repaired"])),
+    ("hostel", 20, None, T(["Cazare în aceeași clădire", "Pentru tabere și competiții"], ["A place to stay in the same building", "For camps and competitions"])),
 ]
 
 # Where each number sits on the 3D picture, in percent of its width and height (measured from the white discs on it).
 # Redraw the picture and these move: measure again.
-SPOTS = {1: (48.6, 26.2), 2: (14.05, 47.75), 3: (20.1, 7.2), 4: (59.05, 7.2), 5: (31.1, 47.75), 6: (13.4, 26.2), 7: (81.65, 26.2),
-         8: (69.2, 47.75), 9: (81.2, 47.75), 10: (54.75, 47.75), 11: (42.3, 47.75), 12: (75.55, 75.0), 13: (7.15, 75.0), 14: (48.0, 75.05),
-         15: (62.55, 75.0), 16: (33.8, 74.55), 17: (19.85, 75.05), 18: (90.45, 75.0), 19: (81.15, 64.7), 20: (83.35, 8.05), 21: (93.35, 38.1)}
+SPOTS = {1: (48.6, 26.2), 2: (24.0, 7.2), 3: (65.0, 7.2), 4: (12.6, 38.0), 5: (31.1, 47.75), 6: (81.65, 26.2),
+         7: (69.2, 47.75), 8: (81.2, 47.75), 9: (54.75, 47.75), 10: (42.3, 47.75), 11: (75.55, 75.0), 12: (7.15, 75.0), 13: (48.0, 75.05),
+         14: (62.55, 75.0), 15: (33.8, 74.55), 16: (19.85, 75.05), 17: (90.45, 75.0), 18: (81.15, 64.7), 19: (83.35, 8.05), 20: (93.35, 38.1)}
 # The floor of each room on the picture: rectangles x1, y1, x2, y2 in percent. A tap anywhere in a room chooses it; the disc is only its label.
 # Traced on the picture itself (the 3D drawing is not a projection of ROOMS). Together they cover the whole picture once.
-AREAS = {1: [(22.1, 16.5, 73.9, 36.0)], 2: [(0, 36.0, 24.0, 59.8)], 3: [(0, 0, 38.2, 16.5)], 4: [(38.2, 0, 79.4, 16.5)], 5: [(24.0, 36.0, 37.6, 59.8)],
-         6: [(0, 16.5, 22.1, 36.0)], 7: [(73.9, 16.5, 87.6, 36.0)], 8: [(63.7, 36.0, 74.7, 59.8)], 9: [(74.7, 36.0, 89.6, 59.8)], 10: [(47.1, 36.0, 63.7, 59.8)],
-         11: [(37.6, 36.0, 47.1, 59.8)], 12: [(68.6, 69.8, 82.9, 100)], 13: [(0, 69.8, 12.1, 100)], 14: [(39.1, 69.8, 55.9, 100)], 15: [(55.9, 69.8, 68.6, 100)],
-         16: [(28.3, 69.8, 39.1, 100)], 17: [(12.1, 69.8, 28.3, 100)], 18: [(82.9, 69.8, 100, 100)], 19: [(0, 59.8, 90.4, 69.8)], 20: [(79.4, 0, 87.2, 16.5)],
-         21: [(87.2, 0, 100, 16.5), (87.6, 16.5, 100, 36.0), (89.6, 36.0, 100, 59.8), (90.4, 59.8, 100, 69.8)]}
+AREAS = {1: [(22.1, 16.5, 73.9, 36.0)], 2: [(0, 0, 50.0, 16.5)], 3: [(50.0, 0, 79.4, 16.5)], 4: [(0, 16.5, 22.1, 36.0), (0, 36.0, 24.0, 59.8)],
+         5: [(24.0, 36.0, 37.6, 59.8)], 6: [(73.9, 16.5, 87.6, 36.0)], 7: [(63.7, 36.0, 74.7, 59.8)], 8: [(74.7, 36.0, 89.6, 59.8)], 9: [(47.1, 36.0, 63.7, 59.8)],
+         10: [(37.6, 36.0, 47.1, 59.8)], 11: [(68.6, 69.8, 82.9, 100)], 12: [(0, 69.8, 12.1, 100)], 13: [(39.1, 69.8, 55.9, 100)], 14: [(55.9, 69.8, 68.6, 100)],
+         15: [(28.3, 69.8, 39.1, 100)], 16: [(12.1, 69.8, 28.3, 100)], 17: [(82.9, 69.8, 100, 100)], 18: [(0, 59.8, 90.4, 69.8)], 19: [(79.4, 0, 87.2, 16.5)],
+         20: [(87.2, 0, 100, 16.5), (87.6, 16.5, 100, 36.0), (89.6, 36.0, 100, 59.8), (90.4, 59.8, 100, 69.8)]}
 
 
 def check_plan():
@@ -219,7 +218,7 @@ def check_plan():
     for n, rects in AREAS.items():
         w = max(c for _, _, c, _ in rects) - min(a for a, _, _, _ in rects)
         h = max(d for _, _, _, d in rects) - min(b for _, b, _, _ in rects)
-        if n != 19 and (w < 7.5 or h < 13.3):    # 24 px on a 320 px wide phone
+        if n != 18 and (w < 7.5 or h < 13.3):    # 24 px on a 320 px wide phone
             bad.append(f"room {n} is too small to tap: {w:.1f}% x {h:.1f}%")
     if sorted(AREAS) != sorted(SPOTS) or sorted(SPOTS) != sorted(NAMES) or sorted({n for _, n, _, _ in PLACES}) != sorted(NAMES):
         bad.append("every number needs a name, a disc, a room and a card")
@@ -233,12 +232,12 @@ ALT = {
     "entrance": T("Recepție din placaj, cu plante; un vizitator cu rucsac trece prin turnicheți, lângă rafturi cu căști și trotinete", "A plywood reception desk with plants; a visitor with a backpack walks through the ticket gates, beside racks of helmets and scooters"),
     "burgers": T("Tejghea de burgeri cu meniu luminos; rideri la coadă și la mese înalte", "A burger counter with a lit menu; riders queueing and sitting at high tables"),
     "mini-action": T("Copii mici cu căști, pe biciclete fără pedale, pe rampe joase; un părinte stă ghemuit lângă ei", "Small children in helmets on balance bikes on low ramps; a parent crouches beside them"),
-    "pumptrack": T("Rideri pe un pumptrack din placaj, cu valuri și viraje în jurul unor jardiniere", "Riders on a plywood pumptrack with rollers and banked turns around planters"),
-    "send-room": T("Rampe de sărituri din placaj și o groapă cu bureți, într-o hală plină de plante", "Plywood jump ramps and a foam pit in a hall full of plants"),
+    "pumptrack": T("Rideri pe biciclete și un copil pe trotinetă pe un pumptrack din asfalt, cu valuri și viraje înclinate între jardiniere", "Riders on bikes and a child on a scooter on an asphalt pumptrack with rollers and banked turns between planters"),
+    "send-room": T("Rampe din placaj cu laterale negre și sigla Action Cloud, pereți cu dungi negre și galbene, o groapă cu bureți și public pe un balcon de lemn", "Plywood ramps with black sides and the Action Cloud logo, black and yellow striped walls, a foam pit and spectators on a wooden balcony"),
     "padel": T("Un teren de padel în sală, cu gazon albastru și pereți de sticlă; patru jucători la dublu, iar în spate sigla Action Cloud", "An indoor padel court with blue turf and glass walls; four players in a doubles rally, the Action Cloud sign behind them"),
-    "big-airbag": T("O rampă înaltă de start și un rider pe bicicletă, în aer, deasupra unui airbag mare, negru cu galben", "A tall start ramp and a rider on a bike in the air above a large black and yellow airbag"),
+    "big-airbag": T("Un perete de start din lemn cu cabine de start una lângă alta, trei pante paralele care se termină în trambuline, și un rider în aer deasupra unui airbag gri, lat", "A wooden start wall with start booths side by side, three parallel drop-in lanes ending in kickers, and a rider in the air above a wide grey airbag"),
     "mega-ramp": T("Două rampe foarte înalte, un rider în aer între ele și public la balustradă", "Two very tall ramps, a rider in the air between them and spectators at the railing"),
-    "trampolines": T("Copii sărind pe trambuline negre cu margini galbene; unul face un salt, iar în spate e un airbag", "Kids jumping on black trampolines with yellow edges; one is mid-flip, with an airbag behind"),
+    "trampolines": T("O sală mare de trambuline negre cu rame galbene, un teren de dodgeball și o groapă cu bureți galbeni; părinții privesc de pe margine", "A large hall of black trampolines with yellow frames, a dodgeball court and a pit of yellow foam blocks; parents watch from the side"),
     "climbing-ninja": T("Perete de cățărat cu prize colorate și un traseu ninja cu inele și plasă", "A climbing wall with coloured holds and a ninja course with rings and a net"),
     "parkour": T("Un tânăr sare peste o cutie din placaj; în spate, bare de street workout", "A young man vaults a plywood box; street workout bars behind him"),
     "street-soccer": T("Copii jucând fotbal pe un teren mic, împrejmuit, cu gazon sintetic, perete cu ținte și coș de baschet", "Kids playing football on a small caged pitch with artificial turf, a target wall and a basketball hoop"),
@@ -269,8 +268,8 @@ TIERS = [
      T(["O zonă îți poartă numele", "Logo la intrarea și pe rampele zonei", "Clipuri filmate în zonă"],
        ["A zone carries your name", "Logo at the zone's entrance and on its ramps", "Clips shot in the zone"])),
     ("pachet-atractie", "tier-attraction", T("Partener de atracție", "Attraction partner"), "20.000", "20,000", T("4 parteneri", "4 partners"),
-     T(["Mega rampă, airbag, padel sau cățărat", "Logo pe atracție", "Clipuri filmate acolo"],
-       ["Mega ramp, airbag, padel or climbing", "Logo on the attraction", "Clips shot there"])),
+     T(["Airbag, pumptrack, padel sau cățărat", "Logo pe atracție", "Clipuri filmate acolo"],
+       ["Airbag, pumptrack, padel or climbing", "Logo on the attraction", "Clips shot there"])),
     ("pachet-program", "tier-programme", T("Partener de program", "Programme partner"), "10.000", "10,000", T("3 parteneri", "3 partners"),
      T(["Tabere, Action Cups sau programul pentru școli", "Programul îți poartă numele", "Mostre la tabere și evenimente"],
        ["Camps, Action Cups or the school programme", "The programme carries your name", "Samples at camps and events"])),
@@ -285,31 +284,31 @@ TIERS = [
 
 # ---------------------------------------------------------------- plan drawn to scale (10 units per metre)
 ROOMS = [
-    # number, x, y, width, depth (metres), colour group, open to the hall?, name
+    # number, x, y, width, depth (metres), colour group, open to the hall?  A number may have several rectangles.
     (1, 22, 10, 56, 18, "w", 1),
-    (2, 0, 28, 24, 20, "w", 1),
-    (3, 0, 0, 36, 10, "w", 1),
-    (4, 36, 0, 46, 10, "w", 1),
+    (2, 0, 0, 36, 10, "w", 1),
+    (3, 36, 0, 46, 10, "w", 1),
+    (4, 0, 10, 22, 18, "j", 1),
+    (4, 0, 28, 24, 20, "j", 1),    # the trampoline hall takes the old pumptrack's floor too
     (5, 24, 28, 14, 20, "j", 1),   # one padel court, 20 x 10 m, with 2 m on each long side
-    (6, 0, 10, 22, 18, "j", 1),
-    (7, 78, 10, 12, 18, "j", 1),
-    (8, 66, 28, 12, 20, "j", 0),
-    (9, 78, 28, 12, 20, "j", 1),
-    (10, 50, 28, 16, 20, "j", 0),
-    (11, 38, 28, 12, 20, "f", 0),
-    (12, 66, 52, 18, 8, "f", 0),
-    (13, 0, 52, 10, 8, "f", 0),
-    (14, 36, 52, 16, 8, "f", 0),
-    (15, 52, 52, 14, 8, "f", 0),
-    (16, 24, 52, 12, 8, "s", 0),
-    (17, 10, 52, 14, 8, "s", 0),
-    (18, 84, 52, 16, 8, "s", 0),
-    (19, 0, 48, 90, 4, "s", 1),
-    (20, 82, 0, 8, 10, "s", 0),
-    (21, 90, 0, 10, 52, "s", 0),
+    (6, 78, 10, 12, 18, "j", 1),
+    (7, 66, 28, 12, 20, "j", 0),
+    (8, 78, 28, 12, 20, "j", 1),
+    (9, 50, 28, 16, 20, "j", 0),
+    (10, 38, 28, 12, 20, "f", 0),
+    (11, 66, 52, 18, 8, "f", 0),
+    (12, 0, 52, 10, 8, "f", 0),
+    (13, 36, 52, 16, 8, "f", 0),
+    (14, 52, 52, 14, 8, "f", 0),
+    (15, 24, 52, 12, 8, "s", 0),
+    (16, 10, 52, 14, 8, "s", 0),
+    (17, 84, 52, 16, 8, "s", 0),
+    (18, 0, 48, 90, 4, "s", 1),
+    (19, 82, 0, 8, 10, "s", 0),
+    (20, 90, 0, 10, 52, "s", 0),
 ]
 assert sum(r[3] * r[4] for r in ROOMS) == 6000
-# Four groups, used by the chips above the cards, the legend and the colours of the drawing. They follow the numbers: 1-4, 5-10, 11-15, 16-21.
+# Four groups, used by the chips above the cards, the legend and the colours of the drawing. They follow the numbers: 1-3, 4-9, 10-14, 15-20.
 CATS = [("w", T("Pe roți", "On wheels")), ("j", T("Fără roți", "No wheels")), ("f", T("Familii", "Families")), ("s", T("Servicii", "Services"))]
 GROUP = {r[0]: r[5] for r in ROOMS}
 
@@ -334,18 +333,28 @@ def plan_svg(p):
     o = (f'<svg class="plan-svg" viewBox="-6 -6 1012 668" role="img" aria-label="{esc(label)}"><defs><marker id="ah" viewBox="0 0 10 10" '
          f'refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z"/></marker></defs>')
     for n, x, y, w, h, c, op in ROOMS:
+        if n == 4:
+            continue
         o += f'<rect class="r-{c}{" open" if op else ""}" x="{x * 10}" y="{y * 10}" width="{w * 10}" height="{h * 10}"/>'
+    # the trampoline hall is one L-shaped room: its own floor plus the old pumptrack's
+    o += '<path class="r-j open" d="M0 100H220V280H240V480H0Z"/>'
     o += '<rect class="outer" x="0" y="0" width="1000" height="600"/><path class="rail-line" d="M0 480H900"/><path class="rail-line" d="M720 520V600M780 520V600"/>'
     o += lines("glass", glass) + lines("door", doors)
     for cls, ds in (("route", ["M300 590V545", "M260 500H65V440"]), ("route2", ["M340 500H820"])):
         o += "".join(f'<path class="{cls}" d="{d}" marker-end="url(#ah)"/>' for d in ds)
+    seen = set()
     for n, x, y, w, h, c, op in ROOMS:
+        if n in seen:
+            continue
+        seen.add(n)
         cx, cy = x * 10 + w * 5, y * 10 + h * 5 + 10
-        if n == 19:
+        if n == 4:
+            cx, cy = 115, 390
+        if n == 18:
             cx, cy = 865, 508
-        if n == 16:
+        if n == 15:
             cx += 34
-        o += f'<text class="n n-{c}{" sm" if n == 19 else ""}" x="{cx}" y="{cy}" text-anchor="middle">{n}</text>'
+        o += f'<text class="n n-{c}{" sm" if n == 18 else ""}" x="{cx}" y="{cy}" text-anchor="middle">{n}</text>'
     o += f'<text class="lbl" x="335" y="640">{p.t(T("Intrare", "Entrance"))}</text>'
     o += '<path class="scale" d="M880 636H980M880 628V644M980 628V644"/><text class="lbl" x="930" y="626" text-anchor="middle">10 m</text></svg>'
     return o
@@ -355,8 +364,12 @@ def plan_legend(p):
     sep = "." if p.lang == "ro" else ","
     out = ""
     for c, name in CATS:
-        items = "".join(f'<li><span>{r[0]}</span><span>{p.t(NAMES[r[0]])}</span><span class="m2">{format(r[3] * r[4], ",").replace(",", sep)} m²</span></li>'
-                        for r in ROOMS if r[5] == c)
+        area = {}
+        for r in ROOMS:
+            if r[5] == c:
+                area[r[0]] = area.get(r[0], 0) + r[3] * r[4]
+        items = "".join(f'<li><span>{n}</span><span>{p.t(NAMES[n])}</span><span class="m2">{format(a, ",").replace(",", sep)} m²</span></li>'
+                        for n, a in area.items())
         out += f'<div><h3><span class="sw r-{c}"></span>{p.t(name)}</h3><ul>{items}</ul></div>'
     keys = [("k-door", T("Ușă sau poartă", "Door or gate")), ("k-glass", T("Perete de sticlă spre parc", "Glass wall facing the park")),
             ("k-route", T("Traseul riderilor", "Riders' route")),
@@ -460,7 +473,7 @@ def s_map(p):
     for num in sorted(SPOTS):
         x, y = SPOTS[num]
         hits = "".join(f'<span class="hit" style="left:{a}%;top:{b}%;width:{round(c - a, 2)}%;height:{round(d - b, 2)}%"></span>' for a, b, c, d in AREAS[num])
-        spots += (f'<li><a class="spot{" long" if num == 19 else ""}" href="#loc-{num}" data-spot="{num}">{hits}'
+        spots += (f'<li><a class="spot{" long" if num == 18 else ""}" href="#loc-{num}" data-spot="{num}">{hits}'
                   f'<span class="disc" style="left:{x}%;top:{y}%">{num}</span><span class="vh">, {p.t(NAMES[num])}</span></a></li>')
     chips = "".join(f'<li><a href="#{first[c]}" data-group="{c}">{p.t(name)}</a></li>' for c, name in CATS)
     img, _ = p.img("plan-3d", alt, sizes="(max-width: 60rem) 100vw, 56rem")

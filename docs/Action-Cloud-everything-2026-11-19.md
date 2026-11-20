@@ -73,33 +73,34 @@ The next three actions:
 
 ## 4. The 6,000 m² plan: what is inside
 
-From the site (`tools/build.py`, table `ROOMS`). Hall of about 100 × 60 m. Areas are approximate.
+From the site (`tools/build.py`, table `ROOMS`). Hall of about 100 × 60 m. Areas are approximate. Changed on 19 Nov evening: the wooden pumptrack and the mega ramp are gone, the trampoline hall takes the pumptrack's floor, an asphalt pumptrack takes the mega ramp's strip, the airbag became a Skills-Park-style jump line in the same box, and the Send Room shows the real Action Cloud ramps. 20 places.
 
 | # | Place | m² | Group |
 |---|---|---|---|
-| 1 | Send Room and Fun Room | 1,008 | On wheels |
-| 2 | Pumptrack | 480 | On wheels |
-| 3 | Big airbag jump | 360 | On wheels |
-| 4 | Mega ramp | 460 | On wheels |
+| 1 | Send Room and Fun Room (the real Action Cloud ramps) | 1,008 | On wheels |
+| 2 | Airbag jump line: start wall with booths side by side, parallel drop-ins, kickers, landing airbag | 360 | On wheels |
+| 3 | Asphalt pumptrack | 460 | On wheels |
+| 4 | Trampoline hall | 876 | No wheels |
 | 5 | Padel court | 280 | No wheels |
-| 6 | Trampoline hall | 396 | No wheels |
-| 7 | Parkour and street workout | 216 | No wheels |
-| 8 | Functional training and cycling studio | 240 | No wheels |
-| 9 | Climbing and ninja course | 240 | No wheels |
-| 10 | Street soccer and basketball | 320 | No wheels |
-| 11 | Mini Action (ages 2 to 6) | 240 | Families |
-| 12 | 3 party rooms | 144 | Families |
-| 13 | Gaming room | 80 | Families |
-| 14 | Café for parents | 128 | Families |
-| 15 | Burger bar | 112 | Families |
-| 16 | Entrance, reception and toilets | 96 | Services |
-| 17 | Shop, service and rentals | 112 | Services |
-| 18 | Changing rooms, toilets and showers | 128 | Services |
-| 19 | Green walkway | 360 | Services |
-| 20 | Storage and ramp workshop | 80 | Services |
-| 21 | Hostel | 520 | Services |
+| 6 | Parkour and street workout | 216 | No wheels |
+| 7 | Functional training and cycling studio | 240 | No wheels |
+| 8 | Climbing and ninja course | 240 | No wheels |
+| 9 | Street soccer and basketball | 320 | No wheels |
+| 10 | Mini Action (ages 2 to 6) | 240 | Families |
+| 11 | 3 party rooms | 144 | Families |
+| 12 | Gaming room | 80 | Families |
+| 13 | Café for parents | 128 | Families |
+| 14 | Burger bar | 112 | Families |
+| 15 | Entrance, reception and toilets | 96 | Services |
+| 16 | Shop, service and rentals | 112 | Services |
+| 17 | Changing rooms, toilets and showers | 128 | Services |
+| 18 | Green walkway | 360 | Services |
+| 19 | Storage and ramp workshop | 80 | Services |
+| 20 | Hostel | 520 | Services |
 
-Group totals: on wheels 2,308 m², no wheels 1,692 m², families 704 m², services 1,296 m². Total 6,000 m².
+Group totals: on wheels 1,828 m², no wheels 2,172 m², families 704 m², services 1,296 m². Total 6,000 m².
+
+Two notes on the change: the asphalt is poured on the owner's floor and stays with the building, so the owner has to agree to it in writing [Likely]. The airbag box is 36 × 10 m; the real Winterthur line needs roughly 35–40 m and taller booths, so this is a smaller version [Likely].
 
 **What happens in the park:** Action Camps (holiday camps), Action Cups (competitions in every discipline), a programme for schools, weekly courses, birthday parties.
 

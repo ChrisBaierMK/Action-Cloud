@@ -1,6 +1,6 @@
 # Action-Cloud
 
-The Action Cloud Bucharest site: the story of the park, the sponsor packages and one form for everyone who wants in. Romanian at `/`, English at `/en/`. Static files, hosted on Netlify as `actioncloud-bucharest-sponsors`.
+The Action Cloud Bucharest site: the story of the park, the sponsor packages and one form for everyone who wants in. Romanian at `/`, English at `/en/`. Live at https://actioncloud.ro (Netlify project `actioncloud-bucharest-sponsors`; DNS at GlobeHosting: an A record for the bare domain to Netlify, 75.2.60.5, and `www` as a CNAME to `actioncloud-bucharest-sponsors.netlify.app`; the nameservers stay at GlobeHosting). `SITE` in `tools/build.py` holds that address for links and previews. Static files, hosted on Netlify as `actioncloud-bucharest-sponsors`.
 
 ## Editing the pages
 

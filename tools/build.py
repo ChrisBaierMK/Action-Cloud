@@ -12,7 +12,7 @@ import sys
 from urllib.parse import quote
 
 ROOT = sys.argv[1] if len(sys.argv) > 1 else os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SITE = "https://actioncloud-bucharest-sponsors.netlify.app/"
+SITE = "https://actioncloud.ro/"   # live since 20 November 2026; the old netlify.app address still answers
 MAIL = "chris@actioncloud.co"
 LANGS = ("ro", "en")
 

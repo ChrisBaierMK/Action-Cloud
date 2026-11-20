@@ -2,6 +2,8 @@
 
 Written 19 November 2026. One file with every decision, number, text and link from this work, so any person or session can pick it up without the chat.
 
+**20 November 2026:** the site is live at `https://actioncloud.ro` (Netlify, HTTPS certificate issued), with `www.actioncloud.ro` sending people on to it. The DM buttons below now use that address; links already sent with the old netlify.app address still work.
+
 **Later the same day, in the site session:** the form page of section 8 is live, but not as a page of its own. At the owner's request it became part of the main page, the clothing shop was removed, and the three forms of the site were merged into one short form in the last stop (`#action`). The addresses of section 7 still work; `?tip=cunosc` now opens the same answer as `?tip=spatiu`. The field names and what was dropped are in `README.md`, "The one form". This file is not served by the site.
 
 Confidence tags used here:
@@ -241,9 +243,9 @@ Keyword: **ACTION**. The DM that answers it:
 
 ```
 Mersi! Alege ce ți se potrivește:
-[Am un spațiu]          https://actioncloud-bucharest-sponsors.netlify.app/action/?tip=spatiu
-[Știu pe cineva]        https://actioncloud-bucharest-sponsors.netlify.app/action/?tip=cunosc
-[Vreau să ajut altfel]  https://actioncloud-bucharest-sponsors.netlify.app/action/
+[Am un spațiu]          https://actioncloud.ro/action/?tip=spatiu
+[Știu pe cineva]        https://actioncloud.ro/action/?tip=cunosc
+[Vreau să ajut altfel]  https://actioncloud.ro/action/
 ```
 
 Each button opens the form with that answer already chosen. The links work once the page is live (section 8).
@@ -322,7 +324,7 @@ If no partner is found, the fallback already on the site is the schoolyard plan:
 
 | What | Where | State |
 |---|---|---|
-| Site, draft | `https://actioncloud-bucharest-sponsors.netlify.app/` | 6,000 m², north Bucharest; not indexed by search engines |
+| Site, draft | `https://actioncloud.ro/` (live since 20 Nov; the old address `https://actioncloud-bucharest-sponsors.netlify.app/` still answers) | 6,000 m², north Bucharest; not indexed by search engines |
 | Site code | `https://github.com/ChrisBaierMK/Action-Cloud`, branch `claude/keen-wright-cxczb1` | Live version |
 | Form page code | Same repository, branch `claude/take-action-form` | Waiting for merge and deploy |
 | Feasibility plan | `https://claude.ai/artifact/4KWVXzufiieNpLxmfRaKbQ` | 17 Nov, in Romanian |

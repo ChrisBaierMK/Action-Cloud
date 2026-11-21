@@ -70,10 +70,53 @@
   });
 
   // a line that is not shown sends nothing: switched off only at the moment of sending, so that Back still finds what was typed
-  form.addEventListener("submit", function () {
+  // the answer as counted on the board: the news answer is the Action Crew, "lend a hand" is a helping hand
+  var BOARD_KEY = { stiri: "crew", crew: "ajutor", spatiu: "spatiu", sponsor: "sponsor", afacere: "afacere", investitor: "investitor" };
+  var root = d.querySelector("[data-board-root]"), sent = false;
+  form.addEventListener("submit", function (e) {
     groups.forEach(function (g) { if (g.hidden) Array.prototype.forEach.call(fields(g), function (f) { f.disabled = true; }); });
+    if (sent || !root || !window.fetch || !(window.crypto && crypto.subtle)) { toKit(); return; }
+    // count the sign-up on the board first (at most 2 seconds), then send the Netlify form as usual
+    e.preventDefault();
+    sent = true;
     toKit();
+    var done = false, go = function () { if (!done) { done = true; HTMLFormElement.prototype.submit.call(form); } };
+    setTimeout(go, 2000);
+    count(BOARD_KEY[current()], contact ? contact.value : "").then(go, go);
   });
+
+  // only the type and a SHA-256 fingerprint of the contact leave the page: one person counts once per answer
+  function rpc(name, body) {
+    return fetch(root.getAttribute("data-url") + "/rest/v1/rpc/" + name, {
+      method: "POST", keepalive: true,
+      headers: { "Content-Type": "application/json", apikey: root.getAttribute("data-key") },
+      body: JSON.stringify(body || {})
+    });
+  }
+  function count(tip, who) {
+    if (!tip) return Promise.resolve();
+    var norm = (who || "").trim().toLowerCase().replace(/[\s().-]/g, "");
+    return crypto.subtle.digest("SHA-256", new TextEncoder().encode("actioncloud:" + norm)).then(function (h) {
+      var fp = Array.prototype.map.call(new Uint8Array(h), function (b) { return ("0" + b.toString(16)).slice(-2); }).join("");
+      return rpc("ac_inscrie", { p_tip: tip, p_fp: fp });
+    });
+  }
+
+  // the board: live counts against a goal; below its minimum a row invites the first ones instead of showing a small number
+  if (root && window.fetch) {
+    rpc("ac_contoare").then(function (r) { return r.ok ? r.json() : []; }).then(function (rows) {
+      var by = {};
+      (rows || []).forEach(function (x) { by[x.tip] = +x.n || 0; });
+      Array.prototype.forEach.call(root.querySelectorAll("[data-board]"), function (li) {
+        var n = by[li.getAttribute("data-board")] || 0, goal = +li.getAttribute("data-goal"), min = +li.getAttribute("data-min");
+        var out = li.querySelector("[data-n]"), bar = li.querySelector(".bbar i");
+        if (n >= min) { out.textContent = n.toLocaleString(d.documentElement.lang === "en" ? "en-GB" : "ro-RO"); li.classList.add("live"); }
+        else out.textContent = root.getAttribute("data-first");
+        if (bar) bar.style.width = (n >= min ? Math.max(2, Math.min(100, n / goal * 100)) : 0) + "%";
+      });
+      root.classList.add("loaded");
+    }).catch(function () { /* the board keeps its dashes; the form still works */ });
+  }
 
   // Action Crew: the email also goes to the Kit list "Action Crew București" (form 10220859), which sends the
   // confirmation mail (double opt-in) and holds the list for news. The Netlify form still sends as before.

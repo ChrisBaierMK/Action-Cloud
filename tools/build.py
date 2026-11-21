@@ -685,6 +685,7 @@ HELP = [
     ("spatiu", "Am sau știu un spațiu", T("Am sau știu un spațiu", "I have or know of a space"), "SPAȚIU"),
     ("sponsor", "Vreau să sponsorizez", T("Vreau să sponsorizez", "I want to sponsor"), "SPONSOR"),
     ("afacere", "Vreau să-mi aduc afacerea în parc", T("Vreau să-mi aduc afacerea în parc", "I want to bring my business into the park"), "AFACERE"),
+    ("investitor", "Vreau să investesc", T("Vreau să investesc", "I want to invest"), "INVESTITOR"),
     ("crew", "Vreau să pun umărul", T("Vreau să pun umărul", "I want to lend a hand"), "AJUTOR"),
     ("stiri", "Vreau noutăți: Action Crew", T("Vreau noutăți: Action Crew", "Keep me posted: Action Crew"), "noutăți"),
 ]
@@ -786,6 +787,9 @@ def action_form(p):
         ("sponsor", '<div class="pair">' + field("a-company", "sponsor-firma", T("Companie", "Company"), opt=True, attrs=' autocomplete="organization"')
          + field("f-package", "pachet", T("Pachet", "Package"), kind="select", options=packages) + "</div>"),
         ("afacere", field("a-business", "afacere", T("Ce afacere?", "What business?"), opt=True, hint=T("ex. cafenea, CrossFit, yoga", "e.g. café, CrossFit, yoga"))),
+        ("investitor", field("a-invest", "investitie", T("Cum ai vrea să intri?", "How would you like to come in?"), opt=True, hint=T("ex. capital, echipament, o unitate în parc", "e.g. capital, equipment, a unit in the park"),
+                             help_=T("Nu trimiți bani acum: doar ne arăți interesul, fără nicio obligație. Îți trimitem prezentarea pentru investitori și ne vedem față în față.",
+                                     "You send no money now: you only show your interest, with no obligation. We send you the investor presentation and meet in person."))),
         ("crew", field("a-skill", "ajutor-cum", T("Cu ce ne poți ajuta?", "What can you help with?"), opt=True, hint=T("ex. tâmplărie, filmare, transport", "e.g. carpentry, filming, transport"))),
         ("stiri", f'<p class="help"><b>Action Crew:</b> {t(T("gratuit. Îți scriem pe e-mail când anunțăm locația și data deschiderii, iar tu afli printre primii. Te poți dezabona oricând. Ai sub 16 ani?", "free. We email you when we announce the location and the opening date, so you are among the first to know. You can unsubscribe at any time. Under 16?"))} '
                   f'<a href="https://wa.me/?text={quote(to_parent)}" rel="noopener">{t(T("Trimite pagina unui părinte", "Send the page to a parent"))}</a>.</p>'),
@@ -819,19 +823,47 @@ ACTION_DESC = T("Căutăm un partener cu un spațiu de aproximativ 6.000 m² pen
                 "We are looking for a partner with a space of about 6,000 m² for an action sports park Romania has never seen. Tell us how you can help.")
 
 
+# The public board above the form: who is already in, against a goal for each. Live counts come from Supabase (ac_contoare() in the
+# MK1930 project; no names or contacts are stored, see README). key, name, goal, the line under the bar. Below MIN the number is
+# not shown: a small number reads as "nobody is here", so the row invites the first ones instead.
+BOARD = [
+    ("crew", T("Action Crew", "Action Crew"), 2000, T("riders și părinți care vor parcul", "riders and parents who want the park")),
+    ("spatiu", T("Spații propuse", "Spaces offered"), 3, T("hale de ~6.000 m² pe masă", "halls of ~6,000 m² on the table")),
+    ("sponsor", T("Sponsori și parteneri", "Sponsors and partners"), 15, T("branduri care pun umărul", "brands that back it")),
+    ("afacere", T("Afaceri în parc", "Businesses in the park"), 12, T("cafenea, padel, trambuline, fitness…", "café, padel, trampolines, fitness…")),
+    ("investitor", T("Investitori interesați", "Interested investors"), 10, T("fără bani acum, doar interes", "no money now, just interest")),
+    ("ajutor", T("Mâini de ajutor", "Helping hands"), 50, T("tâmplari, filmări, transport", "carpentry, filming, transport")),
+]
+BOARD_MIN = {"crew": 25}
+SUPABASE_URL = "https://ygpmfswujykahqlkzqfg.supabase.co"
+SUPABASE_KEY = "sb_publishable_HxkcfpgkLplRxXfqbrMuEw_BEyoRhNK"   # publishable: it can only call ac_inscrie() and ac_contoare()
+
+
+def board(p):
+    t = p.t
+    rows = "".join(
+        f'''<li class="brow" data-board="{key}" data-goal="{goal}" data-min="{BOARD_MIN.get(key, 1)}">
+          <div class="btop"><b>{t(name)}</b><span class="bnum"><span data-n>–</span> <span class="bgoal">/ {f"{goal:,}".replace(",", ".")}</span></span></div>
+          <div class="bbar" aria-hidden="true"><i style="width:0%"></i></div>
+          <p class="bsub">{t(sub)}</p></li>'''
+        for key, name, goal, sub in BOARD)
+    return f'''<div class="board" data-board-root data-url="{SUPABASE_URL}" data-key="{SUPABASE_KEY}" data-first="{esc(t(T("fii primul", "be the first")))}">
+      <h3>{t(T("Cine e deja în joc", "Who is already in"))}</h3>
+      <p class="bintro">{t(T("Ca o strângere de fonduri, dar fără bani: fiecare înscriere arată că parcul e dorit. Când barele se umplu, îl construim.", "Like crowdfunding, but without money: every sign-up shows the park is wanted. When the bars fill up, we build it."))}</p>
+      <ul>{rows}</ul>
+    </div>'''
+
+
 def s_action(p):
     """The last stop of the main page and its only form. Every button that used to lead to a form of its own (Action Crew, a sponsor
     package, the contact stop) leads here with its answer chosen, and so do the short addresses: /action/?tip=spatiu."""
     t = p.t
-    photo = p.media("park-brasov", t(T("Rampele din lemn ale parcului Action Cloud din Brașov, într-o hală cu dungi galbene și negre pe pereți",
-                                       "The wooden ramps of the Action Cloud park in Brașov, in a hall with yellow and black stripes on the walls")),
-                    sizes="(max-width: 60rem) 100vw, 34rem")
     return f'''<section class="slide dark act-slide" id="action" data-chapter="action">
   {aliases("crew", "join", "contact", "ajuta", "help")}
   <div class="wrap">
     <div class="act-intro">
       {p.head(T('Hai <span class="nb">să-l</span> construim împreună.', "Let's build it together."), T("Avem 800 m² de rampe, echipa care le-a construit și comunitatea. Ne lipsește spațiul: aproximativ 6.000 m².", "We have 800 m² of ramps, the team that built them and the community. What is missing is the space: about 6,000 m²."))}
-      {photo}
+      {board(p)}
     </div>
     <div class="act">
       {action_form(p)}

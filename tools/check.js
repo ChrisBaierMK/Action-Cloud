@@ -86,7 +86,7 @@ const ok = (name, cond, extra) => console.log((cond ? 'PASS ' : 'FAIL ') + name 
     const ph = await b.newPage({ viewport: { width: 390, height: 844 }, hasTouch: true });
     await ph.goto(base + '/' + lang + 'index.html'); await ph.waitForTimeout(300);
     const f0 = await act(ph);
-    ok(lang + 'form: five answers, nothing chosen and no fields until one is', f0.n === 5 && f0.rows === 5 && f0.key === '' && f0.open === '' && !f0.rest && f0.fields === 0, JSON.stringify(f0));
+    ok(lang + 'form: six answers, nothing chosen and no fields until one is', f0.n === 6 && f0.rows === 6 && f0.key === '' && f0.open === '' && !f0.rest && f0.fields === 0, JSON.stringify(f0));
     await ph.click('.hero .actions a[data-tip="stiri"]'); await ph.waitForTimeout(1500);
     const f1 = await act(ph);
     ok(lang + 'form: "Join the Action Crew" shows the news answer alone, asks for name and email, and Send is on screen', f1.key === 'stiri' && f1.open === 'stiri' && f1.rows === 1 && f1.fields === 2 && /^email\/E-?mail$/.test(f1.contact) && f1.send && f1.rowSeen && /noutăți/.test(f1.subject), JSON.stringify(f1));
@@ -94,7 +94,7 @@ const ok = (name, cond, extra) => console.log((cond ? 'PASS ' : 'FAIL ') + name 
     const f1b = await act(ph);
     await ph.click('.choice:has(input[data-key="afacere"])'); await ph.waitForTimeout(900);
     const f2 = await act(ph);
-    ok(lang + 'form: "Change the answer" brings the five back; another answer swaps the one line and keeps its row and Send on screen', f1b.rows === 5 && f2.key === 'afacere' && f2.open === 'afacere' && f2.rows === 1 && f2.fields === 3 && /^text\//.test(f2.contact) && f2.send && f2.rowSeen && /AFACERE/.test(f2.subject) && f2.wide <= 0, JSON.stringify(f2));
+    ok(lang + 'form: "Change the answer" brings the six back; another answer swaps the one line and keeps its row and Send on screen', f1b.rows === 6 && f2.key === 'afacere' && f2.open === 'afacere' && f2.rows === 1 && f2.fields === 3 && /^text\//.test(f2.contact) && f2.send && f2.rowSeen && /AFACERE/.test(f2.subject) && f2.wide <= 0, JSON.stringify(f2));
     const most = [];
     for (const k of ['spatiu', 'sponsor', 'afacere', 'crew', 'stiri']) { await ph.click('[data-change]'); await ph.click('.choice:has(input[data-key="' + k + '"])'); await ph.waitForTimeout(150); const a = await act(ph); most.push(a.fields + (a.send && a.rowSeen ? '' : '!')); }
     ok(lang + 'form: no answer asks for more than four fields, and each keeps its row and Send on a phone screen', most.every(x => /^[1-4]$/.test(x)), most.join(','));
@@ -105,7 +105,7 @@ const ok = (name, cond, extra) => console.log((cond ? 'PASS ' : 'FAIL ') + name 
     for (const [tip, key] of [['spatiu', 'spatiu'], ['cunosc', 'spatiu'], ['SPONSOR', 'sponsor'], ['<script>', '']]) {
       await ph.goto(base + '/' + lang + 'index.html?tip=' + encodeURIComponent(tip) + '#action'); await ph.waitForTimeout(800);
       const t = await act(ph);
-      ok(lang + 'form: a link with ?tip=' + tip + (key ? ' opens on its answer with the fields and Send on screen' : ' does no harm'), t.key === key && (key ? t.rows === 1 && t.send && t.rowSeen : t.rows === 5 && !t.rest), JSON.stringify(t));
+      ok(lang + 'form: a link with ?tip=' + tip + (key ? ' opens on its answer with the fields and Send on screen' : ' does no harm'), t.key === key && (key ? t.rows === 1 && t.send && t.rowSeen : t.rows === 6 && !t.rest), JSON.stringify(t));
     }
     await ph.goto(base + '/' + lang + 'index.html#crew'); await ph.waitForTimeout(800);
     ok(lang + 'form: the old sign-up link #crew opens the news answer', (await act(ph)).key === 'stiri');
@@ -118,7 +118,7 @@ const ok = (name, cond, extra) => console.log((cond ? 'PASS ' : 'FAIL ') + name 
       const end = await lp.evaluate(() => { const bar = document.querySelector('.bar').getBoundingClientRect().bottom, l = document.querySelector('.choices legend').getBoundingClientRect(), r = [...document.querySelectorAll('.choice')].map(x => x.getBoundingClientRect()); return l.top >= bar - 1 && r.every(x => x.top >= bar && x.bottom <= innerHeight); });
       await lp.dblclick('.choice:has(input[data-key="crew"])'); await lp.waitForTimeout(900);
       const dc = await act(lp);
-      ok(lang + `form at ${w}x${h}: at the end of the page the question and all five answers are in sight; a double click keeps its answer, its row and Send on screen`, end && dc.key === 'crew' && dc.rowSeen && dc.send, JSON.stringify({ end, key: dc.key, row: dc.rowSeen, send: dc.send }));
+      ok(lang + `form at ${w}x${h}: at the end of the page the question and all six answers are in sight; a double click keeps its answer, its row and Send on screen`, end && dc.key === 'crew' && dc.rowSeen && dc.send, JSON.stringify({ end, key: dc.key, row: dc.rowSeen, send: dc.send }));
       await lp.close();
     }
     // the short address, followed for real over http
@@ -144,7 +144,7 @@ const ok = (name, cond, extra) => console.log((cond ? 'PASS ' : 'FAIL ') + name 
   const tiny = await q.$$eval('.spot', l => l.filter(a => { const r = [...a.querySelectorAll('.hit')].map(x => x.getBoundingClientRect()); const w = Math.max(...r.map(b => b.right)) - Math.min(...r.map(b => b.left)), h = Math.max(...r.map(b => b.bottom)) - Math.min(...r.map(b => b.top)); return w < 24 || h < 24; }).length);
   ok('phone: every room is a target of at least 24 by 24 px', tiny === 0, String(tiny));
   ok('no JS: arrows hidden, swipe hint shown', await q.$eval('.arrows', e => getComputedStyle(e).display === 'none') && await q.$eval('.swipe', e => getComputedStyle(e).display !== 'none'));
-  ok('no JS: the form shows every line and can still be sent', (await q.$$eval('form[name="action"] [data-group]', l => l.filter(g => g.offsetParent !== null).length)) === 5 && (await q.$$eval('form[name="action"] [required]', l => l.map(x => x.name).filter(n => n !== 'ajutor').join())) === 'name,contact');
+  ok('no JS: the form shows every line and can still be sent', (await q.$$eval('form[name="action"] [data-group]', l => l.filter(g => g.offsetParent !== null).length)) === 6 && (await q.$$eval('form[name="action"] [required]', l => l.map(x => x.name).filter(n => n !== 'ajutor').join())) === 'name,contact');
   ok('no JS: no sideways overflow', await q.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
   await ctx.close();
   // Small phone and large desktop
@@ -160,13 +160,23 @@ const ok = (name, cond, extra) => console.log((cond ? 'PASS ' : 'FAIL ') + name 
   // Action Crew: choosing the news answer and sending also hands the email to the Kit list (form 10220859)
   {
     const k = await b.newPage({ viewport: { width: 1440, height: 900 } });
-    let kit = null;
+    let kit = null, counted = [];
     await k.route('https://app.kit.com/**', r => { kit = { url: r.request().url(), body: r.request().postData() || '' }; r.fulfill({ status: 200, body: '{}' }); });
+    await k.route('https://*.supabase.co/rest/v1/rpc/**', r => {
+      const u = r.request().url(), cors = { 'access-control-allow-origin': '*', 'access-control-allow-headers': '*', 'content-type': 'application/json' };
+      if (r.request().method() === 'OPTIONS') return r.fulfill({ status: 204, headers: cors });
+      if (u.endsWith('/ac_contoare')) return r.fulfill({ status: 200, headers: cors, body: JSON.stringify([{ tip: 'crew', n: 312 }, { tip: 'sponsor', n: 3 }, { tip: 'investitor', n: 0 }]) });
+      counted.push(JSON.parse(r.request().postData() || '{}')); return r.fulfill({ status: 200, headers: cors, body: 'true' });
+    });
     await k.goto(web + '/?tip=stiri#action');
+    await k.waitForTimeout(600);
+    const brd = await k.evaluate(() => Object.fromEntries([...document.querySelectorAll('[data-board]')].map(li => [li.dataset.board, li.querySelector('[data-n]').textContent + '|' + li.querySelector('.bbar i').style.width])));
+    ok('board: live counts with bars; below the minimum it invites the first ones', /^312\|15\.6/.test(brd.crew) && /^3\|20%/.test(brd.sponsor) && /\|0%$/.test(brd.investitor) && !/^0/.test(brd.investitor), JSON.stringify(brd));
     await k.fill('#a-name', 'Test Crew');
     await k.fill('[data-contact]', 'test@example.com');
     await k.evaluate(() => document.querySelector('form[name="action"]').dispatchEvent(new Event('submit', { cancelable: true })));
     await k.waitForTimeout(300);
+    ok('board: the sign-up is counted as Action Crew, with a fingerprint and no contact', counted.length === 1 && counted[0].p_tip === 'crew' && /^[0-9a-f]{64}$/.test(counted[0].p_fp) && !JSON.stringify(counted).includes('example.com'), JSON.stringify(counted));
     ok('Action Crew: the email goes to the Kit list', !!kit && /forms\/10220859\/subscriptions/.test(kit.url) && kit.body.includes('test@example.com') && kit.body.includes('Test Crew'), kit ? kit.url : 'no request');
     kit = null;
     await k.goto(web + '/?tip=spatiu#action');

@@ -579,12 +579,8 @@ def s_sponsors(p):
     <dl class="facts">
       <div><dt>{p.t(T("În toate pachetele", "In every package"))}</dt><dd>{p.t(T("Invitații la evenimente și la Action Cups. De la „Partener de rampă” în sus, primești și plasare de produs în clipuri.", "Invitations to events and Action Cups. From \"Ramp partner\" up, you also get product placement in clips."))}</dd></div>
       <div><dt>{p.t(T("Până la deschidere", "Until it opens"))}</dt><dd>{p.t(T("Parcul din București este încă în plan. Vizibilitatea din parc începe la deschidere, iar ce primești până atunci stabilim împreună.", "The Bucharest park is still a plan. Visibility in the park starts when it opens, and we agree together what you get until then."))}</dd></div>
-      <div><dt>{p.t(T("Contractul", "The contract"))}</dt><dd>{p.t(T("Se semnează cu asociația nonprofit Rosenau Cycling. Perioada și moneda de plată le stabilim împreună; prețurile sunt în euro.", "It is signed with the non-profit Rosenau Cycling association. We agree the contract period and the payment currency together; prices are in euro."))}</dd></div>
+      <div><dt>{p.t(T("Contractul", "The contract"))}</dt><dd>{p.t(T("Perioada și moneda de plată le stabilim împreună; prețurile sunt în euro.", "We agree the contract period and the payment currency together; prices are in euro."))}</dd></div>
     </dl>
-    <details class="more">
-      <summary>{p.t(T("Avantaj fiscal pentru firme", "Tax advantage for companies"))}</summary>
-      <div class="more-body"><p class="note">{p.t(T("În România, firmele care plătesc impozit pe profit pot scădea din impozit sponsorizările către asociațiile înscrise în Registrul entităților pentru care se acordă deduceri fiscale. Limita legală: cea mai mică valoare dintre 0,75% din cifra de afaceri și 20% din impozitul pe profit datorat. Verifică împreună cu contabilul tău regulile actuale și înscrierea asociației în registru.", "In Romania, companies that pay profit tax can deduct sponsorships from the tax they owe, provided the association is listed in the register of entities eligible for tax deductions. The legal limit is the lower of 0.75% of turnover and 20% of the profit tax owed. Check the current rules and the association's listing with your accountant."))}</p></div>
-    </details>
   </div>
 </section>'''
 
@@ -609,8 +605,8 @@ def page(lang):
              else '<a class="lang" href="../" lang="ro" hreflang="ro">Română</a>')
     nav = "".join(f'<a href="#{target}" data-for="{k}"{" data-tip=" + chr(34) + CHAPTER_TIP[k] + chr(34) if k in CHAPTER_TIP else ""}>{p.t(t)}</a>' for k, target, t in CHAPTERS)
     body = "\n\n".join(sections(p))
-    foot_note = p.t(T("Action Cloud este administrat de asociația Rosenau Cycling. Imaginile marcate „Imagine concept” sunt generate pe calculator și arată planul pentru București. Fotografiile sunt de la primul nostru parc, cel din Brașov, care s-a închis între timp.",
-                      "Action Cloud is run by the Rosenau Cycling association. Pictures marked \"Concept image\" are computer-generated and show the plan for Bucharest. The photos are from our first park, in Brașov, which has since closed."))
+    foot_note = p.t(T("Imaginile marcate „Imagine concept” sunt generate pe calculator și arată planul pentru București. Fotografiile sunt de la primul nostru parc, cel din Brașov, care s-a închis între timp.",
+                      "Pictures marked \"Concept image\" are computer-generated and show the plan for Bucharest. The photos are from our first park, in Brașov, which has since closed."))
     return f'''<!doctype html>
 <html lang="{lang}">
 <head>
@@ -746,8 +742,8 @@ def action_shell(p, title, desc, rel, body, script=""):
       <li><a href="mailto:{MAIL}">{MAIL}</a></li>
       <li><a href="{home}">{p.t(T("Vezi conceptul", "See the concept"))}</a></li>
     </ul>
-    <p>{p.t(T("Action Cloud este administrat de asociația nonprofit Rosenau Cycling. Parcul este încă un plan: nu avem încă un spațiu și nicio dată de deschidere.",
-              "Action Cloud is run by the non-profit Rosenau Cycling association. The park is still a plan: there is no space and no opening date yet."))}</p>
+    <p>{p.t(T("Parcul este încă un plan: nu avem încă un spațiu și nicio dată de deschidere.",
+              "The park is still a plan: there is no space and no opening date yet."))}</p>
   </div>
 </footer>
 {script}
@@ -813,7 +809,7 @@ def action_form(p):
           {field("a-contact", "contact", T("Telefon sau e-mail", "Phone or email"), req=True, attrs=f' autocomplete="tel" autocapitalize="none" spellcheck="false" pattern="\\s*(\\+?[\\d\\s\\(\\)\\.\\-]{{9,}}|[^@\\s]+@[^@\\s]+\\.[^@\\s]{{2,}})\\s*" title="{contact_title}" data-contact data-email-label="{esc(t(T("E-mail", "Email")))}"')}
         </div>
         <button class="btn btn-yellow" type="submit">{t(T("Trimite", "Send"))}</button>
-        <p class="help">{t(T("Mesajele le citește Chris. Datele ajung la asociația nonprofit Rosenau Cycling, care administrează Action Cloud; le folosim doar pentru acest proiect și le ștergem la cerere:", "Chris reads the messages. Your details go to the non-profit Rosenau Cycling association, which runs Action Cloud; we use them only for this project and delete them on request:"))} <a href="mailto:{MAIL}">{MAIL}</a>. {t(T("Ai sub 16 ani? Roagă un părinte să completeze în locul tău.", "Under 16? Ask a parent to fill this in for you."))}</p>
+        <p class="help">{t(T("Mesajele le citește Chris. Folosim datele doar pentru acest proiect și le ștergem la cerere:", "Chris reads the messages. We use your details only for this project and delete them on request:"))} <a href="mailto:{MAIL}">{MAIL}</a>. {t(T("Ai sub 16 ani? Roagă un părinte să completeze în locul tău.", "Under 16? Ask a parent to fill this in for you."))}</p>
       </div>
     </form>"""
 

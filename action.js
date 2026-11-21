@@ -73,8 +73,10 @@
   // the answer as counted on the board: the news answer is the Action Crew, "lend a hand" is a helping hand
   var BOARD_KEY = { stiri: "crew", crew: "ajutor", spatiu: "spatiu", sponsor: "sponsor", afacere: "afacere", investitor: "investitor" };
   var root = d.querySelector("[data-board-root]"), sent = false;
-  form.addEventListener("submit", function (e) {
+  form.addEventListener("submit", function () {
     groups.forEach(function (g) { if (g.hidden) Array.prototype.forEach.call(fields(g), function (f) { f.disabled = true; }); });
+  }, true);
+  form.addEventListener("submit", function (e) {
     if (sent || !root || !window.fetch || !(window.crypto && crypto.subtle)) { toKit(); return; }
     // count the sign-up on the board first (at most 2 seconds), then send the Netlify form as usual
     e.preventDefault();

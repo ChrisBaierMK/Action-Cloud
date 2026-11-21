@@ -1,0 +1,59 @@
+# Every push to main: rebuild check, behaviour checks in a real browser, then publish to actioncloud.ro.
+# Publishing needs the repository secret NETLIFY_AUTH_TOKEN (a Netlify personal access token).
+# Without it the checks still run and the deploy step only leaves a warning.
+name: Site
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: site-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: The pages match tools/build.py (nobody edited the HTML by hand)
+        run: |
+          python3 tools/build.py
+          git diff --exit-code
+      - name: Install Playwright
+        run: |
+          npm install --no-save --no-package-lock playwright@1
+          npx playwright install --with-deps chromium
+      - name: Behaviour checks (plan, form, Action Crew to Kit, phones, no-JS)
+        run: |
+          node tools/check.js "$PWD" | tee check.log
+          ! grep -q '^FAIL' check.log
+
+  deploy:
+    needs: test
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    env:
+      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      NETLIFY_SITE_ID: df94c05e-38e3-45a0-994f-e4963641bb14   # Netlify project actioncloud-bucharest-sponsors
+    steps:
+      - uses: actions/checkout@v4
+      - name: Collect the files visitors get
+        run: |
+          mkdir _site
+          tar --exclude=./.git --exclude=./.github --exclude=./docs --exclude=./tools --exclude=./_site \
+              --exclude=./README.md --exclude=./.gitignore -cf - . | tar -xf - -C _site
+          ls _site
+      - name: Publish to actioncloud.ro
+        if: env.NETLIFY_AUTH_TOKEN != ''
+        run: npx -y netlify-cli@17 deploy --prod --dir _site --site "$NETLIFY_SITE_ID" --message "GitHub ${GITHUB_SHA::7}"
+      - name: No Netlify token yet
+        if: env.NETLIFY_AUTH_TOKEN == ''
+        run: echo "::warning::NETLIFY_AUTH_TOKEN is not set, so nothing was published. Add it under Settings > Secrets and variables > Actions."

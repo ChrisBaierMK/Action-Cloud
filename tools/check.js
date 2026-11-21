@@ -157,6 +157,26 @@ const ok = (name, cond, extra) => console.log((cond ? 'PASS ' : 'FAIL ') + name 
     ok(`layout ${w}x${h}: tap targets at least 40px tall`, small.length === 0, small.join(', '));
     await r.close();
   }
+  // Action Crew: choosing the news answer and sending also hands the email to the Kit list (form 10220859)
+  {
+    const k = await b.newPage({ viewport: { width: 1440, height: 900 } });
+    let kit = null;
+    await k.route('https://app.kit.com/**', r => { kit = { url: r.request().url(), body: r.request().postData() || '' }; r.fulfill({ status: 200, body: '{}' }); });
+    await k.goto(web + '/?tip=stiri#action');
+    await k.fill('#a-name', 'Test Crew');
+    await k.fill('[data-contact]', 'test@example.com');
+    await k.evaluate(() => document.querySelector('form[name="action"]').dispatchEvent(new Event('submit', { cancelable: true })));
+    await k.waitForTimeout(300);
+    ok('Action Crew: the email goes to the Kit list', !!kit && /forms\/10220859\/subscriptions/.test(kit.url) && kit.body.includes('test@example.com') && kit.body.includes('Test Crew'), kit ? kit.url : 'no request');
+    kit = null;
+    await k.goto(web + '/?tip=spatiu#action');
+    await k.fill('#a-name', 'Test Space');
+    await k.fill('[data-contact]', 'test@example.com');
+    await k.evaluate(() => document.querySelector('form[name="action"]').dispatchEvent(new Event('submit', { cancelable: true })));
+    await k.waitForTimeout(300);
+    ok('Action Crew: other answers do not go to Kit', kit === null);
+    await k.close();
+  }
   await b.close();
   server.close();
 })();

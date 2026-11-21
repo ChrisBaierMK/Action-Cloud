@@ -1,6 +1,14 @@
 # Action-Cloud
 
-The Action Cloud Bucharest site: the story of the park, the sponsor packages and one form for everyone who wants in. Romanian at `/`, English at `/en/`. Live at https://actioncloud.ro (Netlify project `actioncloud-bucharest-sponsors`; DNS at GlobeHosting: an A record for the bare domain to Netlify, 75.2.60.5, and `www` as a CNAME to `actioncloud-bucharest-sponsors.netlify.app`; the nameservers stay at GlobeHosting). `SITE` in `tools/build.py` holds that address for links and previews. Static files, hosted on Netlify as `actioncloud-bucharest-sponsors`.
+The Action Cloud Bucharest site: the story of the park, the sponsor packages and one form for everyone who wants in. Romanian at `/`, English at `/en/`. Live at https://actioncloud.ro (Netlify project `actioncloud-bucharest-sponsors`; the domain is registered at GlobeHosting and its nameservers point to Netlify DNS, dns1–dns4.p09.nsone.net, so all DNS records live in Netlify). `SITE` in `tools/build.py` holds that address for links and previews. Static files, hosted on Netlify as `actioncloud-bucharest-sponsors`.
+
+## Publishing
+
+`main` is the live site. Every push to `main` runs `.github/workflows/site.yml`: it rebuilds the pages and fails if the committed HTML differs from `tools/build.py`, runs `tools/check.js` in Chromium, and, if all checks pass, publishes to Netlify with the Netlify CLI. Publishing needs the repository secret `NETLIFY_AUTH_TOKEN` (a Netlify personal access token); without it the checks still run and the deploy job only leaves a warning. Pull requests get the checks but are not published.
+
+## Action Crew and Kit
+
+Choosing "Vreau noutăți: Action Crew" and sending the form also sends the email address and name to the Kit form "Action Crew București (actioncloud.ro)", id 10220859 (`toKit` in `action.js`). Kit sends a confirmation mail in Romanian (double opt-in) and, after confirming, sends the visitor to `/action/multumim/`. The Netlify form still receives every answer as before, and its notification mail goes to chris@actioncloud.co. `tools/check.js` checks that only the Action Crew answer reaches Kit.
 
 ## Editing the pages
 

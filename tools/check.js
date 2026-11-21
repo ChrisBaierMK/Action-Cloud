@@ -11,7 +11,7 @@ const ok = (name, cond, extra) => console.log((cond ? 'PASS ' : 'FAIL ') + name 
   const web = 'http://127.0.0.1:' + server.address().port;
   const b0 = await chromium.launch();
   // the tests never reach the real Supabase board or the Kit list: every page answers those calls locally (a test can add its own route)
-  const b = { newPage: async o => { const pg = await b0.newPage(o); await pg.route(/supabase\.co|app\.kit\.com/, r => r.fulfill({ status: 200, headers: { 'access-control-allow-origin': '*', 'access-control-allow-headers': '*', 'content-type': 'application/json' }, body: '[]' })); return pg; }, close: () => b0.close() };
+  const b = { newPage: async o => { const pg = await b0.newPage(o); await pg.route(/supabase\.co|app\.kit\.com/, r => r.fulfill({ status: 200, headers: { 'access-control-allow-origin': '*', 'access-control-allow-headers': '*', 'content-type': 'application/json' }, body: '[]' })); return pg; }, newContext: o => b0.newContext(o), close: () => b0.close() };
   for (const lang of ['', 'en/']) {
     const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
     const errs = []; p.on('pageerror', e => errs.push(String(e)));

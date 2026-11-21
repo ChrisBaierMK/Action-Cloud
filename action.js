@@ -72,7 +72,22 @@
   // a line that is not shown sends nothing: switched off only at the moment of sending, so that Back still finds what was typed
   form.addEventListener("submit", function () {
     groups.forEach(function (g) { if (g.hidden) Array.prototype.forEach.call(fields(g), function (f) { f.disabled = true; }); });
+    toKit();
   });
+
+  // Action Crew: the email also goes to the Kit list "Action Crew București" (form 10220859), which sends the
+  // confirmation mail (double opt-in) and holds the list for news. The Netlify form still sends as before.
+  var KIT = "https://app.kit.com/forms/10220859/subscriptions";
+  function toKit() {
+    if (current() !== "stiri" || !contact) return;
+    var email = (contact.value || "").trim();
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email)) return;
+    var nameField = form.querySelector('input[name="name"]');
+    var data = new FormData();
+    data.append("email_address", email);
+    if (nameField && nameField.value.trim()) data.append("first_name", nameField.value.trim());
+    try { fetch(KIT, { method: "POST", body: data, mode: "no-cors", keepalive: true }); } catch (e) { /* the Netlify form still has the address */ }
+  }
   window.addEventListener("pageshow", function () {
     groups.forEach(function (g) { Array.prototype.forEach.call(fields(g), function (f) { f.disabled = false; }); });
     show(current(), list.classList.contains("one"));

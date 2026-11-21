@@ -884,7 +884,7 @@ def action_thanks(lang):
     body = f"""<main id="main" class="thanks dark act-thanks">
   <div class="wrap">
     <h1>{t(T("Mulțumim!", "Thank you!"))}</h1>
-    <p>{t(T("Am primit. Dacă e nevoie de un răspuns, îți scrie sau te sună Chris. Dacă ai cerut noutăți, ești pe listă.", "Got it. If a reply is needed, Chris will write or call. If you asked for news, you are on the list."))}</p>
+    <p>{t(T("Am primit. Dacă e nevoie de un răspuns, îți scrie sau te sună Chris. Dacă ai cerut noutăți, verifică-ți e-mailul (și Spam) și apasă pe butonul de confirmare, ca să intri pe listă.", "Got it. If a reply is needed, Chris will write or call. If you asked for news, check your email (and spam) and press the confirm button to get on the list."))}</p>
     <p>{t(T("Știi pe cineva cu un spațiu mare? Trimite-i pagina.", "Do you know someone with a large space? Send them the page."))}</p>
     <p class="actions">
       <a class="btn btn-yellow" href="https://wa.me/?text={quote(share)}" rel="noopener">{t(T("Trimite pe WhatsApp", "Send on WhatsApp"))}</a>

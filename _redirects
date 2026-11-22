@@ -5,3 +5,8 @@
 /tools/*       /404.html   404!
 /.gitignore    /404.html   404!
 /.github/*     /404.html   404!
+
+# Action Cloud × Cheile Grădiștei (22 nov 2026): one Romanian page; old short links and /en/ lead to the form
+/action        /#ajuta     301
+/action/*      /#ajuta     301
+/en/*          /           302

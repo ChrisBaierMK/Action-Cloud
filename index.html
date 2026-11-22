@@ -1,213 +1,556 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ro">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Action Cloud București | Un loc al lor</title>
-<meta name="description" content="Plănuim cel mai mare parc indoor de action sports din România: aproximativ 6.000 m², în nordul Bucureștiului. Intră în Action Crew sau devino sponsor.">
-<!-- Draft: noindex -->
+<title>Action Cloud × Cheile Grădiștei — Ridicăm acoperișul</title>
+<meta name="description" content="Cel mai mare bikepark indoor din România se mută la Cheile Grădiștei. Parcul e gata, îi lipsește acoperișul: un cort de 977 m². Adoptă un m² de acoperiș.">
+<meta property="og:title" content="Action Cloud × Cheile Grădiștei">
+<meta property="og:description" content="Parcul e gata. Îi lipsește acoperișul. 977 m² × 100 € = cortul nostru.">
+<meta property="og:image" content="https://d8j0ntlcm91z4.cloudfront.net/user_3KmvnmSnlHZl97Gv5M4VI8n9jkc/hf_20261122_110231_e680f991-cf26-487e-912b-5c683b9e5d77.png">
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#262626">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="alternate" hreflang="ro" href="https://actioncloud.ro/">
-<link rel="alternate" hreflang="en" href="https://actioncloud.ro/en/">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Action Cloud București | Un loc al lor">
-<meta property="og:description" content="Plănuim cel mai mare parc indoor de action sports din România: aproximativ 6.000 m², în nordul Bucureștiului. Intră în Action Crew sau devino sponsor.">
-<meta property="og:image" content="https://actioncloud.ro/assets/img/og.jpg">
-<meta property="og:image:type" content="image/jpeg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:site_name" content="Action Cloud">
-<meta property="og:locale" content="ro_RO">
-<meta property="og:url" content="https://actioncloud.ro/">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="preload" href="assets/fonts/barlow-semi-condensed-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="styles.css">
-<script>if(location.hash)document.documentElement.className+=" jump"</script>
+<meta name="theme-color" content="#1B1B1B">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=Saira+Stencil+One&display=swap" rel="stylesheet">
+<style>
+:root{
+  --yellow:#ECC820; --charcoal:#1B1B1B; --raised:#262626; --ink:#141414;
+  --ply:#DCC597; --snow:#F2EFE8; --muted:#A8A196; --line:#3a3a3a;
+  --stencil:"Saira Stencil One", Impact, sans-serif;
+  --body:"Archivo", "Helvetica Neue", Arial, sans-serif;
+  --wrap:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--charcoal);color:var(--snow);font-family:var(--body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 22px}
+.stencil{font-family:var(--stencil);text-transform:uppercase;letter-spacing:.01em;line-height:.95;font-weight:400}
+.kicker{font-size:13px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--ply)}
+.hazard{height:14px;background:repeating-linear-gradient(-45deg,var(--yellow) 0 18px,var(--ink) 18px 36px)}
+.btn{display:inline-block;font-family:var(--body);font-weight:800;font-size:15px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;padding:15px 24px;border:2px solid var(--yellow);cursor:pointer;transition:background .15s,color .15s}
+.btn-y{background:var(--yellow);color:var(--ink)}
+.btn-y:hover{background:var(--snow);border-color:var(--snow)}
+.btn-o{background:transparent;color:var(--yellow)}
+.btn-o:hover{background:var(--yellow);color:var(--ink)}
+.tag{position:absolute;left:12px;bottom:12px;background:rgba(20,20,20,.8);color:var(--ply);font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:5px 9px}
+.tag.real{color:var(--yellow)}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:20;background:rgba(27,27,27,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:62px;gap:16px}
+.brand{font-family:var(--stencil);font-size:20px;text-decoration:none;white-space:nowrap}
+.brand b{color:var(--yellow);font-weight:400}
+.navlinks{display:flex;gap:22px;font-size:14px;font-weight:600}
+.navlinks a{text-decoration:none;color:var(--muted)}
+.navlinks a:hover{color:var(--snow)}
+nav .btn{padding:10px 16px;font-size:13px}
+@media(max-width:900px){.navlinks{display:none}}
+@media(max-width:520px){.brand .long{display:none}}
+
+/* HERO */
+.hero{position:relative;min-height:92vh;display:flex;align-items:flex-end;overflow:hidden}
+.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,20,20,.15) 0%,rgba(20,20,20,.35) 45%,rgba(27,27,27,.97) 100%)}
+.hero .wrap{position:relative;z-index:2;padding-bottom:56px;padding-top:120px;width:100%}
+.hero h1{font-size:clamp(44px,11vw,150px);overflow-wrap:anywhere}
+.hero h1 span{display:block}
+.hero h1 .y{color:var(--yellow)}
+.hero .lead{font-size:clamp(18px,2.2vw,23px);max-width:620px;margin:22px 0 28px;color:var(--snow)}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px}
+.hero .tag{left:auto;right:16px;bottom:16px;z-index:3}
+.reveal{opacity:0;transform:translateY(26px);animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards}
+.d1{animation-delay:.1s}.d2{animation-delay:.25s}.d3{animation-delay:.45s}.d4{animation-delay:.65s}.d5{animation-delay:.85s}
+@keyframes rise{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.reveal{animation:none;opacity:1;transform:none}html{scroll-behavior:auto}}
+
+/* GAUGE */
+.gauge{background:var(--raised);border-top:4px solid var(--yellow)}
+.gauge .wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;padding-top:30px;padding-bottom:30px;align-items:center}
+.gauge .num{font-family:var(--stencil);font-size:clamp(40px,6vw,64px);color:var(--yellow)}
+.gauge .num small{font-size:.45em;color:var(--muted)}
+.bar{height:22px;background:var(--ink);border:1px solid var(--line);margin:12px 0 8px;position:relative;overflow:hidden}
+.bar i{position:absolute;inset:0 auto 0 0;width:0;background:repeating-linear-gradient(-45deg,var(--yellow) 0 12px,#d4b31c 12px 24px)}
+.gauge .meta{display:flex;gap:26px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
+.gauge .meta b{color:var(--snow);font-size:20px;display:block}
+.gauge p.note{font-size:15px;color:var(--muted)}
+@media(max-width:820px){.gauge .wrap{grid-template-columns:1fr}}
+
+/* SECTIONS */
+section{padding:96px 0}
+.sec-head{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:46px}
+.sec-head h2{font-size:clamp(42px,6.5vw,84px)}
+.sec-head p{color:var(--muted);font-size:18px}
+@media(max-width:820px){.sec-head{grid-template-columns:1fr;gap:16px}}
+
+/* STORY */
+.beats{display:grid;gap:0;border-top:1px solid var(--line)}
+.beat{display:grid;grid-template-columns:120px 1fr 1fr;gap:30px;padding:34px 0;border-bottom:1px solid var(--line);align-items:center}
+.beat .n{font-family:var(--stencil);font-size:64px;color:var(--yellow)}
+.beat h3{font-size:26px;font-weight:800;margin-bottom:8px}
+.beat p{color:#cfc9bd}
+.beat figure{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--raised)}
+.beat figure img{width:100%;height:100%;object-fit:cover}
+@media(max-width:820px){.beat{grid-template-columns:1fr;gap:14px}.beat .n{font-size:48px}}
+
+/* REAL GALLERY */
+.real{background:var(--ink)}
+.gallery{display:grid;grid-template-columns:2fr 1fr 1fr;grid-auto-rows:260px;gap:10px}
+.gallery figure{position:relative;overflow:hidden;background:var(--raised)}
+.gallery figure img{width:100%;height:100%;object-fit:cover}
+.gallery .big{grid-row:span 2}
+@media(max-width:820px){.gallery{grid-template-columns:1fr 1fr;grid-auto-rows:200px}.gallery .big{grid-column:span 2;grid-row:span 1}}
+
+/* PLAN */
+.plan-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:36px;align-items:start}
+.plan-grid figure{position:relative}
+.spec{border-top:3px solid var(--yellow)}
+.spec div{display:flex;justify-content:space-between;gap:18px;padding:14px 0;border-bottom:1px solid var(--line);font-size:16px}
+.spec div span{color:var(--muted)}
+.spec div b{text-align:right}
+.zones{margin-top:26px;display:flex;flex-wrap:wrap;gap:8px}
+.zones span{border:1px solid var(--ply);color:var(--ply);font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:7px 11px}
+.phase2{margin-top:64px;display:grid;grid-template-columns:1fr 1.25fr;gap:36px;align-items:center;background:var(--raised);padding:0}
+.phase2 .txt{padding:36px}
+.phase2 h3{font-family:var(--stencil);font-size:44px;text-transform:uppercase;margin:8px 0 12px}
+.phase2 figure{position:relative;height:100%;min-height:300px}
+.phase2 figure img{width:100%;height:100%;object-fit:cover}
+@media(max-width:820px){.plan-grid,.phase2{grid-template-columns:1fr}}
+
+/* ROOF */
+.roof{background:var(--ink)}
+.roof-grid{display:grid;grid-template-columns:repeat(47,1fr);gap:2px;max-width:100%;margin:10px 0 18px}
+.roof-grid i{aspect-ratio:1;background:#2e2e2e}
+.roof-grid i.on{background:var(--yellow)}
+.roof-legend{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:var(--muted);font-size:14px}
+.roof-big{font-family:var(--stencil);font-size:clamp(46px,8vw,104px);line-height:1}
+.roof-big em{font-style:normal;color:var(--yellow)}
+
+/* PROGRAMS LEDGER */
+.ledger{border-top:3px solid var(--yellow)}
+.row{display:grid;grid-template-columns:90px 1.1fr 1.6fr 170px;gap:24px;padding:30px 0;border-bottom:1px solid var(--line);align-items:start}
+.row .n{font-family:var(--stencil);font-size:44px;color:var(--yellow);line-height:1}
+.row h3{font-size:24px;font-weight:800;line-height:1.2}
+.row .slots{display:inline-block;margin-top:8px;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);background:var(--ply);padding:4px 8px}
+.row ul{list-style:none;color:#cfc9bd}
+.row li{padding-left:18px;position:relative;margin-bottom:6px}
+.row li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:3px;background:var(--yellow)}
+.row .price{text-align:right}
+.row .price b{font-family:var(--stencil);font-size:34px;display:block;line-height:1}
+.row .price span{font-size:13px;color:var(--muted)}
+@media(max-width:900px){.row{grid-template-columns:60px 1fr;gap:12px}.row ul,.row .price{grid-column:2}.row .price{text-align:left}}
+
+/* COMPANIES */
+.firms .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.firms h2{font-size:clamp(40px,5.6vw,72px);margin-bottom:20px}
+.firms .facts{border-top:1px solid var(--line)}
+.firms .facts div{padding:16px 0;border-bottom:1px solid var(--line)}
+.firms .facts b{display:block;color:var(--yellow);font-size:13px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px}
+.calc{background:var(--snow);color:var(--ink);padding:32px;border-top:8px solid var(--yellow)}
+.calc h3{font-family:var(--stencil);font-size:34px;text-transform:uppercase;margin-bottom:6px}
+.calc label{display:block;font-weight:800;font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin:18px 0 6px}
+.calc input{width:100%;font:600 20px var(--body);padding:12px 14px;border:2px solid var(--ink);background:#fff;color:var(--ink)}
+.calc .out{margin-top:22px;background:var(--ink);color:var(--snow);padding:20px}
+.calc .out b{display:block;font-family:var(--stencil);font-size:42px;color:var(--yellow);line-height:1.05}
+.calc .out small{color:var(--muted);font-size:14px}
+.calc .fine{font-size:13px;color:#555;margin-top:14px}
+@media(max-width:860px){.firms .wrap{grid-template-columns:1fr}}
+
+/* PEOPLE */
+.people .cols{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:3px solid var(--yellow)}
+.people .col{padding:30px 30px 30px 0;border-bottom:1px solid var(--line)}
+.people .col+.col{padding-left:30px;border-left:1px solid var(--line)}
+.people h3{font-size:24px;font-weight:800;margin-bottom:8px}
+.people p{color:#cfc9bd}
+@media(max-width:820px){.people .cols{grid-template-columns:1fr}.people .col+.col{padding-left:0;border-left:0}}
+
+/* FORMS */
+.join{background:var(--yellow);color:var(--ink)}
+.join h2{font-size:clamp(46px,7vw,92px)}
+.join .wrap{display:grid;grid-template-columns:1fr 1.15fr;gap:48px}
+.join p.lead{font-size:19px;margin-top:16px;max-width:460px}
+form .opts{display:grid;gap:8px;margin-bottom:18px}
+form .opts label{display:flex;gap:12px;align-items:center;background:rgba(20,20,20,.07);border:2px solid var(--ink);padding:12px 14px;font-weight:600;cursor:pointer}
+form .opts input{accent-color:var(--ink);width:18px;height:18px}
+.f{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.f .full{grid-column:span 2}
+.f input,.f select,.f textarea{width:100%;font:500 16px var(--body);padding:13px 14px;border:2px solid var(--ink);background:var(--snow);color:var(--ink)}
+.f textarea{min-height:96px;resize:vertical}
+form .btn{margin-top:14px;background:var(--ink);color:var(--yellow);border-color:var(--ink)}
+form .btn:hover{background:var(--charcoal)}
+.ok{display:none;background:var(--ink);color:var(--yellow);padding:22px;font-weight:800;font-size:18px;margin-top:14px}
+.hidden{display:none}
+@media(max-width:860px){.join .wrap{grid-template-columns:1fr}.f{grid-template-columns:1fr}.f .full{grid-column:auto}}
+.crew{background:var(--ink)}
+.crew .wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.crew h2{font-size:clamp(40px,5.6vw,72px)}
+.crew form .f input,.crew form .f select{background:var(--raised);color:var(--snow);border-color:var(--line)}
+.crew form .btn{background:var(--yellow);color:var(--ink);border-color:var(--yellow)}
+.crew .consent{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--muted);margin-top:12px}
+@media(max-width:860px){.crew .wrap{grid-template-columns:1fr}}
+
+footer{padding:46px 0 60px;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+footer .brand{color:var(--snow);font-size:24px}
+</style>
 </head>
 <body>
 
-<a class="skip" href="#main">Sari la conținut</a>
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top">ACTION CLOUD <span class="long"><b>×</b> CHEILE GRĂDIȘTEI</span></a>
+    <div class="navlinks">
+      <a href="#povestea">Povestea</a><a href="#planul">Planul</a><a href="#acoperis">1 m²</a><a href="#sponsori">Sponsori</a><a href="#firme">Firme</a>
+    </div>
+    <a class="btn btn-y" href="#ajuta">Ajută</a>
+  </div>
+</nav>
 
-<header class="bar">
-  <a class="brand" href="#top" aria-label="Action Cloud București, înapoi sus"><img src="assets/img/logo-yellow.webp" width="472" height="256" alt="Action Cloud"></a>
-  <nav class="chapters" aria-label="Capitole"><a href="#park" data-for="park">Parcul</a><a href="#why" data-for="proof">Comunitatea</a><a href="#action" data-for="action" data-tip="spatiu">Căutăm spațiu</a></nav>
-  <a class="lang" href="en/" lang="en" hreflang="en">English</a>
-  <a class="btn btn-yellow btn-small" href="#sponsors">Devino sponsor</a>
+<header class="hero" id="top">
+  <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3KmvnmSnlHZl97Gv5M4VI8n9jkc/hf_20261122_110231_e680f991-cf26-487e-912b-5c683b9e5d77.png" alt="Cortul Action Cloud la Cheile Grădiștei, iarna">
+  <span class="tag">Vizualizare</span>
+  <div class="wrap">
+    <p class="kicker reveal d1">Action Cloud × Cheile Grădiștei</p>
+    <h1 class="stencil"><span class="reveal d2">Parcul e gata.</span><span class="y reveal d3">Îi lipsește</span><span class="y reveal d3">acoperișul.</span></h1>
+    <p class="lead reveal d4">Cel mai mare bikepark indoor din România se mută la munte. Avem rampele, echipa și terenul. Ne trebuie un cort de 977 m² ca să ne dăm din nou pe rampe, vară și iarnă.</p>
+    <div class="ctas reveal d5">
+      <a class="btn btn-y" href="#acoperis">Adoptă un m²</a>
+      <a class="btn btn-o" href="#sponsori">Programe de sponsorizare</a>
+    </div>
+  </div>
 </header>
 
-<main id="main">
-
-<section class="slide hero" id="top">
-  <img src="assets/img/concept-crew.webp" srcset="assets/img/s/concept-crew.webp 1000w, assets/img/concept-crew.webp 1600w" sizes="100vw" width="1600" height="1195" alt="Imagine concept: copii, adolescenți și părinți în hanorace, tricouri, șepci și o căciulă Action Cloud, văzuți din spate, privind parcul plin de rampe și plante" fetchpriority="high">
-  <div class="wrap hero-top">
-    <p class="kicker">Plănuim cel mai mare parc indoor de action sports din România<a class="star" href="#despre-marime" aria-label="Vezi nota despre comparație">*</a></p>
-    <h1>Un loc al lor.<br>Hai să-l construim.</h1>
-    <p class="sub">Aproximativ 6.000 m², în nordul Bucureștiului. Încă nu e deschis.</p>
-  </div>
-  <div class="wrap hero-bottom">
+<div class="gauge" id="progres">
+  <div class="wrap">
     <div>
-      <p class="by">De la o echipă care construiește rampe din 2012</p>
-      <p class="actions">
-        <a class="btn btn-white" href="#park">Vezi parcul</a>
-        <a class="btn btn-line" href="#action" data-tip="stiri">Intră în Action Crew</a>
-      </p>
-    </div>
-    <span class="tag">Imagine concept</span>
-  </div>
-</section>
-
-<section class="slide" id="park" data-chapter="park">
-  <span id="inside"></span><span id="zones"></span><span id="visit"></span><span id="arrive"></span><span id="wheels"></span><span id="more"></span><span id="parents"></span>
-  <div class="wrap map" data-map>
-    <div class="map-head">
-      <div class="head"><h2>Intră în parc.</h2><p><span class="by-tap">Apasă pe un număr</span><span class="by-mouse">Treci cu mouse-ul peste un număr</span> și vezi ce e acolo.</p></div>
-      <a class="skip" href="#locuri">Sari peste plan</a>
-    </div>
-    <div class="map-pic">
-      <img src="assets/img/plan-3d.webp" srcset="assets/img/s/plan-3d.webp 1000w, assets/img/plan-3d.webp 2000w" sizes="(max-width: 60rem) 100vw, 56rem" width="2000" height="1131" alt="Imagine concept: parcul văzut de sus, fără acoperiș. Rampele umplu mijlocul halei, încăperile numerotate sunt pe margine, intrarea e în față.">
-      <ol class="spots" aria-label="Locurile din parc, după numărul de pe plan"><li><a class="spot" href="#loc-1" data-spot="1"><span class="hit" style="left:22.1%;top:16.5%;width:51.8%;height:19.5%"></span><span class="disc" style="left:48.6%;top:26.2%">1</span><span class="vh">, Send Room și Fun Room</span></a></li><li><a class="spot" href="#loc-2" data-spot="2"><span class="hit" style="left:0%;top:0%;width:50.0%;height:16.5%"></span><span class="disc" style="left:24.0%;top:7.2%">2</span><span class="vh">, Linie de sărituri pe airbag</span></a></li><li><a class="spot" href="#loc-3" data-spot="3"><span class="hit" style="left:50.0%;top:0%;width:29.4%;height:16.5%"></span><span class="disc" style="left:65.0%;top:7.2%">3</span><span class="vh">, Pumptrack din asfalt</span></a></li><li><a class="spot" href="#loc-4" data-spot="4"><span class="hit" style="left:0%;top:16.5%;width:22.1%;height:19.5%"></span><span class="hit" style="left:0%;top:36.0%;width:24.0%;height:23.8%"></span><span class="disc" style="left:12.6%;top:38.0%">4</span><span class="vh">, Sală de trambuline</span></a></li><li><a class="spot" href="#loc-5" data-spot="5"><span class="hit" style="left:24.0%;top:36.0%;width:13.6%;height:23.8%"></span><span class="disc" style="left:31.1%;top:47.75%">5</span><span class="vh">, Teren de padel</span></a></li><li><a class="spot" href="#loc-6" data-spot="6"><span class="hit" style="left:73.9%;top:16.5%;width:13.7%;height:19.5%"></span><span class="disc" style="left:81.65%;top:26.2%">6</span><span class="vh">, Parkour și street workout</span></a></li><li><a class="spot" href="#loc-7" data-spot="7"><span class="hit" style="left:63.7%;top:36.0%;width:11.0%;height:23.8%"></span><span class="disc" style="left:69.2%;top:47.75%">7</span><span class="vh">, Antrenament funcțional și studio de cycling</span></a></li><li><a class="spot" href="#loc-8" data-spot="8"><span class="hit" style="left:74.7%;top:36.0%;width:14.9%;height:23.8%"></span><span class="disc" style="left:81.2%;top:47.75%">8</span><span class="vh">, Cățărat și traseu ninja</span></a></li><li><a class="spot" href="#loc-9" data-spot="9"><span class="hit" style="left:47.1%;top:36.0%;width:16.6%;height:23.8%"></span><span class="disc" style="left:54.75%;top:47.75%">9</span><span class="vh">, Street soccer și baschet</span></a></li><li><a class="spot" href="#loc-10" data-spot="10"><span class="hit" style="left:37.6%;top:36.0%;width:9.5%;height:23.8%"></span><span class="disc" style="left:42.3%;top:47.75%">10</span><span class="vh">, Mini Action</span></a></li><li><a class="spot" href="#loc-11" data-spot="11"><span class="hit" style="left:68.6%;top:69.8%;width:14.3%;height:30.2%"></span><span class="disc" style="left:75.55%;top:75.0%">11</span><span class="vh">, 3 săli de petreceri</span></a></li><li><a class="spot" href="#loc-12" data-spot="12"><span class="hit" style="left:0%;top:69.8%;width:12.1%;height:30.2%"></span><span class="disc" style="left:7.15%;top:75.0%">12</span><span class="vh">, Sală de gaming</span></a></li><li><a class="spot" href="#loc-13" data-spot="13"><span class="hit" style="left:39.1%;top:69.8%;width:16.8%;height:30.2%"></span><span class="disc" style="left:48.0%;top:75.05%">13</span><span class="vh">, Cafenea pentru părinți</span></a></li><li><a class="spot" href="#loc-14" data-spot="14"><span class="hit" style="left:55.9%;top:69.8%;width:12.7%;height:30.2%"></span><span class="disc" style="left:62.55%;top:75.0%">14</span><span class="vh">, Burger bar</span></a></li><li><a class="spot" href="#loc-15" data-spot="15"><span class="hit" style="left:28.3%;top:69.8%;width:10.8%;height:30.2%"></span><span class="disc" style="left:33.8%;top:74.55%">15</span><span class="vh">, Intrare, recepție și toalete</span></a></li><li><a class="spot" href="#loc-16" data-spot="16"><span class="hit" style="left:12.1%;top:69.8%;width:16.2%;height:30.2%"></span><span class="disc" style="left:19.85%;top:75.05%">16</span><span class="vh">, Magazin, service și închirieri</span></a></li><li><a class="spot" href="#loc-17" data-spot="17"><span class="hit" style="left:82.9%;top:69.8%;width:17.1%;height:30.2%"></span><span class="disc" style="left:90.45%;top:75.0%">17</span><span class="vh">, Vestiare, toalete și dușuri</span></a></li><li><a class="spot long" href="#loc-18" data-spot="18"><span class="hit" style="left:0%;top:59.8%;width:90.4%;height:10.0%"></span><span class="disc" style="left:81.15%;top:64.7%">18</span><span class="vh">, Promenadă verde</span></a></li><li><a class="spot" href="#loc-19" data-spot="19"><span class="hit" style="left:79.4%;top:0%;width:7.8%;height:16.5%"></span><span class="disc" style="left:83.35%;top:8.05%">19</span><span class="vh">, Depozit și atelier de rampe</span></a></li><li><a class="spot" href="#loc-20" data-spot="20"><span class="hit" style="left:87.2%;top:0%;width:12.8%;height:16.5%"></span><span class="hit" style="left:87.6%;top:16.5%;width:12.4%;height:19.5%"></span><span class="hit" style="left:89.6%;top:36.0%;width:10.4%;height:23.8%"></span><span class="hit" style="left:90.4%;top:59.8%;width:9.6%;height:10.0%"></span><span class="disc" style="left:93.35%;top:38.1%">20</span><span class="vh">, Hostel</span></a></li></ol>
-      <span class="tag">Imagine concept</span>
-    </div>
-    <div class="map-side" data-rail>
-      <ul class="chips" aria-label="Sari la"><li><a href="#loc-1" data-group="w">Pe roți</a></li><li><a href="#loc-4" data-group="j">Fără roți</a></li><li><a href="#loc-10" data-group="f">Familii</a></li><li><a href="#loc-15" data-group="s">Servicii</a></li></ul>
-      <ul class="rail map-rail" id="locuri" tabindex="0" role="list" aria-label="Locurile din parc"><li id="loc-1" data-n="1" data-group="w"><div class="card"><div class="media"><img src="assets/img/concept-send-room.webp" srcset="assets/img/s/concept-send-room.webp 1000w, assets/img/concept-send-room.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Rampe din placaj cu laterale negre și sigla Action Cloud, pereți cu dungi negre și galbene, o groapă cu bureți și public pe un balcon de lemn" loading="lazy"><span class="tag">Imagine concept</span></div><div class="card-body"><h3><span class="num"><span class="vh">Numărul de pe plan: </span>1</span> Send Room și Fun Room</h3><ul class="labels"><li>Fun Room: începători</li><li>Send Room: avansați</li><li>Trotinetă, BMX, MTB, skate</li></ul></div></div></li><li id="loc-2" data-n="2" data-group="w"><div class="card"><div class="media"><img src="assets/img/concept-big-airbag.webp" srcset="assets/img/s/concept-big-airbag.webp 1000w, assets/img/concept-big-airbag.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Un perete de start din lemn cu cabine de start una lângă alta, trei pante paralele care se termină în trambuline, și un rider în aer deasupra unui airbag gri, lat" loading="lazy"><span class="tag">Imagine concept</span></div><div class="card-body"><h3><span class="num"><span class="vh">Numărul de pe plan: </span>2</span> Linie de sărituri pe airbag</h3><ul class="labels"><li>De la 13 ani</li><li>Trei starturi, unul pentru începători</li><li>Trucuri cu aterizare moale</li></ul></div></div></li><li id="loc-3" data-n="3" data-group="w"><div class="card"><div class="media"><img src="assets/img/concept-pumptrack.webp" srcset="assets/img/s/concept-pumptrack.webp 1000w, assets/img/concept-pumptrack.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Rideri pe biciclete și un copil pe trotinetă pe un pumptrack din asfalt, cu valuri și viraje înclinate între jardiniere" loading="lazy"><span class="tag">Imagine concept</span></div><div class="card-body"><h3><span class="num"><span class="vh">Numărul de pe plan: </span>3</span> Pumptrack din asfalt</h3><ul class="labels"><li>De la 4 ani</li><li>Asfalt: bicicletă, trotinetă, role, skate</li><li>Prinzi viteză fără să pedalezi</li></ul></div></div></li><li id="loc-4" data-n="4" data-group="j"><div class="card"><div class="media"><img src="assets/img/concept-trampolines.webp" srcset="assets/img/s/concept-trampolines.webp 1000w, assets/img/concept-trampolines.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="O sală mare de trambuline negre cu rame galbene, un teren de dodgeball și o groapă cu bureți galbeni; părinții privesc de pe margine" loading="lazy"><span class="tag">Imagine concept</span></div><div class="card-body"><h3><span class="num"><span class="vh">Numărul de pe plan: </span>4</span> Sală de trambuline</h3><ul class="labels"><li>De la 5 ani</li><li>Aproape 900 m²</li><li>Dodgeball și groapă cu bureți</li></ul></div></div></li><li id="loc-5" data-n="5" data-group="j"><div class="card"><div class="media"><img src="assets/img/concept-padel.webp" srcset="assets/img/s/concept-padel.webp 1000w, assets/img/concept-padel.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Un teren de padel în sală, cu gazon albastru și pereți de sticlă; patru jucători la dublu, iar în spate sigla Action Cloud" loading="lazy"><span class="tag">Imagine concept</span></div><div class="card-body"><h3><span class="num"><span class="vh">Numărul de pe plan: </span>5</span> Teren de padel</h3><ul class="labels"><li>Teren cu pereți de sticlă</li><li>Se joacă în patru</li><li>Rachete de închiriat</li></ul></div></div></li><li id="loc-6" data-n="6" data-group="j"><div class="card"><div class="media"><img src="assets/img/concept-parkour.webp" srcset="assets/img/s/concept-parkour.webp 1000w, assets/img/concept-parkour.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Un tânăr sare peste o cutie din placaj; în spate, bare de street workout" loading="lazy"><span class="tag">Imagine concept</span></div><div class="card-body"><h3><span class="num"><span class="vh">Numărul de pe plan: </span>6</span> Parkour și street workout</h3><ul class="labels"><li>De la 13 ani</li><li>Cutii, ziduri, bare</li></ul></div></div></li><li id="loc-7" data-n="7" data-group="j"><div class="card"><div class="media"><img src="assets/img/concept-cycling.webp" srcset="assets/img/s/concept-cycling.webp 1000w, assets/img/concept-cycling.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Clasă de cycling văzută din spate; printr-un perete de sticlă se văd rampele" loading="lazy"><span class="tag">Imagine concept</span></div><div class="card-body"><h3><span class="num"><span class="vh">Numărul de pe plan: </span>7</span> Studio de cycling</h3><ul class="labels"><li>Te antrenezi cât copiii sunt în parc</li></ul></div></div></li><li id="loc-7-2" data-n="7" data-group="j"><div class="card"><div class="media"><img src="assets/img/concept-training.webp" srcset="assets/img/s/concept-training.webp 1000w, assets/img/concept-training.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Sală cu cadru de tracțiuni, greutăți și cutii din placaj; câțiva oameni se antrenează" loading="lazy"><span class="tag">Imagine concept</span></div><div class="card-body"><h3><span class="num"><span class="vh">Numărul de pe plan: </span>7</span> Antrenament funcțional</h3><ul class="labels"><li>Pentru rideri și părinți</li></ul></div></div></li><li id="loc-8" data-n="8" data-group="j"><div class="card"><div class="media"><img src="assets/img/concept-climbing-ninja.webp" srcset="assets/img/s/concept-climbing-ninja.webp 1000w, assets/img/concept-climbing-ninja.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Perete de cățărat cu prize colorate și un traseu ninja cu inele și plasă" loading="lazy"><span class="tag">Imagine concept</span></div><div class="card-body"><h3><span class="num"><span class="vh">Numărul de pe plan: </span>8</span> Cățărat și traseu ninja</h3><ul class="labels"><li>De la 7 ani</li><li>Perete de cățărat</li><li>Traseu cu obstacole</li></ul></div></div></li><li id="loc-9" data-n="9" data-group="j"><div class="card"><div class="media"><img src="assets/img/concept-street-soccer.webp" srcset="assets/img/s/concept-street-soccer.webp 1000w, assets/img/concept-street-soccer.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Copii jucând fotbal pe un teren mic, împrejmuit, cu gazon sintetic, perete cu ținte și coș de baschet" loading="lazy"><span class="tag">Imagine concept</span></div><div class="card-body"><h3><span class="num"><span class="vh">Numărul de pe plan: </span>9</span> Street soccer și baschet</h3><ul class="labels"><li>Teren în cușcă</li><li>Perete cu ținte</li></ul></div></div></li><li id="loc-10" data-n="10" data-group="f"><div class="card"><div class="media"><img src="assets/img/concept-mini-action.webp" srcset="assets/img/s/concept-mini-action.webp 1000w, assets/img/concept-mini-action.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Copii mici cu căști, pe biciclete fără pedale, pe rampe joase; un părinte stă ghemuit lângă ei" loading="lazy"><span class="tag">Imagine concept</span></div><div class="card-body"><h3><span class="num"><span class="vh">Numărul de pe plan: </span>10</span> Mini Action</h3><ul class="labels"><li>2–6 ani</li><li>Biciclete fără pedale</li><li>Loc de joacă tip soft play</li></ul></div></div></li><li id="loc-11" data-n="11" data-group="f"><div class="card"><div class="media"><img src="assets/img/concept-birthday.webp" srcset="assets/img/s/concept-birthday.webp 1000w, assets/img/concept-birthday.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Copii la o masă lungă cu tort, baloane și stegulețe; o fereastră mare dă spre rampe" loading="lazy"><span class="tag">Imagine concept</span></div><div class="card-body"><h3><span class="num"><span class="vh">Numărul de pe plan: </span>11</span> 3 săli de petreceri</h3><ul class="labels"><li>Aniversări pentru copii</li></ul></div></div></li><li id="loc-12" data-n="12" data-group="f"><div class="card"><div class="media"><img src="assets/img/concept-gaming.webp" srcset="assets/img/s/concept-gaming.webp 1000w, assets/img/concept-gaming.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Cameră cu ecrane mari, canapele și fotolii puf; copii joacă pe console" loading="lazy"><span class="tag">Imagine concept</span></div><div class="card-body"><h3><span class="num"><span class="vh">Numărul de pe plan: </span>12</span> Sală de gaming</h3><ul class="labels"><li>Console și ecrane mari</li><li>Pauză între sesiuni</li></ul></div></div></li><li id="loc-13" data-n="13" data-group="f"><div class="card"><div class="media"><img src="assets/img/concept-bistro.webp" srcset="assets/img/s/concept-bistro.webp 1000w, assets/img/concept-bistro.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Cafenea plină de plante; părinți la mese, lângă un perete de sticlă cu vedere spre rampe" loading="lazy"><span class="tag">Imagine concept</span></div><div class="card-body"><h3><span class="num"><span class="vh">Numărul de pe plan: </span>13</span> Cafenea pentru părinți</h3><ul class="labels"><li>Vedere spre Mini Action</li><li>Plină de plante</li></ul></div></div></li><li id="loc-14" data-n="14" data-group="f"><div class="card"><div class="media"><img src="assets/img/concept-burgers.webp" srcset="assets/img/s/concept-burgers.webp 1000w, assets/img/concept-burgers.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Tejghea de burgeri cu meniu luminos; rideri la coadă și la mese înalte" loading="lazy"><span class="tag">Imagine concept</span></div><div class="card-body"><h3><span class="num"><span class="vh">Numărul de pe plan: </span>14</span> Burger bar</h3><ul class="labels"><li>Vedere spre street soccer și baschet</li></ul></div></div></li><li id="loc-15" data-n="15" data-group="s"><div class="card"><div class="media"><img src="assets/img/concept-entrance.webp" srcset="assets/img/s/concept-entrance.webp 1000w, assets/img/concept-entrance.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Recepție din placaj, cu plante; un vizitator cu rucsac trece prin turnicheți, lângă rafturi cu căști și trotinete" loading="lazy"><span class="tag">Imagine concept</span></div><div class="card-body"><h3><span class="num"><span class="vh">Numărul de pe plan: </span>15</span> Intrare, recepție și toalete</h3><ul class="labels"><li>Bilet și acordul părinților, online</li><li>Aglomerația live, pe site</li><li>Masă de înfășat pentru bebeluși</li></ul></div></div></li><li id="loc-16" data-n="16" data-group="s"><div class="card"><div class="media"><img src="assets/img/concept-service.webp" srcset="assets/img/s/concept-service.webp 1000w, assets/img/concept-service.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Un mecanic repară o bicicletă pe stand, lângă rafturi cu biciclete, trotinete și căști" loading="lazy"><span class="tag">Imagine concept</span></div><div class="card-body"><h3><span class="num"><span class="vh">Numărul de pe plan: </span>16</span> Magazin, service și închirieri</h3><ul class="labels"><li>Service pentru biciclete și trotinete</li><li>Dulapuri și loc pentru bicicleta ta</li><li>Închiriezi tot ce-ți trebuie</li></ul></div></div></li><li id="loc-17" data-n="17" data-group="s"><div class="card"><div class="media"><img src="assets/img/concept-wash.webp" srcset="assets/img/s/concept-wash.webp 1000w, assets/img/concept-wash.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Vestiar cu dulapuri din placaj și bănci; în spate, două cabine de duș și chiuvete; doi rideri își lasă echipamentul" loading="lazy"><span class="tag">Imagine concept</span></div><div class="card-body"><h3><span class="num"><span class="vh">Numărul de pe plan: </span>17</span> Vestiare, toalete și dușuri</h3><ul class="labels"><li>Ușă direct din hostel</li><li>Dulapuri pentru echipament</li></ul></div></div></li><li id="loc-18" data-n="18" data-group="s"><div class="card"><div class="media"><img src="assets/img/concept-walkway.webp" srcset="assets/img/s/concept-walkway.webp 1000w, assets/img/concept-walkway.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Promenadă cu copaci și plante; un părinte și un copil mic privesc rampele de la balustradă" loading="lazy"><span class="tag">Imagine concept</span></div><div class="card-body"><h3><span class="num"><span class="vh">Numărul de pe plan: </span>18</span> Promenadă verde</h3><ul class="labels"><li>Bănci cu vedere spre rampe</li></ul></div></div></li><li id="loc-19" data-n="19" data-group="s"><div class="card"><div class="media"><img src="assets/img/concept-workshop.webp" srcset="assets/img/s/concept-workshop.webp 1000w, assets/img/concept-workshop.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Atelier: un constructor prinde o foaie de placaj pe scheletul curbat al unei rampe; în jur, stive de placaj și scule, iar prin ușa mare se văd rampele" loading="lazy"><span class="tag">Imagine concept</span></div><div class="card-body"><h3><span class="num"><span class="vh">Numărul de pe plan: </span>19</span> Depozit și atelier de rampe</h3><ul class="labels"><li>Aici se construiesc și se repară rampele</li></ul></div></div></li><li id="loc-20" data-n="20" data-group="s"><div class="card"><div class="media"><img src="assets/img/concept-hostel.webp" srcset="assets/img/s/concept-hostel.webp 1000w, assets/img/concept-hostel.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Cameră cu paturi supraetajate din lemn, dulapuri, două biciclete și o trotinetă; doi copii își desfac bagajele" loading="lazy"><span class="tag">Imagine concept</span></div><div class="card-body"><h3><span class="num"><span class="vh">Numărul de pe plan: </span>20</span> Hostel</h3><ul class="labels"><li>Cazare în aceeași clădire</li><li>Pentru tabere și competiții</li></ul></div></div></li></ul>
-      <div class="rail-tools"><p class="rail-count"><span class="swipe">Glisează pentru mai multe</span></p>
-        <div class="arrows"><button type="button" data-prev aria-label="Locul anterior">←</button><button type="button" data-next aria-label="Locul următor">→</button></div></div>
-      <p class="vh" aria-live="polite" data-say></p>
-    </div>
-    <div class="map-foot">
-      <p class="note">Plan orientativ: se adaptează la clădirea finală. Locația și data deschiderii nu sunt încă anunțate.</p>
-      <p class="actions"><a class="btn btn-dark btn-small" href="#action" data-tip="spatiu">Am un spațiu</a><a class="btn btn-line btn-small" href="#action" data-tip="stiri">Intră în Action Crew</a><a class="btn btn-line btn-small" href="#sponsors">Devino sponsor</a></p>
-    </div>
-  </div>
-  <div class="wrap">
-    <details class="more">
-      <summary>Planul la scară și suprafețele</summary>
-      <div class="more-body">
-        <div class="plan-scroll" tabindex="0" role="group" aria-label="Planul la scară, se derulează în lateral"><svg class="plan-svg" viewBox="-6 -6 1012 668" role="img" aria-label="Planul parcului la scară: rampele în mijloc, încăperile pe margine, uși, promenadă și trasee"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z"/></marker></defs><rect class="r-w open" x="220" y="100" width="560" height="180"/><rect class="r-w open" x="0" y="0" width="360" height="100"/><rect class="r-w open" x="360" y="0" width="460" height="100"/><rect class="r-j open" x="240" y="280" width="140" height="200"/><rect class="r-j open" x="780" y="100" width="120" height="180"/><rect class="r-j" x="660" y="280" width="120" height="200"/><rect class="r-j open" x="780" y="280" width="120" height="200"/><rect class="r-j" x="500" y="280" width="160" height="200"/><rect class="r-f" x="380" y="280" width="120" height="200"/><rect class="r-f" x="660" y="520" width="180" height="80"/><rect class="r-f" x="0" y="520" width="100" height="80"/><rect class="r-f" x="360" y="520" width="160" height="80"/><rect class="r-f" x="520" y="520" width="140" height="80"/><rect class="r-s" x="240" y="520" width="120" height="80"/><rect class="r-s" x="100" y="520" width="140" height="80"/><rect class="r-s" x="840" y="520" width="160" height="80"/><rect class="r-s open" x="0" y="480" width="900" height="40"/><rect class="r-s" x="820" y="0" width="80" height="100"/><rect class="r-s" x="900" y="0" width="100" height="520"/><path class="r-j open" d="M0 100H220V280H240V480H0Z"/><rect class="outer" x="0" y="0" width="1000" height="600"/><path class="rail-line" d="M0 480H900"/><path class="rail-line" d="M720 520V600M780 520V600"/><path class="glass" d="M8 520L30 520"/><path class="glass" d="M70 520L94 520"/><path class="glass" d="M365 520L420 520"/><path class="glass" d="M460 520L515 520"/><path class="glass" d="M525 520L570 520"/><path class="glass" d="M610 520L655 520"/><path class="glass" d="M664 520L676 520"/><path class="glass" d="M704 520L716 520"/><path class="glass" d="M724 520L736 520"/><path class="glass" d="M764 520L776 520"/><path class="glass" d="M784 520L796 520"/><path class="glass" d="M824 520L836 520"/><path class="door" d="M35 520L65 520"/><path class="door" d="M155 520L185 520"/><path class="door" d="M265 520L335 520"/><path class="door" d="M425 520L455 520"/><path class="door" d="M575 520L605 520"/><path class="door" d="M680 520L700 520"/><path class="door" d="M740 520L760 520"/><path class="door" d="M800 520L820 520"/><path class="door" d="M855 520L885 520"/><path class="door" d="M935 520L965 520"/><path class="door" d="M900 486L900 514"/><path class="door" d="M845 100L875 100"/><path class="door" d="M700 480L740 480"/><path class="door" d="M45 480L85 480"/><path class="door" d="M420 480L460 480"/><path class="door" d="M560 480L600 480"/><path class="door" d="M800 480L840 480"/><path class="door" d="M275 600L325 600"/><path class="door" d="M1000 250L1000 280"/><path class="door" d="M835 0L885 0"/><path class="route" d="M300 590V545" marker-end="url(#ah)"/><path class="route" d="M260 500H65V440" marker-end="url(#ah)"/><path class="route2" d="M340 500H820" marker-end="url(#ah)"/><text class="n n-w" x="500" y="200" text-anchor="middle">1</text><text class="n n-w" x="180" y="60" text-anchor="middle">2</text><text class="n n-w" x="590" y="60" text-anchor="middle">3</text><text class="n n-j" x="115" y="390" text-anchor="middle">4</text><text class="n n-j" x="310" y="390" text-anchor="middle">5</text><text class="n n-j" x="840" y="200" text-anchor="middle">6</text><text class="n n-j" x="720" y="390" text-anchor="middle">7</text><text class="n n-j" x="840" y="390" text-anchor="middle">8</text><text class="n n-j" x="580" y="390" text-anchor="middle">9</text><text class="n n-f" x="440" y="390" text-anchor="middle">10</text><text class="n n-f" x="750" y="570" text-anchor="middle">11</text><text class="n n-f" x="50" y="570" text-anchor="middle">12</text><text class="n n-f" x="440" y="570" text-anchor="middle">13</text><text class="n n-f" x="590" y="570" text-anchor="middle">14</text><text class="n n-s" x="334" y="570" text-anchor="middle">15</text><text class="n n-s" x="170" y="570" text-anchor="middle">16</text><text class="n n-s" x="920" y="570" text-anchor="middle">17</text><text class="n n-s sm" x="865" y="508" text-anchor="middle">18</text><text class="n n-s" x="860" y="60" text-anchor="middle">19</text><text class="n n-s" x="950" y="270" text-anchor="middle">20</text><text class="lbl" x="335" y="640">Intrare</text><path class="scale" d="M880 636H980M880 628V644M980 628V644"/><text class="lbl" x="930" y="626" text-anchor="middle">10 m</text></svg></div>
-        <ul class="keys"><li><span class="key k-door"></span>Ușă sau poartă</li><li><span class="key k-glass"></span>Perete de sticlă spre parc</li><li><span class="key k-route"></span>Traseul riderilor</li><li><span class="key k-route2"></span>Traseul părinților</li></ul><div class="legend"><div><h3><span class="sw r-w"></span>Pe roți</h3><ul><li><span>1</span><span>Send Room și Fun Room</span><span class="m2">1.008 m²</span></li><li><span>2</span><span>Linie de sărituri pe airbag</span><span class="m2">360 m²</span></li><li><span>3</span><span>Pumptrack din asfalt</span><span class="m2">460 m²</span></li></ul></div><div><h3><span class="sw r-j"></span>Fără roți</h3><ul><li><span>4</span><span>Sală de trambuline</span><span class="m2">876 m²</span></li><li><span>5</span><span>Teren de padel</span><span class="m2">280 m²</span></li><li><span>6</span><span>Parkour și street workout</span><span class="m2">216 m²</span></li><li><span>7</span><span>Antrenament funcțional și studio de cycling</span><span class="m2">240 m²</span></li><li><span>8</span><span>Cățărat și traseu ninja</span><span class="m2">240 m²</span></li><li><span>9</span><span>Street soccer și baschet</span><span class="m2">320 m²</span></li></ul></div><div><h3><span class="sw r-f"></span>Familii</h3><ul><li><span>10</span><span>Mini Action</span><span class="m2">240 m²</span></li><li><span>11</span><span>3 săli de petreceri</span><span class="m2">144 m²</span></li><li><span>12</span><span>Sală de gaming</span><span class="m2">80 m²</span></li><li><span>13</span><span>Cafenea pentru părinți</span><span class="m2">128 m²</span></li><li><span>14</span><span>Burger bar</span><span class="m2">112 m²</span></li></ul></div><div><h3><span class="sw r-s"></span>Servicii</h3><ul><li><span>15</span><span>Intrare, recepție și toalete</span><span class="m2">96 m²</span></li><li><span>16</span><span>Magazin, service și închirieri</span><span class="m2">112 m²</span></li><li><span>17</span><span>Vestiare, toalete și dușuri</span><span class="m2">128 m²</span></li><li><span>18</span><span>Promenadă verde</span><span class="m2">360 m²</span></li><li><span>19</span><span>Depozit și atelier de rampe</span><span class="m2">80 m²</span></li><li><span>20</span><span>Hostel</span><span class="m2">520 m²</span></li></ul></div></div>
-        <p class="note">Plan orientativ pentru o hală de 100 × 60 m, cu suprafețe aproximative.</p>
+      <p class="kicker">Ținta etapei 1</p>
+      <div class="num"><span id="raised">0 €</span> <small>/ 100.000 €</small></div>
+      <div class="bar"><i id="barfill"></i></div>
+      <div class="meta">
+        <div><b id="m2">0</b>m² adoptați din 977</div>
+        <div><b id="pledges">0</b>susținători</div>
+        <div><b id="partners">0 / 4</b>parteneri principali și de zonă</div>
       </div>
-    </details>
-  </div>
-</section>
-
-<section class="slide dark" id="why" data-chapter="proof">
-  <span id="impact"></span><span id="story"></span><span id="proof"></span>
-  <div class="wrap">
-    <div class="head"><h2>Vin pentru rampe.<br>Rămân pentru comunitate.</h2><p>Am văzut asta la primul nostru parc, la Brașov.</p></div>
-    <div class="grid grid-3">
-      <div class="card"><div class="media"><img src="assets/img/event-night.webp" srcset="assets/img/s/event-night.webp 1000w, assets/img/event-night.webp 1229w" sizes="(max-width: 30rem) 75vw, 25rem" width="1229" height="922" alt="Eveniment de seară la Brașov: un rider cu capul în jos deasupra rampei, iar publicul filmează de la balcon" loading="lazy"><span class="tag real">Fotografie din Brașov</span></div><div class="card-body"><h3>Un loc de întâlnire</h3><ul class="labels"><li>Seri de eveniment cu balconul plin</li></ul></div></div>
-      <div class="card"><div class="media"><img src="assets/img/action-camp.webp" srcset="assets/img/s/action-camp.webp 1000w, assets/img/action-camp.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="720" alt="Action Camp la Brașov: copii care fac încălzirea pe rampe" loading="lazy"><span class="tag real">Fotografie din Brașov</span></div><div class="card-body"><h3>Cresc împreună</h3><ul class="labels"><li>Action Camps: tabere de bicicletă și trotinetă</li></ul></div></div>
-      <div class="card"><div class="media"><img src="assets/img/rider-inverted.webp" width="989" height="900" alt="Un rider cu cască, cu capul în jos deasupra rampei, sub sigla Action Cloud din Brașov" loading="lazy"><span class="tag real">Fotografie din Brașov</span></div><div class="card-body"><h3>Un loc al lor, tot anul</h3><ul class="labels"><li>Și iarna, și pe ploaie</li><li>Pe roți, casca e obligatorie</li></ul></div></div>
     </div>
-    <ol class="story" aria-label="Cum am ajuns aici"><li><img src="assets/img/story-2012.webp" width="216" height="216" alt="Un rider sare cu bicicleta într-un hambar, peste o rampă de lemn, cu fân pe jos" loading="lazy"><p><b>2012</b>Primele sărituri, în fân<small>Fotografie reală</small></p></li><li><img src="assets/img/story-build.webp" width="250" height="250" alt="Scheletul din lemn al unei rampe mari, în construcție, cu doi oameni lucrând sus pe el" loading="lazy"><p><b>Brașov</b>L-am construit noi, rampă cu rampă<small>Fotografie reală</small></p></li><li><img src="assets/img/story-next.webp" width="400" height="400" alt="Planul parcului din București, văzut de sus" loading="lazy"><p><b>Acum</b>Următorul nivel: București<small>Imagine concept</small></p></li></ol>
-    <p class="note">Parcul din Brașov s-a închis între timp. Fotografiile sunt de acolo.</p>
+    <p class="note">Aici vezi public tot ce s-a promis. Nu plătești nimic pe site: completezi formularul, te sunăm, semnăm contractul, și abia apoi apari pe acoperiș.</p>
   </div>
-</section>
-
-<section class="slide yellow" id="sponsors" data-chapter="sponsors">
-  <span id="packages"></span>
-  <div class="wrap">
-    <div class="sp-top">
-      <div class="head"><h2>Unde apare brandul tău.</h2><p>Tu susții parcul, noi îți dăm vizibilitate. De la 100 la 200.000 € pe an.</p></div>
-      <div class="crowd" id="estimare">
-      <h3><span class="est">Estimare</span> Câți oameni intră pe ușă</h3>
-      <ul><li><strong><span aria-hidden="true">≈&nbsp;</span><span class="vh">circa </span>50.000</strong><span>intrări în primul an<small>între 32.000 și 77.000</small></span></li><li><strong><span aria-hidden="true">≈&nbsp;</span><span class="vh">circa </span>75.000</strong><span>intrări pe an, din anul 3<small>între 45.000 și 110.000</small></span></li><li><strong>6 din 10</strong><span>au sub 18 ani<small>restul: părinți și rideri adulți</small></span></li></ul>
-      <p>Parcul e în plan, nu construit: sunt estimări, nu numărători. O intrare înseamnă oricine trece de ușă, inclusiv părinții. După deschidere îți raportăm intrările numărate la ușă.</p>
-      <details>
-        <summary>Cum am estimat</summary>
-        <p>Am pornit de la câte vizite pe metru pătrat raportează parcurile indoor de action sports din străinătate și am aplicat cifra prudentă la planul nostru de aproximativ 6.000 m². În România nu există o sală comparabilă și nimeni nu a numărat câți oameni practică aceste sporturi. Primul an e socotit la circa 70% dintr-un an așezat. Cam patru din cinci intrări sunt participanți plătitori; restul sunt adulți însoțitori. Împărțirea pe vârste e o presupunere, pe care o înlocuim cu date din bilete la șase luni după deschidere.</p>
-      </details>
-    </div>
-    </div>
-    <ul class="ladder" aria-label="Pachetele, după preț"><li><a href="#pachet-principal" data-jump><span class="vh">Partener principal: </span>200.000&nbsp;€<span class="vh"> pe an</span></a></li><li><a href="#pachet-zona" data-jump><span class="vh">Partener de zonă: </span>50.000&nbsp;€<span class="vh"> pe an</span></a></li><li><a href="#pachet-atractie" data-jump><span class="vh">Partener de atracție: </span>20.000&nbsp;€<span class="vh"> pe an</span></a></li><li><a href="#pachet-program" data-jump><span class="vh">Partener de program: </span>10.000&nbsp;€<span class="vh"> pe an</span></a></li><li><a href="#pachet-rampa" data-jump><span class="vh">Partener de rampă: </span>3.000&nbsp;€<span class="vh"> pe an</span></a></li><li><a href="#pachet-local" data-jump><span class="vh">Partener local: </span>1.000&nbsp;€<span class="vh"> pe an</span></a></li><li><a href="#pachet-sustinator" data-jump><span class="vh">Susținător: </span>100&nbsp;€<span class="vh"> pe an</span></a></li></ul>
-  </div>
-  <div id="tier-rail" data-rail>
-<ul class="rail tiers" tabindex="0" role="list" aria-label="Pachetele de sponsorizare"><li id="pachet-principal"><div class="card tier"><div class="media"><img src="assets/img/tier-naming.webp" srcset="assets/img/s/tier-naming.webp 1000w, assets/img/tier-naming.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Fațada parcului seara, cu firma „Action Cloud by LOGO” și steaguri LOGO la intrare" loading="lazy"><span class="tag">Imagine concept: exemplu de amplasare</span></div><div class="card-body"><h3>Partener principal</h3><p class="price">200.000&nbsp;€ <small>/ an</small></p><p class="places">Un singur partener</p><ul class="labels"><li>„Action Cloud by brandul tău”</li><li>Logo la intrarea principală</li><li>Apari în tot ce publicăm și la evenimente</li></ul><a class="btn btn-dark btn-small" href="#action" data-pick="Partener principal">Alege pachetul<span class="vh">: Partener principal</span></a></div></div></li><li id="pachet-zona"><div class="card tier"><div class="media"><img src="assets/img/tier-zone.webp" srcset="assets/img/s/tier-zone.webp 1000w, assets/img/tier-zone.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Poarta unei zone, cu LOGO mare deasupra și bannere LOGO în interior" loading="lazy"><span class="tag">Imagine concept: exemplu de amplasare</span></div><div class="card-body"><h3>Partener de zonă</h3><p class="price">50.000&nbsp;€ <small>/ an</small></p><p class="places">4–5 parteneri</p><ul class="labels"><li>O zonă îți poartă numele</li><li>Logo la intrarea și pe rampele zonei</li><li>Clipuri filmate în zonă</li></ul><a class="btn btn-dark btn-small" href="#action" data-pick="Partener de zonă">Alege pachetul<span class="vh">: Partener de zonă</span></a></div></div></li><li id="pachet-atractie"><div class="card tier"><div class="media"><img src="assets/img/tier-attraction.webp" srcset="assets/img/s/tier-attraction.webp 1000w, assets/img/tier-attraction.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Mega rampa, cu panouri LOGO pe laterale" loading="lazy"><span class="tag">Imagine concept: exemplu de amplasare</span></div><div class="card-body"><h3>Partener de atracție</h3><p class="price">20.000&nbsp;€ <small>/ an</small></p><p class="places">4 parteneri</p><ul class="labels"><li>Airbag, pumptrack, padel sau cățărat</li><li>Logo pe atracție</li><li>Clipuri filmate acolo</li></ul><a class="btn btn-dark btn-small" href="#action" data-pick="Partener de atracție">Alege pachetul<span class="vh">: Partener de atracție</span></a></div></div></li><li id="pachet-program"><div class="card tier"><div class="media"><img src="assets/img/tier-programme.webp" srcset="assets/img/s/tier-programme.webp 1000w, assets/img/tier-programme.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Un antrenor și un șir de copii în veste galbene cu LOGO, lângă un banner LOGO" loading="lazy"><span class="tag">Imagine concept: exemplu de amplasare</span></div><div class="card-body"><h3>Partener de program</h3><p class="price">10.000&nbsp;€ <small>/ an</small></p><p class="places">3 parteneri</p><ul class="labels"><li>Tabere, Action Cups sau programul pentru școli</li><li>Programul îți poartă numele</li><li>Mostre la tabere și evenimente</li></ul><a class="btn btn-dark btn-small" href="#action" data-pick="Partener de program">Alege pachetul<span class="vh">: Partener de program</span></a></div></div></li><li id="pachet-rampa"><div class="card tier"><div class="media"><img src="assets/img/tier-feature.webp" srcset="assets/img/s/tier-feature.webp 1000w, assets/img/tier-feature.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Un copil pe trotinetă urcă o rampă cu un autocolant LOGO" loading="lazy"><span class="tag">Imagine concept: exemplu de amplasare</span></div><div class="card-body"><h3>Partener de rampă</h3><p class="price">3.000&nbsp;€ <small>/ an</small></p><ul class="labels"><li>Logo pe o rampă, un perete sau un obstacol</li><li>Mențiuni pe rețelele sociale</li><li>Plasare de produs în clipuri</li></ul><a class="btn btn-dark btn-small" href="#action" data-pick="Partener de rampă">Alege pachetul<span class="vh">: Partener de rampă</span></a></div></div></li><li id="pachet-local"><div class="card tier"><div class="media"><img src="assets/img/tier-local.webp" srcset="assets/img/s/tier-local.webp 1000w, assets/img/tier-local.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="Perete cu plăcuțe din placaj; una, luminată, poartă un LOGO, iar un părinte și un copil o privesc" loading="lazy"><span class="tag">Imagine concept: exemplu de amplasare</span></div><div class="card-body"><h3>Partener local</h3><p class="price">1.000&nbsp;€ <small>/ an</small></p><ul class="labels"><li>Logo pe peretele susținătorilor</li><li>Logo pe site, cu link</li></ul><a class="btn btn-dark btn-small" href="#action" data-pick="Partener local">Alege pachetul<span class="vh">: Partener local</span></a></div></div></li><li id="pachet-sustinator"><div class="card tier"><div class="media"><img src="assets/img/tier-supporter.webp" srcset="assets/img/s/tier-supporter.webp 1000w, assets/img/tier-supporter.webp 1600w" sizes="(max-width: 30rem) 75vw, 25rem" width="1600" height="1195" alt="O mână prinde pe perete o plăcuță din placaj gravată cu „TU”, lângă plăcuțe cu prenume" loading="lazy"><span class="tag">Imagine concept: exemplu de amplasare</span></div><div class="card-body"><h3>Susținător</h3><p class="price">100&nbsp;€ <small>/ an</small></p><ul class="labels"><li>Numele tău pe peretele susținătorilor</li><li>Numele tău pe site</li></ul><a class="btn btn-dark btn-small" href="#action" data-pick="Susținător">Alege pachetul<span class="vh">: Susținător</span></a></div></div></li></ul>
-<div class="wrap rail-tools"><p class="rail-count"><span class="swipe">Glisează pentru mai multe</span></p><div class="arrows"><button type="button" data-prev aria-label="Cardul anterior">←</button><button type="button" data-next aria-label="Cardul următor">→</button></div></div>
 </div>
+<div class="hazard"></div>
+
+<section id="povestea">
   <div class="wrap">
-    <dl class="facts">
-      <div><dt>În toate pachetele</dt><dd>Invitații la evenimente și la Action Cups. De la „Partener de rampă” în sus, primești și plasare de produs în clipuri.</dd></div>
-      <div><dt>Până la deschidere</dt><dd>Parcul din București este încă în plan. Vizibilitatea din parc începe la deschidere, iar ce primești până atunci stabilim împreună.</dd></div>
-      <div><dt>Contractul</dt><dd>Perioada și moneda de plată le stabilim împreună; prețurile sunt în euro.</dd></div>
-    </dl>
+    <div class="sec-head">
+      <h2 class="stencil">De la Brașov<br>la munte.</h2>
+      <p>Trei lucruri s-au întâmplat. Al patrulea depinde și de tine.</p>
+    </div>
+    <div class="beats">
+      <div class="beat">
+        <div class="n">01</div>
+        <div><h3>Am construit-o cu mâinile noastre.</h3><p>În 2022 am deschis la Brașov cel mai mare bikepark indoor din România, construit de rideri, la nivel european. BMX, MTB, trotinetă, skate. Tabere pentru copii, sesiuni, prieteni pe viață.</p></div>
+        <figure><img src="/assets/img/cheile/park-ramps.jpg" alt="Rampele Action Cloud la Brașov" loading="lazy"><span class="tag real">Foto reală</span></figure>
+      </div>
+      <div class="beat">
+        <div class="n">02</div>
+        <div><h3>Trebuie să plecăm din hală.</h3><p>Spațiul din Brașov nu mai e al nostru. Avem 800 m² de rampe din placaj, demontate și gata de mutat. Nu le aruncăm și nu le vindem: au fost construite pentru rideri și rămân pentru rideri.</p></div>
+        <figure><img src="/assets/img/cheile/park-pov.jpg" alt="Vedere de pe quarter pipe în parcul Action Cloud" loading="lazy" style="object-position:center 40%"><span class="tag real">Foto reală</span></figure>
+      </div>
+      <div class="beat">
+        <div class="n">03</div>
+        <div><h3>Avem un teren la Cheile Grădiștei.</h3><p>La munte, lângă Fundata și Moieciu, unde vin deja familii și grupuri de copii la ski și în tabere. Locul perfect pentru un parc care merge tot anul.</p></div>
+        <figure><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3KmvnmSnlHZl97Gv5M4VI8n9jkc/hf_20261122_112728_629e79b7-84d8-46ba-8ad7-0b2771f865b6.png" alt="Vedere din cort spre munții de la Cheile Grădiștei" loading="lazy"><span class="tag">Vizualizare</span></figure>
+      </div>
+      <div class="beat">
+        <div class="n">04</div>
+        <div><h3>Ridicăm acoperișul. Împreună.</h3><p>Un cort-hală de 21,35 × 45,75 m, din oțel zincat și prelată de 900 g/m². Țintă: 100.000 € pentru cort, transport, montaj și ancorare. Restul îl construim noi.</p></div>
+        <figure><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3KmvnmSnlHZl97Gv5M4VI8n9jkc/hf_20261122_112728_c622ee8d-27f1-4a1c-9100-9239fab9a9da.png" alt="Parcul Action Cloud în interiorul cortului" loading="lazy"><span class="tag">Vizualizare</span></figure>
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="slide dark act-slide" id="action" data-chapter="action">
-  <span id="crew"></span><span id="join"></span><span id="contact"></span><span id="ajuta"></span><span id="help"></span>
+<section class="real">
   <div class="wrap">
-    <div class="act-intro">
-      <div class="head"><h2>Hai <span class="nb">să-l</span> construim împreună.</h2><p>Avem 800 m² de rampe, echipa care le-a construit și comunitatea. Ne lipsește spațiul: aproximativ 6.000 m².</p></div>
-      <div class="board" data-board-root data-url="https://ygpmfswujykahqlkzqfg.supabase.co" data-key="sb_publishable_HxkcfpgkLplRxXfqbrMuEw_BEyoRhNK" data-first="fii primul">
-      <h3>Cine e deja în joc</h3>
-      <p class="bintro">Ca o strângere de fonduri, dar fără bani: fiecare înscriere arată că parcul e dorit. Când barele se umplu, îl construim.</p>
-      <ul><li class="brow" data-board="crew" data-goal="2000" data-min="25">
-          <div class="btop"><b>Action Crew</b><span class="bnum"><span data-n>–</span> <span class="bgoal">/ 2.000</span></span></div>
-          <div class="bbar" aria-hidden="true"><i style="width:0%"></i></div>
-          <p class="bsub">riders și părinți care vor parcul</p></li><li class="brow" data-board="spatiu" data-goal="3" data-min="1">
-          <div class="btop"><b>Spații propuse</b><span class="bnum"><span data-n>–</span> <span class="bgoal">/ 3</span></span></div>
-          <div class="bbar" aria-hidden="true"><i style="width:0%"></i></div>
-          <p class="bsub">hale de ~6.000 m² pe masă</p></li><li class="brow" data-board="sponsor" data-goal="15" data-min="1">
-          <div class="btop"><b>Sponsori și parteneri</b><span class="bnum"><span data-n>–</span> <span class="bgoal">/ 15</span></span></div>
-          <div class="bbar" aria-hidden="true"><i style="width:0%"></i></div>
-          <p class="bsub">branduri care pun umărul</p></li><li class="brow" data-board="afacere" data-goal="12" data-min="1">
-          <div class="btop"><b>Afaceri în parc</b><span class="bnum"><span data-n>–</span> <span class="bgoal">/ 12</span></span></div>
-          <div class="bbar" aria-hidden="true"><i style="width:0%"></i></div>
-          <p class="bsub">cafenea, padel, trambuline, fitness…</p></li><li class="brow" data-board="investitor" data-goal="10" data-min="1">
-          <div class="btop"><b>Investitori interesați</b><span class="bnum"><span data-n>–</span> <span class="bgoal">/ 10</span></span></div>
-          <div class="bbar" aria-hidden="true"><i style="width:0%"></i></div>
-          <p class="bsub">fără bani acum, doar interes</p></li><li class="brow" data-board="ajutor" data-goal="50" data-min="1">
-          <div class="btop"><b>Mâini de ajutor</b><span class="bnum"><span data-n>–</span> <span class="bgoal">/ 50</span></span></div>
-          <div class="bbar" aria-hidden="true"><i style="width:0%"></i></div>
-          <p class="bsub">tâmplari, filmări, transport</p></li></ul>
+    <div class="sec-head">
+      <h2 class="stencil">Asta există deja.</h2>
+      <p>Nu e o promisiune. Rampele astea sunt construite, rideuite și gata de mutat. Banii merg doar în acoperiș.</p>
     </div>
+    <div class="gallery">
+      <figure class="big"><img src="/assets/img/cheile/park-street.jpg" alt="Secțiunea street: boxuri, manual pad-uri și quarter-uri" loading="lazy"><span class="tag real">Foto reală · Street</span></figure>
+      <figure><img src="/assets/img/cheile/park-story.jpg" alt="Scări, rail și boxuri galbene" loading="lazy"><span class="tag real">Foto reală</span></figure>
+      <figure><img src="/assets/img/cheile/park-ramps.jpg" alt="Linia de quarter pipe-uri" loading="lazy"><span class="tag real">Foto reală</span></figure>
+      <figure style="grid-column:span 2"><img src="/assets/img/cheile/park-pov.jpg" alt="Send line văzută de sus" loading="lazy" style="object-position:center 55%"><span class="tag real">Foto reală · Send line</span></figure>
     </div>
-    <div class="act">
-      <form name="action" method="POST" action="/action/multumim/" data-netlify="true" data-netlify-honeypot="bot-field">
+  </div>
+</section>
+
+<section id="planul">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="stencil">Planul.</h2>
+      <p>Etapa 1 mută parcul nostru, așa cum e, sub un acoperiș la munte. Etapa 2 îl face mai mare.</p>
+    </div>
+    <div class="plan-grid">
+      <figure><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3KmvnmSnlHZl97Gv5M4VI8n9jkc/hf_20261122_110230_141b0d62-7e39-4a49-ac85-ca8540f6db7a.png" alt="Planul zonelor din cortul de 977 m²" loading="lazy"><span class="tag">Vizualizare · plan orientativ</span></figure>
+      <div>
+        <p class="kicker">Etapa 1 · ținta 100.000 €</p>
+        <div class="spec" style="margin-top:12px">
+          <div><span>Dimensiuni</span><b>21,35 × 45,75 m</b></div>
+          <div><span>Suprafață</span><b>977 m²</b></div>
+          <div><span>Înălțime</span><b>8,5 m</b></div>
+          <div><span>Structură</span><b>Oțel zincat, ferme duble</b></div>
+          <div><span>Prelată</span><b>PVC 900 g/m²</b></div>
+          <div><span>Locație</span><b>Cheile Grădiștei, jud. Brașov</b></div>
+          <div><span>Banii acoperă</span><b>Cort, transport, montaj, ancorare</b></div>
+        </div>
+        <div class="zones"><span>Send line</span><span>Street</span><span>Foam pit</span><span>Beginner line</span><span>Lounge</span></div>
+      </div>
+    </div>
+    <div class="phase2">
+      <div class="txt">
+        <p class="kicker">Etapa 2 · următorul obiectiv</p>
+        <h3>1.500 m² și mai mult.</h3>
+        <p style="color:#cfc9bd">După ce parcul e sub acoperiș, cortul crește: zonă de airbag cu turn de start, linie de dirt jumps și un pumptrack. Partenerii din etapa 1 au prioritate la zonele noi.</p>
+      </div>
+      <figure><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3KmvnmSnlHZl97Gv5M4VI8n9jkc/hf_20261122_110011_72571bda-b71c-4029-a17d-3a56a5286569.png" alt="Etapa 2: airbag, dirt jumps și pumptrack" loading="lazy"><span class="tag">Vizualizare · etapa 2</span></figure>
+    </div>
+  </div>
+</section>
+
+<section class="roof" id="acoperis">
+  <div class="wrap">
+    <p class="kicker">Crowdfunding fără card</p>
+    <p class="roof-big stencil">977 m² × 100 € = <em>acoperișul.</em></p>
+    <p style="color:#cfc9bd;max-width:720px;margin:18px 0 26px;font-size:18px">Fiecare pătrățel de mai jos e un metru pătrat din acoperișul nostru. Adoptă unul, sau o sută. Numele tău ajunge pe peretele riderilor din hală, iar pătratul tău se aprinde aici.</p>
+    <div class="roof-grid" id="roofgrid" aria-hidden="true"></div>
+    <div class="roof-legend"><span>■ galben = adoptat</span><span id="roofcount">0 din 977 m² adoptați</span></div>
+    <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap">
+      <a class="btn btn-y" href="#ajuta" data-pick="m2">Adopt m²</a>
+      <a class="btn btn-o" href="#sponsori">Sunt o firmă</a>
+    </div>
+  </div>
+</section>
+<div class="hazard"></div>
+
+<section id="sponsori">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="stencil">Programe de<br>sponsorizare.</h2>
+      <p>Patru feluri de a ridica acoperișul. Fiecare se socotește în metri pătrați, ca să vezi exact cât din hală e al tău.</p>
+    </div>
+    <div class="ledger">
+      <div class="row">
+        <div class="n">01</div>
+        <div><h3>Partener principal</h3><span class="slots">1 loc · 400 m²</span></div>
+        <ul><li>Hala poartă numele tău: „[Brandul tău] Hall – Action Cloud”</li><li>Logo pe acoperiș, pe fațadă și la intrare</li><li>Prezent în tot conținutul nostru video și foto</li><li>Partener oficial la Action Cups și Action Camps</li></ul>
+        <div class="price"><b>40.000 €</b><span>sponsorizare</span></div>
+      </div>
+      <div class="row">
+        <div class="n">02</div>
+        <div><h3>Partener de zonă</h3><span class="slots">3 locuri · 100 m² fiecare</span></div>
+        <ul><li>O zonă a parcului poartă numele tău: Send line, Street sau Foam pit</li><li>Banner dedicat în zonă</li><li>Un video cu riderii din zona ta</li><li>Prioritate la zonele din etapa 2</li></ul>
+        <div class="price"><b>10.000 €</b><span>sponsorizare</span></div>
+      </div>
+      <div class="row">
+        <div class="n">03</div>
+        <div><h3>Constructor</h3><span class="slots">8 locuri · 25 m² fiecare</span></div>
+        <ul><li>Logo pe peretele „Construit de” din hală</li><li>Mulțumire publică pe Instagram @action.cloud</li><li>Invitație la deschidere</li></ul>
+        <div class="price"><b>2.500 €</b><span>sponsorizare</span></div>
+      </div>
+      <div class="row">
+        <div class="n">04</div>
+        <div><h3>Action Crew</h3><span class="slots">Pentru oricine · de la 1 m²</span></div>
+        <ul><li>Adopți metri pătrați de acoperiș, câți vrei</li><li>Numele tău pe peretele riderilor</li><li>Pătratul tău se aprinde pe site</li></ul>
+        <div class="price"><b>100 €</b><span>per m²</span></div>
+      </div>
+    </div>
+    <p style="color:var(--muted);margin-top:22px;font-size:15px">Sponsorizările se fac prin contract cu <b style="color:var(--snow)">Asociația Rosenau Cycling</b>, proprietara parcului Action Cloud, conform Legii nr. 32/1994. Pachetele se pot adapta: spune-ne ce ai în minte.</p>
+    <div style="margin-top:24px"><a class="btn btn-y" href="#ajuta" data-pick="sponsor">Vreau să sponsorizez</a></div>
+  </div>
+</section>
+
+<section class="firms" id="firme" style="background:var(--raised)">
+  <div class="wrap">
+    <div>
+      <p class="kicker">Pentru firme</p>
+      <h2 class="stencil">Poate costa<br>0 lei.</h2>
+      <p style="color:#cfc9bd;font-size:18px;margin-bottom:24px">Dacă firma ta plătește impozit pe profit, o parte din el poate merge la noi în loc de buget. Nu plătești mai mult: alegi doar unde ajung banii.</p>
+      <div class="facts">
+        <div><b>Cât</b>Cel mult suma mai mică dintre 0,75% din cifra de afaceri și 20% din impozitul pe profit.</div>
+        <div><b>Când</b>Sponsorizarea făcută acum contează pentru 2026. Ce rămâne nefolosit din plafonul pe 2026 se poate redirecționa până la 25 iunie 2027, prin Formularul 177.</div>
+        <div><b>Cum</b>Semnăm contractul de sponsorizare, faceți plata, iar contabilul scade suma din impozit.</div>
+        <div><b>Atenție</b>Microîntreprinderile nu mai pot scădea sponsorizarea din impozit (din 2024).</div>
+      </div>
+    </div>
+    <div class="calc">
+      <h3>Calculator</h3>
+      <p>Află cât poate redirecționa firma ta.</p>
+      <label for="ca">Cifra de afaceri anuală (lei)</label>
+      <input id="ca" inputmode="numeric" placeholder="ex. 4.000.000">
+      <label for="ip">Impozit pe profit datorat (lei)</label>
+      <input id="ip" inputmode="numeric" placeholder="ex. 100.000">
+      <div class="out" aria-live="polite">
+        <small>Poți redirecționa către Action Cloud</small>
+        <b id="calcout">— lei</b>
+        <small id="calcm2">Introdu cifrele de mai sus.</small>
+      </div>
+      <p class="fine">Calcul orientativ după art. 25 alin. (4) lit. i) din Codul fiscal. Verifică suma finală cu contabilul tău.</p>
+      <a class="btn btn-y" href="#ajuta" data-pick="contabil" style="margin-top:16px;border-color:var(--ink)">Trimite-mi contractul</a>
+    </div>
+  </div>
+</section>
+
+<section class="people">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="stencil">Nu ai firmă?<br>Poți ajuta oricum.</h2>
+      <p>Riderii, părinții și prietenii au construit primul parc. Vor ridica și acoperișul.</p>
+    </div>
+    <div class="cols">
+      <div class="col"><h3>Adoptă un m²</h3><p>100 € pentru un metru pătrat de acoperiș și numele tău pe peretele riderilor. Se poate și în echipă: o clasă, un club, o familie.</p></div>
+      <div class="col"><h3>Formularul 230</h3><p>Dacă ești salariat, poți redirecționa gratuit o parte din impozitul pe venit către asociația noastră. Pentru veniturile din 2026, termenul e 25 mai 2027. Îți trimitem formularul precompletat.</p></div>
+      <div class="col"><h3>Vino la montaj</h3><p>Cortul și rampele se ridică cu mâini multe. Dacă știi să lucrezi cu lemn, scule sau utilaje, te vrem în echipa de montaj.</p></div>
+      <div class="col"><h3>Spune unei firme</h3><p>Cunoști un patron, un director sau un contabil? Dă-ne un nume și ne ocupăm noi de restul.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="join" id="ajuta">
+  <div class="wrap">
+    <div>
+      <h2 class="stencil">Hai să-l<br>ridicăm.</h2>
+      <p class="lead">Completează în 30 de secunde. Nu plătești nimic acum: te contactăm noi cu detaliile și contractul.</p>
+    </div>
+    <form name="action" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="actionform">
       <input type="hidden" name="form-name" value="action">
       <input type="hidden" name="language" value="ro">
-      <input type="hidden" name="subject" value="Action Cloud: formular nou (%{submissionId})" data-subject-field>
-      <p class="hp" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
-      <fieldset class="choices">
-        <legend>Cum intri în joc?</legend>
-        <label class="choice"><input type="radio" name="ajutor" value="Am sau știu un spațiu" data-key="spatiu" data-subject="SPAȚIU" required><b>Am sau știu un spațiu</b></label><label class="choice"><input type="radio" name="ajutor" value="Vreau să sponsorizez" data-key="sponsor" data-subject="SPONSOR" required><b>Vreau să sponsorizez</b></label><label class="choice"><input type="radio" name="ajutor" value="Vreau să-mi aduc afacerea în parc" data-key="afacere" data-subject="AFACERE" required><b>Vreau să-mi aduc afacerea în parc</b></label><label class="choice"><input type="radio" name="ajutor" value="Vreau să investesc" data-key="investitor" data-subject="INVESTITOR" required><b>Vreau să investesc</b></label><label class="choice"><input type="radio" name="ajutor" value="Vreau să pun umărul" data-key="crew" data-subject="AJUTOR" required><b>Vreau să pun umărul</b></label><label class="choice"><input type="radio" name="ajutor" value="Vreau noutăți: Action Crew" data-key="stiri" data-subject="noutăți" required><b>Vreau noutăți: Action Crew</b></label>
-        <button type="button" class="change" data-change hidden>Schimbă răspunsul</button>
-      </fieldset>
-      <div class="rest" data-rest>
-        <div class="group" data-group="spatiu"><div class="field"><label for="a-space"><span data-label>Unde e și cât de mare?</span> <span>(opțional)</span></label><input id="a-space" name="spatiu" type="text" placeholder="ex. Otopeni, 6.000 m²" aria-describedby="a-space-help"><p class="help" id="a-space-help">Și mai mic e bun. Noi construim și conducem parcul, tu primești o parte din încasări. Dacă spațiul e al altcuiva, lasă datele tale și vorbește tu întâi cu el.</p></div></div><div class="group" data-group="sponsor"><div class="pair"><div class="field"><label for="a-company"><span data-label>Companie</span> <span>(opțional)</span></label><input id="a-company" name="sponsor-firma" type="text" autocomplete="organization"></div><div class="field"><label for="f-package"><span data-label>Pachet</span></label><select id="f-package" name="pachet"><option value="">Încă nu știu</option><option value="Partener principal">Partener principal</option><option value="Partener de zonă">Partener de zonă</option><option value="Partener de atracție">Partener de atracție</option><option value="Partener de program">Partener de program</option><option value="Partener de rampă">Partener de rampă</option><option value="Partener local">Partener local</option><option value="Susținător">Susținător</option></select></div></div></div><div class="group" data-group="afacere"><div class="field"><label for="a-business"><span data-label>Ce afacere?</span> <span>(opțional)</span></label><input id="a-business" name="afacere" type="text" placeholder="ex. cafenea, CrossFit, yoga"></div></div><div class="group" data-group="investitor"><div class="field"><label for="a-invest"><span data-label>Cum ai vrea să intri?</span> <span>(opțional)</span></label><input id="a-invest" name="investitie" type="text" placeholder="ex. capital, echipament, o unitate în parc" aria-describedby="a-invest-help"><p class="help" id="a-invest-help">Nu trimiți bani acum: doar ne arăți interesul, fără nicio obligație. Îți trimitem prezentarea pentru investitori și ne vedem față în față.</p></div></div><div class="group" data-group="crew"><div class="field"><label for="a-skill"><span data-label>Cu ce ne poți ajuta?</span> <span>(opțional)</span></label><input id="a-skill" name="ajutor-cum" type="text" placeholder="ex. tâmplărie, filmare, transport"></div></div><div class="group" data-group="stiri"><p class="help"><b>Action Crew:</b> gratuit. Îți scriem pe e-mail când anunțăm locația și data deschiderii, iar tu afli printre primii. Te poți dezabona oricând. Ai sub 16 ani? <a href="https://wa.me/?text=Vreau%20s%C4%83%20intru%20%C3%AEn%20Action%20Crew%2C%20e%20gratuit.%20M%C4%83%20%C3%AEnscrii%3F%20https%3A//actioncloud.ro/action/%3Ftip%3Dstiri" rel="noopener">Trimite pagina unui părinte</a>.</p></div>
-        <div class="pair">
-          <div class="field"><label for="a-name"><span data-label>Nume</span></label><input id="a-name" name="name" type="text" required autocomplete="name" pattern=".*\S.*" title="Scrie numele tău"></div>
-          <div class="field"><label for="a-contact"><span data-label>Telefon sau e-mail</span></label><input id="a-contact" name="contact" type="text" required autocomplete="tel" autocapitalize="none" spellcheck="false" pattern="\s*(\+?[\d\s\(\)\.\-]{9,}|[^@\s]+@[^@\s]+\.[^@\s]{2,})\s*" title="Scrie un număr de telefon sau o adresă de e-mail" data-contact data-email-label="E-mail"></div>
-        </div>
-        <button class="btn btn-yellow" type="submit">Trimite</button>
-        <p class="help">Mesajele le citește Chris. Folosim datele doar pentru acest proiect și le ștergem la cerere: <a href="mailto:chris@actioncloud.co">chris@actioncloud.co</a>. Ai sub 16 ani? Roagă un părinte să completeze în locul tău.</p>
+      <input type="hidden" name="subject" value="Action Cloud × Cheile Grădiștei – formular nou">
+      <p class="hidden"><label>Nu completa: <input name="bot-field"></label></p>
+      <div class="opts">
+        <label><input type="radio" name="ajutor" value="sponsor" required> Firma mea vrea să sponsorizeze</label>
+        <label><input type="radio" name="ajutor" value="m2"> Vreau să adopt metri pătrați de acoperiș</label>
+        <label><input type="radio" name="ajutor" value="contabil"> Sunt contabil / vreau contractul de sponsorizare</label>
+        <label><input type="radio" name="ajutor" value="230"> Vreau Formularul 230</label>
+        <label><input type="radio" name="ajutor" value="cunosc"> Cunosc o firmă care ar putea ajuta</label>
+        <label><input type="radio" name="ajutor" value="montaj"> Vreau să ajut la montaj</label>
       </div>
+      <div class="f">
+        <input name="name" placeholder="Numele tău" required>
+        <input name="contact" placeholder="Telefon sau email" required>
+        <input name="sponsor-firma" placeholder="Firma (dacă e cazul)" class="full">
+        <select name="pachet" class="full">
+          <option value="">Program (opțional)</option>
+          <option>Partener principal – 40.000 €</option>
+          <option>Partener de zonă – 10.000 €</option>
+          <option>Constructor – 2.500 €</option>
+          <option>Action Crew – metri pătrați</option>
+          <option>Altă sumă / altă idee</option>
+        </select>
+        <input name="metri" type="number" min="1" placeholder="Câți m² (dacă adopți)" class="full">
+        <textarea name="ajutor-cum" placeholder="Mesaj (opțional)" class="full"></textarea>
+      </div>
+      <button class="btn" type="submit">Trimite</button>
+      <div class="ok" id="actionok">Mulțumim! Te contactăm în curând. Între timp, spune-le și prietenilor: actioncloud.ro</div>
     </form>
-    </div>
   </div>
 </section>
 
-</main>
-
-<footer class="foot">
+<section class="crew">
   <div class="wrap">
-    <img src="assets/img/logo-yellow.webp" width="472" height="256" alt="Action Cloud" loading="lazy">
-    <ul>
-      <li><a href="https://www.instagram.com/action.cloud/" rel="noopener">Instagram</a></li>
-      <li><a href="https://www.tiktok.com/@action.cloud" rel="noopener">TikTok</a></li>
-      <li><a href="mailto:chris@actioncloud.co">chris@actioncloud.co</a></li>
-    </ul>
-    <p>Imaginile marcate „Imagine concept” sunt generate pe calculator și arată planul pentru București. Fotografiile sunt de la primul nostru parc, cel din Brașov, care s-a închis între timp.</p>
-    <p id="despre-marime">* După suprafața totală planificată a halei (aproximativ 6.000 m²), față de parcurile indoor de action sports deschise sau anunțate public în România, după datele publice consultate în noiembrie 2026.</p>
+    <div>
+      <p class="kicker">Action Crew</p>
+      <h2 class="stencil">Află primul<br>când deschidem.</h2>
+      <p style="color:#cfc9bd;margin-top:14px">Noutăți de la montaj, data deschiderii, Action Camps și Action Cups.</p>
+    </div>
+    <form name="crew" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="crewform">
+      <input type="hidden" name="form-name" value="crew">
+      <input type="hidden" name="language" value="ro">
+      <p class="hidden"><label>Nu completa: <input name="bot-field"></label></p>
+      <div class="f">
+        <input name="name" placeholder="Nume">
+        <input name="email" type="email" placeholder="Email" required>
+        <select name="rides" class="full">
+          <option value="">Ce rideuiești?</option>
+          <option>BMX</option><option>MTB / Dirt</option><option>Trotinetă</option><option>Skate</option><option>Părinte</option><option>Doar susțin</option>
+        </select>
+      </div>
+      <label class="consent"><input type="checkbox" name="consent" value="da" required> Sunt de acord să primesc emailuri de la Action Cloud. Mă pot dezabona oricând.</label>
+      <button class="btn" type="submit">Intru în crew</button>
+      <div class="ok" id="crewok">Ești în Action Crew. Ne vedem la munte.</div>
+    </form>
+  </div>
+</section>
+
+<div class="hazard"></div>
+<footer>
+  <div class="wrap">
+    <div><a class="brand" href="#top">ACTION CLOUD</a><p style="margin-top:8px">Un proiect al Asociației Rosenau Cycling · Cheile Grădiștei, jud. Brașov</p></div>
+    <div><p>Instagram: <a href="https://www.instagram.com/action.cloud/">@action.cloud</a></p><p>Imaginile marcate „Vizualizare” sunt generate și arată planul, nu realitatea de azi.</p></div>
   </div>
 </footer>
 
-<script src="site.js" defer></script>
-<script src="action.js" defer></script>
+<script>
+/* ===== Actualizează aici progresul public ===== */
+const PROGRESS = {
+  raisedEur: 0,      // suma confirmată prin contracte
+  m2: 0,             // metri pătrați adoptați
+  supporters: 0,     // număr de susținători
+  partners: 0        // parteneri principali + de zonă semnați (din 4)
+};
+/* ============================================= */
+const TARGET = 100000, ROOF = 977;
+const fmt = n => n.toLocaleString('ro-RO');
+document.getElementById('raised').textContent = fmt(PROGRESS.raisedEur) + ' €';
+document.getElementById('barfill').style.width = Math.min(100, PROGRESS.raisedEur / TARGET * 100) + '%';
+document.getElementById('m2').textContent = fmt(PROGRESS.m2);
+document.getElementById('pledges').textContent = fmt(PROGRESS.supporters);
+document.getElementById('partners').textContent = PROGRESS.partners + ' / 4';
+document.getElementById('roofcount').textContent = fmt(PROGRESS.m2) + ' din 977 m² adoptați';
+const grid = document.getElementById('roofgrid');
+const frag = document.createDocumentFragment();
+for (let i = 0; i < ROOF; i++) { const c = document.createElement('i'); if (i < PROGRESS.m2) c.className = 'on'; frag.appendChild(c); }
+grid.appendChild(frag);
+
+/* Calculator */
+const num = v => Number(String(v).replace(/[^\d]/g, '')) || 0;
+function calc(){
+  const ca = num(document.getElementById('ca').value), ip = num(document.getElementById('ip').value);
+  const out = document.getElementById('calcout'), m = document.getElementById('calcm2');
+  if (!ca || !ip) { out.textContent = '— lei'; m.textContent = 'Introdu cifrele de mai sus.'; return; }
+  const v = Math.floor(Math.min(ca * 0.0075, ip * 0.20));
+  out.textContent = fmt(v) + ' lei';
+  const eur = v / 5.0, sq = Math.floor(eur / 100);
+  m.textContent = '≈ ' + fmt(Math.round(eur)) + ' € · ' + (sq >= 1 ? fmt(sq) + ' m² de acoperiș, fără cost pentru firmă' : 'sub 1 m² de acoperiș');
+}
+['ca','ip'].forEach(id => document.getElementById(id).addEventListener('input', calc));
+
+/* Preselect option from buttons */
+document.querySelectorAll('[data-pick]').forEach(a => a.addEventListener('click', () => {
+  const r = document.querySelector('input[name="ajutor"][value="' + a.dataset.pick + '"]'); if (r) r.checked = true;
+}));
+
+/* Netlify forms via fetch */
+function wire(id, okId){
+  const f = document.getElementById(id);
+  f.addEventListener('submit', e => {
+    e.preventDefault();
+    const body = new URLSearchParams(new FormData(f)).toString();
+    fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body })
+      .then(r => { if (!r.ok) throw 0; f.querySelectorAll('.opts,.f,.btn,.consent').forEach(x => x.style.display = 'none'); document.getElementById(okId).style.display = 'block'; })
+      .catch(() => (f.querySelector('.btn').textContent='Nu s-a trimis, încearcă din nou'));
+  });
+}
+wire('actionform','actionok'); wire('crewform','crewok');
+/* Action Crew: emailul merge și în lista Kit "Action Crew" (form 10220859, double opt-in) */
+document.getElementById('crewform').addEventListener('submit', () => {
+  const f = document.getElementById('crewform'), email = (f.email.value || '').trim();
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email)) return;
+  const d = new FormData(); d.append('email_address', email);
+  if (f.name.value.trim()) d.append('first_name', f.name.value.trim());
+  try { fetch('https://app.kit.com/forms/10220859/subscriptions', { method: 'POST', body: d, mode: 'no-cors', keepalive: true }); } catch (e) {}
+});
+</script>
 </body>
 </html>

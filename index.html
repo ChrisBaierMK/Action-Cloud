@@ -141,6 +141,7 @@ nav .btn{min-height:44px;padding:8px 14px;font-size:15px}
 .chip:hover{border-color:var(--ply)}
 .chip.on{background:var(--yellow);border-color:var(--yellow);color:var(--ink)}.chip.on span{color:var(--ink)}
 .chip.res{opacity:.55;text-decoration:line-through}
+.chip[data-part=zid]{grid-column:1/-1}
 @media(max-width:560px){.chips{grid-template-columns:1fr}}
 .legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px;font-size:13px;color:var(--muted)}
 .legend i{display:inline-block;width:12px;height:12px;vertical-align:-1px;margin-right:6px;background:#2c2c2c;border:1px solid #555}
@@ -296,7 +297,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
         </div>
       </article>
     </div>
-    <p class="all">Toate zonele împreună: <b>135.000 €</b>, adică tot cortul de 1.302 m², montat. Prețurile sunt „de la”: pentru pachete mari, vorbim direct.</p>
+    <p class="all">Toate zonele împreună fac exact <b>135.000 €</b>, adică tot cortul de 1.302 m², montat: numele halei 50.000 · foam pit 20.000 · send line 20.000 · street 15.000 · kids zone 10.000 · poartă 10.000 · perete 10 × 1.000.</p>
   </div>
 </section>
 
@@ -420,32 +421,32 @@ footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
 /* ===== Actualizează aici: statusul zonelor și banii confirmați prin contract ===== */
 const RAISED_EUR = 0;
 const PARTS = {
-  nume:   { name: 'Numele halei', price: 50000, from: true,  status: 'liber', img: 'https://d8j0ntlcm91z4.cloudfront.net/user_3KmvnmSnlHZl97Gv5M4VI8n9jkc/hf_20261123_084319_37694850-b85a-416e-88fa-8ed52f7d3936.png', real: false,
+  nume:   { name: 'Numele halei', price: 50000, from: false,  status: 'liber', img: 'https://d8j0ntlcm91z4.cloudfront.net/user_3KmvnmSnlHZl97Gv5M4VI8n9jkc/hf_20261123_084319_37694850-b85a-416e-88fa-8ed52f7d3936.png', real: false,
             gets: ['Hala se numește „[Brandul tău] × Action Cloud Hall”', 'Logo pe fațadă, pe acoperiș și la intrare', 'Prezent în tot conținutul nostru foto-video', 'Partener oficial la Action Camps și Action Cups'] },
   foam:   { name: 'Foam pit', price: 20000, status: 'liber', img: 'https://d8j0ntlcm91z4.cloudfront.net/user_3KmvnmSnlHZl97Gv5M4VI8n9jkc/hf_20261122_112728_c622ee8d-27f1-4a1c-9100-9239fab9a9da.png', real: false,
             gets: ['„[Brand] Foam Pit”: logo pe groapă și pe bannere', 'Zona în care învață toți începătorii primul trick', 'Clipuri cu primele salturi, cu logoul în cadru'] },
-  send:   { name: 'Send line', price: 15000, status: 'liber', img: '/assets/img/cheile/park-pov.jpg', real: true,
+  send:   { name: 'Send line', price: 20000, status: 'liber', img: '/assets/img/cheile/park-pov.jpg', real: true,
             gets: ['„[Brand] Send Line”: linia mare de quarter-uri și sărituri', 'Logo pe rampele principale, în fiecare clip POV', 'Banner dedicat'] },
-  street: { name: 'Zona street', price: 12000, status: 'liber', img: '/assets/img/cheile/park-street.jpg', real: true,
+  street: { name: 'Zona street', price: 15000, status: 'liber', img: '/assets/img/cheile/park-street.jpg', real: true,
             gets: ['„[Brand] Street”: boxuri, ledge-uri, rail, scări', 'Logo pe boxurile galbene', 'Banner dedicat'] },
-  poarta: { name: 'Poarta de intrare', price: 8000, status: 'liber', img: 'https://d8j0ntlcm91z4.cloudfront.net/user_3KmvnmSnlHZl97Gv5M4VI8n9jkc/hf_20261123_084319_7877b7ed-b12c-40bb-a20c-b08cecaaba27.png', real: false,
+  poarta: { name: 'Poarta de intrare', price: 10000, status: 'liber', img: 'https://d8j0ntlcm91z4.cloudfront.net/user_3KmvnmSnlHZl97Gv5M4VI8n9jkc/hf_20261123_084319_7877b7ed-b12c-40bb-a20c-b08cecaaba27.png', real: false,
             gets: ['Logo pe poarta prin care intră fiecare vizitator', 'Prima imagine din fiecare vizită și fiecare poză de grup'] },
   kids:   { name: 'Kids zone', price: 10000, status: 'liber', img: 'https://d8j0ntlcm91z4.cloudfront.net/user_3KmvnmSnlHZl97Gv5M4VI8n9jkc/hf_20261122_112728_c622ee8d-27f1-4a1c-9100-9239fab9a9da.png', real: false,
             gets: ['„[Brand] Kids Zone”: zona nouă pentru cei mici, cu rampe joase', 'Logo pe rampe și pe bannere', 'Prezent la toate Action Camps pentru copii'] },
-  zid:    { name: 'Peretele „Construit de”', price: 1000, from: true, status: 'liber', img: '/assets/img/cheile/park-story.jpg', real: true,
-            gets: ['Logoul firmei tale pe peretele constructorilor', 'De la 1.000 € la 2.500 €, după mărimea logoului', 'Mulțumire publică pe @action.cloud'] }
+  zid:    { name: 'Peretele „Construit de”', price: 1000, unit: ' / loc · 10 locuri', from: false, status: 'liber', img: '/assets/img/cheile/park-story.jpg', real: true,
+            gets: ['Logoul firmei tale pe peretele constructorilor', '10 locuri, câte 1.000 € fiecare', 'Mulțumire publică pe @action.cloud'] }
 };
 /* ================================================================================== */
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const fmt = n => n.toLocaleString('ro-RO');
-const priceTxt = p => (p.from ? 'de la ' : '') + fmt(p.price) + ' €';
+const priceTxt = p => (p.from ? 'de la ' : '') + fmt(p.price) + ' €' + (p.unit ? ' / loc' : '');
 const keys = Object.keys(PARTS);
 const free = keys.filter(k => PARTS[k].status !== 'rezervat').length;
 $('#free').textContent = free + ' / ' + keys.length;
 $('#raised').textContent = RAISED_EUR ? fmt(RAISED_EUR) + ' €' : 'Start';
 $('#barfill').style.width = Math.min(100, RAISED_EUR / 1350) + '%';
 $('#roofprice').textContent = priceTxt(PARTS.nume);
-$$('.z').forEach(g => { const p = PARTS[g.dataset.part]; const t = g.querySelector('text.p'); if (t) t.textContent = g.dataset.part === 'zid' ? fmt(p.price) + '+ €' : priceTxt(p); if (p.status === 'rezervat') g.classList.add('res'); g.setAttribute('aria-label', p.name + ', ' + priceTxt(p)); });
+$$('.z').forEach(g => { const p = PARTS[g.dataset.part]; const t = g.querySelector('text.p'); if (t) t.textContent = priceTxt(p); if (p.status === 'rezervat') g.classList.add('res'); g.setAttribute('aria-label', p.name + ', ' + priceTxt(p)); });
 $('#chips').innerHTML = keys.map(k => '<button type="button" class="chip' + (PARTS[k].status === 'rezervat' ? ' res' : '') + '" data-part="' + k + '">' + PARTS[k].name + '<span>' + priceTxt(PARTS[k]) + '</span></button>').join('');
 const sel = $('#pachet');
 keys.forEach(k => { const o = document.createElement('option'); o.value = PARTS[k].name + ' – ' + priceTxt(PARTS[k]); o.textContent = o.value + (PARTS[k].status === 'rezervat' ? ' (rezervată)' : ''); o.dataset.k = k; sel.appendChild(o); });
@@ -458,7 +459,7 @@ function show(k){
   $('#ctag').textContent = p.real ? 'Foto reală · Brașov' : 'Vizualizare'; $('#ctag').className = 'tag' + (p.real ? ' r' : '');
   $('#cslot').textContent = res ? 'Rezervată' : 'Logoul tău aici';
   $('#cname').textContent = p.name;
-  $('#cprice').innerHTML = (p.from ? '<small>de la</small>' : '') + fmt(p.price) + ' €';
+  $('#cprice').innerHTML = (p.from ? '<small>de la</small>' : '') + fmt(p.price) + ' €' + (p.unit ? '<small style="margin-left:6px">' + p.unit + '</small>' : '');
   const st = $('#cstate'); st.textContent = res ? 'Rezervată' + (p.sponsor ? ' · ' + p.sponsor : '') : 'Liberă'; st.className = 'state' + (res ? ' res' : '');
   $('#cgets').innerHTML = p.gets.map(x => '<li>' + x + '</li>').join('');
   $('#cbtn').textContent = res ? 'Alege altă zonă' : 'Aleg zona asta';

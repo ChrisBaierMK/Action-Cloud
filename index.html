@@ -228,7 +228,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
           <defs><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#2c2c2c"/><rect width="2" height="6" fill="#555"/></pattern></defs>
           <rect x="6" y="6" width="458" height="214" fill="none" stroke="#777" stroke-width="2"/>
           <g class="z" data-part="poarta" tabindex="0" role="button"><rect x="0" y="84" width="14" height="60"/><text x="20" y="118" transform="rotate(-90 20 118)" style="font-size:9px">Poartă</text></g>
-          <g class="z" data-part="lounge" tabindex="0" role="button"><rect x="20" y="12" width="66" height="96"/><text x="30" y="56">Lounge</text><text class="p" x="30" y="72"></text></g>
+          <g aria-hidden="true"><rect x="20" y="12" width="66" height="96" fill="#1f1f1f" stroke="#444" stroke-dasharray="3 3"/><text x="30" y="60" fill="#888" style="font:700 11px Archivo,sans-serif;letter-spacing:.06em">LOUNGE</text></g>
           <g class="z" data-part="zid" tabindex="0" role="button"><rect x="20" y="150" width="66" height="64"/><text x="27" y="176" style="font-size:9px">Construit</text><text x="27" y="188" style="font-size:9px">de</text><text class="p" x="27" y="204" style="font-size:10px"></text></g>
           <g class="z" data-part="street" tabindex="0" role="button"><rect x="92" y="12" width="196" height="108"/><text x="104" y="60">Street</text><text class="p" x="104" y="76"></text></g>
           <g class="z" data-part="foam" tabindex="0" role="button"><rect x="294" y="12" width="164" height="108"/><text x="306" y="60">Foam pit</text><text class="p" x="306" y="76"></text></g>
@@ -382,8 +382,6 @@ const PARTS = {
             gets: ['„[Brand] Street”: boxuri, ledge-uri, rail, scări', 'Logo pe boxurile galbene', 'Banner dedicat'] },
   poarta: { name: 'Poarta de intrare', price: 7000, status: 'liber', img: 'https://d8j0ntlcm91z4.cloudfront.net/user_3KmvnmSnlHZl97Gv5M4VI8n9jkc/hf_20261122_110231_e680f991-cf26-487e-912b-5c683b9e5d77.png', real: false,
             gets: ['Logo pe poarta prin care intră fiecare vizitator', 'Prima imagine din fiecare vizită și fiecare poză de grup'] },
-  lounge: { name: 'Lounge', price: 5000, status: 'liber', img: 'https://d8j0ntlcm91z4.cloudfront.net/user_3KmvnmSnlHZl97Gv5M4VI8n9jkc/hf_20261122_112728_c622ee8d-27f1-4a1c-9100-9239fab9a9da.png', real: false,
-            gets: ['„[Brand] Lounge”: zona unde stau părinții și riderii', 'Logo pe perete și pe bănci', 'Loc pentru sampling sau produsele tale'] },
   zid:    { name: 'Peretele „Construit de”', price: 1000, from: true, status: 'liber', img: '/assets/img/cheile/park-story.jpg', real: true,
             gets: ['Logoul firmei tale pe peretele constructorilor', 'De la 1.000 € la 2.500 €, după mărimea logoului', 'Mulțumire publică pe @action.cloud'] }
 };

@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Action Cloud × Cheile Grădiștei — Ridicăm acoperișul</title>
-<meta name="description" content="Cel mai mare bikepark indoor din România se mută la Cheile Grădiștei. Parcul e gata, îi lipsește acoperișul: un cort de 977 m². Adoptă un m² de acoperiș.">
+<title>Action Cloud × Cheile Grădiștei — Alege-ți partea din hală</title>
+<meta name="description" content="Parcul indoor Action Cloud se mută în Bike Park-ul Cheile Grădiștei. Un cort de 977 m², 150.000 de vizitatori pe an. Alege partea din hală care poartă numele brandului tău.">
 <meta property="og:title" content="Action Cloud × Cheile Grădiștei">
-<meta property="og:description" content="Parcul e gata. Îi lipsește acoperișul. 977 m² × 100 € = cortul nostru.">
+<meta property="og:description" content="Alege-ți partea din hală: numele halei, foam pit, send line, street, poartă, lounge.">
 <meta property="og:image" content="https://d8j0ntlcm91z4.cloudfront.net/user_3KmvnmSnlHZl97Gv5M4VI8n9jkc/hf_20261122_110231_e680f991-cf26-487e-912b-5c683b9e5d77.png">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#1B1B1B">
@@ -15,481 +15,346 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=Saira+Stencil+One&display=swap" rel="stylesheet">
 <style>
-:root{
-  --yellow:#ECC820; --charcoal:#1B1B1B; --raised:#262626; --ink:#141414;
-  --ply:#DCC597; --snow:#F2EFE8; --muted:#A8A196; --line:#3a3a3a;
-  --stencil:"Saira Stencil One", Impact, sans-serif;
-  --body:"Archivo", "Helvetica Neue", Arial, sans-serif;
-  --wrap:1180px;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--charcoal);color:var(--snow);font-family:var(--body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+/* VOICE  direct, worksite-proud, a sponsor deck you can click
+   IDEA   the tent's floor plan is the price list: tap a zone, see what it costs and where your logo goes
+   PICTURE the to-scale plan of the 21,35 × 45,75 m tent, beside a live card with the zone photo
+   COLOUR charcoal ground, signal yellow accent, plywood for secondary, snow text
+   TYPE   Saira Stencil One for titles and prices, Archivo for everything else */
+:root{--yellow:#ECC820;--charcoal:#1B1B1B;--raised:#262626;--ink:#141414;--ply:#DCC597;--snow:#F2EFE8;--muted:#A8A196;--line:#3a3a3a;
+--stencil:"Saira Stencil One",Impact,sans-serif;--body:"Archivo","Helvetica Neue",Arial,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:var(--charcoal);color:var(--snow);font:17px/1.55 var(--body);-webkit-font-smoothing:antialiased;overflow-x:clip}
 img{display:block;max-width:100%}
 a{color:inherit}
-.wrap{max-width:var(--wrap);margin:0 auto;padding:0 22px}
-.stencil{font-family:var(--stencil);text-transform:uppercase;letter-spacing:.01em;line-height:.95;font-weight:400}
-.kicker{font-size:13px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--ply)}
-.hazard{height:14px;background:repeating-linear-gradient(-45deg,var(--yellow) 0 18px,var(--ink) 18px 36px)}
-.btn{display:inline-block;font-family:var(--body);font-weight:800;font-size:15px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;padding:15px 24px;border:2px solid var(--yellow);cursor:pointer;transition:background .15s,color .15s}
-.btn-y{background:var(--yellow);color:var(--ink)}
-.btn-y:hover{background:var(--snow);border-color:var(--snow)}
-.btn-o{background:transparent;color:var(--yellow)}
-.btn-o:hover{background:var(--yellow);color:var(--ink)}
-.tag{position:absolute;left:12px;bottom:12px;background:rgba(20,20,20,.8);color:var(--ply);font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:5px 9px}
-.tag.real{color:var(--yellow)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 22px}
+.st{font-family:var(--stencil);text-transform:uppercase;line-height:.95;font-weight:400}
+.kick{font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--ply)}
+.hazard{height:12px;background:repeating-linear-gradient(-45deg,var(--yellow) 0 16px,var(--ink) 16px 32px)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;font:800 15px var(--body);letter-spacing:.05em;text-transform:uppercase;text-decoration:none;padding:12px 22px;border:2px solid var(--yellow);cursor:pointer;background:var(--yellow);color:var(--ink)}
+.btn:hover{background:var(--snow);border-color:var(--snow)}
+.btn.o{background:transparent;color:var(--yellow)}
+.btn.o:hover{background:var(--yellow);color:var(--ink)}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+.tag{position:absolute;left:10px;bottom:10px;background:rgba(20,20,20,.82);color:var(--ply);font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:5px 8px}
+.tag.r{color:var(--yellow)}
+section{padding:72px 0}
 
 /* NAV */
 nav{position:sticky;top:0;z-index:20;background:rgba(27,27,27,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:62px;gap:16px}
-.brand{font-family:var(--stencil);font-size:20px;text-decoration:none;white-space:nowrap}
-.brand b{color:var(--yellow);font-weight:400}
-.navlinks{display:flex;gap:22px;font-size:14px;font-weight:600}
-.navlinks a{text-decoration:none;color:var(--muted)}
-.navlinks a:hover{color:var(--snow)}
-nav .btn{padding:10px 16px;font-size:13px}
-@media(max-width:900px){.navlinks{display:none}}
-
-
-.brand{display:flex;align-items:center;gap:10px}
-.brand img{display:block;width:auto;overflow:hidden}
-.brand .lg-ac{height:30px}.brand .lg-cg{height:40px}
-.brand b{font-family:var(--stencil);font-size:20px}
-.lockup{display:flex;align-items:center;gap:16px;margin-bottom:18px}
-.lockup img{height:58px;width:auto;filter:drop-shadow(0 2px 8px rgba(0,0,0,.45))}
-.lockup img+span+img{height:74px}
-.lockup span{font-family:var(--stencil);font-size:34px;color:var(--yellow)}
-@media(max-width:520px){.brand .lg-ac{height:24px}.brand .lg-cg{height:32px}.lockup img{height:42px}.lockup img+span+img{height:54px}}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:62px;gap:14px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand img{width:auto}.brand .ac{height:30px}.brand .cg{height:40px}
+.brand b{font-family:var(--stencil);font-size:20px;color:var(--yellow);font-weight:400}
+nav .links{display:flex;gap:22px;font-size:14px;font-weight:600}
+nav .links a{text-decoration:none;color:var(--muted)}nav .links a:hover{color:var(--snow)}
+nav .btn{min-height:40px;padding:8px 14px;font-size:13px}
+@media(max-width:900px){nav .links{display:none}}
+@media(max-width:420px){.brand .ac{height:24px}.brand .cg{height:32px}}
 
 /* HERO */
-.hero{position:relative;min-height:92vh;display:flex;align-items:flex-end;overflow:hidden}
+.hero{position:relative;min-height:86vh;display:flex;align-items:flex-end;overflow:hidden}
 .hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,20,20,.15) 0%,rgba(20,20,20,.35) 45%,rgba(27,27,27,.97) 100%)}
-.hero .wrap{position:relative;z-index:2;padding-bottom:56px;padding-top:120px;width:100%}
-.hero h1{font-size:clamp(44px,11vw,150px);overflow-wrap:anywhere}
-.hero h1 span{display:block}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,20,20,.1),rgba(20,20,20,.4) 45%,rgba(27,27,27,.97))}
+.hero .wrap{position:relative;z-index:2;width:100%;padding-top:110px;padding-bottom:44px}
+.hero .tag{left:auto;right:14px;bottom:14px;z-index:3}
+.lockup{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.lockup img{width:auto;height:54px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}.lockup img.cg{height:70px}
+.lockup span{font-family:var(--stencil);font-size:30px;color:var(--yellow)}
+.hero h1{font-size:clamp(44px,9.5vw,128px);overflow-wrap:break-word}
 .hero h1 .y{color:var(--yellow)}
-.hero .lead{font-size:clamp(18px,2.2vw,23px);max-width:620px;margin:22px 0 28px;color:var(--snow)}
-.hero .ctas{display:flex;flex-wrap:wrap;gap:12px}
-.hero .tag{left:auto;right:16px;bottom:16px;z-index:3}
-.reveal{opacity:0;transform:translateY(26px);animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards}
-.d1{animation-delay:.1s}.d2{animation-delay:.25s}.d3{animation-delay:.45s}.d4{animation-delay:.65s}.d5{animation-delay:.85s}
+.hero .lead{font-size:clamp(17px,2vw,21px);max-width:640px;margin:18px 0 24px}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:10px}
+.rv{opacity:0;transform:translateY(24px);animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards}
+.d1{animation-delay:.1s}.d2{animation-delay:.25s}.d3{animation-delay:.42s}.d4{animation-delay:.6s}.d5{animation-delay:.78s}
 @keyframes rise{to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){.reveal{animation:none;opacity:1;transform:none}html{scroll-behavior:auto}}
+@media(prefers-reduced-motion:reduce){.rv{animation:none;opacity:1;transform:none}html{scroll-behavior:auto}}
+@media(max-width:520px){.lockup img{height:40px}.lockup img.cg{height:52px}}
 
-/* GAUGE */
-.gauge{background:var(--raised);border-top:4px solid var(--yellow)}
-.gauge .wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;padding-top:30px;padding-bottom:30px;align-items:center}
-.gauge .num{font-family:var(--stencil);font-size:clamp(40px,6vw,64px);color:var(--yellow)}
-.gauge .num small{font-size:.45em;color:var(--muted)}
-.bar{height:22px;background:var(--ink);border:1px solid var(--line);margin:12px 0 8px;position:relative;overflow:hidden}
-.bar i{position:absolute;inset:0 auto 0 0;width:0;background:repeating-linear-gradient(-45deg,var(--yellow) 0 12px,#d4b31c 12px 24px)}
-.gauge .meta{display:flex;gap:26px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
-.gauge .meta b{color:var(--snow);font-size:20px;display:block}
-.gauge p.note{font-size:15px;color:var(--muted)}
-@media(max-width:820px){.gauge .wrap{grid-template-columns:1fr}}
+/* NUMBERS STRIP */
+.strip{background:var(--raised);border-top:4px solid var(--yellow)}
+.strip .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0}
+.strip .wrap>div{padding:22px 18px;border-right:1px solid var(--line)}
+.strip .wrap>div:last-child{border-right:0}
+.strip b{display:block;font-family:var(--stencil);font-size:clamp(30px,4vw,46px);color:var(--yellow);line-height:1}
+.strip span{font-size:14px;color:var(--muted)}
+.bar{height:8px;background:var(--ink);margin-top:10px;overflow:hidden}.bar i{display:block;height:100%;width:0;background:var(--yellow)}
+@media(max-width:760px){.strip .wrap{grid-template-columns:1fr 1fr}.strip .wrap>div:nth-child(2){border-right:0}.strip .wrap>div:nth-child(-n+2){border-bottom:1px solid var(--line)}}
 
-/* SECTIONS */
-section{padding:96px 0}
-.sec-head{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:46px}
-.sec-head>*{min-width:0}
-.sec-head h2{font-size:clamp(36px,6.5vw,84px);overflow-wrap:break-word}
-.sec-head p{color:var(--muted);font-size:18px}
-@media(max-width:820px){.sec-head{grid-template-columns:1fr;gap:16px}}
+/* PICKER */
+.head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:26px}
+.head h2{font-size:clamp(38px,5.6vw,72px)}
+.head p{color:var(--muted);max-width:440px}
+.picker{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:26px;align-items:start}
+.plan{background:var(--ink);border:1px solid var(--line);padding:14px}
+.plan svg{width:100%;height:auto;display:block}
+.z{cursor:pointer}
+.z rect{fill:#2c2c2c;stroke:#555;stroke-width:1.2;transition:fill .15s}
+.z text{fill:var(--snow);font:700 11px var(--body);letter-spacing:.06em;text-transform:uppercase;pointer-events:none}
+.z text.p{fill:var(--ply);font-weight:600;letter-spacing:0;text-transform:none}
+.z:hover rect,.z:focus rect{fill:#3a3a3a}
+.z.on rect{fill:var(--yellow);stroke:var(--yellow)}
+.z.on text{fill:var(--ink)}
+.z.res rect{fill:url(#hatch);stroke:#666}
+.z:focus{outline:none}
+.roof{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;margin-bottom:10px;background:transparent;border:2px dashed var(--ply);color:var(--snow);padding:10px 14px;font:800 13px var(--body);letter-spacing:.08em;text-transform:uppercase;cursor:pointer;min-height:44px}
+.roof em{font-style:normal;color:var(--ply);font-weight:600;letter-spacing:0;text-transform:none}
+.roof.on{background:var(--yellow);border-color:var(--yellow);color:var(--ink)}.roof.on em{color:var(--ink)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px;font-size:13px;color:var(--muted)}
+.legend i{display:inline-block;width:12px;height:12px;vertical-align:-1px;margin-right:6px;background:#2c2c2c;border:1px solid #555}
+.legend .y{background:var(--yellow);border-color:var(--yellow)}
+.legend .h{background:repeating-linear-gradient(45deg,#555 0 2px,#2c2c2c 2px 5px)}
+.card{background:var(--raised);border-top:6px solid var(--yellow)}
+.card figure{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--ink)}
+.card figure img{width:100%;height:100%;object-fit:cover}
+.slot{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);border:3px dashed var(--yellow);background:rgba(20,20,20,.55);color:var(--yellow);font:800 14px var(--body);letter-spacing:.1em;text-transform:uppercase;padding:14px 20px;white-space:nowrap}
+.card .in{padding:22px 24px 26px}
+.card .row1{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.card h3{font-size:26px;font-weight:800;line-height:1.15}
+.card .price{font-family:var(--stencil);font-size:38px;color:var(--yellow);white-space:nowrap}
+.card .price small{font-family:var(--body);font-size:13px;color:var(--muted);margin-right:6px;text-transform:none}
+.card .state{display:inline-block;margin:8px 0 12px;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:4px 8px;background:var(--ply);color:var(--ink)}
+.card .state.res{background:#555;color:var(--snow)}
+.card ul{list-style:none;color:#d6d0c4;margin-bottom:18px}
+.card li{padding-left:18px;position:relative;margin-bottom:6px}
+.card li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:3px;background:var(--yellow)}
+.card .acts{display:flex;gap:10px;flex-wrap:wrap}
+.all{margin-top:14px;font-size:14px;color:var(--muted)}
+.all b{color:var(--snow)}
+@media(max-width:900px){.picker{grid-template-columns:1fr}}
 
-/* STORY */
-.beats{display:grid;gap:0;border-top:1px solid var(--line)}
-.beat{display:grid;grid-template-columns:120px 1fr 1fr;gap:30px;padding:34px 0;border-bottom:1px solid var(--line);align-items:center}
-.beat .n{font-family:var(--stencil);font-size:64px;color:var(--yellow)}
-.beat h3{font-size:26px;font-weight:800;margin-bottom:8px}
-.beat p{color:#cfc9bd}
-.beat figure{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--raised)}
-.beat figure img{width:100%;height:100%;object-fit:cover}
-@media(max-width:820px){.beat{grid-template-columns:1fr;gap:14px}.beat .n{font-size:48px}}
+/* WHY / TIMELINE */
+.why{background:var(--ink)}
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--line);overflow-x:auto;margin-bottom:22px}
+.tabs button{flex:none;background:none;border:0;border-bottom:4px solid transparent;color:var(--muted);font:800 14px var(--body);letter-spacing:.06em;text-transform:uppercase;padding:14px 18px;cursor:pointer;min-height:48px}
+.tabs button[aria-selected=true]{color:var(--snow);border-color:var(--yellow)}
+.pane{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:28px;align-items:center}
+.pane[hidden]{display:none}
+.pane h3{font-family:var(--stencil);font-size:clamp(32px,4.4vw,54px);text-transform:uppercase;line-height:1;margin-bottom:14px}
+.pane p{color:#d6d0c4;margin-bottom:12px}
+.pane figure{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--raised)}
+.pane figure img{width:100%;height:100%;object-fit:cover}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+.facts div{border-left:3px solid var(--yellow);padding-left:12px}
+.facts b{display:block;font-family:var(--stencil);font-size:28px;line-height:1.05}
+.facts span{font-size:14px;color:var(--muted)}
+.thumbs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:6px}
+.thumbs img{aspect-ratio:1;object-fit:cover;width:100%}
+@media(max-width:820px){.pane{grid-template-columns:1fr}}
 
-/* REAL GALLERY */
-.real{background:var(--ink)}
-.gallery{display:grid;grid-template-columns:2fr 1fr 1fr;grid-auto-rows:260px;gap:10px}
-.gallery figure{position:relative;overflow:hidden;background:var(--raised)}
-.gallery figure img{width:100%;height:100%;object-fit:cover}
-.gallery .big{grid-row:span 2}
-@media(max-width:820px){.gallery{grid-template-columns:1fr 1fr;grid-auto-rows:200px}.gallery .big{grid-column:span 2;grid-row:span 1}}
+/* MONEY */
+.money .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px}
+.money details{background:var(--raised);border-top:4px solid var(--ply);padding:0}
+.money summary{list-style:none;cursor:pointer;padding:20px 22px;display:flex;justify-content:space-between;gap:14px;align-items:center;font-weight:800;font-size:19px;min-height:48px}
+.money summary::-webkit-details-marker{display:none}
+.money summary::after{content:"+";font-family:var(--stencil);font-size:30px;color:var(--yellow);line-height:1}
+.money details[open] summary::after{content:"–"}
+.money .body{padding:0 22px 22px;color:#d6d0c4}
+.money .body p{margin-bottom:10px}
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.calc label{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.calc input{width:100%;margin-top:4px;font:600 18px var(--body);padding:11px 12px;border:2px solid var(--line);background:var(--ink);color:var(--snow)}
+.out{background:var(--ink);padding:14px 16px}
+.out b{display:block;font-family:var(--stencil);font-size:34px;color:var(--yellow);line-height:1.1}
+.out small{color:var(--muted);font-size:14px}
+@media(max-width:820px){.money .wrap{grid-template-columns:1fr}}
 
-/* PLAN */
-.plan-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:36px;align-items:start}
-.plan-grid figure{position:relative}
-.spec{border-top:3px solid var(--yellow)}
-.spec div{display:flex;justify-content:space-between;gap:18px;padding:14px 0;border-bottom:1px solid var(--line);font-size:16px}
-.spec div span{color:var(--muted)}
-.spec div b{text-align:right}
-.zones{margin-top:26px;display:flex;flex-wrap:wrap;gap:8px}
-.zones span{border:1px solid var(--ply);color:var(--ply);font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:7px 11px}
-.phase2{margin-top:64px;display:grid;grid-template-columns:1fr 1.25fr;gap:36px;align-items:center;background:var(--raised);padding:0}
-.phase2 .txt{padding:36px}
-.phase2 h3{font-family:var(--stencil);font-size:44px;text-transform:uppercase;margin:8px 0 12px}
-.phase2 figure{position:relative;height:100%;min-height:300px}
-.phase2 figure img{width:100%;height:100%;object-fit:cover}
-@media(max-width:820px){.plan-grid,.phase2{grid-template-columns:1fr}}
-
-/* ROOF */
-.roof{background:var(--ink)}
-.roof-grid{display:grid;grid-template-columns:repeat(47,1fr);gap:2px;max-width:100%;margin:10px 0 18px}
-.roof-grid i{aspect-ratio:1;background:#2e2e2e}
-.roof-grid i.on{background:var(--yellow)}
-.roof-legend{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:var(--muted);font-size:14px}
-.roof-big{font-family:var(--stencil);font-size:clamp(46px,8vw,104px);line-height:1}
-.roof-big em{font-style:normal;color:var(--yellow)}
-
-/* PROGRAMS LEDGER */
-.ledger{border-top:3px solid var(--yellow)}
-.row{display:grid;grid-template-columns:90px 1.1fr 1.6fr 170px;gap:24px;padding:30px 0;border-bottom:1px solid var(--line);align-items:start}
-.row .n{font-family:var(--stencil);font-size:44px;color:var(--yellow);line-height:1}
-.row h3{font-size:24px;font-weight:800;line-height:1.2}
-.row .slots{display:inline-block;margin-top:8px;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);background:var(--ply);padding:4px 8px}
-.row ul{list-style:none;color:#cfc9bd}
-.row li{padding-left:18px;position:relative;margin-bottom:6px}
-.row li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:3px;background:var(--yellow)}
-.row .price{text-align:right}
-.row .price b{font-family:var(--stencil);font-size:34px;display:block;line-height:1}
-.row .price span{font-size:13px;color:var(--muted)}
-@media(max-width:900px){.row{grid-template-columns:60px 1fr;gap:12px}.row ul,.row .price{grid-column:2}.row .price{text-align:left}}
-
-/* COMPANIES */
-.firms .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px}
-.firms h2{font-size:clamp(40px,5.6vw,72px);margin-bottom:20px}
-.firms .facts{border-top:1px solid var(--line)}
-.firms .facts div{padding:16px 0;border-bottom:1px solid var(--line)}
-.firms .facts b{display:block;color:var(--yellow);font-size:13px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px}
-.calc{background:var(--snow);color:var(--ink);padding:32px;border-top:8px solid var(--yellow)}
-.calc h3{font-family:var(--stencil);font-size:34px;text-transform:uppercase;margin-bottom:6px}
-.calc label{display:block;font-weight:800;font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin:18px 0 6px}
-.calc input{width:100%;font:600 20px var(--body);padding:12px 14px;border:2px solid var(--ink);background:#fff;color:var(--ink)}
-.calc .out{margin-top:22px;background:var(--ink);color:var(--snow);padding:20px}
-.calc .out b{display:block;font-family:var(--stencil);font-size:42px;color:var(--yellow);line-height:1.05}
-.calc .out small{color:var(--muted);font-size:14px}
-.calc .fine{font-size:13px;color:#555;margin-top:14px}
-@media(max-width:860px){.firms .wrap{grid-template-columns:1fr}}
-
-/* PEOPLE */
-.people .cols{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:3px solid var(--yellow)}
-.people .col{padding:30px 30px 30px 0;border-bottom:1px solid var(--line)}
-.people .col+.col{padding-left:30px;border-left:1px solid var(--line)}
-.people h3{font-size:24px;font-weight:800;margin-bottom:8px}
-.people p{color:#cfc9bd}
-@media(max-width:820px){.people .cols{grid-template-columns:1fr}.people .col+.col{padding-left:0;border-left:0}}
-
-/* FORMS */
+/* FORM */
 .join{background:var(--yellow);color:var(--ink)}
-.join h2{font-size:clamp(46px,7vw,92px)}
-.join .wrap{display:grid;grid-template-columns:1fr 1.15fr;gap:48px}
-.join p.lead{font-size:19px;margin-top:16px;max-width:460px}
-form .opts{display:grid;gap:8px;margin-bottom:18px}
-form .opts label{display:flex;gap:12px;align-items:center;background:rgba(20,20,20,.07);border:2px solid var(--ink);padding:12px 14px;font-weight:600;cursor:pointer}
-form .opts input{accent-color:var(--ink);width:18px;height:18px}
-.f{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.f .full{grid-column:span 2}
-.f input,.f select,.f textarea{width:100%;font:500 16px var(--body);padding:13px 14px;border:2px solid var(--ink);background:var(--snow);color:var(--ink)}
-.f textarea{min-height:96px;resize:vertical}
-form .btn{margin-top:14px;background:var(--ink);color:var(--yellow);border-color:var(--ink)}
+.join .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:40px}
+.join h2{font-size:clamp(44px,6.6vw,88px)}
+.join .lead{font-size:18px;margin-top:14px;max-width:440px}
+.join .chosen{margin-top:20px;background:var(--ink);color:var(--yellow);padding:14px 16px;font-weight:800;display:none}
+.opts{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.opts label{display:flex;gap:8px;align-items:center;border:2px solid var(--ink);padding:10px 12px;font-weight:600;cursor:pointer;min-height:44px;font-size:15px}
+.opts input{accent-color:var(--ink);width:18px;height:18px}
+.f{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.f .full{grid-column:1/-1}
+.f input,.f select,.f textarea{width:100%;font:500 16px var(--body);padding:12px 13px;border:2px solid var(--ink);background:var(--snow);color:var(--ink);min-height:48px}
+.f textarea{min-height:84px;resize:vertical}
+.f .hide{display:none}
+form .btn{margin-top:12px;background:var(--ink);color:var(--yellow);border-color:var(--ink)}
 form .btn:hover{background:var(--charcoal)}
-.ok{display:none;background:var(--ink);color:var(--yellow);padding:22px;font-weight:800;font-size:18px;margin-top:14px}
-.hidden{display:none}
-@media(max-width:860px){.join .wrap{grid-template-columns:1fr}.f{grid-template-columns:1fr}.f .full{grid-column:auto}}
-.crew{background:var(--ink)}
-.crew .wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
-.crew h2{font-size:clamp(40px,5.6vw,72px)}
-.crew form .f input,.crew form .f select{background:var(--raised);color:var(--snow);border-color:var(--line)}
-.crew form .btn{background:var(--yellow);color:var(--ink);border-color:var(--yellow)}
-.crew .consent{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--muted);margin-top:12px}
-@media(max-width:860px){.crew .wrap{grid-template-columns:1fr}}
+.ok{display:none;background:var(--ink);color:var(--yellow);padding:20px;font-weight:800;font-size:18px;margin-top:12px}
+.hp{display:none}
+.fine{font-size:13px;margin-top:10px}
+@media(max-width:820px){.join .wrap{grid-template-columns:1fr}.f{grid-template-columns:1fr}}
 
-footer{padding:46px 0 60px;color:var(--muted);font-size:14px}
+footer{padding:40px 0 54px;color:var(--muted);font-size:14px}
 footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
-footer .brand{color:var(--snow);font-size:24px}
 </style>
 </head>
 <body>
 
 <nav>
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="Action Cloud × Cheile Grădiștei"><img src="/assets/img/logo-yellow.webp" alt="Action Cloud" class="lg-ac" width="472" height="256"><b>×</b><img src="https://cheilegradistei.ro/images/logo.png" alt="Cheile Grădiștei" class="lg-cg" width="188" height="78"></a>
-    <div class="navlinks">
-      <a href="#povestea">Povestea</a><a href="#planul">Planul</a><a href="#acoperis">1 m²</a><a href="#sponsori">Sponsori</a><a href="#firme">Firme</a>
-    </div>
-    <a class="btn btn-y" href="#ajuta">Ajută</a>
+    <a class="brand" href="#top" aria-label="Action Cloud × Cheile Grădiștei"><img class="ac" src="/assets/img/logo-yellow.webp" alt="Action Cloud" width="472" height="256"><b>×</b><img class="cg" src="https://cheilegradistei.ro/images/logo.png" alt="Cheile Grădiștei" width="188" height="78"></a>
+    <div class="links"><a href="#alege">Alege partea</a><a href="#de-ce">De ce aici</a><a href="#bani">Cum plătești</a></div>
+    <a class="btn" href="#intra">Intră în joc</a>
   </div>
 </nav>
 
 <header class="hero" id="top">
-  <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3KmvnmSnlHZl97Gv5M4VI8n9jkc/hf_20261122_110231_e680f991-cf26-487e-912b-5c683b9e5d77.png" alt="Cortul Action Cloud la Cheile Grădiștei, iarna">
+  <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3KmvnmSnlHZl97Gv5M4VI8n9jkc/hf_20261122_110231_e680f991-cf26-487e-912b-5c683b9e5d77.png" alt="Cortul Action Cloud în Bike Park-ul Cheile Grădiștei, iarna">
   <span class="tag">Vizualizare</span>
   <div class="wrap">
-    <div class="lockup reveal d1"><img src="/assets/img/logo-yellow.webp" alt="Action Cloud" width="472" height="256"><span>×</span><img src="https://cheilegradistei.ro/images/logo.png" alt="Cheile Grădiștei" width="188" height="78"></div>
-    <h1 class="stencil"><span class="reveal d2">Parcul e gata.</span><span class="y reveal d3">Îi lipsește</span><span class="y reveal d3">acoperișul.</span></h1>
-    <p class="lead reveal d4">Cel mai mare bikepark indoor din România se mută la munte. Avem rampele, echipa și terenul. Ne trebuie un cort de 977 m² ca să ne dăm din nou pe rampe, vară și iarnă.</p>
-    <div class="ctas reveal d5">
-      <a class="btn btn-y" href="#acoperis">Adoptă un m²</a>
-      <a class="btn btn-o" href="#sponsori">Programe de sponsorizare</a>
-    </div>
+    <div class="lockup rv d1"><img src="/assets/img/logo-yellow.webp" alt="Action Cloud" width="472" height="256"><span>×</span><img class="cg" src="https://cheilegradistei.ro/images/logo.png" alt="Cheile Grădiștei" width="188" height="78"></div>
+    <h1 class="st"><span class="rv d2">Alege-ți partea</span> <span class="y rv d3">din hală.</span></h1>
+    <p class="lead rv d4">În Bike Park-ul Cheile Grădiștei, echipa noastră construiește parcul indoor. Bike park-ul crește în fiecare an, iar hala crește cu el. Fiecare zonă din cort poate purta numele brandului tău.</p>
+    <div class="ctas rv d5"><a class="btn" href="#alege">Vezi zonele și prețurile</a><a class="btn o" href="#de-ce">De ce aici</a></div>
   </div>
 </header>
 
-<div class="gauge" id="progres">
+<div class="strip">
   <div class="wrap">
-    <div>
-      <p class="kicker">Ținta etapei 1</p>
-      <div class="num"><span id="raised">0 €</span> <small>/ 100.000 €</small></div>
-      <div class="bar"><i id="barfill"></i></div>
-      <div class="meta">
-        <div><b id="m2">0</b>m² adoptați din 977</div>
-        <div><b id="pledges">0</b>susținători</div>
-        <div><b id="partners">0 / 4</b>parteneri principali și de zonă</div>
-      </div>
-    </div>
-    <p class="note">Aici vezi public tot ce s-a promis. Nu plătești nimic pe site: completezi formularul, te sunăm, semnăm contractul, și abia apoi apari pe acoperiș.</p>
+    <div><b>150.000+</b><span>vizitatori pe an în stațiune</span></div>
+    <div><b>977 m²</b><span>cort, 21,35 × 45,75 m</span></div>
+    <div><b id="free">7 / 7</b><span>zone libere de sponsorizat</span></div>
+    <div><b id="raised">0 €</b><span>din 100.000 € pentru etapa 1</span><div class="bar"><i id="barfill"></i></div></div>
   </div>
 </div>
 <div class="hazard"></div>
 
-<section id="povestea">
+<section id="alege">
   <div class="wrap">
-    <div class="sec-head">
-      <h2 class="stencil">De la Brașov<br>la munte.</h2>
-      <p>Trei lucruri s-au întâmplat. Al patrulea depinde și de tine.</p>
+    <div class="head">
+      <h2 class="st">Atinge o zonă.</h2>
+      <p>Planul e la scară. Fiecare zonă are prețul ei și locul unde stă logoul tău. Cine semnează primul, o rezervă.</p>
     </div>
-    <div class="beats">
-      <div class="beat">
-        <div class="n">01</div>
-        <div><h3>Am construit-o cu mâinile noastre.</h3><p>În 2022 am deschis la Brașov cel mai mare bikepark indoor din România, construit de rideri, la nivel european. BMX, MTB, trotinetă, skate. Tabere pentru copii, sesiuni, prieteni pe viață.</p></div>
-        <figure><img src="/assets/img/cheile/park-ramps.jpg" alt="Rampele Action Cloud la Brașov" loading="lazy"><span class="tag real">Foto reală</span></figure>
+    <div class="picker">
+      <div class="plan">
+        <button class="roof" type="button" data-part="nume" aria-pressed="false"><span>Numele halei · fațadă și acoperiș</span><em id="roofprice"></em></button>
+        <svg viewBox="0 0 470 228" role="group" aria-label="Planul cortului, 21,35 × 45,75 m">
+          <defs><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#2c2c2c"/><rect width="2" height="6" fill="#555"/></pattern></defs>
+          <rect x="6" y="6" width="458" height="214" fill="none" stroke="#777" stroke-width="2"/>
+          <g class="z" data-part="poarta" tabindex="0" role="button"><rect x="0" y="84" width="14" height="60"/><text x="20" y="118" transform="rotate(-90 20 118)" style="font-size:9px">Poartă</text></g>
+          <g class="z" data-part="lounge" tabindex="0" role="button"><rect x="20" y="12" width="66" height="96"/><text x="30" y="56">Lounge</text><text class="p" x="30" y="72"></text></g>
+          <g class="z" data-part="zid" tabindex="0" role="button"><rect x="20" y="150" width="66" height="64"/><text x="27" y="176" style="font-size:9px">Construit</text><text x="27" y="188" style="font-size:9px">de</text><text class="p" x="27" y="204" style="font-size:10px"></text></g>
+          <g class="z" data-part="street" tabindex="0" role="button"><rect x="92" y="12" width="196" height="108"/><text x="104" y="60">Street</text><text class="p" x="104" y="76"></text></g>
+          <g class="z" data-part="foam" tabindex="0" role="button"><rect x="294" y="12" width="164" height="108"/><text x="306" y="60">Foam pit</text><text class="p" x="306" y="76"></text></g>
+          <g class="z" data-part="send" tabindex="0" role="button"><rect x="92" y="126" width="366" height="88"/><text x="104" y="166">Send line</text><text class="p" x="104" y="182"></text></g>
+          <text x="235" y="226" fill="#777" font-size="9" text-anchor="middle" font-family="Archivo, sans-serif">45,75 m</text>
+          <text x="466" y="113" fill="#777" font-size="9" text-anchor="middle" font-family="Archivo, sans-serif" transform="rotate(90 468 113)">21,35 m</text>
+        </svg>
+        <div class="legend"><span><i></i>Liberă</span><span><i class="y"></i>Aleasă</span><span><i class="h"></i>Rezervată</span></div>
       </div>
-      <div class="beat">
-        <div class="n">02</div>
-        <div><h3>Trebuie să plecăm din hală.</h3><p>Spațiul din Brașov nu mai e al nostru. Avem 800 m² de rampe din placaj, demontate și gata de mutat. Nu le aruncăm și nu le vindem: au fost construite pentru rideri și rămân pentru rideri.</p></div>
-        <figure><img src="/assets/img/cheile/park-pov.jpg" alt="Vedere de pe quarter pipe în parcul Action Cloud" loading="lazy" style="object-position:center 40%"><span class="tag real">Foto reală</span></figure>
-      </div>
-      <div class="beat">
-        <div class="n">03</div>
-        <div><h3>Avem un teren la Cheile Grădiștei.</h3><p>La munte, lângă Fundata și Moieciu, unde vin deja familii și grupuri de copii la ski și în tabere. Locul perfect pentru un parc care merge tot anul.</p></div>
-        <figure><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3KmvnmSnlHZl97Gv5M4VI8n9jkc/hf_20261122_112728_629e79b7-84d8-46ba-8ad7-0b2771f865b6.png" alt="Vedere din cort spre munții de la Cheile Grădiștei" loading="lazy"><span class="tag">Vizualizare</span></figure>
-      </div>
-      <div class="beat">
-        <div class="n">04</div>
-        <div><h3>Ridicăm acoperișul. Împreună.</h3><p>Un cort-hală de 21,35 × 45,75 m, din oțel zincat și prelată de 900 g/m². Țintă: 100.000 € pentru cort, transport, montaj și ancorare. Restul îl construim noi.</p></div>
-        <figure><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3KmvnmSnlHZl97Gv5M4VI8n9jkc/hf_20261122_112728_c622ee8d-27f1-4a1c-9100-9239fab9a9da.png" alt="Parcul Action Cloud în interiorul cortului" loading="lazy"><span class="tag">Vizualizare</span></figure>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="real">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 class="stencil">Asta există deja.</h2>
-      <p>Nu e o promisiune. Rampele astea sunt construite, rideuite și gata de mutat. Banii merg doar în acoperiș.</p>
-    </div>
-    <div class="gallery">
-      <figure class="big"><img src="/assets/img/cheile/park-street.jpg" alt="Secțiunea street: boxuri, manual pad-uri și quarter-uri" loading="lazy"><span class="tag real">Foto reală · Street</span></figure>
-      <figure><img src="/assets/img/cheile/park-story.jpg" alt="Scări, rail și boxuri galbene" loading="lazy"><span class="tag real">Foto reală</span></figure>
-      <figure><img src="/assets/img/cheile/park-ramps.jpg" alt="Linia de quarter pipe-uri" loading="lazy"><span class="tag real">Foto reală</span></figure>
-      <figure style="grid-column:span 2"><img src="/assets/img/cheile/park-pov.jpg" alt="Send line văzută de sus" loading="lazy" style="object-position:center 55%"><span class="tag real">Foto reală · Send line</span></figure>
-    </div>
-  </div>
-</section>
-
-<section id="planul">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 class="stencil">Planul.</h2>
-      <p>Etapa 1 mută parcul nostru, așa cum e, sub un acoperiș la munte. Etapa 2 îl face mai mare.</p>
-    </div>
-    <div class="plan-grid">
-      <figure><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3KmvnmSnlHZl97Gv5M4VI8n9jkc/hf_20261122_110230_141b0d62-7e39-4a49-ac85-ca8540f6db7a.png" alt="Planul zonelor din cortul de 977 m²" loading="lazy"><span class="tag">Vizualizare · plan orientativ</span></figure>
-      <div>
-        <p class="kicker">Etapa 1 · ținta 100.000 €</p>
-        <div class="spec" style="margin-top:12px">
-          <div><span>Dimensiuni</span><b>21,35 × 45,75 m</b></div>
-          <div><span>Suprafață</span><b>977 m²</b></div>
-          <div><span>Înălțime</span><b>8,5 m</b></div>
-          <div><span>Structură</span><b>Oțel zincat, ferme duble</b></div>
-          <div><span>Prelată</span><b>PVC 900 g/m²</b></div>
-          <div><span>Locație</span><b>Cheile Grădiștei, jud. Brașov</b></div>
-          <div><span>Banii acoperă</span><b>Cort, transport, montaj, ancorare</b></div>
+      <article class="card" aria-live="polite">
+        <figure><img id="cimg" src="" alt=""><span class="slot" id="cslot">Logoul tău aici</span><span class="tag" id="ctag"></span></figure>
+        <div class="in">
+          <div class="row1"><h3 id="cname"></h3><div class="price" id="cprice"></div></div>
+          <span class="state" id="cstate"></span>
+          <ul id="cgets"></ul>
+          <div class="acts"><a class="btn" id="cbtn" href="#intra">Aleg zona asta</a><a class="btn o" href="#bani">Cum se plătește</a></div>
         </div>
-        <div class="zones"><span>Send line</span><span>Street</span><span>Foam pit</span><span>Beginner line</span><span>Lounge</span></div>
-      </div>
+      </article>
     </div>
-    <div class="phase2">
-      <div class="txt">
-        <p class="kicker">Etapa 2 · următorul obiectiv</p>
-        <h3>1.500 m² și mai mult.</h3>
-        <p style="color:#cfc9bd">După ce parcul e sub acoperiș, cortul crește: zonă de airbag cu turn de start, linie de dirt jumps și un pumptrack. Partenerii din etapa 1 au prioritate la zonele noi.</p>
+    <p class="all">Toate zonele împreună: <b>100.000 €</b>, adică etapa 1 întreagă. Prețurile sunt „de la”: pentru pachete mari, vorbim direct.</p>
+  </div>
+</section>
+
+<section class="why" id="de-ce">
+  <div class="wrap">
+    <div class="head"><h2 class="st">De ce aici.</h2><p>Nu cumperi un cort. Cumperi un loc într-un bike park care crește în fiecare an.</p></div>
+    <div class="tabs" role="tablist">
+      <button role="tab" aria-selected="true" data-tab="t1">Stațiunea</button>
+      <button role="tab" aria-selected="false" data-tab="t2">Parcul nostru</button>
+      <button role="tab" aria-selected="false" data-tab="t3">Ce urmează</button>
+    </div>
+    <div class="pane" id="t1" role="tabpanel">
+      <div>
+        <h3>Audiența e deja acolo.</h3>
+        <p>Cheile Grădiștei e singurul complex sportiv montan din România care găzduiește constant competiții internaționale. Logoul tău intră într-un loc unde oamenii vin deja.</p>
+        <div class="facts">
+          <div><b>150.000+</b><span>vizitatori pe an</span></div>
+          <div><b>800+</b><span>paturi în 5 hoteluri și 17 vile</span></div>
+          <div><b>UCI · IBU · EOC</b><span>federații care organizează aici</span></div>
+          <div><b>FOTE 2027</b><span>Festivalul Olimpic al Tineretului European</span></div>
+        </div>
+      </div>
+      <figure><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3KmvnmSnlHZl97Gv5M4VI8n9jkc/hf_20261122_112728_629e79b7-84d8-46ba-8ad7-0b2771f865b6.png" alt="Vedere din cort spre munți" loading="lazy"><span class="tag">Vizualizare</span></figure>
+    </div>
+    <div class="pane" id="t2" role="tabpanel" hidden>
+      <div>
+        <h3>Parcul e gata. Lipsește acoperișul.</h3>
+        <p>Din 2022 am construit la Brașov cel mai mare bikepark indoor din România, la nivel european: send line, foam pit, street, tabere pentru copii. Acum avem 800 m² de rampe demontate, gata de montat în cort.</p>
+        <p>Banii merg doar în cort, transport, montaj și ancorare. Rampele le avem.</p>
+        <div class="thumbs"><img src="/assets/img/cheile/park-street.jpg" alt="Secțiunea street" loading="lazy"><img src="/assets/img/cheile/park-story.jpg" alt="Scări și boxuri" loading="lazy"><img src="/assets/img/cheile/park-pov.jpg" alt="Send line văzută de sus" loading="lazy"></div>
+      </div>
+      <figure><img src="/assets/img/cheile/park-ramps.jpg" alt="Quarter pipe-urile Action Cloud" loading="lazy"><span class="tag r">Foto reală · Brașov</span></figure>
+    </div>
+    <div class="pane" id="t3" role="tabpanel" hidden>
+      <div>
+        <h3>Hala crește cu bike park-ul.</h3>
+        <p><b>Etapa 1:</b> cortul de 977 m² cu parcul nostru înăuntru.<br><b>Etapa 2:</b> 1.500 m² și mai mult, cu airbag cu turn de start, dirt jumps și pumptrack.</p>
+        <p>Sponsorii din etapa 1 au primul cuvânt la zonele noi. Logoul tău crește odată cu parcul.</p>
       </div>
       <figure><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3KmvnmSnlHZl97Gv5M4VI8n9jkc/hf_20261122_110011_72571bda-b71c-4029-a17d-3a56a5286569.png" alt="Etapa 2: airbag, dirt jumps și pumptrack" loading="lazy"><span class="tag">Vizualizare · etapa 2</span></figure>
     </div>
   </div>
 </section>
 
-<section class="roof" id="acoperis">
-  <div class="wrap">
-    <p class="kicker">Crowdfunding fără card</p>
-    <p class="roof-big stencil">977 m² × 100 € = <em>acoperișul.</em></p>
-    <p style="color:#cfc9bd;max-width:720px;margin:18px 0 26px;font-size:18px">Fiecare pătrățel de mai jos e un metru pătrat din acoperișul nostru. Adoptă unul, sau o sută. Numele tău ajunge pe peretele riderilor din hală, iar pătratul tău se aprinde aici.</p>
-    <div class="roof-grid" id="roofgrid" aria-hidden="true"></div>
-    <div class="roof-legend"><span>■ galben = adoptat</span><span id="roofcount">0 din 977 m² adoptați</span></div>
-    <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap">
-      <a class="btn btn-y" href="#ajuta" data-pick="m2">Adopt m²</a>
-      <a class="btn btn-o" href="#sponsori">Sunt o firmă</a>
-    </div>
-  </div>
-</section>
-<div class="hazard"></div>
-
-<section id="sponsori">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 class="stencil">Programe de<br>sponsorizare.</h2>
-      <p>Patru feluri de a ridica acoperișul. Fiecare se socotește în metri pătrați, ca să vezi exact cât din hală e al tău.</p>
-    </div>
-    <div class="ledger">
-      <div class="row">
-        <div class="n">01</div>
-        <div><h3>Partener principal</h3><span class="slots">1 loc · 400 m²</span></div>
-        <ul><li>Hala poartă numele tău: „[Brandul tău] Hall – Action Cloud”</li><li>Logo pe acoperiș, pe fațadă și la intrare</li><li>Prezent în tot conținutul nostru video și foto</li><li>Partener oficial la Action Cups și Action Camps</li></ul>
-        <div class="price"><b>40.000 €</b><span>sponsorizare</span></div>
-      </div>
-      <div class="row">
-        <div class="n">02</div>
-        <div><h3>Partener de zonă</h3><span class="slots">3 locuri · 100 m² fiecare</span></div>
-        <ul><li>O zonă a parcului poartă numele tău: Send line, Street sau Foam pit</li><li>Banner dedicat în zonă</li><li>Un video cu riderii din zona ta</li><li>Prioritate la zonele din etapa 2</li></ul>
-        <div class="price"><b>10.000 €</b><span>sponsorizare</span></div>
-      </div>
-      <div class="row">
-        <div class="n">03</div>
-        <div><h3>Constructor</h3><span class="slots">8 locuri · 25 m² fiecare</span></div>
-        <ul><li>Logo pe peretele „Construit de” din hală</li><li>Mulțumire publică pe Instagram @action.cloud</li><li>Invitație la deschidere</li></ul>
-        <div class="price"><b>2.500 €</b><span>sponsorizare</span></div>
-      </div>
-      <div class="row">
-        <div class="n">04</div>
-        <div><h3>Action Crew</h3><span class="slots">Pentru oricine · de la 1 m²</span></div>
-        <ul><li>Adopți metri pătrați de acoperiș, câți vrei</li><li>Numele tău pe peretele riderilor</li><li>Pătratul tău se aprinde pe site</li></ul>
-        <div class="price"><b>100 €</b><span>per m²</span></div>
-      </div>
-    </div>
-    <p style="color:var(--muted);margin-top:22px;font-size:15px">Sponsorizările se fac prin contract cu <b style="color:var(--snow)">Asociația Rosenau Cycling</b>, proprietara parcului Action Cloud, conform Legii nr. 32/1994. Pachetele se pot adapta: spune-ne ce ai în minte.</p>
-    <div style="margin-top:24px"><a class="btn btn-y" href="#ajuta" data-pick="sponsor">Vreau să sponsorizez</a></div>
-  </div>
-</section>
-
-<section class="firms" id="firme" style="background:var(--raised)">
+<section class="money" id="bani">
   <div class="wrap">
     <div>
-      <p class="kicker">Pentru firme</p>
-      <h2 class="stencil">Poate costa<br>0 lei.</h2>
-      <p style="color:#cfc9bd;font-size:18px;margin-bottom:24px">Dacă firma ta plătește impozit pe profit, o parte din el poate merge la noi în loc de buget. Nu plătești mai mult: alegi doar unde ajung banii.</p>
-      <div class="facts">
-        <div><b>Cât</b>Cel mult suma mai mică dintre 0,75% din cifra de afaceri și 20% din impozitul pe profit.</div>
-        <div><b>Când</b>Sponsorizarea făcută acum contează pentru 2026. Ce rămâne nefolosit din plafonul pe 2026 se poate redirecționa până la 25 iunie 2027, prin Formularul 177.</div>
-        <div><b>Cum</b>Semnăm contractul de sponsorizare, faceți plata, iar contabilul scade suma din impozit.</div>
-        <div><b>Atenție</b>Microîntreprinderile nu mai pot scădea sponsorizarea din impozit (din 2024).</div>
-      </div>
+      <div class="head" style="display:block"><h2 class="st">Cum plătești.</h2></div>
+      <p style="color:#d6d0c4;margin-top:12px">Două căi, după firmă. Contractele se semnează cu Asociația Rosenau Cycling, proprietara parcului Action Cloud.</p>
     </div>
-    <div class="calc">
-      <h3>Calculator</h3>
-      <p>Află cât poate redirecționa firma ta.</p>
-      <label for="ca">Cifra de afaceri anuală (lei)</label>
-      <input id="ca" inputmode="numeric" placeholder="ex. 4.000.000">
-      <label for="ip">Impozit pe profit datorat (lei)</label>
-      <input id="ip" inputmode="numeric" placeholder="ex. 100.000">
-      <div class="out" aria-live="polite">
-        <small>Poți redirecționa către Action Cloud</small>
-        <b id="calcout">— lei</b>
-        <small id="calcm2">Introdu cifrele de mai sus.</small>
-      </div>
-      <p class="fine">Calcul orientativ după art. 25 alin. (4) lit. i) din Codul fiscal. Verifică suma finală cu contabilul tău.</p>
-      <a class="btn btn-y" href="#ajuta" data-pick="contabil" style="margin-top:16px;border-color:var(--ink)">Trimite-mi contractul</a>
-    </div>
-  </div>
-</section>
-
-<section class="people">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 class="stencil">Nu ai firmă?<br>Poți ajuta oricum.</h2>
-      <p>Riderii, părinții și prietenii au construit primul parc. Vor ridica și acoperișul.</p>
-    </div>
-    <div class="cols">
-      <div class="col"><h3>Adoptă un m²</h3><p>100 € pentru un metru pătrat de acoperiș și numele tău pe peretele riderilor. Se poate și în echipă: o clasă, un club, o familie.</p></div>
-      <div class="col"><h3>Formularul 230</h3><p>Dacă ești salariat, poți redirecționa gratuit o parte din impozitul pe venit către asociația noastră. Pentru veniturile din 2026, termenul e 25 mai 2027. Îți trimitem formularul precompletat.</p></div>
-      <div class="col"><h3>Vino la montaj</h3><p>Cortul și rampele se ridică cu mâini multe. Dacă știi să lucrezi cu lemn, scule sau utilaje, te vrem în echipa de montaj.</p></div>
-      <div class="col"><h3>Spune unei firme</h3><p>Cunoști un patron, un director sau un contabil? Dă-ne un nume și ne ocupăm noi de restul.</p></div>
+    <div style="display:grid;gap:12px">
+      <details>
+        <summary>Brand mare: contract de marketing</summary>
+        <div class="body"><p>Plătești zona din bugetul de marketing, pe factură, ca orice campanie. Primești amplasarea logoului, conținut foto-video și vizibilitate la evenimentele din stațiune.</p></div>
+      </details>
+      <details>
+        <summary>Firmă locală: poate costa 0 lei</summary>
+        <div class="body">
+          <p>Dacă plătești impozit pe profit, poți redirecționa către noi cel mult suma mai mică dintre 0,75% din cifra de afaceri și 20% din impozit. Microîntreprinderile nu pot, din 2024.</p>
+          <div class="calc">
+            <label>Cifra de afaceri (lei)<input id="ca" inputmode="numeric" placeholder="4.000.000"></label>
+            <label>Impozit pe profit (lei)<input id="ip" inputmode="numeric" placeholder="100.000"></label>
+          </div>
+          <div class="out" aria-live="polite"><small>Poți redirecționa</small><b id="calcout">— lei</b><small id="calcm2">Introdu cifrele.</small></div>
+          <p style="font-size:13px;margin-top:10px">Calcul orientativ, art. 25 alin. (4) lit. i) Cod fiscal. Ce rămâne nefolosit pe 2026 se poate redirecționa până la 25 iunie 2027 (Formularul 177).</p>
+        </div>
+      </details>
+      <details>
+        <summary>Persoană fizică: 1 m² de acoperiș = 100 €</summary>
+        <div class="body"><p>Adoptă unul sau mai mulți metri pătrați și numele tău ajunge pe peretele riderilor. Salariații pot redirecționa gratuit și o parte din impozitul pe venit, cu Formularul 230 (pentru 2026, până la 25 mai 2027).</p></div>
+      </details>
     </div>
   </div>
 </section>
 
-<section class="join" id="ajuta">
+<section class="join" id="intra">
   <div class="wrap">
     <div>
-      <h2 class="stencil">Hai să-l<br>ridicăm.</h2>
-      <p class="lead">Completează în 30 de secunde. Nu plătești nimic acum: te contactăm noi cu detaliile și contractul.</p>
+      <h2 class="st">Intră în joc.</h2>
+      <p class="lead">30 de secunde. Nu plătești nimic acum: te sunăm, semnăm, și abia apoi zona devine a ta.</p>
+      <div class="chosen" id="chosen"></div>
     </div>
-    <form name="action" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="actionform">
+    <form name="action" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="form">
       <input type="hidden" name="form-name" value="action">
       <input type="hidden" name="language" value="ro">
-      <input type="hidden" name="subject" value="Action Cloud × Cheile Grădiștei – formular nou">
-      <p class="hidden"><label>Nu completa: <input name="bot-field"></label></p>
+      <input type="hidden" name="subject" id="subject" value="Action Cloud × Cheile Grădiștei">
+      <p class="hp"><label>Nu completa <input name="bot-field"></label></p>
       <div class="opts">
-        <label><input type="radio" name="ajutor" value="sponsor" required> Firma mea vrea să sponsorizeze</label>
-        <label><input type="radio" name="ajutor" value="m2"> Vreau să adopt metri pătrați de acoperiș</label>
-        <label><input type="radio" name="ajutor" value="contabil"> Sunt contabil / vreau contractul de sponsorizare</label>
-        <label><input type="radio" name="ajutor" value="230"> Vreau Formularul 230</label>
-        <label><input type="radio" name="ajutor" value="cunosc"> Cunosc o firmă care ar putea ajuta</label>
-        <label><input type="radio" name="ajutor" value="montaj"> Vreau să ajut la montaj</label>
+        <label><input type="radio" name="ajutor" value="sponsor" required> Sponsorizez o zonă</label>
+        <label><input type="radio" name="ajutor" value="m2"> Adopt m²</label>
+        <label><input type="radio" name="ajutor" value="contabil"> Vreau contractul</label>
+        <label><input type="radio" name="ajutor" value="230"> Formularul 230</label>
+        <label><input type="radio" name="ajutor" value="montaj"> Ajut la montaj</label>
+        <label><input type="radio" name="ajutor" value="stiri"> Vreau noutăți</label>
       </div>
       <div class="f">
         <input name="name" placeholder="Numele tău" required>
-        <input name="contact" placeholder="Telefon sau email" required>
-        <input name="sponsor-firma" placeholder="Firma (dacă e cazul)" class="full">
-        <select name="pachet" class="full">
-          <option value="">Program (opțional)</option>
-          <option>Partener principal – 40.000 €</option>
-          <option>Partener de zonă – 10.000 €</option>
-          <option>Constructor – 2.500 €</option>
-          <option>Action Crew – metri pătrați</option>
-          <option>Altă sumă / altă idee</option>
-        </select>
-        <input name="metri" type="number" min="1" placeholder="Câți m² (dacă adopți)" class="full">
-        <textarea name="ajutor-cum" placeholder="Mesaj (opțional)" class="full"></textarea>
+        <input name="contact" id="contact" placeholder="Telefon sau email" required>
+        <input name="sponsor-firma" class="full" data-for="sponsor contabil" placeholder="Firma">
+        <select name="pachet" id="pachet" class="full" data-for="sponsor contabil"><option value="">Zona (opțional)</option></select>
+        <input name="metri" type="number" min="1" class="full" data-for="m2" placeholder="Câți m²">
+        <textarea name="ajutor-cum" class="full" placeholder="Mesaj (opțional)"></textarea>
       </div>
       <button class="btn" type="submit">Trimite</button>
-      <div class="ok" id="actionok">Mulțumim! Te contactăm în curând. Între timp, spune-le și prietenilor: actioncloud.ro</div>
-    </form>
-  </div>
-</section>
-
-<section class="crew">
-  <div class="wrap">
-    <div>
-      <p class="kicker">Action Crew</p>
-      <h2 class="stencil">Află primul<br>când deschidem.</h2>
-      <p style="color:#cfc9bd;margin-top:14px">Noutăți de la montaj, data deschiderii, Action Camps și Action Cups.</p>
-    </div>
-    <form name="crew" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="crewform">
-      <input type="hidden" name="form-name" value="crew">
-      <input type="hidden" name="language" value="ro">
-      <p class="hidden"><label>Nu completa: <input name="bot-field"></label></p>
-      <div class="f">
-        <input name="name" placeholder="Nume">
-        <input name="email" type="email" placeholder="Email" required>
-        <select name="rides" class="full">
-          <option value="">Ce rideuiești?</option>
-          <option>BMX</option><option>MTB / Dirt</option><option>Trotinetă</option><option>Skate</option><option>Părinte</option><option>Doar susțin</option>
-        </select>
-      </div>
-      <label class="consent"><input type="checkbox" name="consent" value="da" required> Sunt de acord să primesc emailuri de la Action Cloud. Mă pot dezabona oricând.</label>
-      <button class="btn" type="submit">Intru în crew</button>
-      <div class="ok" id="crewok">Ești în Action Crew. Ne vedem la munte.</div>
+      <p class="fine">Datele merg doar la Asociația Rosenau Cycling, ca să te contactăm. „Vreau noutăți” înseamnă și emailuri Action Crew, cu dezabonare oricând.</p>
+      <div class="ok" id="ok">Mulțumim! Te contactăm în curând.</div>
     </form>
   </div>
 </section>
@@ -497,71 +362,118 @@ footer .brand{color:var(--snow);font-size:24px}
 <div class="hazard"></div>
 <footer>
   <div class="wrap">
-    <div><a class="brand" href="#top"><img src="/assets/img/logo-yellow.webp" alt="Action Cloud" class="lg-ac" width="472" height="256"><b>×</b><img src="https://cheilegradistei.ro/images/logo.png" alt="Cheile Grădiștei" class="lg-cg" width="188" height="78"></a><p style="margin-top:8px">Un proiect al Asociației Rosenau Cycling · Cheile Grădiștei, jud. Brașov</p></div>
-    <div><p>Instagram: <a href="https://www.instagram.com/action.cloud/">@action.cloud</a></p><p>Imaginile marcate „Vizualizare” sunt generate și arată planul, nu realitatea de azi.</p></div>
+    <div><a class="brand" href="#top"><img class="ac" src="/assets/img/logo-yellow.webp" alt="Action Cloud" width="472" height="256"><b>×</b><img class="cg" src="https://cheilegradistei.ro/images/logo.png" alt="Cheile Grădiștei" width="188" height="78"></a><p style="margin-top:10px">Un proiect al Asociației Rosenau Cycling · Bike Park Cheile Grădiștei, jud. Brașov</p></div>
+    <div><p>Instagram: <a href="https://www.instagram.com/action.cloud/">@action.cloud</a></p><p>„Vizualizare” = imagine generată a planului, nu realitatea de azi.</p></div>
   </div>
 </footer>
 
 <script>
-/* ===== Actualizează aici progresul public ===== */
-const PROGRESS = {
-  raisedEur: 0,      // suma confirmată prin contracte
-  m2: 0,             // metri pătrați adoptați
-  supporters: 0,     // număr de susținători
-  partners: 0        // parteneri principali + de zonă semnați (din 4)
+{
+/* ===== Actualizează aici: statusul zonelor și banii confirmați prin contract ===== */
+const RAISED_EUR = 0;
+const PARTS = {
+  nume:   { name: 'Numele halei', price: 40000, from: true,  status: 'liber', img: 'https://d8j0ntlcm91z4.cloudfront.net/user_3KmvnmSnlHZl97Gv5M4VI8n9jkc/hf_20261122_110231_e680f991-cf26-487e-912b-5c683b9e5d77.png', real: false,
+            gets: ['Hala se numește „[Brandul tău] × Action Cloud Hall”', 'Logo pe fațadă, pe acoperiș și la intrare', 'Prezent în tot conținutul nostru foto-video', 'Partener oficial la Action Camps și Action Cups'] },
+  foam:   { name: 'Foam pit', price: 15000, status: 'liber', img: 'https://d8j0ntlcm91z4.cloudfront.net/user_3KmvnmSnlHZl97Gv5M4VI8n9jkc/hf_20261122_112728_c622ee8d-27f1-4a1c-9100-9239fab9a9da.png', real: false,
+            gets: ['„[Brand] Foam Pit”: logo pe groapă și pe bannere', 'Zona în care învață toți începătorii primul trick', 'Clipuri cu primele salturi, cu logoul în cadru'] },
+  send:   { name: 'Send line', price: 10000, status: 'liber', img: '/assets/img/cheile/park-pov.jpg', real: true,
+            gets: ['„[Brand] Send Line”: linia mare de quarter-uri și sărituri', 'Logo pe rampele principale, în fiecare clip POV', 'Banner dedicat'] },
+  street: { name: 'Zona street', price: 8000, status: 'liber', img: '/assets/img/cheile/park-street.jpg', real: true,
+            gets: ['„[Brand] Street”: boxuri, ledge-uri, rail, scări', 'Logo pe boxurile galbene', 'Banner dedicat'] },
+  poarta: { name: 'Poarta de intrare', price: 7000, status: 'liber', img: 'https://d8j0ntlcm91z4.cloudfront.net/user_3KmvnmSnlHZl97Gv5M4VI8n9jkc/hf_20261122_110231_e680f991-cf26-487e-912b-5c683b9e5d77.png', real: false,
+            gets: ['Logo pe poarta prin care intră fiecare vizitator', 'Prima imagine din fiecare vizită și fiecare poză de grup'] },
+  lounge: { name: 'Lounge', price: 5000, status: 'liber', img: 'https://d8j0ntlcm91z4.cloudfront.net/user_3KmvnmSnlHZl97Gv5M4VI8n9jkc/hf_20261122_112728_c622ee8d-27f1-4a1c-9100-9239fab9a9da.png', real: false,
+            gets: ['„[Brand] Lounge”: zona unde stau părinții și riderii', 'Logo pe perete și pe bănci', 'Loc pentru sampling sau produsele tale'] },
+  zid:    { name: 'Peretele „Construit de”', price: 1000, from: true, status: 'liber', img: '/assets/img/cheile/park-story.jpg', real: true,
+            gets: ['Logoul firmei tale pe peretele constructorilor', 'De la 1.000 € la 2.500 €, după mărimea logoului', 'Mulțumire publică pe @action.cloud'] }
 };
-/* ============================================= */
-const TARGET = 100000, ROOF = 977;
+/* ================================================================================== */
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const fmt = n => n.toLocaleString('ro-RO');
-document.getElementById('raised').textContent = fmt(PROGRESS.raisedEur) + ' €';
-document.getElementById('barfill').style.width = Math.min(100, PROGRESS.raisedEur / TARGET * 100) + '%';
-document.getElementById('m2').textContent = fmt(PROGRESS.m2);
-document.getElementById('pledges').textContent = fmt(PROGRESS.supporters);
-document.getElementById('partners').textContent = PROGRESS.partners + ' / 4';
-document.getElementById('roofcount').textContent = fmt(PROGRESS.m2) + ' din 977 m² adoptați';
-const grid = document.getElementById('roofgrid');
-const frag = document.createDocumentFragment();
-for (let i = 0; i < ROOF; i++) { const c = document.createElement('i'); if (i < PROGRESS.m2) c.className = 'on'; frag.appendChild(c); }
-grid.appendChild(frag);
+const priceTxt = p => (p.from ? 'de la ' : '') + fmt(p.price) + ' €';
+const keys = Object.keys(PARTS);
+const free = keys.filter(k => PARTS[k].status !== 'rezervat').length;
+$('#free').textContent = free + ' / ' + keys.length;
+$('#raised').textContent = fmt(RAISED_EUR) + ' €';
+$('#barfill').style.width = Math.min(100, RAISED_EUR / 1000) + '%';
+$('#roofprice').textContent = priceTxt(PARTS.nume);
+$$('.z').forEach(g => { const p = PARTS[g.dataset.part]; const t = g.querySelector('text.p'); if (t) t.textContent = g.dataset.part === 'zid' ? fmt(p.price) + '+ €' : priceTxt(p); if (p.status === 'rezervat') g.classList.add('res'); g.setAttribute('aria-label', p.name + ', ' + priceTxt(p)); });
+const sel = $('#pachet');
+keys.forEach(k => { const o = document.createElement('option'); o.value = PARTS[k].name + ' – ' + priceTxt(PARTS[k]); o.textContent = o.value + (PARTS[k].status === 'rezervat' ? ' (rezervată)' : ''); o.dataset.k = k; sel.appendChild(o); });
+let current = 'nume';
+function show(k){
+  current = k; const p = PARTS[k], res = p.status === 'rezervat';
+  $$('.z').forEach(g => g.classList.toggle('on', g.dataset.part === k));
+  const roof = $('.roof'); roof.classList.toggle('on', k === 'nume'); roof.setAttribute('aria-pressed', k === 'nume');
+  $('#cimg').src = p.img; $('#cimg').alt = p.name;
+  $('#ctag').textContent = p.real ? 'Foto reală · Brașov' : 'Vizualizare'; $('#ctag').className = 'tag' + (p.real ? ' r' : '');
+  $('#cslot').textContent = res ? 'Rezervată' : 'Logoul tău aici';
+  $('#cname').textContent = p.name;
+  $('#cprice').innerHTML = (p.from ? '<small>de la</small>' : '') + fmt(p.price) + ' €';
+  const st = $('#cstate'); st.textContent = res ? 'Rezervată' + (p.sponsor ? ' · ' + p.sponsor : '') : 'Liberă'; st.className = 'state' + (res ? ' res' : '');
+  $('#cgets').innerHTML = p.gets.map(x => '<li>' + x + '</li>').join('');
+  $('#cbtn').textContent = res ? 'Alege altă zonă' : 'Aleg zona asta';
+}
+$$('.z,.roof').forEach(el => {
+  el.addEventListener('click', () => show(el.dataset.part));
+  el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); show(el.dataset.part); } });
+});
+show('nume');
+
+/* Form */
+const form = $('#form');
+function mode(){
+  const v = (form.querySelector('input[name=ajutor]:checked') || {}).value || '';
+  $$('[data-for]').forEach(f => f.classList.toggle('hide', !f.dataset.for.split(' ').includes(v)));
+  const c = $('#contact'); if (v === 'stiri') { c.type = 'email'; c.placeholder = 'Email'; } else { c.type = 'text'; c.placeholder = 'Telefon sau email'; }
+  $('#subject').value = 'Action Cloud × Cheile Grădiștei · ' + (v || 'formular');
+}
+$$('input[name=ajutor]').forEach(r => r.addEventListener('change', mode)); mode();
+function pick(v){ const r = form.querySelector('input[name=ajutor][value="' + v + '"]'); if (r) { r.checked = true; mode(); } }
+$('#cbtn').addEventListener('click', e => {
+  const p = PARTS[current];
+  if (p.status === 'rezervat') { e.preventDefault(); $('#alege').scrollIntoView(); return; }
+  pick('sponsor');
+  [...sel.options].forEach((o, i) => { if (o.dataset.k === current) sel.selectedIndex = i; });
+  const ch = $('#chosen'); ch.style.display = 'block'; ch.textContent = 'Ai ales: ' + p.name + ' · ' + priceTxt(p);
+});
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  const v = (form.querySelector('input[name=ajutor]:checked') || {}).value;
+  if (v === 'stiri') {
+    const email = $('#contact').value.trim();
+    if (/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email)) {
+      const d = new FormData(); d.append('email_address', email);
+      const nm = form.querySelector('[name=name]').value.trim(); if (nm) d.append('first_name', nm);
+      try { fetch('https://app.kit.com/forms/10220859/subscriptions', { method: 'POST', body: d, mode: 'no-cors', keepalive: true }); } catch (_) {}
+    }
+  }
+  $$('[data-for].hide').forEach(f => f.disabled = true);
+  const body = new URLSearchParams(new FormData(form)).toString();
+  $$('[data-for]').forEach(f => f.disabled = false);
+  fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body })
+    .then(r => { if (!r.ok) throw 0; $$('#form .opts, #form .f, #form .btn, #form .fine').forEach(x => x.style.display = 'none'); $('#ok').style.display = 'block'; })
+    .catch(() => { form.querySelector('.btn').textContent = 'Nu s-a trimis, încearcă din nou'; });
+});
+
+/* Tabs */
+$$('[role=tab]').forEach(b => b.addEventListener('click', () => {
+  $$('[role=tab]').forEach(x => x.setAttribute('aria-selected', x === b));
+  $$('[role=tabpanel]').forEach(p => p.hidden = p.id !== b.dataset.tab);
+}));
 
 /* Calculator */
 const num = v => Number(String(v).replace(/[^\d]/g, '')) || 0;
 function calc(){
-  const ca = num(document.getElementById('ca').value), ip = num(document.getElementById('ip').value);
-  const out = document.getElementById('calcout'), m = document.getElementById('calcm2');
-  if (!ca || !ip) { out.textContent = '— lei'; m.textContent = 'Introdu cifrele de mai sus.'; return; }
-  const v = Math.floor(Math.min(ca * 0.0075, ip * 0.20));
-  out.textContent = fmt(v) + ' lei';
-  const eur = v / 5.0, sq = Math.floor(eur / 100);
-  m.textContent = '≈ ' + fmt(Math.round(eur)) + ' € · ' + (sq >= 1 ? fmt(sq) + ' m² de acoperiș, fără cost pentru firmă' : 'sub 1 m² de acoperiș');
+  const ca = num($('#ca').value), ip = num($('#ip').value);
+  if (!ca || !ip) { $('#calcout').textContent = '— lei'; $('#calcm2').textContent = 'Introdu cifrele.'; return; }
+  const v = Math.floor(Math.min(ca * 0.0075, ip * 0.2)), eur = v / 5;
+  $('#calcout').textContent = fmt(v) + ' lei';
+  const z = keys.map(k => PARTS[k]).filter(p => p.status !== 'rezervat' && p.price <= eur).sort((a, b) => b.price - a.price)[0];
+  $('#calcm2').textContent = '≈ ' + fmt(Math.round(eur)) + ' € fără cost pentru firmă' + (z ? ' · ajunge pentru: ' + z.name : '');
 }
-['ca','ip'].forEach(id => document.getElementById(id).addEventListener('input', calc));
-
-/* Preselect option from buttons */
-document.querySelectorAll('[data-pick]').forEach(a => a.addEventListener('click', () => {
-  const r = document.querySelector('input[name="ajutor"][value="' + a.dataset.pick + '"]'); if (r) r.checked = true;
-}));
-
-/* Netlify forms via fetch */
-function wire(id, okId){
-  const f = document.getElementById(id);
-  f.addEventListener('submit', e => {
-    e.preventDefault();
-    const body = new URLSearchParams(new FormData(f)).toString();
-    fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body })
-      .then(r => { if (!r.ok) throw 0; f.querySelectorAll('.opts,.f,.btn,.consent').forEach(x => x.style.display = 'none'); document.getElementById(okId).style.display = 'block'; })
-      .catch(() => (f.querySelector('.btn').textContent='Nu s-a trimis, încearcă din nou'));
-  });
+['#ca', '#ip'].forEach(s => $(s).addEventListener('input', calc));
 }
-wire('actionform','actionok'); wire('crewform','crewok');
-/* Action Crew: emailul merge și în lista Kit "Action Crew" (form 10220859, double opt-in) */
-document.getElementById('crewform').addEventListener('submit', () => {
-  const f = document.getElementById('crewform'), email = (f.email.value || '').trim();
-  if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email)) return;
-  const d = new FormData(); d.append('email_address', email);
-  if (f.name.value.trim()) d.append('first_name', f.name.value.trim());
-  try { fetch('https://app.kit.com/forms/10220859/subscriptions', { method: 'POST', body: d, mode: 'no-cors', keepalive: true }); } catch (e) {}
-});
 </script>
 </body>
 </html>

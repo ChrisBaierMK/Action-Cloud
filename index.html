@@ -76,10 +76,19 @@ nav .btn{min-height:44px;padding:8px 14px;font-size:15px}
 
 /* HERO */
 .hero{position:relative;min-height:86vh;display:flex;align-items:flex-end;overflow:hidden}
-.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.hero>img{object-position:60% 50%}
+.hero-pic,.hero-pic img{position:absolute;inset:0;width:100%;height:100%}
+.hero-pic img{object-fit:cover}
+.hero-pic img{object-position:60% 50%}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,20,20,.92) 0%,rgba(20,20,20,.72) 38%,rgba(20,20,20,0) 68%),linear-gradient(180deg,rgba(20,20,20,0) 60%,rgba(27,27,27,.95))}
-@media(max-width:760px){.hero>img{object-position:62% 50%}.hero::after{background:linear-gradient(180deg,rgba(20,20,20,.2) 0%,rgba(20,20,20,.55) 40%,rgba(27,27,27,.97) 75%)}}
+@media(max-width:760px){
+  .hero{display:block;min-height:0}
+  .hero-pic{position:relative;display:block;height:min(68svh,560px)}
+  .hero-pic img{object-position:50% 0}
+  .hero::after{inset:auto 0 0 0;top:0;background:linear-gradient(180deg,rgba(27,27,27,0) 0%,rgba(27,27,27,0) 42%,rgba(27,27,27,.85) 60%,var(--charcoal) 68%)}
+  header.hero .wrap{padding-top:0;margin-top:calc(-1 * min(24svh,200px));padding-bottom:36px}
+  header.hero h1{font-size:clamp(40px,11vw,56px)}
+  header.hero .tag{top:12px;bottom:auto}
+}
 .hero .wrap{position:relative;z-index:2;width:100%;padding-top:110px;padding-bottom:44px}
 .hero .tag{left:auto;right:14px;bottom:14px;z-index:3}
 .lockup{display:flex;align-items:center;gap:14px;margin-bottom:16px}
@@ -230,7 +239,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
 </nav>
 
 <header class="hero" id="top">
-  <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3KmvnmSnlHZl97Gv5M4VI8n9jkc/hf_20261123_084319_7877b7ed-b12c-40bb-a20c-b08cecaaba27.png" alt="Cortul Action Cloud × Cheile Grădiștei lângă traseele bike park-ului">
+  <picture class="hero-pic"><source media="(max-width: 760px)" srcset="https://d8j0ntlcm91z4.cloudfront.net/user_3KmvnmSnlHZl97Gv5M4VI8n9jkc/hf_20261123_090138_778fe1ad-c5d3-4d86-9f99-cdc91983fb5c.png"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3KmvnmSnlHZl97Gv5M4VI8n9jkc/hf_20261123_084319_7877b7ed-b12c-40bb-a20c-b08cecaaba27.png" alt="Cortul Action Cloud × Cheile Grădiștei lângă traseele bike park-ului" fetchpriority="high"></picture>
   <span class="tag">Vizualizare</span>
   <div class="wrap">
     <p class="kick rv d1">Action Cloud × Cheile Grădiștei</p>

@@ -1,0 +1,128 @@
+{
+ "id": "ig-DfFq-QZBIsl",
+ "file": "DfFq-QZBIsl.mp4",
+ "video": {
+  "width": 1080,
+  "height": 1920,
+  "fps": 24.0,
+  "duration": 30.583,
+  "audio": true,
+  "codec": "vp9"
+ },
+ "cut_method": "hyperframes measure cuts",
+ "cut_times": [
+  1.208,
+  2.583,
+  7.292,
+  9.5,
+  10.75,
+  12.333,
+  13.708,
+  16.208,
+  19.083,
+  22.958,
+  26.125
+ ],
+ "not_cuts": [],
+ "shots": {
+  "cuts": 11,
+  "cuts_per_10s": 3.6,
+  "shot_min": 1.208,
+  "shot_median": 2.354,
+  "shot_max": 4.709,
+  "shot_mean": 2.549,
+  "shots": [
+   1.208,
+   1.375,
+   4.709,
+   2.208,
+   1.25,
+   1.583,
+   1.375,
+   2.5,
+   2.875,
+   3.875,
+   3.167,
+   4.458
+  ]
+ },
+ "faces": {
+  "sample_step_s": 0.5,
+  "face_present_share": 0.197,
+  "layout_share": {
+   "face-close": 0.131,
+   "face-small": 0.066,
+   "no-face": 0.803
+  },
+  "longest_stretch_without_face_s": 9.5,
+  "layout_changes": 6,
+  "layout_change_times": [
+   7.5,
+   9.5,
+   12.5,
+   13.5,
+   23.0,
+   26.0
+  ],
+  "face_height_per_shot": [
+   null,
+   null,
+   null,
+   0.065,
+   null,
+   null,
+   0.246,
+   null,
+   null,
+   null,
+   0.241,
+   null
+  ],
+  "punch_ratio_between_shots": [],
+  "punch_ratio_median": null,
+  "note": "layout labels are a heuristic from face size and position; confirm on the sheets"
+ },
+ "sheets": [
+  "refs/ig-DfFq-QZBIsl/sheets/sheet-01.jpg",
+  "refs/ig-DfFq-QZBIsl/sheets/sheet-02.jpg",
+  "refs/ig-DfFq-QZBIsl/sheets/sheet-03.jpg"
+ ],
+ "loudness": {
+  "integrated_lufs": -14.2,
+  "loudness_range_lu": 1.8,
+  "true_peak_dbfs": -0.3
+ },
+ "language": "en",
+ "speech": {
+  "words": 107,
+  "first_word_at_s": 0.0,
+  "last_word_ends_s": 30.42,
+  "silence_after_last_word_s": 0.16,
+  "words_per_second_overall": 3.52,
+  "words_per_second_speaking": 3.56,
+  "pauses_over_250ms": 1,
+  "longest_pause_s": 0.38,
+  "total_pause_s": 0.38,
+  "hook_first_sentence": {
+   "text": "This is Condor Blue's FullSpec ND.",
+   "start": 0.0,
+   "end": 2.52,
+   "words": 6
+  },
+  "last_sentence": {
+   "text": "Comment to word FullSpec and I'll send you the link.",
+   "start": 28.46,
+   "end": 30.42,
+   "words": 10
+  },
+  "sentences": 9,
+  "note": "word edges from Whisper drift by 0.1-0.8 s; pauses under ~0.3 s are not reliable"
+ },
+ "bed": {
+  "voice_rms_dbfs": -17.1,
+  "gap_rms_dbfs": null,
+  "gaps_measured": 0,
+  "gap_seconds": 0,
+  "reading": "no gap of 0.4 s or longer: the edit is cut tight, the bed cannot be measured this way"
+ }
+}

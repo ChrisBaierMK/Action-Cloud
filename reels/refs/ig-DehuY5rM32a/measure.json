@@ -1,0 +1,144 @@
+{
+ "id": "ig-DehuY5rM32a",
+ "file": "DehuY5rM32a.mp4",
+ "video": {
+  "width": 1080,
+  "height": 1920,
+  "fps": 24.0,
+  "duration": 36.125,
+  "audio": true,
+  "codec": "vp9"
+ },
+ "cut_method": "hyperframes measure cuts",
+ "cut_times": [
+  2.083,
+  4.75,
+  7.625,
+  11.5,
+  14.708,
+  16.667,
+  18,
+  26.417,
+  26.75,
+  28.25,
+  29.208,
+  31.417,
+  32.417
+ ],
+ "not_cuts": [
+  20.667
+ ],
+ "shots": {
+  "cuts": 13,
+  "cuts_per_10s": 3.6,
+  "shot_min": 0.333,
+  "shot_median": 2.146,
+  "shot_max": 8.417,
+  "shot_mean": 2.58,
+  "shots": [
+   2.083,
+   2.667,
+   2.875,
+   3.875,
+   3.208,
+   1.959,
+   1.333,
+   8.417,
+   0.333,
+   1.5,
+   0.958,
+   2.209,
+   1.0,
+   3.708
+  ]
+ },
+ "faces": {
+  "sample_step_s": 0.5,
+  "face_present_share": 0.236,
+  "layout_share": {
+   "face-close": 0.167,
+   "face-medium": 0.014,
+   "face-small": 0.056,
+   "no-face": 0.764
+  },
+  "longest_stretch_without_face_s": 9.0,
+  "layout_changes": 10,
+  "layout_change_times": [
+   5.0,
+   7.5,
+   16.5,
+   18.0,
+   20.5,
+   21.0,
+   29.0,
+   29.5,
+   31.5,
+   32.5
+  ],
+  "face_height_per_shot": [
+   null,
+   null,
+   0.249,
+   null,
+   null,
+   0.071,
+   0.07,
+   0.249,
+   null,
+   null,
+   0.05,
+   null,
+   0.249,
+   null
+  ],
+  "punch_ratio_between_shots": [
+   1.014,
+   3.557
+  ],
+  "punch_ratio_median": 2.285,
+  "note": "layout labels are a heuristic from face size and position; confirm on the sheets"
+ },
+ "sheets": [
+  "refs/ig-DehuY5rM32a/sheets/sheet-01.jpg",
+  "refs/ig-DehuY5rM32a/sheets/sheet-02.jpg",
+  "refs/ig-DehuY5rM32a/sheets/sheet-03.jpg"
+ ],
+ "loudness": {
+  "integrated_lufs": -14.2,
+  "loudness_range_lu": 1.7,
+  "true_peak_dbfs": -0.6
+ },
+ "language": "en",
+ "speech": {
+  "words": 143,
+  "first_word_at_s": 0.0,
+  "last_word_ends_s": 35.94,
+  "silence_after_last_word_s": 0.19,
+  "words_per_second_overall": 3.98,
+  "words_per_second_speaking": 4.06,
+  "pauses_over_250ms": 2,
+  "longest_pause_s": 0.38,
+  "total_pause_s": 0.74,
+  "hook_first_sentence": {
+   "text": "This is the Libre Noble Max's Airflow.",
+   "start": 0.0,
+   "end": 2.08,
+   "words": 7
+  },
+  "last_sentence": {
+   "text": "If you're tall and at your desk all day, comment the word Maxis and I'll send you the link.",
+   "start": 32.56,
+   "end": 35.94,
+   "words": 19
+  },
+  "sentences": 11,
+  "note": "word edges from Whisper drift by 0.1-0.8 s; pauses under ~0.3 s are not reliable"
+ },
+ "bed": {
+  "voice_rms_dbfs": -17.0,
+  "gap_rms_dbfs": null,
+  "gaps_measured": 0,
+  "gap_seconds": 0,
+  "reading": "no gap of 0.4 s or longer: the edit is cut tight, the bed cannot be measured this way"
+ }
+}

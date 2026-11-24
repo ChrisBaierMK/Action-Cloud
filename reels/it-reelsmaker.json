@@ -1,0 +1,5 @@
+{
+ "remotion_dir": "remotion",
+ "project_root": ".",
+ "face_model": "models/face_detection_yunet_2023mar.onnx"
+}

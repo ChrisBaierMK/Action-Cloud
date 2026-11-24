@@ -1,0 +1,10 @@
+{
+ "accent": "#E64E4D",
+ "shadow": 0.25,
+ "emphasis": [11, 16, 25, 29, 32],
+ "hook": {"lines": [[0, 1, 2], [3, 4], [5, 6], [7, 8]], "serifLines": [0, 3], "accentLines": [3]},
+ "cards": [{"fromWord": 17, "toWord": 25, "label": "Step 2",
+            "big": [{"t": "Cuts", "atWord": 19}, {"t": "every", "serif": true, "accent": true, "atWord": 24}, {"t": "silence.", "atWord": 25}]}],
+ "callouts": [{"words": [26, 34]}],
+ "cta": {"atWord": 29, "keyword": "reels", "then": "In your DMs", "thenAtWord": 33}
+}

@@ -32,3 +32,4 @@ edit/smoke/
 .hyperframes/
 sources
 .venv/
+dist/

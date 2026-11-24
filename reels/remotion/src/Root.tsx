@@ -1,7 +1,6 @@
 import { Composition } from "remotion";
 import { KIT_FPS, ReelCover, ReelKit, reelCoverDefaults, reelKitDefaults, reelKitMetadata } from "./ReelKit";
 import { GEN } from "./gen/registry";
-import { EditorialReel } from "./editorial/Editorial";
 
 // Created by kit.py new. The kit (src/ReelKit.tsx, src/kit/) is updated by kit.py update; this file is yours.
 export const RemotionRoot: React.FC = () => {
@@ -18,20 +17,6 @@ export const RemotionRoot: React.FC = () => {
         height={1920}
         defaultProps={reelKitDefaults}
         calculateMetadata={reelKitMetadata}
-      />
-      {/* Our caption system on top of the kit (src/editorial/Editorial.tsx): same props plus "editorial"
-          (tools/editorial.py props edit/<id> writes them):
-          npx remotion render ReelEditorial out/<name>.mp4 --props=edit/<id>/editorial-props.json */}
-      <Composition
-        id="ReelEditorial"
-        component={EditorialReel}
-        durationInFrames={90}
-        fps={KIT_FPS}
-        width={1080}
-        height={1920}
-        defaultProps={{ ...reelKitDefaults, editorial: {} }}
-        calculateMetadata={({ props }) => ({ durationInFrames: Math.max(1, Math.round(props.captions.duration * KIT_FPS) +
-          (props.endCard ? Math.round((props.endCard.seconds ?? 2.6) * KIT_FPS) : 0)) })}
       />
       {/* The cover (a still): a video frame + the hook, same props as ReelKit:
           npx remotion still ReelCover edit/<id>/cover.png --props=edit/<id>/reelkit-props.json */}

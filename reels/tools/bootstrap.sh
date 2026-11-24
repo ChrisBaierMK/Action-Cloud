@@ -23,8 +23,10 @@ python3 -c "from faster_whisper import download_model; download_model('medium')"
 if [ -d hf/node_modules/hyperframes ]; then (cd hf && npx --no-install hyperframes telemetry disable >/dev/null 2>&1); ok "HyperFrames packages (telemetry off)"; else bad "HyperFrames packages"; fi
 
 mkdir -p remotion/public/fonts sources assets/references edit brands
-cp -n assets/fonts/Inter/Inter-SemiBold.ttf assets/fonts/Inter/Inter-Bold.ttf assets/fonts/Inter/Inter-Black.ttf \
-      assets/fonts/InstrumentSerif/InstrumentSerif-Italic.ttf remotion/public/fonts/ 2>/dev/null
+for f in assets/fonts/Inter/Inter-SemiBold.ttf assets/fonts/Inter/Inter-Bold.ttf assets/fonts/Inter/Inter-Black.ttf \
+         assets/fonts/InstrumentSerif/InstrumentSerif-Italic.ttf; do
+  [ -e "remotion/public/fonts/$(basename "$f")" ] || cp "$f" remotion/public/fonts/ 2>/dev/null
+done
 [ -s remotion/public/fonts/Inter-Black.ttf ] && [ -s remotion/public/fonts/InstrumentSerif-Italic.ttf ] && ok "caption fonts in the render project" || bad "caption fonts"
 
 [ "$FAILED" = 0 ] && echo "ready" || { echo "not ready: see FAIL lines"; exit 1; }

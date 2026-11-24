@@ -36,11 +36,12 @@ environment of its own. It was written on Linux and had not been run on a Mac wh
 | `refs/<id>/measure.json` | the measurements of each reference; sheets and frames next to it are not in git |
 | `edit/<id>/` | one folder per video: `cut.json`, `editorial.json`, plans, the rough cut |
 | `brands/<slug>/` | brand profiles of the editing skill |
-| `remotion/` | render project: the skill's kit plus our caption system in `src/editorial/Editorial.tsx` |
+| `remotion/` | render project: the skill's kit plus our caption system in `src/editorial/` (its own entry point, the kit's files untouched) |
 | `hf/` | HyperFrames: its renderer and the `measure` and `audio` commands |
 | `tools/watch.py` | measure a finished video: cuts, faces, speech, loudness, contact sheets |
 | `tools/editorial.py` | list caption words with indexes; merge `editorial.json` into render props |
 | `research_notes/`, `reports/` | the web research of 24 November 2026 and its report |
+| `skill-src/`, `tools/build_skill.sh` | the sources of the `chris-video-editing` skill and the script that packages it into `dist/` |
 
 ## A reference video arrives (a link or a file)
 
@@ -63,7 +64,7 @@ Follow the `it-reelsmaker` skill's pipeline with these choices already made:
 3. `faces.py scan`, `visual_plan.py init`, `brand.py export`, `visual_plan.py export --subtitles none --props`.
 4. Captions in our system: `python3 tools/editorial.py words edit/<id>`, write `edit/<id>/editorial.json`
    (hook lines, emphasis, callouts, cards, the keyword pill), `python3 tools/editorial.py props edit/<id>`.
-5. `cd remotion && npx remotion render ReelEditorial out/<id>.mp4 --props=<absolute path>/edit/<id>/editorial-props.json`
+5. `cd remotion && npx remotion render src/editorial/index.ts ReelEditorial out/<id>.mp4 --props=<absolute path>/edit/<id>/editorial-props.json`
 6. `master_audio.py` (always), the checks in `style-sheet.md` section 6, then send the file with the cut plan and
    the numbers: length, cuts, silence left, loudness.
 

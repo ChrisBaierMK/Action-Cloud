@@ -30,3 +30,5 @@ __pycache__/
 .kit-backup/
 edit/smoke/
 .hyperframes/
+sources
+.venv/

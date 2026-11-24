@@ -19,6 +19,12 @@ It installs yt-dlp, faster-whisper and the speech model, the Remotion and HyperF
 fonts. It ends with a line per tool. The editing skill is the installed plugin `it-reelsmaker`; its scripts are run
 from this folder (`it-reelsmaker.json` points them here).
 
+## On Chris's Mac
+
+`tools/setup-mac.sh` creates `~/Movies/Reels` with `sources/` (raw footage goes here), `assets/` and `finished/`,
+checks this workspace out into `~/Movies/Reels/workspace`, and installs the tools with Homebrew and a Python
+environment of its own. It was written on Linux and had not been run on a Mac when this was written: read it first.
+
 ## What is where
 
 | Path | What |

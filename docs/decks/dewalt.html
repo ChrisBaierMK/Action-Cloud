@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:B;src:url(f/b400.woff2) format("woff2");font-weight:400}
+@font-face{font-family:B;src:url(f/b600.woff2) format("woff2");font-weight:600}
+@font-face{font-family:BC;src:url(f/bc800.woff2) format("woff2");font-weight:800}
+@page{size:960px 1024px;margin:0}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--y:#FEBD17;--k:#141414;--k2:#1E1E1E;--k3:#2A2A2A;--w:#F4F1EA;--m:#A9A39A}
+body{font:15px/1.5 B,Arial,sans-serif;color:var(--w);background:var(--k)}
+.p{width:960px;height:1024px;position:relative;overflow:hidden;page-break-after:always;background:var(--k);display:flex;flex-direction:column}
+.top{height:64px;flex:none;background:#000;display:flex;align-items:center;gap:14px;padding:0 32px;border-bottom:4px solid var(--y)}
+.top img{height:30px;width:auto}.top .dw{height:34px}.top .cg{height:38px}
+.top .x{font:800 20px BC;color:var(--y)}
+.top .sec{margin-left:22px;font:800 13px BC;letter-spacing:.18em;color:var(--m);text-transform:uppercase}
+.top .tag{margin-left:auto;font:800 16px BC;letter-spacing:.12em;color:var(--y);text-transform:uppercase}
+.foot{height:40px;flex:none;margin-top:auto;background:#000;display:flex;align-items:center;justify-content:space-between;padding:0 32px;font:800 10px BC;letter-spacing:.2em;color:#777;text-transform:uppercase}
+.foot b{color:var(--w);letter-spacing:.08em}
+.pad{padding:30px 32px}
+.kick{font:800 12px BC;letter-spacing:.2em;color:var(--y);text-transform:uppercase;margin-bottom:8px}
+h1{font:800 54px/.92 BC;text-transform:uppercase;letter-spacing:-.01em}
+h2{font:800 36px/.95 BC;text-transform:uppercase}
+h3{font:800 21px/1.05 BC;text-transform:uppercase}
+.lead{font-size:16px;color:#DDD7CC;max-width:780px;margin-top:12px}
+.y{color:var(--y)}
+.img{position:relative;overflow:hidden;background:var(--k3)}
+.img img{width:100%;height:100%;object-fit:cover;display:block}
+.lbl{position:absolute;left:14px;top:14px;background:var(--y);color:var(--k);font:800 12px BC;letter-spacing:.14em;text-transform:uppercase;padding:5px 10px}
+.viz{position:absolute;right:10px;bottom:10px;background:rgba(0,0,0,.75);color:var(--m);font:800 9px BC;letter-spacing:.16em;padding:4px 7px}
+.cap{background:#000;padding:12px 16px}
+.cap h3{font-size:19px}.cap p{font-size:12px;color:var(--m)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:4px solid var(--y)}
+.stats div{padding:18px 18px;border-right:1px solid var(--k3);background:var(--k2)}
+.stats div:last-child{border-right:0}
+.stats b{display:block;font:800 40px/1 BC;color:var(--y)}
+.stats span{font-size:12px;color:var(--m)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.list{list-style:none}
+.list li{padding:7px 0 7px 22px;position:relative;border-bottom:1px solid var(--k3);font-size:14px}
+.list li::before{content:"";position:absolute;left:0;top:15px;width:12px;height:4px;background:var(--y)}
+.box{background:var(--k2);padding:22px 26px}
+.box .kick{color:var(--y)}
+.yb{background:var(--y);color:var(--k)}
+.yb .kick{color:var(--k)}
+.yb .list li{border-color:rgba(0,0,0,.15)}
+.yb .list li::before{background:var(--k)}
+.stripe{height:12px;background:repeating-linear-gradient(-45deg,var(--y) 0 16px,var(--k) 16px 32px);flex:none}
+.price{font:800 64px/1 BC;color:var(--y)}
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{text-align:left;font:800 12px BC;letter-spacing:.14em;color:var(--m);text-transform:uppercase;padding:8px 10px;border-bottom:2px solid var(--y)}
+.tbl td{padding:12px 10px;border-bottom:1px solid var(--k3);vertical-align:top;font-size:14px}
+.tbl td.n{font:800 20px BC;text-transform:uppercase;white-space:nowrap}
+.tbl td.pr{font:800 24px BC;color:var(--y);white-space:nowrap;text-align:right}
+.fed{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.fed div{background:var(--k2);border-top:4px solid var(--y);padding:14px}
+.fed b{font:800 30px/1 BC;display:block}
+.fed span{font-size:11px;color:var(--m)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.steps div{background:var(--k2);padding:16px;border-left:4px solid var(--y)}
+.steps b{font:800 34px/1 BC;color:var(--y);display:block}
+.steps span{font:800 16px/1.1 BC;text-transform:uppercase;display:block;margin:6px 0 4px}
+.steps p{font-size:12px;color:var(--m)}
+</style></head><body>
+
+<!-- 1 -->
+<section class="p">
+  <div class="top"><img class="dw" src="i/dewalt.png"><span class="x">×</span><img src="i/ac.png"><span class="x">×</span><img class="cg" src="i/cg.png"><span class="sec">01 · The project</span><span class="tag">Guaranteed tough.</span></div>
+  <div class="img" style="height:520px;flex:none"><img src="i/ext.png"><span class="lbl">Proposal · DEWALT Hall</span><span class="viz">VISUALISATION</span></div>
+  <div class="pad">
+    <p class="kick">Sponsorship proposal · Cheile Grădiștei Bike Park · Romania</p>
+    <h1>DEWALT Hall.<br><span class="y">Romania's indoor bikepark, built tough.</span></h1>
+    <p class="lead">Action Cloud built Romania's largest indoor bikepark in Brașov in 2022, by hand, with its own crew. Now the whole park moves into a 1,302 m² hall inside the Cheile Grădiștei Bike Park, a mountain sports resort that draws 150,000+ visitors a year. We are offering one brand the name on the building.</p>
+  </div>
+  <div class="stats" style="margin:0 32px">
+    <div><b>1,302 m²</b><span>hall · 21.35 × 61 m</span></div>
+    <div><b>150K+</b><span>annual visitors at the resort</span></div>
+    <div><b>800 m²</b><span>ramps built, ready to move in</span></div>
+    <div><b>1 name</b><span>on the hall, the roof and the gate</span></div>
+  </div>
+  <div class="foot"><span>Action Cloud × Cheile Grădiștei · DEWALT proposal</span><b>Hărman · Brașov · RO</b></div>
+</section>
+
+<!-- 2 -->
+<section class="p">
+  <div class="top"><img class="dw" src="i/dewalt.png"><span class="x">×</span><img src="i/ac.png"><span class="sec">02 · The setup</span><span class="tag">Guaranteed tough.</span></div>
+  <div class="pad" style="padding-bottom:18px">
+    <p class="kick">Proposed branding · Hall naming</p>
+    <h2>Every rider who drops in, drops in at DEWALT.</h2>
+    <p class="lead">The full building carries the DEWALT name: outside on the roof, walls and gate, inside on the banners and the biggest ramps. Every session, every photo and every clip from the park carries the logo.</p>
+  </div>
+  <div class="cols" style="gap:0">
+    <div><div class="img" style="height:300px"><img src="i/int.png"><span class="lbl">Inside</span><span class="viz">VISUALISATION</span></div><div class="cap"><h3>DEWALT banners + ramp faces</h3><p>Yellow copings · logo on the main quarter pipe · black-and-yellow wall stripes</p></div></div>
+    <div><div class="img" style="height:300px"><img src="i/ext.png" style="object-position:30% 50%"><span class="lbl">Outside</span><span class="viz">VISUALISATION</span></div><div class="cap"><h3>Full DEWALT wrap</h3><p>"DEWALT HALL" above the gate · giant logo on the long wall · visible from the trails and the chairlift</p></div></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;flex:none">
+    <div class="img" style="height:250px;background:#000"><img src="i/ramp.png" style="object-fit:contain"><span class="viz">VISUALISATION</span></div>
+    <div class="box" style="display:flex;flex-direction:column;justify-content:center">
+      <p class="kick">The asset · standalone render</p>
+      <h3 style="font-size:24px">A building, not a billboard</h3>
+      <p style="font-size:13px;color:#DDD7CC;margin-top:8px">The hall is permanent and works every day of the year. The plywood ramps take the brand into every POV clip riders post.</p>
+    </div>
+  </div>
+  <div class="cols">
+    <div class="box yb"><p class="kick">What DEWALT provides</p><ul class="list">
+      <li>Hall naming partnership · <b>€50,000</b></li>
+      <li>Branding production: wrap, banners, ramp graphics</li>
+      <li>Optional: tools for the build crew (in-kind)</li>
+      <li>Optional: athletes and creators for activations</li></ul></div>
+    <div class="box"><p class="kick">What Action Cloud delivers</p><ul class="list">
+      <li>Exclusive naming: "DEWALT Hall"</li>
+      <li>Logo on roof, long wall, gate and main ramps</li>
+      <li>150,000+ resort visitors a year as audience</li>
+      <li>Content rights: photos, video, rider access</li>
+      <li>Presence at Action Camps and Action Cups</li></ul></div>
+  </div>
+  <div class="foot"><span>Action Cloud × Cheile Grădiștei · DEWALT proposal</span><b>Hărman · Brașov · RO</b></div>
+</section>
+
+<!-- 3 -->
+<section class="p">
+  <div class="top"><img class="dw" src="i/dewalt.png"><span class="x">×</span><img src="i/ac.png"><span class="sec">03 · Built with DEWALT</span><span class="tag">Guaranteed tough.</span></div>
+  <div class="img" style="height:440px;flex:none"><img src="i/crew.png"><span class="lbl">The build</span><span class="viz">VISUALISATION</span></div>
+  <div class="pad">
+    <p class="kick">The story only DEWALT can own</p>
+    <h2>We don't buy our park. <span class="y">We build it.</span></h2>
+    <p class="lead">Every ramp in Action Cloud was cut, screwed and shaped by our own crew. The move into the new hall is a full rebuild: 800 m² of plywood, hundreds of cuts, thousands of screws. With DEWALT tools in our hands, the build itself becomes the campaign.</p>
+  </div>
+  <div class="cols" style="margin:0 32px;gap:14px">
+    <div class="box"><p class="kick">"The Build" content series</p><ul class="list">
+      <li>Weekly build episodes on @action.cloud</li>
+      <li>Tool close-ups in real jobsite use</li>
+      <li>Crew and rider POV, from first cut to first drop-in</li>
+      <li>Opening-day film: "Built with DEWALT"</li></ul></div>
+    <div class="box"><p class="kick">Where it lives after the build</p><ul class="list">
+      <li>Build wall inside the hall: "Built with DEWALT"</li>
+      <li>Every repair and new ramp, built on camera</li>
+      <li>Kids' camps: safe build workshops (supervised)</li>
+      <li>Every new zone in the next phase</li></ul></div>
+  </div>
+  <div class="foot"><span>Action Cloud × Cheile Grădiștei · DEWALT proposal</span><b>Hărman · Brașov · RO</b></div>
+</section>
+
+<!-- 4 -->
+<section class="p">
+  <div class="top"><img class="dw" src="i/dewalt.png"><span class="x">×</span><img src="i/ac.png"><span class="x">×</span><img class="cg" src="i/cg.png"><span class="sec">04 · The venue</span><span class="tag">Guaranteed tough.</span></div>
+  <div class="img" style="height:380px;flex:none"><img src="i/venue.png"><span class="lbl">Cheile Grădiștei Bike Park</span><span class="viz">VISUALISATION</span></div>
+  <div class="pad">
+    <p class="kick">Fundata · 1,300 m · Carpathians</p>
+    <h2>Inside Romania's only world-class mountain sports complex</h2>
+    <p class="lead">Cheile Grădiștei has hosted international federations for over a decade and is an official FOTE 2027 venue. The DEWALT Hall plugs into an audience and a broadcast ecosystem that already exist.</p>
+  </div>
+  <div class="stats" style="margin:0 32px 18px">
+    <div><b>150K+</b><span>annual visitors</span></div>
+    <div><b>800+</b><span>beds · 5 hotels · 17 villas</span></div>
+    <div><b>100+</b><span>international championships hosted</span></div>
+    <div><b>30+</b><span>sports disciplines</span></div>
+  </div>
+  <div class="fed" style="margin:0 32px">
+    <div><b>UCI</b><span>Union Cycliste Internationale</span></div>
+    <div><b>IBU</b><span>International Biathlon Union</span></div>
+    <div><b>WES</b><span>World E-Bike Series</span></div>
+    <div><b>EOC</b><span>European Olympic Committees · FOTE 2027</span></div>
+  </div>
+  <div class="foot"><span>Sources · Cheile Grădiștei · FRC · IBU · UEC · COSR</span><b>Hărman · Brașov · RO</b></div>
+</section>
+
+<!-- 5 -->
+<section class="p">
+  <div class="top"><img class="dw" src="i/dewalt.png"><span class="x">×</span><img src="i/ac.png"><span class="sec">05 · The offer</span><span class="tag">Guaranteed tough.</span></div>
+  <div class="pad">
+    <p class="kick">Partnership options</p>
+    <h2>Pick your part of the hall.</h2>
+    <p class="lead">The full hall is funded by €135,000 in partnerships. DEWALT can take the name on the building, or a zone inside it.</p>
+  </div>
+  <div style="margin:0 32px">
+    <table class="tbl">
+      <tr><th>Package</th><th>What DEWALT gets</th><th style="text-align:right">Investment</th></tr>
+      <tr><td class="n y">DEWALT Hall</td><td>Exclusive naming of the building · full exterior wrap · interior banners · "The Build" series · content rights</td><td class="pr">€50,000</td></tr>
+      <tr><td class="n">Send Line</td><td>"DEWALT Send Line": the main line of quarter pipes and jumps · logo on every ramp in the line</td><td class="pr">€20,000</td></tr>
+      <tr><td class="n">Build Partner</td><td>Tools for the crew (in-kind) · "Built with DEWALT" wall · build series credit</td><td class="pr">in-kind</td></tr>
+    </table>
+  </div>
+  <div class="pad" style="padding-top:26px">
+    <p class="kick">Next steps</p>
+    <div class="steps">
+      <div><b>01</b><span>Call</span><p>We walk DEWALT through the hall plan and the zones.</p></div>
+      <div><b>02</b><span>Contract</span><p>Marketing contract or sponsorship contract.</p></div>
+      <div><b>03</b><span>The Build</span><p>Hall goes up, crew builds the park on camera.</p></div>
+      <div><b>04</b><span>Opening</span><p>DEWALT Hall opens with riders, media and a launch film.</p></div>
+    </div>
+  </div>
+  <div class="stripe" style="margin-top:auto"></div>
+  <div class="yb" style="padding:26px 32px;display:flex;justify-content:space-between;align-items:center;flex:none">
+    <div><p class="kick">Contact</p><h2 style="color:var(--k)">Christoph Baier</h2><p style="font-size:15px">Founder · Action Cloud</p></div>
+    <div style="text-align:right;font:800 20px/1.4 BC;text-transform:uppercase">actioncloud.ro<br>@action.cloud</div>
+  </div>
+  <div class="foot"><span>Action Cloud × Cheile Grădiștei · DEWALT proposal · visualisations are illustrative</span><b>Hărman · Brașov · RO</b></div>
+</section>
+</body></html>

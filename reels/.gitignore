@@ -33,3 +33,5 @@ edit/smoke/
 sources
 .venv/
 dist/
+edit/*/look/
+edit/*/seg-*.mp4

@@ -1,0 +1,10 @@
+{
+ "accent": "#3DE8FF",
+ "shadow": 0.55,
+ "topShade": 0.3,
+ "emphasis": [0, 5],
+ "callouts": [
+  {"words": [0, 3], "lines": [[0], [1, 2, 3]], "size": 128, "y": 440, "hold": 60, "serifScale": 1.32, "serifStroke": 2.5, "gap": 36},
+  {"words": [4, 5], "lines": [[4, 5]], "size": 168, "y": 1400, "hold": 7, "serifStroke": 2}
+ ]
+}

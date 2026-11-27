@@ -103,6 +103,8 @@ no text over a face (render audit); a contact sheet at 2 frames per second read 
 
 | 27 November 2026 | "Search for a gta6 color filter and make it that way and 500 kg" | The "vice" look in `edit/gta6/look.py`: pink-to-orange sunset sky applied only to the bright upper frame, warm highlights, teal shadows, saturation up, slight haze. No official filter or published values exist; this is the look people mean. "500 kg" is shown as given, with no label, from the first rear view on. The accent moved from the wrap's orange to cyan, which holds against a pink sky. |
 
+| 27 November 2026 | "Make a 45 second clip", with a Spotify link to "Flower In A Hurricane" (Justice, GTA VI score) | A long music montage is cut on the song's bar grid: tempo measured on the public preview (125.9 BPM, taken as 126, confirmed by one listing), 24 bars = 45.7 s, shots of half a bar, one bar or two bars. The song is never put into the file: it is a commercial recording and is added in the app. Footage that is too short for the length is stretched with detail framings cropped from the 4K frames, not with repeats of the same framing. |
+
 ## 8. Trend montage without speech (first made 27 November 2026, "This or GTA 6?")
 
 | Rule | Value | Source |

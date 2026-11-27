@@ -32,6 +32,18 @@ matching entry before spending time on a failure.
 - **Uploads from the Claude app** arrive under `/root/.claude/uploads/<session>/`; five clips of 16-25 MB came
   through intact.
 
+## Cutting to a song
+
+- **A streaming link is not a file.** Read the track's name and length from the public embed page, measure the tempo
+  on its public preview (`npx hyperframes audio <preview> --only bpm,beats` from `hf/`), and cut on the bar grid.
+  The song itself is a commercial recording: it is added in the app at posting, never baked into the file.
+- **Join picture and sound separately.** Joined as pairs, each segment is stretched to its longer stream; over 28
+  segments that added 9 frames and would have pulled the cuts off the beat. After joining, count the frames and
+  check the detected cuts against the grid (`edit/gta6-45/build.py` does both).
+- **Tone-map after cropping and scaling, not before.** On 4K phone clips the float tone-mapping step is the slow
+  part; running it on the cropped 1080x1920 frame cut a 28-shot build from about 18 minutes to 5.
+- **A long render is big.** 45 s came out at 85 MB; a CRF 20 copy (48 MB) is the one to send.
+
 ## Speech and cutting
 
 - **faster-whisper crashes opening a file** (`open() got an unexpected keyword argument 'metadata_errors'`) with

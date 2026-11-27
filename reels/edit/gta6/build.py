@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Rough cut for the "This or GTA 6?" reel: five phone clips, tone-mapped to SDR, reframed, graded, joined.
-Run from reels/:  python3 edit/gta6/build.py   ->  edit/gta6/final.mp4 and edit/gta6/segments.json"""
+Run from reels/:  python3 edit/gta6/build.py   ->  edit/gta6/base.mp4 (ungraded) and edit/gta6/segments.json;
+then look.py grades it into final.mp4."""
 import json, subprocess, sys
 from pathlib import Path
 
@@ -52,7 +53,7 @@ for n, s in enumerate(SHOTS):
     if s.get("fix"):
         vf.append(s["fix"])
     out_dur = round(s["dur"] / s["speed"], 3)
-    vf += [f"crop={cw}:{ch}:{x}:{y}", "scale=1080:1920:flags=lanczos", f"setpts={1 / s['speed']}*PTS", "fps=30", GRADE]
+    vf += [f"crop={cw}:{ch}:{x}:{y}", "scale=1080:1920:flags=lanczos", f"setpts={1 / s['speed']}*PTS", "fps=30"]
     af = f"atempo={s['speed']}," if s["speed"] != 1 else ""
     af += f"afade=t=in:d=0.03,afade=t=out:st={out_dur - 0.03:.3f}:d=0.03,aresample=48000"
     seg = OUT / f"seg-{n}.mp4"
@@ -70,6 +71,6 @@ inputs = sum((["-i", str(OUT / f"seg-{n}.mp4")] for n in range(len(SHOTS))), [])
 fc = "".join(f"[{n}:v][{n}:a]" for n in range(len(SHOTS))) + f"concat=n={len(SHOTS)}:v=1:a=1[v][a]"
 run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", *inputs, "-filter_complex", fc, "-map", "[v]", "-map", "[a]",
      "-c:v", "libx264", "-crf", "14", "-preset", "medium", "-pix_fmt", "yuv420p", "-r", "30", "-c:a", "aac", "-b:a", "256k",
-     "-movflags", "+faststart", str(OUT / "final.mp4")])
+     "-movflags", "+faststart", str(OUT / "base.mp4")])
 (OUT / "segments.json").write_text(json.dumps({"duration": round(t, 3), "segments": segs}, indent=1))
-print(f"final.mp4: {t:.2f} s, {len(SHOTS)} shots, {len(SHOTS) - 1} cuts")
+print(f"base.mp4 (ungraded): {t:.2f} s, {len(SHOTS)} shots, {len(SHOTS) - 1} cuts. Next: python3 edit/gta6/look.py")

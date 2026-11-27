@@ -13,7 +13,9 @@ shutil.copy2(E / "final.mp4", pub / "video.mp4")
 
 # no speech in this reel: the four caption "words" get times by hand; the last one lands on the first cut (0.80 s)
 words = [{"text": "This", "start": 0.12, "end": 0.40, "seg": 0}, {"text": "or", "start": 0.42, "end": 0.58, "seg": 0},
-         {"text": "GTA", "start": 0.60, "end": 0.78, "seg": 0}, {"text": "6?", "start": 0.80, "end": 1.00, "seg": 1}]
+         {"text": "GTA", "start": 0.60, "end": 0.78, "seg": 0}, {"text": "6?", "start": 0.80, "end": 1.00, "seg": 1},
+         # "500 kg" (Chris's number, 27 November) lands on the cut to the rear view, where the load is in full view
+         {"text": "500", "start": 3.74, "end": 3.95, "seg": 2}, {"text": "kg", "start": 3.97, "end": 4.15, "seg": 2}]
 spec = json.loads((E / "editorial.json").read_text())
 props = {
     "video": "gta6/video.mp4",

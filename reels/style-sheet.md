@@ -101,6 +101,8 @@ no text over a face (render audit); a contact sheet at 2 frames per second read 
 |---|---|---|
 | 27 November 2026 | "Stop, just make some cinematic cuts and write a caption on the clip this or gta 6" | For a quick trend montage: do not research the trend at length and do not narrate. Cut, grade, put the one caption on, deliver. Keep trend research to what can be measured in a few minutes. |
 
+| 27 November 2026 | "Search for a gta6 color filter and make it that way and 500 kg" | The "vice" look in `edit/gta6/look.py`: pink-to-orange sunset sky applied only to the bright upper frame, warm highlights, teal shadows, saturation up, slight haze. No official filter or published values exist; this is the look people mean. "500 kg" is shown as given, with no label, from the first rear view on. The accent moved from the wrap's orange to cyan, which holds against a pink sky. |
+
 ## 8. Trend montage without speech (first made 27 November 2026, "This or GTA 6?")
 
 | Rule | Value | Source |

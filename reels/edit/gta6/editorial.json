@@ -1,9 +1,10 @@
 {
- "accent": "#FF6B0F",
- "shadow": 0.5,
- "topShade": 0.58,
+ "accent": "#3DE8FF",
+ "shadow": 0.55,
+ "topShade": 0.3,
  "emphasis": [
-  0
+  0,
+  5
  ],
  "callouts": [
   {
@@ -27,6 +28,22 @@
    "serifScale": 1.32,
    "serifStroke": 2.5,
    "gap": 36
+  },
+  {
+   "words": [
+    4,
+    5
+   ],
+   "lines": [
+    [
+     4,
+     5
+    ]
+   ],
+   "size": 168,
+   "y": 1400,
+   "hold": 30,
+   "serifStroke": 2
   }
  ]
 }

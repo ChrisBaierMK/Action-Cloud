@@ -1,0 +1,55 @@
+{
+ "duration": 8.75,
+ "segments": [
+  {
+   "i": 0,
+   "source": "IMG_1281.mov",
+   "what": "front, lights off",
+   "src_start": 1.0,
+   "src_end": 1.4,
+   "out_start": 0.0,
+   "out_dur": 0.8,
+   "speed": 0.5
+  },
+  {
+   "i": 1,
+   "source": "IMG_1283.mov",
+   "what": "lights on, drives past",
+   "src_start": 1.55,
+   "src_end": 4.45,
+   "out_start": 0.8,
+   "out_dur": 2.9,
+   "speed": 1.0
+  },
+  {
+   "i": 2,
+   "source": "IMG_1286.mov",
+   "what": "rear three-quarter",
+   "src_start": 3.2,
+   "src_end": 4.55,
+   "out_start": 3.7,
+   "out_dur": 1.35,
+   "speed": 1.0
+  },
+  {
+   "i": 3,
+   "source": "IMG_1285.mov",
+   "what": "side, full livery",
+   "src_start": 9.0,
+   "src_end": 10.15,
+   "out_start": 5.05,
+   "out_dur": 1.15,
+   "speed": 1.0
+  },
+  {
+   "i": 4,
+   "source": "IMG_1287.mov",
+   "what": "rear, closing in",
+   "src_start": 4.9,
+   "src_end": 7.45,
+   "out_start": 6.2,
+   "out_dur": 2.55,
+   "speed": 1.0
+  }
+ ]
+}

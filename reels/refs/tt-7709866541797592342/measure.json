@@ -1,0 +1,123 @@
+{
+ "id": "tt-7709866541797592342",
+ "file": "7709866541797592342.mp4",
+ "video": {
+  "width": 576,
+  "height": 1024,
+  "fps": 30.0,
+  "duration": 38.3,
+  "audio": true,
+  "codec": "h264"
+ },
+ "cut_method": "hyperframes measure cuts",
+ "cut_times": [
+  1.833,
+  3.533,
+  14.6,
+  17.767,
+  22.333,
+  26.267,
+  30.2,
+  32.467,
+  34.667
+ ],
+ "not_cuts": [],
+ "shots": {
+  "cuts": 9,
+  "cuts_per_10s": 2.35,
+  "shot_min": 1.7,
+  "shot_median": 3.4,
+  "shot_max": 11.067,
+  "shot_mean": 3.83,
+  "shots": [
+   1.833,
+   1.7,
+   11.067,
+   3.167,
+   4.566,
+   3.934,
+   3.933,
+   2.267,
+   2.2,
+   3.633
+  ]
+ },
+ "faces": {
+  "sample_step_s": 0.5,
+  "face_present_share": 0.091,
+  "layout_share": {
+   "face-small": 0.091,
+   "no-face": 0.909
+  },
+  "longest_stretch_without_face_s": 15.5,
+  "layout_changes": 6,
+  "layout_change_times": [
+   15.5,
+   17.0,
+   17.5,
+   18.0,
+   23.5,
+   25.0
+  ],
+  "face_height_per_shot": [
+   null,
+   null,
+   null,
+   0.056,
+   null,
+   0.062,
+   null,
+   null,
+   null,
+   null
+  ],
+  "punch_ratio_between_shots": [],
+  "punch_ratio_median": null,
+  "note": "layout labels are a heuristic from face size and position; confirm on the sheets"
+ },
+ "sheets": [
+  "refs/tt-7709866541797592342/sheets/sheet-01.jpg",
+  "refs/tt-7709866541797592342/sheets/sheet-02.jpg",
+  "refs/tt-7709866541797592342/sheets/sheet-03.jpg",
+  "refs/tt-7709866541797592342/sheets/sheet-04.jpg"
+ ],
+ "loudness": {
+  "integrated_lufs": -17.8,
+  "loudness_range_lu": 23.6,
+  "true_peak_dbfs": -5.7
+ },
+ "language": "nn",
+ "speech": {
+  "words": 13,
+  "first_word_at_s": 0.0,
+  "last_word_ends_s": 36.52,
+  "silence_after_last_word_s": 1.78,
+  "words_per_second_overall": 0.36,
+  "words_per_second_speaking": 2.15,
+  "pauses_over_250ms": 2,
+  "longest_pause_s": 29.84,
+  "total_pause_s": 30.46,
+  "hook_first_sentence": {
+   "text": "Caution!",
+   "start": 0.0,
+   "end": 1.72,
+   "words": 1
+  },
+  "last_sentence": {
+   "text": "Thank you for your viewing.",
+   "start": 35.04,
+   "end": 36.52,
+   "words": 5
+  },
+  "sentences": 3,
+  "note": "word edges from Whisper drift by 0.1-0.8 s; pauses under ~0.3 s are not reliable"
+ },
+ "bed": {
+  "voice_rms_dbfs": -21.3,
+  "gap_rms_dbfs": -26.5,
+  "gaps_measured": 3,
+  "gap_seconds": 31.76,
+  "bed_below_voice_db": 5.2,
+  "reading": "a clear bed under the voice (music or loud ambience)"
+ }
+}

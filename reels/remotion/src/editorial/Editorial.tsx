@@ -28,7 +28,8 @@ export type EditorialSpec = {
   accent?: string; // the one accent color; default: the brand's accent
   emphasis?: number[]; // word indexes set in the serif italic, accent color
   hook?: { lines: number[][]; serifLines?: number[]; accentLines?: number[]; hold?: number; y?: number };
-  callouts?: { words: [number, number]; lines?: number[][]; size?: number; y?: number; hold?: number }[];
+  callouts?: { words: [number, number]; lines?: number[][]; size?: number; y?: number; hold?: number;
+    serifScale?: number; serifStroke?: number; gap?: number }[]; // serifScale: emphasized words larger still (1 = the usual 1.2x); serifStroke: px, a heavier serif; gap: extra px between lines
   cta?: { atWord: number; keyword: string; then?: string; thenAtWord?: number; y?: number; untilWord?: number };
   cards?: { fromWord: number; toWord: number; label?: string; big: Token[]; sub?: Token[] }[];
   captionY?: number; // center of the running captions, px from the top (measured reference: 1174)
@@ -36,6 +37,7 @@ export type EditorialSpec = {
   maxWords?: number; // words per running caption (measured reference: 1-3)
   maxChars?: number;
   shadow?: number; // 0..1 soft shadow under text over footage; 0 on dark, graded footage
+  topShade?: number; // 0..1 darkening from the top edge, gone by 44% of the height: for text set against a bright sky
 };
 export type EditorialProps = ReelKitProps & { editorial?: EditorialSpec | null };
 
@@ -173,9 +175,10 @@ const Callout: React.FC<{ spec: NonNullable<EditorialSpec["callouts"]>[number]; 
     <div style={{ position: "absolute", left: 0, width: 1080, top: spec.y ?? 1180, transform: "translateY(-50%)", textAlign: "center", color: "#fff",
       textShadow: shadowOf(shadow), ...leave(frame, end) }}>
       {lines.map((line, li) => (
-        <div key={li} style={{ whiteSpace: "nowrap", height: Math.round(size * 1.08) }}>
+        <div key={li} style={{ whiteSpace: "nowrap", height: Math.round(size * 1.08), marginTop: li ? spec.gap ?? 0 : 0 }}>
           {line.map((i, n) => (
-            <span key={i} style={{ ...(emphasis.has(i) ? { ...serifStyle(size), color: accent } : sansStyle(size)), ...arrive(frame, f(words[i].start) - 1, 6, 14), marginLeft: n ? "0.24em" : 0 }}>
+            <span key={i} style={{ ...(emphasis.has(i) ? { ...serifStyle(size * (spec.serifScale ?? 1)), color: accent,
+              WebkitTextStroke: spec.serifStroke ? `${spec.serifStroke}px ${accent}` : undefined } : sansStyle(size)), ...arrive(frame, f(words[i].start) - 1, 6, 14), marginLeft: n ? "0.24em" : 0 }}>
               {words[i].text}
             </span>
           ))}
@@ -264,6 +267,10 @@ export const EditorialLayer: React.FC<{ p: EditorialProps }> = ({ p }) => {
   const total = Math.round(p.captions.duration * KIT_FPS);
   return (
     <AbsoluteFill>
+      {spec.topShade ? (
+        <div style={{ position: "absolute", left: 0, top: 0, width: 1080, height: 845,
+          background: `linear-gradient(to bottom, rgba(0,0,0,${spec.topShade}) 0%, rgba(0,0,0,${(spec.topShade * 0.6).toFixed(3)}) 48%, rgba(0,0,0,0) 100%)` }} />
+      ) : null}
       {spec.cards?.map((c, n) => <Card key={n} spec={c} words={words} accent={accent} />)}
       {!hidden && <Running chunks={chunks} emphasis={emphasis} accent={accent} y={spec.captionY ?? 1174} size={spec.captionSize ?? 48} shadow={shadow} />}
       {spec.callouts?.map((c, n) => <Callout key={n} spec={c} words={words} emphasis={emphasis} accent={accent} shadow={shadow} />)}

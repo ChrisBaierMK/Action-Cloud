@@ -94,3 +94,20 @@ action, not the music. Music is a bed and a mood, plus lifts in the gaps.
 Size 1080x1920 and duration equal on audio and video; loudness -14 +/- 0.7 LUFS and true peak at most -1 dBFS;
 every cut edge passes the audio edge check; captions match the transcript word for word; no text in the zones above;
 no text over a face (render audit); a contact sheet at 2 frames per second read once from start to end.
+
+## 7. Revisions from Chris
+
+| Date | His words | What it changes |
+|---|---|---|
+| 27 November 2026 | "Stop, just make some cinematic cuts and write a caption on the clip this or gta 6" | For a quick trend montage: do not research the trend at length and do not narrate. Cut, grade, put the one caption on, deliver. Keep trend research to what can be measured in a few minutes. |
+
+## 8. Trend montage without speech (first made 27 November 2026, "This or GTA 6?")
+
+| Rule | Value | Source |
+|---|---|---|
+| Length | 5 to 9 s | measured: two launch-week trend examples run 5.8 s and 7.8 s (19.6M and 6.8M views); this reel 8.8 s |
+| Text | one line, on screen from the first second to the last frame | measured: both examples |
+| Cuts | 1-2 in the examples; 4 in ours, one shot per clip he sent | measured / choice |
+| Sound | the footage's own sound, mastered to -14 LUFS; a platform sound is added by him in the app | measured: both examples use original sound |
+| Caption place | top of the frame (center y about 440) over a top shade when the subject fills the middle and lower frame | choice, checked on stills |
+| Accent | the subject's own color on the one emphasized word (here the wrap's orange, brightened to #FF6B0F) | measured from the footage / choice |

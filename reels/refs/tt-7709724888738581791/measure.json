@@ -1,0 +1,90 @@
+{
+ "id": "tt-7709724888738581791",
+ "file": "7709724888738581791.mp4",
+ "video": {
+  "width": 720,
+  "height": 1280,
+  "fps": 30.0,
+  "duration": 5.767,
+  "audio": true,
+  "codec": "h264"
+ },
+ "cut_method": "hyperframes measure cuts",
+ "cut_times": [
+  2
+ ],
+ "not_cuts": [],
+ "shots": {
+  "cuts": 1,
+  "cuts_per_10s": 1.73,
+  "shot_min": 2.0,
+  "shot_median": 2.883,
+  "shot_max": 3.767,
+  "shot_mean": 2.883,
+  "shots": [
+   2.0,
+   3.767
+  ]
+ },
+ "faces": {
+  "sample_step_s": 0.5,
+  "face_present_share": 0.333,
+  "layout_share": {
+   "face-close": 0.333,
+   "no-face": 0.667
+  },
+  "longest_stretch_without_face_s": 4.0,
+  "layout_changes": 1,
+  "layout_change_times": [
+   2.0
+  ],
+  "face_height_per_shot": [
+   0.318,
+   null
+  ],
+  "punch_ratio_between_shots": [],
+  "punch_ratio_median": null,
+  "note": "layout labels are a heuristic from face size and position; confirm on the sheets"
+ },
+ "sheets": [
+  "refs/tt-7709724888738581791/sheets/sheet-01.jpg"
+ ],
+ "loudness": {
+  "integrated_lufs": -11.9,
+  "loudness_range_lu": 9.0,
+  "true_peak_dbfs": 0.4
+ },
+ "language": "en",
+ "speech": {
+  "words": 4,
+  "first_word_at_s": 0.0,
+  "last_word_ends_s": 5.7,
+  "silence_after_last_word_s": 0.07,
+  "words_per_second_overall": 0.7,
+  "words_per_second_speaking": 0.7,
+  "pauses_over_250ms": 0,
+  "longest_pause_s": 0,
+  "total_pause_s": 0,
+  "hook_first_sentence": {
+   "text": "Thank you for watching!",
+   "start": 0.0,
+   "end": 5.7,
+   "words": 4
+  },
+  "last_sentence": {
+   "text": "Thank you for watching!",
+   "start": 0.0,
+   "end": 5.7,
+   "words": 4
+  },
+  "sentences": 1,
+  "note": "word edges from Whisper drift by 0.1-0.8 s; pauses under ~0.3 s are not reliable"
+ },
+ "bed": {
+  "voice_rms_dbfs": -11.9,
+  "gap_rms_dbfs": null,
+  "gaps_measured": 0,
+  "gap_seconds": 0,
+  "reading": "no gap of 0.4 s or longer: the edit is cut tight, the bed cannot be measured this way"
+ }
+}

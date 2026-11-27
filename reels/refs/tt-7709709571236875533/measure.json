@@ -1,0 +1,68 @@
+{
+ "id": "tt-7709709571236875533",
+ "file": "7709709571236875533.mp4",
+ "video": {
+  "width": 720,
+  "height": 1280,
+  "fps": 30.0,
+  "duration": 7.767,
+  "audio": true,
+  "codec": "h264"
+ },
+ "cut_method": "hyperframes measure cuts",
+ "cut_times": [
+  3.9,
+  5.133
+ ],
+ "not_cuts": [],
+ "shots": {
+  "cuts": 2,
+  "cuts_per_10s": 2.57,
+  "shot_min": 1.233,
+  "shot_median": 2.634,
+  "shot_max": 3.9,
+  "shot_mean": 2.589,
+  "shots": [
+   3.9,
+   1.233,
+   2.634
+  ]
+ },
+ "faces": {
+  "sample_step_s": 0.5,
+  "face_present_share": 0.125,
+  "layout_share": {
+   "face-small": 0.125,
+   "no-face": 0.875
+  },
+  "longest_stretch_without_face_s": 7.0,
+  "layout_changes": 1,
+  "layout_change_times": [
+   7.0
+  ],
+  "face_height_per_shot": [
+   null,
+   null,
+   0.115
+  ],
+  "punch_ratio_between_shots": [],
+  "punch_ratio_median": null,
+  "note": "layout labels are a heuristic from face size and position; confirm on the sheets"
+ },
+ "sheets": [
+  "refs/tt-7709709571236875533/sheets/sheet-01.jpg"
+ ],
+ "loudness": {
+  "integrated_lufs": -15.1,
+  "loudness_range_lu": 4.2,
+  "true_peak_dbfs": 0.3
+ },
+ "language": "en",
+ "speech": {
+  "words": 0
+ },
+ "bed": {
+  "whole_file_rms_dbfs": -19.1,
+  "note": "no speech found: the level of the whole file"
+ }
+}

@@ -53,7 +53,17 @@ that points at an index the cut does not have.
 - `cards[]`: shown from `fromWord` to `toWord`. `big` and `sub` are token lists; a token is `{"t": text}` with
   optional `serif`, `accent` and `atWord` (the word it arrives on; without it tokens arrive in order).
 - Optional top-level: `captionY` (default 1174), `captionSize` (default 48), `maxWords` (default 3),
-  `maxChars` (default 18).
+  `maxChars` (default 18), `topShade` (0 to 1: a darkening from the top edge, gone by 44% of the height, for text
+  set against a bright sky).
+- Optional on a callout: `serifScale` (emphasized words larger still; 1 is the usual 1.2x of the sans), `serifStroke`
+  (px, makes the thin serif heavier) and `gap` (extra px between lines, needed once the serif is scaled up).
+
+## A video with no speech
+
+A montage has no spoken words to hang text on. Give the caption its own word times by hand in the render props
+(`captions.words`: text, start, end, seg) and show it as one callout with a long `hold`, so it builds in the first
+second and stays to the last frame. `edit/gta6/` in the workspace is the worked example: `build.py` joins and
+grades the clips, `make_props.py` writes the props, `editorial.json` holds the caption.
 
 Words shown by the hook, a callout or a card are not repeated as running captions.
 

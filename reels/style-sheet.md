@@ -105,6 +105,8 @@ no text over a face (render audit); a contact sheet at 2 frames per second read 
 
 | 27 November 2026 | "Make a 45 second clip", with a Spotify link to "Flower In A Hurricane" (Justice, GTA VI score) | A long music montage is cut on the song's bar grid: tempo measured on the public preview (125.9 BPM, taken as 126, confirmed by one listing), 24 bars = 45.7 s, shots of half a bar, one bar or two bars. The song is never put into the file: it is a commercial recording and is added in the app. Footage that is too short for the length is stretched with detail framings cropped from the 4K frames, not with repeats of the same framing. |
 
+| 27 November 2026 | "Take 500 kg out. Take out the first clip with the headlights off" | The 45-second reel carries one caption only. Every shot from the lights-off clip is gone and the reel opens on the lit headlights. My reading, not his words: open on the strongest live frame, without a build-up shot before it. |
+
 ## 8. Trend montage without speech (first made 27 November 2026, "This or GTA 6?")
 
 | Rule | Value | Source |

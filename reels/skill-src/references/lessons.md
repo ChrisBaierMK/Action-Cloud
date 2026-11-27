@@ -20,6 +20,12 @@ matching entry before spending time on a failure.
 - **HyperFrames commands that leave the machine.** `audio --quality best`, `reverse`, `share` and `publish`
   upload to HeyGen and may bill. They need Chris's yes. Telemetry is switched off by `bootstrap.sh`.
 
+## Color
+
+- **Natural is the default.** Chris rejected a stylized "GTA" grade (pink sunset sky over an overcast day) in plain
+  words. Grade for a clean, true picture: a little contrast and color, a measured white-balance correction, nothing
+  else. When he asks for a look, render two or three test frames in that look and show them before the full render.
+
 ## Phone footage
 
 - **iPhone clips are usually HDR** (HEVC, 10-bit, transfer `arib-std-b67`, 4K, with a rotation flag). The plugin's
@@ -42,6 +48,9 @@ matching entry before spending time on a failure.
   check the detected cuts against the grid (`edit/gta6-45/build.py` does both).
 - **Tone-map after cropping and scaling, not before.** On 4K phone clips the float tone-mapping step is the slow
   part; running it on the cropped 1080x1920 frame cut a 28-shot build from about 18 minutes to 5.
+- **Pad the sound before mastering.** The render's sound track ends a few milliseconds before its picture, and the
+  mastering step joins them with "stop at the shorter one", which cut three frames off the end and failed its own
+  length check. Add 0.2 s of silence first (`-c:v copy -af apad=pad_dur=0.2`), then master: every frame is kept.
 - **A long render is big.** 45 s came out at 85 MB; a CRF 20 copy (48 MB) is the one to send.
 
 ## Speech and cutting

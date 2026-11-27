@@ -23,6 +23,10 @@ LOOKS = {
     "cinematic": {"sky": 0.0, "grade": "eq=contrast=1.14:saturation=0.94:brightness=-0.015,"
                   "curves=master='0/0.015 0.22/0.17 0.5/0.5 0.78/0.83 1/0.97',"
                   "colorbalance=bs=0.035:gs=0.008:rh=0.03:bh=-0.03,vibrance=intensity=0.18", "bloom": 0.0, "vignette": "PI/5.2"},
+    # true to the day it was shot: no tint, no vignette, no haze. A little contrast and color so it is not flat,
+    # and a small correction of the phone's cool cast (measured on the asphalt, which should be neutral gray).
+    "natural": {"sky": 0.0, "grade": "colorchannelmixer=rr=1.035:gg=1.0:bb=0.965,eq=contrast=1.06:saturation=1.10,"
+                "curves=master='0/0 0.25/0.238 0.5/0.5 0.75/0.768 1/1'", "bloom": 0.0, "vignette": None},
     "vice": {"sky": 0.9, "grade": "eq=contrast=1.10:saturation=1.30:gamma=1.02,"
              "colorbalance=rs=-0.06:gs=0.0:bs=0.08:rm=0.05:gm=-0.015:bm=-0.03:rh=0.10:gh=0.01:bh=-0.07,"
              "vibrance=intensity=0.30,curves=master='0/0.01 0.25/0.21 0.5/0.52 0.78/0.84 1/0.985'", "bloom": 0.16, "vignette": "PI/5.6"},
@@ -62,13 +66,13 @@ def graph(look):
     if L["bloom"] > 0:
         g += [f"{src}split[g1][g2]", "[g2]gblur=sigma=28[gl]", f"[g1][gl]blend=all_mode=screen:all_opacity={L['bloom']}[bl]"]
         src = "[bl]"
-    g += [f"{src}vignette=angle={L['vignette']},format=yuv420p[out]"]
+    g += [f"{src}vignette=angle={L['vignette']},format=yuv420p[out]" if L.get("vignette") else f"{src}format=yuv420p[out]"]
     return ";".join(g)
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--look", default="vice", choices=sorted(LOOKS))
+    ap.add_argument("--look", default="natural", choices=sorted(LOOKS))
     ap.add_argument("--stills", nargs="*", type=float)
     a = ap.parse_args()
     ramp_png(E / "sky-tint.png", SKY)

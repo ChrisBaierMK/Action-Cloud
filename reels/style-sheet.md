@@ -107,6 +107,8 @@ no text over a face (render audit); a contact sheet at 2 frames per second read 
 
 | 27 November 2026 | "Take 500 kg out. Take out the first clip with the headlights off" | The 45-second reel carries one caption only. Every shot from the lights-off clip is gone and the reel opens on the lit headlights. My reading, not his words: open on the strongest live frame, without a build-up shot before it. |
 
+| 27 November 2026 | "You made it look like shit. Make the colors more natural." (about the pink-sky "vice" look) | Natural color is the default from now on: the `natural` look in `edit/gta6/look.py` (no tint, no vignette, no haze; contrast 1.06, saturation 1.10, a small correction of the phone's cool cast measured on the asphalt). A stylized look is never applied on my own reading of a request: show two or three test frames first and let him pick. The darkening behind a caption stays at 0.2 or less, so it does not change the sky. |
+
 ## 8. Trend montage without speech (first made 27 November 2026, "This or GTA 6?")
 
 | Rule | Value | Source |
@@ -117,3 +119,4 @@ no text over a face (render audit); a contact sheet at 2 frames per second read 
 | Sound | the footage's own sound, mastered to -14 LUFS; a platform sound is added by him in the app | measured: both examples use original sound |
 | Caption place | top of the frame (center y about 440) over a top shade when the subject fills the middle and lower frame | choice, checked on stills |
 | Accent | the subject's own color on the one emphasized word (here the wrap's orange, brightened to #FF6B0F) | measured from the footage / choice |
+| Color | natural (see the revision of 27 November); never a stylized filter without showing test frames first | his revision |

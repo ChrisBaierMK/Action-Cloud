@@ -18,9 +18,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "edit" / "gta6-45"
 sys.path.insert(0, str(ROOT / "edit" / "gta6"))
-import look as LOOK  # the same "vice" look as the short version
+import look as LOOK  # the looks live with the short version
 
 BPM, FPS = 126.0, 30
+# "natural" since 27 November: Chris rejected the pink-sky "vice" look. Pass another look name as the first argument.
+LOOK_NAME = next((a for a in sys.argv[1:] if a in LOOK.LOOKS), "natural")
 BAR_FRAMES = 4 * 60.0 / BPM * FPS  # 57.14 frames
 HLG = ("zscale=tin=arib-std-b67:min=bt2020nc:pin=bt2020:rin=tv:t=linear:npl=100,format=gbrpf32le,"
        "zscale=p=bt709,tonemap=tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv,format=yuv420p")
@@ -98,7 +100,7 @@ def main():
         pre = [f"crop={cw}:{ch}:{x}:{y}", "scale=1080:1920:flags=lanczos"]
         pre += ([HLG] if transfer == "arib-std-b67" else []) + ([FIX_1285] if clip == "1285" else [])
         pre += [f"setpts={1 / speed}*PTS", f"fps={FPS}"]
-        L = dict(LOOK.LOOKS["vice"])
+        L = dict(LOOK.LOOKS[LOOK_NAME])
         if not sky:
             L["sky"] = 0.0
         LOOK.LOOKS[f"_s{n}"] = L
